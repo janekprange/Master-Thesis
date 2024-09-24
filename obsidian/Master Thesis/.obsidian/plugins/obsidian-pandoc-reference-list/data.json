@@ -1,0 +1,17 @@
+{
+  "pathToPandoc": "C:\\Users\\janek\\AppData\\Local\\Pandoc\\pandoc.EXE",
+  "tooltipDelay": 400,
+  "zoteroGroups": [
+    {
+      "id": 1,
+      "name": "Meine Bibliothek",
+      "lastUpdate": 1727208650043
+    }
+  ],
+  "renderCitations": true,
+  "renderCitationsReadingMode": true,
+  "renderLinkCitations": true,
+  "enableCiteKeyCompletion": true,
+  "pullFromZotero": true,
+  "cslStyleURL": "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
+}
