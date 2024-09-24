@@ -1,0 +1,111 @@
+\documentclass[]{proposalclass}
+\usetikzlibrary{arrows,arrows.meta,positioning}
+
+\title{Working Title of the Thesis}
+\type{Master's Thesis}
+\author{Janek Prange}
+\email{janek.prange@stud.uni-hannover.de}
+\supervisor{Prof. Dr. Henning Wachsmuth}
+\department{Institute of Artificial Intelligence}
+\researchgroup{Natural Language Processing Group}
+
+\university{Leibniz University Hannover}
+
+\usepackage[hyperref]{acl2018}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{courier}
+\usepackage{ifmtarg}
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor,colortbl}
+\usepackage{makecell}
+
+\usepackage{multicol}
+
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\begin{multicols}{2}[\section*{\refname}]%
+      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist\end{multicols}}
+\makeatother
+ 
+\definecolor{Gray}{gray}{0.90}
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{g}{>{\columncolor{Gray}}r}
+
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    numberstyle=\tiny\color{gray},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols,automata}
+
+\newcommand{\depNode}[5]{
+	\node (#1_1) [node,right of=#4_1,xshift=#5] {\tt\scriptsize\raisebox{0pt}[\height][0pt]{#2}};
+	\node (#1) [node,below of=#1_1] {\tt\tiny#3};
+	\draw [dashed] (#1) -- (#1_1);
+}
+
+\newcommand{\depNodeRed}[5]{
+	\node (#1_1) [node,draw=red,right of=#4_1,xshift=#5] {\tt\scriptsize\raisebox{0pt}[\height][0pt]{#2}};
+	\node (#1) [node,below of=#1_1] {\tt\tiny#3};
+	\draw [dashed] (#1) -- (#1_1);
+}
+
+\newcommand{\depEdge}[3]{
+	\draw [edge] (#1_1) to [out=90,in=90] node[anchor=center,fill=white] {\tt\tiny #3} (#2_1);
+}
+
+\newcommand{\depEdgeRed}[3]{
+	\draw [edge,red] (#1_1) to [out=90,in=90] node[anchor=center,color=black,fill=white] {\tt\tiny #3} (#2_1);
+}
+ 
+\lstset{style=mystyle}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\input{1_motivation_problem}
+\input{2_goals_tasks}
+\input{3_outline}
+\input{4_time_schedule}
+\clearpage
+\bibliographystyle{acl_natbib}
+% AVOID WHITE SPACES BETWEEN BIBLIOGRAPHIES!
+{\footnotesize\bibliography{./proposal_lit.bib}}%
+\end{document}
