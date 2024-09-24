@@ -1,33 +1,32 @@
 ---
 category: literaturenote
-tags: {% if allTags %}{{allTags}}{% endif %}
+tags: [{% if allTags %}{% for t in tags %}{{t.tag | replace(" - ", "/") | replace(" ", "_")}}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}]
 citekey: {{citekey}}
-status: unread
-dateread:
 ---
+{% macro calloutHeader(type, color) -%}  
+{%- if type == "highlight" -%}  
+<mark style="background-color: {{color}}">Quote</mark>  
+{%- endif -%}
 
-> [!Cite]
-> {{bibliography}}
+{%- if type == "note" -%}  
+<mark style="background-color: {{color}}">Note</mark>  
+{%- endif -%}  
+{%- endmacro -%}
 
->[!Synth]
->**Contribution**:: 
->
->**Related**:: {% for relation in relations | selectattr("citekey") %} [[@{{relation.citekey}}]]{% if not loop.last %}, {% endif%} {% endfor %}
->
-
->[!md]
+> [!info]
 {% for type, creators in creators | groupby("creatorType") -%}
 {%- for creator in creators -%}
 > **{{"First" if loop.first}}{{type | capitalize}}**::
 {%- if creator.name %} {{creator.name}}  
 {%- else %} {{creator.lastName}}, {{creator.firstName}}  
 {%- endif %}  
-{% endfor %}~ 
+{% endfor -%}
+> --- 
 {%- endfor %}    
 > **Title**:: {{title}}  
 > **Year**:: {{date | format("YYYY")}}   
 > **Citekey**:: {{citekey}} {%- if itemType %}  
-> **itemType**:: {{itemType}}{%- endif %}{%- if itemType == "journalArticle" %}  
+> **Type**:: {{itemType}}{%- endif %}{%- if itemType == "journalArticle" %}  
 > **Journal**:: *{{publicationTitle}}* {%- endif %}{%- if volume %}  
 > **Volume**:: {{volume}} {%- endif %}{%- if issue %}  
 > **Issue**:: {{issue}} {%- endif %}{%- if itemType == "bookSection" %}  
@@ -36,43 +35,27 @@ dateread:
 > **Location**:: {{place}} {%- endif %}{%- if pages %}   
 > **Pages**:: {{pages}} {%- endif %}{%- if DOI %}  
 > **DOI**:: {{DOI}} {%- endif %}{%- if ISBN %}  
-> **ISBN**:: {{ISBN}} {%- endif %}    
-
-> [!LINK] 
-> {%- for attachment in attachments | filterby("path", "endswith", ".pdf") %}
->  [{{attachment.title}}](file://{{attachment.path | replace(" ", "%20")}})  {%- endfor -%}.
-
-> [!Abstract]
-> {%- if abstractNote %}
+> **ISBN**:: {{ISBN}} {%- endif %}{%- if abstractNote %}
+> ---
 > {{abstractNote}}
-> {%- endif -%}.
-> 
-# Notes
-> {%- if markdownNotes %}
->{{markdownNotes}}{%- endif -%}.
+{%- endif %}
 
-
-# Annotations
-{%- macro calloutHeader(type, color) -%}  
-{%- if type == "highlight" -%}  
-<mark style="background-color: {{color}}">Quote</mark>  
-{%- endif -%}
-
-{%- if type == "text" -%}  
-Note  
-{%- endif -%}  
-{%- endmacro -%}
-
+## Annotations
 {% persist "annotations" %}
-{% set newAnnotations = annotations | filterby("date", "dateafter", lastImportDate) %}
-{% if newAnnotations.length > 0 %}
+{%- set annots = annotations | filterby("date", "dateafter", lastImportDate) -%}
+{%- if annots.length > 0 %}
+### Imported on {{importDate | format("YYYY-MM-DD HH:mm")}}
 
-### Imported: {{importDate | format("YYYY-MM-DD h:mm a")}}
+{% for annot in annots -%}
+{{calloutHeader(annot.type, annot.color)}}
+{%- if annot.annotatedText %}
+> {{annot.annotatedText | nl2br}}
+{%- endif -%}
+{%- if annot.comment %}
+> {{annot.comment | nl2br}}
+{%- endif %}
+> [Page {{annot.page}}](zotero://open-pdf/library/items/{{annot.attachment.itemKey}}?page={{annot.page}}) [[{{annot.date | format("YYYY-MM-DD#HH:mm")}}]]
 
-
-{% for a in newAnnotations %}
-{{calloutHeader(a.type, a.color)}}
-> {{a.annotatedText}}
-{% endfor %}
-{% endif %}
+{% endfor -%}
+{% endif -%}
 {% endpersist %}

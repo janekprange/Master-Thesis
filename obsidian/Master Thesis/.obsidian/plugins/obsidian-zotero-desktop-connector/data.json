@@ -4,12 +4,7 @@
   "pdfExportImageDPI": 120,
   "pdfExportImageFormat": "jpg",
   "pdfExportImageQuality": 90,
-  "citeFormats": [
-    {
-      "name": "Pandoc",
-      "format": "pandoc"
-    }
-  ],
+  "citeFormats": [],
   "exportFormats": [
     {
       "name": "Create Literature Note",

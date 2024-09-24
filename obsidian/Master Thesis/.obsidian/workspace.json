@@ -4,15 +4,46 @@
     "type": "split",
     "children": [
       {
-        "id": "e529e34bb36637b1",
+        "id": "8f50702d3a306299",
         "type": "tabs",
         "children": [
           {
             "id": "d609df27995edb16",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "markdown",
+              "state": {
+                "file": "Meta/Zotero Template.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          },
+          {
+            "id": "2d80f096f569ec85",
+            "type": "leaf",
+            "state": {
+              "type": "zdc-debug",
               "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "cc4ab80f9193dfd6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d31edc228dd2da05",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Literature Notes/@turnerActivationAdditionSteering2024a.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Literature Notes/@turnerActivationAdditionSteering2024a.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Literature Notes/@turnerActivationAdditionSteering2024a.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +151,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Literature Notes/@turnerActivationAdditionSteering2024a.md"
+              }
             }
           }
         ]
@@ -138,9 +173,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d609df27995edb16",
+  "active": "d31edc228dd2da05",
   "lastOpenFiles": [
+    "Literature Notes/@konenStyleVectorsSteering2024.md",
+    "Literature Notes/@turnerActivationAdditionSteering2024a.md",
+    "Overview.md",
     "Meta/Zotero Template.md",
+    "turnerActivationAdditionSteering2024a.md",
     "Test.pdf",
     "First.md",
     "Test.md",
@@ -153,7 +192,6 @@
     "Test.aux",
     "Test.tex",
     "First.tex",
-    "Literature Notes/@konenStyleVectorsSteering2024.md",
     "Welcome.md",
     "create a link.md"
   ]
