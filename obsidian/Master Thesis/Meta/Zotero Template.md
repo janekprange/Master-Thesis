@@ -13,7 +13,7 @@ citekey: {{citekey}}
 {%- endif -%}  
 {%- endmacro -%}
 
-> [!info]
+> [!info]-
 {% for type, creators in creators | groupby("creatorType") -%}
 {%- for creator in creators -%}
 > **{{"First" if loop.first}}{{type | capitalize}}**::
@@ -40,13 +40,13 @@ citekey: {{citekey}}
 > {{abstractNote}}
 {%- endif %}
 
-## Annotations
-{% persist "annotations" %}
-{%- set annots = annotations | filterby("date", "dateafter", lastImportDate) -%}
-{%- if annots.length > 0 %}
-### Imported on {{importDate | format("YYYY-MM-DD HH:mm")}}
+## Notes
+{% persist "notes" %}
 
-{% for annot in annots -%}
+{% endpersist %}
+
+## Annotations
+{% for annot in annotations -%}
 {{calloutHeader(annot.type, annot.color)}}
 {%- if annot.annotatedText %}
 > {{annot.annotatedText | nl2br}}
@@ -56,6 +56,4 @@ citekey: {{citekey}}
 {%- endif %}
 > [Page {{annot.page}}](zotero://open-pdf/library/items/{{annot.attachment.itemKey}}?page={{annot.page}}) [[{{annot.date | format("YYYY-MM-DD#HH:mm")}}]]
 
-{% endfor -%}
-{% endif -%}
-{% endpersist %}
+{% endfor %}
