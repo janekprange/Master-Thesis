@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "2122942b79621549",
@@ -143,15 +143,25 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false
     }
   },
   "active": "1cf7cbe4c87b299b",
   "lastOpenFiles": [
+    "Literature Notes/@patelLearningInterpretableStyle2023.md",
+    "Literature Notes/@subramaniExtractingLatentSteering2022.md",
+    "Literature Notes/@doddapaneniUserEmbeddingModel2024.md",
+    "Literature Notes/@beckSensitivityPerformanceRobustness2024.md",
+    "Literature Notes/@alhafniPersonalizedTextGeneration2024.md",
     "Literature Notes/@turnerActivationAdditionSteering2024a.md",
-    "Literature Notes/@konenStyleVectorsSteering2024.md",
-    "Meta/Zotero Template.md",
     "Overview.md",
+    "Literature Notes/@konenStyleVectorsSteering2024.md",
+    "Meta/Scripts/Literature Notes Script.md",
+    "Meta/Templates/Zotero Template.md",
+    "Meta/Scripts/Literature Notes Script.js",
+    "Meta/Scripts",
+    "Meta/Templates",
     "turnerActivationAdditionSteering2024a.md",
     "Test.pdf",
     "First.md",
@@ -162,9 +172,6 @@
     "Test.synctex.gz",
     "Test.log",
     "Test.fdb_latexmk",
-    "Test.aux",
-    "Test.tex",
-    "First.tex",
     "Welcome.md",
     "create a link.md"
   ]

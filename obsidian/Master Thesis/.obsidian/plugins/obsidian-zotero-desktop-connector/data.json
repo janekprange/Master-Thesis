@@ -11,7 +11,7 @@
       "outputPathTemplate": "Literature Notes/@{{citekey}}.md",
       "imageOutputPathTemplate": "Attachments/{{citekey}}/",
       "imageBaseNameTemplate": "image",
-      "templatePath": "Meta/Zotero Template.md",
+      "templatePath": "Meta/Templates/Zotero Template.md",
       "cslStyle": "apa"
     }
   ],
