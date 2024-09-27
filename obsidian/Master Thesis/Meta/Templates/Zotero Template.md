@@ -13,6 +13,8 @@ citekey: {{citekey}}
 {%- endif -%}  
 {%- endmacro -%}
 
+# {{title}}
+
 > [!info]-
 {% for type, creators in creators | groupby("creatorType") -%}
 {%- for creator in creators -%}

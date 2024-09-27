@@ -3,6 +3,8 @@ category: literaturenote
 tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning]
 citekey: turnerActivationAdditionSteering2024
 ---
+# Activation Addition: Steering Language Models Without Optimization
+
 > [!info]-
 > **FirstAuthor**:: Turner, Alexander Matt  
 > **Author**:: Thiergart, Lisa  
@@ -28,4 +30,4 @@ citekey: turnerActivationAdditionSteering2024
 
 
 
-%% Import Date: 2024-09-27T10:43:57.752+02:00 %%
+%% Import Date: 2024-09-27T10:53:25.104+02:00 %%

@@ -3,6 +3,8 @@ category: literaturenote
 tags: []
 citekey: alhafniPersonalizedTextGeneration2024
 ---
+# Personalized Text Generation with Fine-Grained Linguistic Control
+
 > [!info]-
 > **FirstAuthor**:: Alhafni, Bashar  
 > **Author**:: Kulkarni, Vivek  
@@ -25,4 +27,4 @@ citekey: alhafniPersonalizedTextGeneration2024
 
 
 
-%% Import Date: 2024-09-27T10:43:57.476+02:00 %%
+%% Import Date: 2024-09-27T10:53:24.776+02:00 %%

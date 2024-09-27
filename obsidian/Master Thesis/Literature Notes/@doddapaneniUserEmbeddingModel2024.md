@@ -3,6 +3,8 @@ category: literaturenote
 tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, Computer_Science/Artificial_Intelligence, Computer_Science/Information_Retrieval]
 citekey: doddapaneniUserEmbeddingModel2024
 ---
+# User Embedding Model for Personalized Language Prompting
+
 > [!info]-
 > **FirstAuthor**:: Doddapaneni, Sumanth  
 > **Author**:: Sayana, Krishna  
@@ -26,4 +28,4 @@ citekey: doddapaneniUserEmbeddingModel2024
 
 
 
-%% Import Date: 2024-09-27T10:43:57.531+02:00 %%
+%% Import Date: 2024-09-27T10:53:24.841+02:00 %%

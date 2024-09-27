@@ -3,6 +3,8 @@ category: literaturenote
 tags: [Computer_Science/Computation_and_Language]
 citekey: patelLearningInterpretableStyle2023
 ---
+# Learning Interpretable Style Embeddings via Prompting LLMs
+
 > [!info]-
 > **FirstAuthor**:: Patel, Ajay  
 > **Author**:: Rao, Delip  
@@ -27,4 +29,4 @@ citekey: patelLearningInterpretableStyle2023
 
 
 
-%% Import Date: 2024-09-27T10:43:57.640+02:00 %%
+%% Import Date: 2024-09-27T10:53:24.982+02:00 %%

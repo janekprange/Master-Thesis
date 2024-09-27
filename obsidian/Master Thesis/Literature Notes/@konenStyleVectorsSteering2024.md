@@ -3,6 +3,8 @@ category: literaturenote
 tags: []
 citekey: konenStyleVectorsSteering2024
 ---
+# Style Vectors for Steering Generative Large Language Model
+
 > [!info]-
 > **FirstAuthor**:: Konen, Kai  
 > **Author**:: Jentzsch, Sophie  
@@ -29,4 +31,4 @@ citekey: konenStyleVectorsSteering2024
 
 
 
-%% Import Date: 2024-09-27T10:43:57.566+02:00 %%
+%% Import Date: 2024-09-27T10:53:24.947+02:00 %%
