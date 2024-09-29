@@ -1,0 +1,3 @@
+- Comparison with SOTA
+	- find SOTA methods
+	- STEL framework for comparison, as in [[@patelLearningInterpretableStyle2023]]

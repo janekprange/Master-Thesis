@@ -1,0 +1,6 @@
+- [[@patelLearningInterpretableStyle2023]]
+	- Why would the euclidian distance between to style vectors not be meaningful without further computation? (section 3)
+	- What is contrastive learning / triplet loss in this context? (section 3.3) -> Khosla et al., 2020; Schroff et al., 2015
+	- Why is the LISA embedding layer either a vector or a matrix? For what additional information would you need a matrix? (section 3.3)
+		- maybe sentence level interpretability
+	- What is STEL-or-content? (Table 4)

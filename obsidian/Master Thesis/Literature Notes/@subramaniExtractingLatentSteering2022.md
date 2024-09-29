@@ -1,16 +1,16 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Artificial_Intelligence, Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning]
+tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, Computer_Science/Artificial_Intelligence, recommended]
 citekey: subramaniExtractingLatentSteering2022
 ---
-# Extracting Latent Steering Vectors from Pretrained Language Models
+# Extracting latent steering vectors from pretrained language models
 
 > [!info]-
 > **FirstAuthor**:: Subramani, Nishant  
 > **Author**:: Suresh, Nivedita  
 > **Author**:: Peters, Matthew E.  
 > ---    
-> **Title**:: Extracting Latent Steering Vectors from Pretrained Language Models  
+> **Title**:: Extracting latent steering vectors from pretrained language models  
 > **Year**:: 2022   
 > **Citekey**:: subramaniExtractingLatentSteering2022  
 > **Type**:: preprint  
@@ -27,4 +27,4 @@ citekey: subramaniExtractingLatentSteering2022
 
 
 
-%% Import Date: 2024-09-27T10:53:25.061+02:00 %%
+%% Import Date: 2024-09-29T16:57:46.305+02:00 %%

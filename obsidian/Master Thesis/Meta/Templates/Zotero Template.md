@@ -56,6 +56,6 @@ citekey: {{citekey}}
 {%- if annot.comment %}
 > {{annot.comment | nl2br}}
 {%- endif %}
-> [Page {{annot.page}}](zotero://open-pdf/library/items/{{annot.attachment.itemKey}}?page={{annot.page}}) [[{{annot.date | format("YYYY-MM-DD#HH:mm")}}]]
+> [Page {{annot.page}}](zotero://open-pdf/library/items/{{annot.attachment.itemKey}}?page={{annot.page}}) {{annot.date | format("YYYY-MM-DD#HH:mm")}}
 
 {% endfor %}

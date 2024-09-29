@@ -1,9 +1,9 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning]
+tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, recommended]
 citekey: turnerActivationAdditionSteering2024
 ---
-# Activation Addition: Steering Language Models Without Optimization
+# Activation addition: steering language models without optimization
 
 > [!info]-
 > **FirstAuthor**:: Turner, Alexander Matt  
@@ -14,7 +14,7 @@ citekey: turnerActivationAdditionSteering2024
 > **Author**:: Mini, Ulisse  
 > **Author**:: MacDiarmid, Monte  
 > ---    
-> **Title**:: Activation Addition: Steering Language Models Without Optimization  
+> **Title**:: Activation addition: steering language models without optimization  
 > **Year**:: 2024   
 > **Citekey**:: turnerActivationAdditionSteering2024  
 > **Type**:: preprint
@@ -30,4 +30,4 @@ citekey: turnerActivationAdditionSteering2024
 
 
 
-%% Import Date: 2024-09-27T10:53:25.104+02:00 %%
+%% Import Date: 2024-09-29T16:57:46.325+02:00 %%

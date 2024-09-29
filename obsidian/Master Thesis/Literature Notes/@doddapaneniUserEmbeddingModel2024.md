@@ -1,9 +1,9 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, Computer_Science/Artificial_Intelligence, Computer_Science/Information_Retrieval]
+tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, Computer_Science/Artificial_Intelligence, Computer_Science/Information_Retrieval, recommended]
 citekey: doddapaneniUserEmbeddingModel2024
 ---
-# User Embedding Model for Personalized Language Prompting
+# User embedding model for personalized language prompting
 
 > [!info]-
 > **FirstAuthor**:: Doddapaneni, Sumanth  
@@ -12,7 +12,7 @@ citekey: doddapaneniUserEmbeddingModel2024
 > **Author**:: Sodhi, Sukhdeep  
 > **Author**:: Kuzmin, Dima  
 > ---    
-> **Title**:: User Embedding Model for Personalized Language Prompting  
+> **Title**:: User embedding model for personalized language prompting  
 > **Year**:: 2024   
 > **Citekey**:: doddapaneniUserEmbeddingModel2024  
 > **Type**:: preprint
@@ -28,4 +28,4 @@ citekey: doddapaneniUserEmbeddingModel2024
 
 
 
-%% Import Date: 2024-09-27T10:53:24.841+02:00 %%
+%% Import Date: 2024-09-29T16:57:45.616+02:00 %%

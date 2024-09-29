@@ -9,10 +9,6 @@ Contribution as Contribution
 FROM "Literature Notes"  
 ```
 
-# Tasks
-1. 
-
-# Ideas
 
 
 
