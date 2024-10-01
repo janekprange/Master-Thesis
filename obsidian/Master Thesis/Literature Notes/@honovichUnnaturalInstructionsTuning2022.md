@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Artificial_Intelligence, Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning]
+tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, Computer_Science/Artificial_Intelligence]
 citekey: honovichUnnaturalInstructionsTuning2022
 ---
 # Unnatural instructions: tuning language models with (almost) No human labor
@@ -28,4 +28,4 @@ citekey: honovichUnnaturalInstructionsTuning2022
 
 
 
-%% Import Date: 2024-09-29T16:57:45.931+02:00 %%
+%% Import Date: 2024-10-01T22:57:28.181+02:00 %%

@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Artificial_Intelligence, Computer_Science/Computation_and_Language]
+tags: [Computer_Science/Computation_and_Language, Computer_Science/Artificial_Intelligence]
 citekey: wangSelfinstructAligningLanguage2023
 ---
 # Self-instruct: aligning language models with self-generated instructions
@@ -31,4 +31,4 @@ citekey: wangSelfinstructAligningLanguage2023
 
 
 
-%% Import Date: 2024-09-29T16:57:46.333+02:00 %%
+%% Import Date: 2024-10-01T22:57:28.202+02:00 %%

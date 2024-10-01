@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, recommended]
+tags: [Computer_Science/Computation_and_Language, recommended, reading_complete]
 citekey: patelLearningInterpretableStyle2023
 ---
 # Learning interpretable style embeddings via prompting LLMs
@@ -100,7 +100,23 @@ citekey: patelLearningInterpretableStyle2023
 > We experiment with two different simple and interpretable embedding layers, a weight vector (w768) and a weight matrix (W768×64). We attach these on top of the LISA model and train just the layer using a contrastive learning objective and triplet loss
 > [Page 5](zotero://open-pdf/library/items/CIUFXHT9?page=5) 2024-09-29#16:51
 
+<mark style="background-color: #ffd400">Quote</mark>
+> Correlation to Human Judgments
+> [Page 6](zotero://open-pdf/library/items/CIUFXHT9?page=6) 2024-09-29#17:17
+
+<mark style="background-color: #ffd400">Quote</mark>
+> STEL
+> [Page 6](zotero://open-pdf/library/items/CIUFXHT9?page=6) 2024-09-29#17:17
+
+<mark style="background-color: #ffd400">Quote</mark>
+> Sentence-Level Interpretability
+> [Page 7](zotero://open-pdf/library/items/CIUFXHT9?page=7) 2024-09-29#17:17
+
+<mark style="background-color: #5fb236">Quote</mark>
+> Forensic Interpretability
+> [Page 7](zotero://open-pdf/library/items/CIUFXHT9?page=7) 2024-09-29#17:21
 
 
 
-%% Import Date: 2024-09-29T16:57:46.219+02:00 %%
+
+%% Import Date: 2024-10-01T22:57:28.131+02:00 %%

@@ -1,3 +1,7 @@
 - Comparison with SOTA
 	- find SOTA methods
 	- STEL framework for comparison, as in [[@patelLearningInterpretableStyle2023]]
+- section for ethical considerations?
+- different methods to steer the output is listed in [[@turnerActivationAdditionSteering2024]] (section 2)
+- a way to steer the output with activation engineering would be to use ActAdd from [[@turnerActivationAdditionSteering2024]] and generate contrasting prompt pairs with the method described in [[@patelLearningInterpretableStyle2023]] (section 3.1 - sampling batches)
+	- searching for text with attributes with the smallest SBERT similarity to the selected attribute
