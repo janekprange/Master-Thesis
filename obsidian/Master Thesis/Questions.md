@@ -1,3 +1,7 @@
+- credentials for the server
+- exact title
+	- Producing interpretable style vectors and steering large language models towards user appropriate text generation
+	- Steering large language models towards user appropriate text generation with interpretable style vectors
 - For which audience should I write the thesis? (e.g. explaining LLMs in detail or assuming the reader knows that)
 - [[@patelLearningInterpretableStyle2023]]
 	- Why would the euclidian distance between to style vectors not be meaningful without further computation? (section 3)
@@ -8,3 +12,7 @@
 - [[@turnerActivationAdditionSteering2024]]
 	- What does it mean that the model must cache intermediate activations? (section 3)
 	- What does the steering vector look like for a prompt with multiple tokens? Is it still one vector or multiple?
+		- In [[@konenStyleVectorsSteering2024]] it seems like it is only one vector that is the same for all forward passes
+- [[@konenStyleVectorsSteering2024]]
+	- Does classification based evaluation mean that the LLM produces a classification or that the output is evaluated with a classification model?
+	- What exactly do figures 4 and 5 show?

@@ -27,6 +27,7 @@ citekey: turnerActivationAdditionSteering2024
 - steer the output of LLMs by changing the activations **on one layer** with a bias that is computed from the difference of two prompts (no backpropagation is needed)
 - the method is used on the relatively small model GPT-2-XL -> is it feasible on larger models such as Llama3? And can I access and manipulate the activations?
 - the parameters (layer l and intervention strength c) where found with grid search -> could bayesian optimization be better?
+	- in [[@konenStyleVectorsSteering2024]] they compared different layers in a pre study and found layers 18-20 to work best
 %% end notes %%
 
 ## Annotations
@@ -65,4 +66,4 @@ citekey: turnerActivationAdditionSteering2024
 
 
 
-%% Import Date: 2024-10-01T22:57:28.176+02:00 %%
+%% Import Date: 2024-10-01T23:53:22.554+02:00 %%

@@ -5,3 +5,7 @@
 - different methods to steer the output is listed in [[@turnerActivationAdditionSteering2024]] (section 2)
 - a way to steer the output with activation engineering would be to use ActAdd from [[@turnerActivationAdditionSteering2024]] and generate contrasting prompt pairs with the method described in [[@patelLearningInterpretableStyle2023]] (section 3.1 - sampling batches)
 	- searching for text with attributes with the smallest SBERT similarity to the selected attribute
+	-  the parameters (layer l and intervention strength c) where found with grid search -> could bayesian optimization be better?
+		- in [[@konenStyleVectorsSteering2024]] they compared different layers in a pre study and found layers 18-20 to work best
+- steering with learned vectors would be possible too, however according to [[@konenStyleVectorsSteering2024]] this approach takes a lot of time; that could be a problem with the high amount of style attributes
+	- additionally, [[@konenStyleVectorsSteering2024]] Figure 4 shows that the activation vectors outperform the trained vectors
