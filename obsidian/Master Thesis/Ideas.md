@@ -7,5 +7,6 @@
 	- searching for text with attributes with the smallest SBERT similarity to the selected attribute
 	-  the parameters (layer l and intervention strength c) where found with grid search -> could bayesian optimization be better?
 		- in [[@konenStyleVectorsSteering2024]] they compared different layers in a pre study and found layers 18-20 to work best
+	- **how good does the method work when multiple attributes are changed (or steered towards) at the same time?**
 - steering with learned vectors would be possible too, however according to [[@konenStyleVectorsSteering2024]] this approach takes a lot of time; that could be a problem with the high amount of style attributes
 	- additionally, [[@konenStyleVectorsSteering2024]] Figure 4 shows that the activation vectors outperform the trained vectors

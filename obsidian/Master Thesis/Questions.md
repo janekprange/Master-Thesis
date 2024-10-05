@@ -1,8 +1,12 @@
+## General Questions
 - credentials for the server
 - exact title
 	- Producing interpretable style vectors and steering large language models towards user appropriate text generation
 	- Steering large language models towards user appropriate text generation with interpretable style vectors
 - For which audience should I write the thesis? (e.g. explaining LLMs in detail or assuming the reader knows that)
+- is the only difference between activation steering and trained steering how the vector is produced? Isn't the hidden state practically the same as the activation layer? -> yes, there is no further difference ([[@subramaniExtractingLatentSteering2022]] section 2.2)
+
+## Paper Questions
 - [[@patelLearningInterpretableStyle2023]]
 	- Why would the euclidian distance between to style vectors not be meaningful without further computation? (section 3)
 	- What is contrastive learning / triplet loss in this context? (section 3.3) -> Khosla et al., 2020; Schroff et al., 2015
