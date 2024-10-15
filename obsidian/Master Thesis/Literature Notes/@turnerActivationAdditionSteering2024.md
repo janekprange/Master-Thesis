@@ -28,6 +28,7 @@ citekey: turnerActivationAdditionSteering2024
 - the method is used on the relatively small model GPT-2-XL -> is it feasible on larger models such as Llama3? And can I access and manipulate the activations?
 - the parameters (layer l and intervention strength c) where found with grid search -> could bayesian optimization be better?
 	- in [[@konenStyleVectorsSteering2024]] they compared different layers in a pre study and found layers 18-20 to work best
+- Article under https://www.greaterwrong.com/posts/5spBue2z2tw4JuDCx/steering-gpt-2-xl-by-adding-an-activation-vector
 %% end notes %%
 
 ## Annotations
@@ -63,7 +64,11 @@ citekey: turnerActivationAdditionSteering2024
 > Activation additions can be continuously weighted, while prompts are discrete (since a token is either present, or not)
 > [Page 9](zotero://open-pdf/library/items/UWUCEGH9?page=9) 2024-09-30#21:29
 
+<mark style="background-color: #ffd400">Quote</mark>
+> Datasets The Stanford IMDb Large Movie Review Dataset (Maas et al., 2011). No license: ‘we release this dataset to the public’ by the authors.  RealToxicityPrompts (Gehman et al., 2020). Apache 2.0.  LAMA ConceptNet (Petroni et al., 2019). CC-BY-NC 4.0.  OpenWebText (Peterson et al., 2018). GPL-3.0.
+> [Page 26](zotero://open-pdf/library/items/UWUCEGH9?page=26) 2024-10-09#21:34
 
 
 
-%% Import Date: 2024-10-01T23:53:22.554+02:00 %%
+
+%% Import Date: 2024-10-15T10:31:08.859+02:00 %%

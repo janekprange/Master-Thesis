@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, recommended]
+tags: [Computer_Science/Computation_and_Language, recommended, reading_complete]
 citekey: konenStyleVectorsSteering2024
 ---
 # Style vectors for steering generative large language model
@@ -58,7 +58,15 @@ citekey: konenStyleVectorsSteering2024
 > It appears that steering into the positive direction works better in general, while the steering effect is stronger for activation-based style vectors.
 > [Page 6](zotero://open-pdf/library/items/U5R9YU3J?page=6) 2024-10-01#23:40
 
+<mark style="background-color: #ffd400">Quote</mark>
+> activation-based style vectors are derived from the activations of input prompts, which relies on the assumption that LLMs internally adapt the  input style during the forward pass
+> [Page 8](zotero://open-pdf/library/items/U5R9YU3J?page=8) 2024-10-01#23:54
+
+<mark style="background-color: #2ea8e5">Quote</mark>
+> Therefore, the activation-based style vectors are the preferred approach for steering style in large language models, both in terms of performance and resource efficiency.
+> [Page 8](zotero://open-pdf/library/items/U5R9YU3J?page=8) 2024-10-01#23:57
 
 
 
-%% Import Date: 2024-10-01T23:53:22.618+02:00 %%
+
+%% Import Date: 2024-10-05T19:53:05.383+02:00 %%
