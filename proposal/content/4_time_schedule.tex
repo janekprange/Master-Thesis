@@ -1,3 +1,88 @@
 % !TeX root = ..\Proposal.tex
 
 \section{Time Schedule}
+\makebox[\textwidth][c]{
+\definecolor{barblue}{RGB}{153,204,254}
+\definecolor{groupblue}{RGB}{51,102,254}
+\definecolor{linkred}{RGB}{165,0,33}
+\renewcommand\sfdefault{phv}
+\renewcommand\mddefault{mc}
+\renewcommand\bfdefault{bc}
+% \setganttlinklabel{s-s}{START-TO-START}
+% \setganttlinklabel{f-s}{FINISH-TO-START}
+% \setganttlinklabel{f-f}{FINISH-TO-FINISH}
+\sffamily
+\begin{ganttchart}[
+    % today=0,
+    %%%%%%
+    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+    hgrid style/.style={draw=black!5, line width=.75pt},
+    vgrid={*1{draw=black!5, line width=.75pt}},
+    % today rule/.style={
+    %   draw=black!64,
+    %   dash pattern=on 3.5pt off 4.5pt,
+    %   line width=1.5pt
+    % },
+    % today label font=\small\bfseries,
+    title/.style={draw=none, fill=none},
+    title label font=\bfseries\footnotesize,
+    title label node/.append style={below=7pt},
+    include title in canvas=false,
+    bar label font=\mdseries\small\color{black!70},
+    % bar label node/.append style={left=2cm},
+    bar/.append style={draw=none, fill=black!63},
+    bar incomplete/.append style={fill=barblue},
+    bar progress label font=\mdseries\footnotesize\color{black!70},
+    group incomplete/.append style={fill=groupblue},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\bfseries\small,
+    link/.style={-latex, line width=1.5pt, linkred},
+    link label font=\scriptsize\bfseries,
+    link label node/.append style={below left=-2pt and 0pt}
+    expand chart \linewidth
+    %%%%%%
+  ]{1}{26}
+  \gantttitle[
+    title label node/.append style={below left=7pt and -3pt}
+  ]{WEEK:\quad{} 1}{1}
+  \gantttitlelist{2,...,26}{1} \\
+
+  %! Research
+  \ganttgroup[progress=20]{Research}{1}{10} \\
+  \ganttbar[
+    progress=67,
+    name=research1_1
+  ]{\textbf{1.1} Overview research}{1}{3} \\
+  \ganttbar[
+    progress=0,
+    name=research1_2
+  ]{\textbf{1.2} Deep research}{3}{10} \\%[grid]
+  %! Development
+  \ganttgroup[progress=10]{Development}{2}{20} \\
+  \ganttbar[progress=67]{\textbf{2.1} First idea}{2}{4} \\
+  \ganttbar[progress=0]{\textbf{2.2} Proper Implementation}{5}{17} \\
+  \ganttbar[progress=0]{\textbf{2.3} Testing}{14}{20} \\
+  %! Evaluation
+  \ganttgroup[progress=0]{Evaluation}{10}{26} \\
+  \ganttbar[progress=0]{\textbf{3.1} Experiment selection}{10}{12} \\
+  \ganttbar[progress=0]{\textbf{3.2} Experiment execution}{13}{20} \\
+  \ganttbar[progress=0]{\textbf{3.3} Results analysis}{18}{26} \\
+  %! Writing
+  \ganttgroup[progress=0]{Writing}{5}{26} \\
+  \ganttbar[progress=0]{\textbf{4.1} Bullet point writing}{5}{12} \\
+  \ganttbar[progress=0]{\textbf{4.2} First draft}{13}{20} \\
+  \ganttbar[progress=0]{\textbf{4.2} Corrections \& final draft}{21}{26} \\
+
+
+  % \ganttlink[link type=s-s]{WBS1A}{WBS1B}
+  % \ganttlink[link type=f-s]{WBS1B}{WBS1C}
+  % \ganttlink[
+  %   link type=f-f,
+  %   link label node/.append style=left
+  % ]{WBS1C}{WBS1D}
+\end{ganttchart}
+}
