@@ -2,7 +2,17 @@
 
 \section{Thesis Goals and Tasks to Tackle Each Goal}
 
+\begin{enumerate}[label=\textbf{Goal \arabic*:}]
+  \item Implement the method presented in \citet{patelLearningInterpretableStyle2023} to classifiy text into interpretable style vectors.
+  \begin{itemize}
+    \item text generation with Llama3.2-3B-instruct~\cite{dubeyLlama3Herd2024}
+    \item data from stackexchange and reddit; high probability of being written by a specific group of people
+    \item test the resulting model by predicting if texts are from different groups using only the interpretable style embeddings
+  \end{itemize}
+  \item Implement different methods to generate text in a specific style with the help of the interpretable style vectors.
+  \item Test how well this method works to generate text in the style of specific groups of people.
+\end{enumerate}
+
 \begin{itemize}
   \item using the python libraries numpy~\cite{harris2020array}, pandas~\cite{reback2020pandas,mckinney-proc-scipy-2010}, pytorch~\cite{paszkePyTorchImperativeStyle2019}, transformers~\cite{wolfHuggingFacesTransformersStateart2020}, sentence-transformers~\cite{reimersSentenceBERTSentenceEmbeddings2019} and nltk~\cite{birdNaturalLanguageProcessing2009}
-  \item text generation with Llama3.2-3B-instruct~\cite{dubeyLlama3Herd2024}
 \end{itemize}
