@@ -3,25 +3,24 @@
 \section{Motivation, Problem and Research Questions}
 
 \subsection{Motivation \& Problem}
-\begin{itemize}
-  \item style is an important aspect of text
-  \item it dictates how the text is perceived and how well the message is conveyed and accepted by the reader
-  \item manual style annotation is very difficult and time-consuming, which is why there currently exists no large-scale annotated dataset for style
-  \item current style represantion methods use unsupervised learning which leads to style representations that are not interpretable
-  \item this increases the difficulty of verifying the quality of the style representation and using it in downstream tasks
-  \vspace{1em}
-  \item LLMs are increasingly being used to explain various topics to a wide and diverse audience
-  \item these explanations would benefit from being in a style that fits the audience
-  \item this is possible with current style represantion methods, but the lack of interpretability makes it difficult to verify the quality of the style representation
-\end{itemize}
+Information in textual form is an essential part of our daily lives, be it in educational settings, news, entertainment or social media. One important aspect of text is not only its content and what information is portraied, but also the style in which it is written. Style dictates how the text is perceived and how well the message is conveyed and accepted by the reader. Additionally, it can be used to decide which author or group of people the text is written by.
+
+The importance of style was recognized an researched in previous works. %! TODO: add references
+However, manual style annotation is very difficult and time-consuming, which is why there currently exists no large-scale annotated dataset for style. Current style representation methods use unsupervised learning which leads to style embeddings that are not interpretable. This increases the difficulty of verifying the quality of the style representation and using it in downstream tasks.
+
+In addition to using style represantions to recognized authors or group membership, sty play an potentially important part for the generation of text. Large language models are increasingly being used to explain various topics to a wide and diverse range of audiences. While it is of course important that the explanations are factually correct, it is also necessary to consider the text style the audience is accustomed to and the background knowledge it has.
+
+There are existing methods to steer the style of generated text in a specific direction. %! TODO: add references
+However, because state of the art style represantion methods produce non-interpretable style embeddings, it is difficult to verify the quality of the style embedding and therefore error-prone to use the embedding to generate new text.
+
 
 \subsection{Research Questions}
 \begin{enumerate}
-  \item How well does the classification model for interpretable style representations presented in \citet{patelLearningInterpretableStyle2023} work on group specific data?
-  \item What is the best way to generate group specific explanation from style representations?
+  \item How well does the model for the generation of interpretable style representations presented in \citet{patelLearningInterpretableStyle2023} work on group specific data?
+  \item What is the best way to generate group specific explanations from style representations?
   \begin{itemize}
     \item mention the group in the prompt (e.g. \enquote{Write the following explanation in the style of a teenager})
-    \item use the dimensions of the interpretable style vector in the prompt
-    \item use the classifier for interpretable style representations to create data to implement the ActAdd method presented in \citet{turnerActivationAdditionSteering2024}
+    \item use the dimensions/attributes of the interpretable style vector in the prompt
+    \item use the style represantion model to create training data to implement the ActAdd method presented in \citet{turnerActivationAdditionSteering2024}
   \end{itemize}
 \end{enumerate}
