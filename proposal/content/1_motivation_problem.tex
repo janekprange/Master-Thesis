@@ -5,22 +5,23 @@
 \subsection{Motivation \& Problem}
 Information in textual form is an essential part of our daily lives, be it in educational settings, news, entertainment or social media. One important aspect of text is not only its content and what information is portraied, but also the style in which it is written. Style dictates how the text is perceived and how well the message is conveyed and accepted by the reader. Additionally, it can be used to decide which author or group of people the text is written by.
 
-The importance of style was recognized an researched in previous works. %! TODO: add references
+The importance of style was recognized an researched in previous works. % references?
 However, manual style annotation is very difficult and time-consuming, which is why there currently exists no large-scale annotated dataset for style. Current style representation methods use unsupervised learning which leads to style embeddings that are not interpretable. This increases the difficulty of verifying the quality of the style representation and using it in downstream tasks.
 
 In addition to using style represantions to recognized authors or group membership, sty play an potentially important part for the generation of text. Large language models are increasingly being used to explain various topics to a wide and diverse range of audiences. While it is of course important that the explanations are factually correct, it is also necessary to consider the text style the audience is accustomed to and the background knowledge it has.
 
-There are existing methods to steer the style of generated text in a specific direction. %! TODO: add references
+There are existing methods to steer the style of generated text in a specific direction or transfer the style~\cite{zhu-etal-2024-styleflow, ijcai2020p526}.
 However, because state of the art style represantion methods produce non-interpretable style embeddings, it is difficult to verify the quality of the style embedding and therefore error-prone to use the embedding to generate new text.
 
 
 \subsection{Research Questions}
 \begin{enumerate}
   \item How well does the model for the generation of interpretable style representations presented in \citet{patelLearningInterpretableStyle2023} work on group specific data?
-  \item What is the best way to generate group specific explanations from style representations?
+  \item What is the best way to generate group specific explanations from style representations? \newline
+  There are three possible ways to achieve this:
   \begin{itemize}
-    \item mention the group in the prompt (e.g. \enquote{Write the following explanation in the style of a teenager})
-    \item use the dimensions/attributes of the interpretable style vector in the prompt
-    \item use the style represantion model to create training data to implement the ActAdd method presented in \citet{turnerActivationAdditionSteering2024}
+    \item Mention the group in the prompt (e.g. \enquote{Write the following explanation in the style of a teenager}),
+    \item use the dimensions/attributes of the interpretable style vector in the prompt or
+    \item use the style represantion model to create training data to implement the ActAdd method presented in \citet{turnerActivationAdditionSteering2024}. It is however not yet clear if there is enough time to implement this approach.
   \end{itemize}
 \end{enumerate}

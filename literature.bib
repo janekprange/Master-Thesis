@@ -137,6 +137,19 @@
   file = {C\:\\Users\\janek\\Zotero\\storage\\ZWTBE7SI\\Huang et al. - 2022 - Large language models can self-improve.pdf;C\:\\Users\\janek\\Zotero\\storage\\ML59CG85\\2210.html}
 }
 
+@inproceedings{ijcai2020p526,
+  title = {Text Style Transfer via Learning Style Instance Supported Latent Space},
+  booktitle = {Proceedings of the Twenty-Ninth International Joint Conference on Artificial Intelligence, {{IJCAI-20}}},
+  author = {Yi, Xiaoyuan and Liu, Zhenghao and Li, Wenhao and Sun, Maosong},
+  editor = {Bessiere, Christian},
+  year = {2020},
+  month = jul,
+  pages = {3801--3807},
+  publisher = {International Joint Conferences on Artificial Intelligence Organization},
+  doi = {10.24963/ijcai.2020/526},
+  langid = {english}
+}
+
 @misc{konenStyleVectorsSteering2024,
   title = {Style Vectors for Steering Generative Large Language Model},
   author = {Konen, Kai and Jentzsch, Sophie and Diallo, Diaoul{\'e} and Sch{\"u}tt, Peer and Bensch, Oliver and Baff, Roxanne El and Opitz, Dominik and Hecking, Tobias},
@@ -314,4 +327,18 @@
   archiveprefix = {arXiv},
   keywords = {Computer Science - Computation and Language,programming_library},
   file = {C\:\\Users\\janek\\Zotero\\storage\\XHYNAELR\\Wolf et al. - 2020 - HuggingFace's Transformers State-of-the-art Natural Language Processing.pdf;C\:\\Users\\janek\\Zotero\\storage\\QFT8ZTJN\\1910.html}
+}
+
+@inproceedings{zhu-etal-2024-styleflow,
+  title = {{{StyleFlow}}: Disentangle Latent Representations via Normalizing Flow for Unsupervised Text Style Transfer},
+  booktitle = {Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation ({{LREC-COLING}} 2024)},
+  author = {Zhu, Kangchen and Tian, Zhiliang and Wei, Jingyu and Luo, Ruifeng and Song, Yiping and Mao, Xiaoguang},
+  editor = {Calzolari, Nicoletta and Kan, Min-Yen and Hoste, Veronique and Lenci, Alessandro and Sakti, Sakriani and Xue, Nianwen},
+  year = {2024},
+  month = may,
+  pages = {15384--15397},
+  publisher = {{ELRA and ICCL}},
+  address = {Torino, Italia},
+  abstract = {Unsupervised text style transfer aims to modify the style of a sentence while preserving its content without parallel corpora. Existing approaches attempt to separate content from style, but some words contain both content and style information. It makes them difficult to disentangle, where unsatisfactory disentanglement results in the loss of the content information or the target style. To address this issue, researchers adopted a ``cycle reconstruction'' mechanism to maintain content information, but it is still hard to achieve satisfactory content preservation due to incomplete disentanglement. In this paper, we propose a new disentanglement-based method, StyleFlow, which effectively avoids the loss of contents through a better cycle reconstruction via a reversible encoder. The reversible encoder is a normalizing flow that can not only produce output given input but also infer the exact input given the output reversely. We design a stack of attention-aware coupling layers, where each layer is reversible and adopts the attention mechanism to improve the content-style disentanglement. Moreover, we propose a data augmentation method based on normalizing flow to enhance the training data. Our experiments on sentiment transfer and formality transfer tasks show that StyleFlow outperforms strong baselines on both content preservation and style transfer.},
+  langid = {english}
 }
