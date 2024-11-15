@@ -12,8 +12,25 @@
   abstract = {As the text generation capabilities of large language models become increasingly prominent, recent studies have focused on controlling particular aspects of the generated text to make it more personalized. However, most research on controllable text generation focuses on controlling the content or modeling specific high-level/coarse-grained attributes that reflect authors' writing styles, such as formality, domain, or sentiment. In this paper, we focus on controlling fine-grained attributes spanning multiple linguistic dimensions, such as lexical and syntactic attributes. We introduce a novel benchmark to train generative models and evaluate their ability to generate personalized text based on multiple fine-grained linguistic attributes. We systematically investigate the performance of various large language models on our benchmark and draw insights from the factors that impact their performance. We make our code, data, and pretrained models publicly available.},
   archiveprefix = {arXiv},
   langid = {english},
-  keywords = {Computer Science - Computation and Language,recommended},
+  keywords = {Computer Science - Computation and Language,generation steering,recommended},
   file = {C\:\\Users\\janek\\Zotero\\storage\\LK6K3YYG\\Alhafni et al. - 2024 - Personalized Text Generation with Fine-Grained Linguistic Control.pdf;C\:\\Users\\janek\\Zotero\\storage\\7FLRNLEZ\\2402.html}
+}
+
+@misc{alshomaryLatentSpaceInterpretation2024,
+  title = {Latent Space Interpretation for Stylistic Analysis and Explainable Authorship Attribution},
+  author = {Alshomary, Milad and Ri, Narutatsu and Apidianaki, Marianna and Patel, Ajay and Muresan, Smaranda and McKeown, Kathleen},
+  year = {2024},
+  month = sep,
+  number = {arXiv:2409.07072},
+  eprint = {2409.07072},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2409.07072},
+  urldate = {2024-11-14},
+  abstract = {Recent state-of-the-art authorship attribution methods learn authorship representations of texts in a latent, non-interpretable space, hindering their usability in real-world applications. Our work proposes a novel approach to interpreting these learned embeddings by identifying representative points in the latent space and utilizing LLMs to generate informative natural language descriptions of the writing style of each point. We evaluate the alignment of our interpretable space with the latent one and find that it achieves the best prediction agreement compared to other baselines. Additionally, we conduct a human evaluation to assess the quality of these style descriptions, validating their utility as explanations for the latent space. Finally, we investigate whether human performance on the challenging AA task improves when aided by our system's explanations, finding an average improvement of around +20\% in accuracy.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {authorship attribution,Computer Science - Computation and Language,reading complete,recommended},
+  file = {C\:\\Users\\janek\\Zotero\\storage\\QVHQNXPB\\Alshomary et al. - 2024 - Latent space interpretation for stylistic analysis and explainable authorship attribution.pdf;C\:\\Users\\janek\\Zotero\\storage\\9SU9DMPX\\2409.html}
 }
 
 @book{birdNaturalLanguageProcessing2009,
@@ -60,7 +77,7 @@
   abstract = {Modern artificial intelligence (AI) systems are powered by foundation models. This paper presents a new set of foundation models, called Llama 3. It is a herd of language models that natively support multilinguality, coding, reasoning, and tool usage. Our largest model is a dense Transformer with 405B parameters and a context window of up to 128K tokens. This paper presents an extensive empirical evaluation of Llama 3. We find that Llama 3 delivers comparable quality to leading language models such as GPT-4 on a plethora of tasks. We publicly release Llama 3, including pre-trained and post-trained versions of the 405B parameter language model and our Llama Guard 3 model for input and output safety. The paper also presents the results of experiments in which we integrate image, video, and speech capabilities into Llama 3 via a compositional approach. We observe this approach performs competitively with the state-of-the-art on image, video, and speech recognition tasks. The resulting models are not yet being broadly released as they are still under development.},
   archiveprefix = {arXiv},
   langid = {english},
-  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Computer Vision and Pattern Recognition},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Computer Vision and Pattern Recognition,programming_library},
   file = {C\:\\Users\\janek\\Zotero\\storage\\UGRLPNCF\\Dubey et al. - 2024 - The llama 3 herd of models.pdf;C\:\\Users\\janek\\Zotero\\storage\\XPRJXDHF\\2407.html}
 }
 
@@ -147,7 +164,8 @@
   pages = {3801--3807},
   publisher = {International Joint Conferences on Artificial Intelligence Organization},
   doi = {10.24963/ijcai.2020/526},
-  langid = {english}
+  langid = {english},
+  keywords = {style transfer}
 }
 
 @misc{konenStyleVectorsSteering2024,
@@ -164,7 +182,7 @@
   abstract = {This research explores strategies for steering the output of large language models (LLMs) towards specific styles, such as sentiment, emotion, or writing style, by adding style vectors to the activations of hidden layers during text generation. We show that style vectors can be simply computed from recorded layer activations for input texts in a specific style in contrast to more complex training-based approaches. Through a series of experiments, we demonstrate the effectiveness of activation engineering using such style vectors to influence the style of generated text in a nuanced and parameterisable way, distinguishing it from prompt engineering. The presented research constitutes a significant step towards developing more adaptive and effective AI-empowered interactive systems.},
   archiveprefix = {arXiv},
   langid = {english},
-  keywords = {Computer Science - Computation and Language,reading complete,recommended},
+  keywords = {Computer Science - Computation and Language,generation steering,reading complete,recommended},
   file = {C\:\\Users\\janek\\Zotero\\storage\\U5R9YU3J\\Konen et al. - 2024 - Style vectors for steering generative large language model.pdf;C\:\\Users\\janek\\Zotero\\storage\\MMSHLJ2Z\\2402.html}
 }
 
@@ -210,7 +228,7 @@
   abstract = {Style representation learning builds content-independent representations of author style in text. Stylometry, the analysis of style in text, is often performed by expert forensic linguists and no large dataset of stylometric annotations exists for training. Current style representation learning uses neural methods to disentangle style from content to create style vectors, however, these approaches result in uninterpretable representations, complicating their usage in downstream applications like authorship attribution where auditing and explainability is critical. In this work, we use prompting to perform stylometry on a large number of texts to create a synthetic dataset and train human-interpretable style representations we call LISA embeddings. We release our synthetic stylometry dataset and our interpretable style models as resources.},
   archiveprefix = {arXiv},
   langid = {english},
-  keywords = {Computer Science - Computation and Language,reading complete,recommended},
+  keywords = {authorship attribution,Computer Science - Computation and Language,reading complete,recommended},
   file = {C\:\\Users\\janek\\Zotero\\storage\\CIUFXHT9\\Patel et al. - 2023 - Learning Interpretable Style Embeddings via Prompting LLMs.pdf;C\:\\Users\\janek\\Zotero\\storage\\B383WVHI\\2305.html}
 }
 
@@ -241,6 +259,22 @@
   file = {C\:\\Users\\janek\\Zotero\\storage\\JNXUC4XS\\Reimers und Gurevych - 2019 - Sentence-BERT Sentence Embeddings using Siamese BERT-Networks.pdf;C\:\\Users\\janek\\Zotero\\storage\\GG825WFB\\1908.html}
 }
 
+@inproceedings{rivera-soto-etal-2021-learning,
+  title = {Learning Universal Authorship Representations},
+  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
+  author = {{Rivera-Soto}, Rafael A. and Miano, Olivia Elizabeth and Ordonez, Juanita and Chen, Barry Y. and Khan, Aleem and Bishop, Marcus and Andrews, Nicholas},
+  editor = {Moens, Marie-Francine and Huang, Xuanjing and Specia, Lucia and Yih, Scott Wen-tau},
+  year = {2021},
+  month = nov,
+  pages = {913--919},
+  publisher = {Association for Computational Linguistics},
+  address = {Online and Punta Cana, Dominican Republic},
+  doi = {10.18653/v1/2021.emnlp-main.70},
+  abstract = {Determining whether two documents were composed by the same author, also known as authorship verification, has traditionally been tackled using statistical methods. Recently, authorship representations learned using neural networks have been found to outperform alternatives, particularly in large-scale settings involving hundreds of thousands of authors. But do such representations learned in a particular domain transfer to other domains? Or are these representations inherently entangled with domain-specific features? To study these questions, we conduct the first large-scale study of cross-domain transfer for authorship verification considering zero-shot transfers involving three disparate domains: Amazon reviews, fanfiction short stories, and Reddit comments. We find that although a surprising degree of transfer is possible between certain domains, it is not so successful between others. We examine properties of these domains that influence generalization and propose simple but effective methods to improve transfer.},
+  langid = {english},
+  keywords = {authorship attribution}
+}
+
 @misc{subramaniExtractingLatentSteering2022,
   title = {Extracting Latent Steering Vectors from Pretrained Language Models},
   author = {Subramani, Nishant and Suresh, Nivedita and Peters, Matthew E.},
@@ -255,7 +289,7 @@
   abstract = {Prior work on controllable text generation has focused on learning how to control language models through trainable decoding, smart-prompt design, or fine-tuning based on a desired objective. We hypothesize that the information needed to steer the model to generate a target sentence is already encoded within the model. Accordingly, we explore a different approach altogether: extracting latent vectors directly from pretrained language model decoders without fine-tuning. Experiments show that there exist steering vectors, which, when added to the hidden states of the language model, generate a target sentence nearly perfectly ({$>$} 99 BLEU) for English sentences from a variety of domains. We show that vector arithmetic can be used for unsupervised sentiment transfer on the Yelp sentiment benchmark, with performance comparable to models tailored to this task. We find that distances between steering vectors reflect sentence similarity when evaluated on a textual similarity benchmark (STS-B), outperforming pooled hidden states of models. Finally, we present an analysis of the intrinsic properties of the steering vectors. Taken together, our results suggest that frozen LMs can be effectively controlled through their latent steering space.},
   archiveprefix = {arXiv},
   langid = {english},
-  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning,reading complete,recommended},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning,generation steering,reading complete,recommended},
   file = {C\:\\Users\\janek\\Zotero\\storage\\L89NKEG9\\Subramani et al. - 2022 - Extracting Latent Steering Vectors from Pretrained Language Models.pdf;C\:\\Users\\janek\\Zotero\\storage\\8D3HFBUF\\2205.html}
 }
 
@@ -273,8 +307,25 @@
   abstract = {Reliably controlling the behavior of large language models is a pressing open problem. Existing methods include supervised finetuning, reinforcement learning from human feedback, prompt engineering and guided decoding. We instead investigate activation engineering: modifying activations at inference-time to predictably alter model behavior. We bias the forward pass with a 'steering vector' implicitly specified through natural language. Past work learned these steering vectors; our Activation Addition (ActAdd) method instead computes them by taking activation differences resulting from pairs of prompts. We demonstrate ActAdd on a range of LLMs (LLaMA-3, OPT, GPT-2, and GPT-J), obtaining SOTA on detoxification and negative-to-positive sentiment control. Our approach yields inference-time control over high-level properties of output like topic and sentiment while preserving performance on off-target tasks. ActAdd takes far less compute and implementation effort than finetuning or RLHF, allows users control through natural language, and its computational overhead (as a fraction of inference time) appears stable or improving over increasing model size.},
   archiveprefix = {arXiv},
   langid = {english},
-  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning,reading complete,recommended},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning,generation steering,reading complete,recommended},
   file = {C\:\\Users\\janek\\Zotero\\storage\\UWUCEGH9\\Turner et al. - 2024 - Activation Addition Steering Language Models Without Optimization.pdf;C\:\\Users\\janek\\Zotero\\storage\\D8I89JDU\\2308.html}
+}
+
+@misc{tyoStateArtAuthorship2022,
+  title = {On the State of the Art in Authorship Attribution and Authorship Verification},
+  author = {Tyo, Jacob and Dhingra, Bhuwan and Lipton, Zachary C.},
+  year = {2022},
+  month = oct,
+  number = {arXiv:2209.06869},
+  eprint = {2209.06869},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2209.06869},
+  urldate = {2024-11-14},
+  abstract = {Despite decades of research on authorship attribution (AA) and authorship verification (AV), inconsistent dataset splits/filtering and mismatched evaluation methods make it difficult to assess the state of the art. In this paper, we present a survey of the fields, resolve points of confusion, introduce Valla that standardizes and benchmarks AA/AV datasets and metrics, provide a large-scale empirical evaluation, and provide apples-to-apples comparisons between existing methods. We evaluate eight promising methods on fifteen datasets (including distribution-shifted challenge sets) and introduce a new large-scale dataset based on texts archived by Project Gutenberg. Surprisingly, we find that a traditional Ngram-based model performs best on 5 (of 7) AA tasks, achieving an average macro-accuracy of \$76.50{\textbackslash}\%\$ (compared to \$66.71{\textbackslash}\%\$ for a BERT-based model). However, on the two AA datasets with the greatest number of words per author, as well as on the AV datasets, BERT-based models perform best. While AV methods are easily applied to AA, they are seldom included as baselines in AA papers. We show that through the application of hard-negative mining, AV methods are competitive alternatives to AA methods. Valla and all experiment code can be found here: https://github.com/JacobTyo/Valla},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning},
+  file = {C\:\\Users\\janek\\Zotero\\storage\\XT7T7JGL\\Tyo et al. - 2022 - On the state of the art in authorship attribution and authorship verification.pdf;C\:\\Users\\janek\\Zotero\\storage\\VU9IKP5V\\2209.html}
 }
 
 @misc{wangSelfinstructAligningLanguage2023,
@@ -309,7 +360,27 @@
   doi = {10.18653/v1/2021.emnlp-main.569},
   abstract = {Style is an integral part of natural language. However, evaluation methods for style measures are rare, often task-specific and usually do not control for content. We propose the modular, fine-grained and content-controlled similarity-based STyle EvaLuation framework (STEL) to test the performance of any model that can compare two sentences on style. We illustrate STEL with two general dimensions of style (formal/informal and simple/complex) as well as two specific characteristics of style (contrac'tion and numb3r substitution). We find that BERT-based methods outperform simple versions of commonly used style measures like 3-grams, punctuation frequency and LIWC-based approaches. We invite the addition of further tasks and task instances to STEL and hope to facilitate the improvement of style-sensitive measures.},
   langid = {english},
+  keywords = {evaluation},
   file = {C:\Users\janek\Zotero\storage\RJYR7QVM\Wegmann und Nguyen - 2021 - Does It Capture S℡ A Modular, Similarity-based Linguistic Style Evaluation Framework.pdf}
+}
+
+@inproceedings{wegmannSameAuthorJust2022,
+  title = {Same Author or Just Same Topic? {{Towards}} Content-Independent Style Representations},
+  shorttitle = {Same Author or Just Same Topic?},
+  booktitle = {Proceedings of the 7th {{Workshop}} on {{Representation Learning}} for {{NLP}}},
+  author = {Wegmann, Anna and Schraagen, Marijn and Nguyen, Dong},
+  editor = {Gella, Spandana and He, He and Majumder, Bodhisattwa Prasad and Can, Burcu and Giunchiglia, Eleonora and Cahyawijaya, Samuel and Min, Sewon and Mozes, Maximilian and Li, Xiang Lorraine and Augenstein, Isabelle and Rogers, Anna and Cho, Kyunghyun and Grefenstette, Edward and Rimell, Laura and Dyer, Chris},
+  year = {2022},
+  month = may,
+  pages = {249--268},
+  publisher = {Association for Computational Linguistics},
+  address = {Dublin, Ireland},
+  doi = {10.18653/v1/2022.repl4nlp-1.26},
+  urldate = {2024-11-14},
+  abstract = {Linguistic style is an integral component of language. Recent advances in the development of style representations have increasingly used training objectives from authorship verification (AV)'':'' Do two texts have the same author? The assumption underlying the AV training task (same author approximates same writing style) enables self-supervised and, thus, extensive training. However, a good performance on the AV task does not ensure good ``general-purpose'' style representations. For example, as the same author might typically write about certain topics, representations trained on AV might also encode content information instead of style alone. We introduce a variation of the AV training task that controls for content using conversation or domain labels. We evaluate whether known style dimensions are represented and preferred over content information through an original variation to the recently proposed STEL framework. We find that representations trained by controlling for conversation are better than representations trained with domain or no content control at representing style independent from content.},
+  langid = {english},
+  keywords = {style transfer},
+  file = {C:\Users\janek\Zotero\storage\GAYANL7F\Wegmann et al. - 2022 - Same Author or Just Same Topic Towards Content-Independent Style Representations.pdf}
 }
 
 @misc{wolfHuggingFacesTransformersStateart2020,
@@ -340,5 +411,6 @@
   publisher = {{ELRA and ICCL}},
   address = {Torino, Italia},
   abstract = {Unsupervised text style transfer aims to modify the style of a sentence while preserving its content without parallel corpora. Existing approaches attempt to separate content from style, but some words contain both content and style information. It makes them difficult to disentangle, where unsatisfactory disentanglement results in the loss of the content information or the target style. To address this issue, researchers adopted a ``cycle reconstruction'' mechanism to maintain content information, but it is still hard to achieve satisfactory content preservation due to incomplete disentanglement. In this paper, we propose a new disentanglement-based method, StyleFlow, which effectively avoids the loss of contents through a better cycle reconstruction via a reversible encoder. The reversible encoder is a normalizing flow that can not only produce output given input but also infer the exact input given the output reversely. We design a stack of attention-aware coupling layers, where each layer is reversible and adopts the attention mechanism to improve the content-style disentanglement. Moreover, we propose a data augmentation method based on normalizing flow to enhance the training data. Our experiments on sentiment transfer and formality transfer tasks show that StyleFlow outperforms strong baselines on both content preservation and style transfer.},
-  langid = {english}
+  langid = {english},
+  keywords = {style transfer}
 }
