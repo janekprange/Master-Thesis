@@ -1,18 +1,18 @@
 % !TeX root = ..\Proposal.tex
 
-\section{Motivation, Problem and Research Questions}
+\section{Motivation, Problem, and Research Questions}
 
 \subsection{Motivation \& Problem}
-Information in textual form is an essential part of our daily lives, be it in educational settings, news, entertainment or social media. One important aspect of text is not only its content and what information is portraied, but also the style in which it is written~\cite{wegmannSameAuthorJust2022}. Style dictates how the text is perceived and how well the message is conveyed and accepted by the reader. Additionally, it can be used to decide which author or group of people the text is written by.
+Information in textual form is an essential part of our daily lives, be it in educational settings, news, entertainment or social media. One important aspect of text is not only its content and what information is portrayed, but also the style in which it is written~\cite{wegmannSameAuthorJust2022}. Style dictates how the text is perceived and how well the message is conveyed and accepted by the reader. Additionally, it can be used to decide which author or group of people the text is written by.
 
 The importance of style was recognized and researched in previous works~\cite{zhu-etal-2024-styleflow, ijcai2020p526,wegmannSameAuthorJust2022}. However, manual style annotation is very difficult and time-consuming, which is why there currently exists no large-scale annotated dataset for style. Current style representation methods use unsupervised learning which leads to style embeddings that are not interpretable. This increases the difficulty of verifying the quality of the style representation and using it in downstream tasks.
 
-In addition to using style represantions to recognize authors or group membership, they play an potentially important part for the generation of text. Large language models are increasingly being used to explain various topics to a wide and diverse range of audiences. While it is of course important that the explanations are factually correct, it is also necessary to consider the text style the audience is accustomed to and the background knowledge it has.
+In addition to using style representations to recognize authors or group membership, they play a potentially important part for the generation of text. Large language models are increasingly being used to explain various topics to a wide and diverse range of audiences. While it is of course important that the explanations are factually correct, it is also necessary to consider the text style the audience is accustomed to and the background knowledge it has.
 
 In contrast to authorship attribution methods, generation steering may benefit from knowledge attributes in addition to style attributes. Knowledge attributes would then encode the background knowledge or experience of the recipient of the text. This is helpful information to decide to which degree technical terms may be used.
 
 There are existing methods to steer the style of generated text in a specific direction or transfer the style~\cite{zhu-etal-2024-styleflow, ijcai2020p526}.
-However, because state of the art style represantion methods produce non-interpretable style embeddings, it is difficult to verify the quality of the style embedding and therefore error-prone to use the embedding to generate new text.
+However, because state-of-the-art style representation methods produce non-interpretable style embeddings, it is difficult to verify the quality of the style embedding and therefore error-prone to use the embedding to generate new text.
 
 
 \subsection{Research Questions}
@@ -23,6 +23,6 @@ However, because state of the art style represantion methods produce non-interpr
   \begin{itemize}
     % \item Mention the group in the prompt (e.g. \enquote{Write the following explanation in the style of a teenager}), % baseline
     \item use the dimensions/attributes of the interpretable style vector in the prompt or
-    \item use the style represantion model to create training data to implement the ActAdd method presented in \citet{turnerActivationAdditionSteering2024}. It is however not yet clear if there is enough time to implement this approach.
+    \item use the style representation model to create training data to implement the ActAdd method presented in \citet{turnerActivationAdditionSteering2024}. It is however not yet clear if there is enough time to implement this approach.
   \end{itemize}
 \end{enumerate}
