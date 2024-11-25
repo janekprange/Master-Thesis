@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, recommended, reading_complete]
+tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, recommended, reading_complete, generation_steering]
 citekey: turnerActivationAdditionSteering2024
 ---
 # Activation addition: steering language models without optimization
@@ -71,4 +71,4 @@ citekey: turnerActivationAdditionSteering2024
 
 
 
-%% Import Date: 2024-10-15T10:31:08.859+02:00 %%
+%% Import Date: 2024-11-25T13:54:58.603+01:00 %%

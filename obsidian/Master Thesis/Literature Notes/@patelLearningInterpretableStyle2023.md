@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, recommended, reading_complete]
+tags: [Computer_Science/Computation_and_Language, recommended, reading_complete, authorship_attribution]
 citekey: patelLearningInterpretableStyle2023
 ---
 # Learning interpretable style embeddings via prompting LLMs
@@ -119,4 +119,4 @@ citekey: patelLearningInterpretableStyle2023
 
 
 
-%% Import Date: 2024-10-01T22:57:28.131+02:00 %%
+%% Import Date: 2024-11-25T13:54:58.389+01:00 %%

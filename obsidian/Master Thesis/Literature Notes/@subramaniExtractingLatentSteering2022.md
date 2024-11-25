@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, Computer_Science/Artificial_Intelligence, recommended, reading_complete]
+tags: [Computer_Science/Computation_and_Language, Computer_Science/Machine_Learning, Computer_Science/Artificial_Intelligence, recommended, reading_complete, generation_steering]
 citekey: subramaniExtractingLatentSteering2022
 ---
 # Extracting latent steering vectors from pretrained language models
@@ -69,4 +69,4 @@ citekey: subramaniExtractingLatentSteering2022
 
 
 
-%% Import Date: 2024-10-15T10:31:08.835+02:00 %%
+%% Import Date: 2024-11-25T13:54:58.445+01:00 %%

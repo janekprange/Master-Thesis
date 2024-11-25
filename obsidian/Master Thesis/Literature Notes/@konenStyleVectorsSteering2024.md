@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, recommended, reading_complete]
+tags: [Computer_Science/Computation_and_Language, recommended, reading_complete, generation_steering]
 citekey: konenStyleVectorsSteering2024
 ---
 # Style vectors for steering generative large language model
@@ -69,4 +69,4 @@ citekey: konenStyleVectorsSteering2024
 
 
 
-%% Import Date: 2024-10-05T19:53:05.383+02:00 %%
+%% Import Date: 2024-11-25T13:54:58.710+01:00 %%

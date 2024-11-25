@@ -1,6 +1,6 @@
 ---
 category: literaturenote
-tags: [Computer_Science/Computation_and_Language, recommended]
+tags: [Computer_Science/Computation_and_Language, recommended, generation_steering]
 citekey: alhafniPersonalizedTextGeneration2024
 ---
 # Personalized text generation with fine-grained linguistic control
@@ -28,4 +28,4 @@ citekey: alhafniPersonalizedTextGeneration2024
 
 
 
-%% Import Date: 2024-10-01T22:57:28.245+02:00 %%
+%% Import Date: 2024-11-25T13:54:58.667+01:00 %%
