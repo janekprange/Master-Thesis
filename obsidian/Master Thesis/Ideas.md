@@ -1,6 +1,6 @@
 - Comparison with SOTA
 	- find SOTA methods
-	- STEL framework ([[@wegmannDoesItCapture2021]]) for comparison, as in [[@patelLearningInterpretableStyle2023]]
+	- STEL framework ([[@wegmann-nguyen-2021-capture]]) for comparison, as in [[@patelLearningInterpretableStyle2023]]
 		- method described in section 5.2 of STEL paper
 - section for ethical considerations?
 - different methods to steer the output is listed in [[@turnerActivationAdditionSteering2024]] (section 2)

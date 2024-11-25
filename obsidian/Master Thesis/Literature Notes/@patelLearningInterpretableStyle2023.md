@@ -28,7 +28,7 @@ citekey: patelLearningInterpretableStyle2023
 	- appendix B seems to show that the improvement of the model does not plateau with 1000 authors and will likely increase with more data
 - the SFAM model is not a classifier for a specific style attribute but takes a text input with the style attribute and the text together
 - the SFAM classifier is used to produce a training dataset (annotate an existing dataset with the selected style attributes) on which the LISA model is trained
-- evaluation with the STEL framework [[@wegmannDoesItCapture2021]]
+- evaluation with the STEL framework [[@wegmann-nguyen-2021-capture]]
 %% end notes %%
 
 ## Annotations
