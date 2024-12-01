@@ -227,6 +227,33 @@
   keywords = {programming_library}
 }
 
+@inproceedings{NIPS2017_3f5ee243,
+  title = {Attention Is All You Need},
+  booktitle = {Advances in Neural Information Processing Systems},
+  author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  editor = {Guyon, I. and Luxburg, U. Von and Bengio, S. and Wallach, H. and Fergus, R. and Vishwanathan, S. and Garnett, R.},
+  year = {2017},
+  volume = {30},
+  publisher = {Curran Associates, Inc.}
+}
+
+@misc{parkLinearRepresentationHypothesis2024,
+  title = {The Linear Representation Hypothesis and the Geometry of Large Language Models},
+  author = {Park, Kiho and Choe, Yo Joong and Veitch, Victor},
+  year = {2024},
+  month = jul,
+  number = {arXiv:2311.03658},
+  eprint = {2311.03658},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2311.03658},
+  urldate = {2024-12-01},
+  abstract = {Informally, the 'linear representation hypothesis' is the idea that high-level concepts are represented linearly as directions in some representation space. In this paper, we address two closely related questions: What does "linear representation" actually mean? And, how do we make sense of geometric notions (e.g., cosine similarity or projection) in the representation space? To answer these, we use the language of counterfactuals to give two formalizations of "linear representation", one in the output (word) representation space, and one in the input (sentence) space. We then prove these connect to linear probing and model steering, respectively. To make sense of geometric notions, we use the formalization to identify a particular (non-Euclidean) inner product that respects language structure in a sense we make precise. Using this causal inner product, we show how to unify all notions of linear representation. In particular, this allows the construction of probes and steering vectors using counterfactual pairs. Experiments with LLaMA-2 demonstrate the existence of linear representations of concepts, the connection to interpretation and control, and the fundamental role of the choice of inner product.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {C\:\\Users\\janek\\Zotero\\storage\\6QI4XZD2\\Park et al. - 2024 - The Linear Representation Hypothesis and the Geometry of Large Language Models.pdf;C\:\\Users\\janek\\Zotero\\storage\\7M5N6QPX\\2311.html}
+}
+
 @misc{paszkePyTorchImperativeStyle2019,
   title = {{{PyTorch}}: {{An Imperative Style}}, {{High-Performance Deep Learning Library}}},
   shorttitle = {{{PyTorch}}},
@@ -287,6 +314,23 @@
   archiveprefix = {arXiv},
   keywords = {Computer Science - Computation and Language,programming_library},
   file = {C\:\\Users\\janek\\Zotero\\storage\\JNXUC4XS\\Reimers und Gurevych - 2019 - Sentence-BERT Sentence Embeddings using Siamese BERT-Networks.pdf;C\:\\Users\\janek\\Zotero\\storage\\GG825WFB\\1908.html}
+}
+
+@inproceedings{rimsky-etal-2024-steering,
+  title = {Steering Llama 2 via Contrastive Activation Addition},
+  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: {{Long}} Papers)},
+  author = {Rimsky, Nina and Gabrieli, Nick and Schulz, Julian and Tong, Meg and Hubinger, Evan and Turner, Alexander},
+  editor = {Ku, Lun-Wei and Martins, Andre and Srikumar, Vivek},
+  year = {2024},
+  month = aug,
+  pages = {15504--15522},
+  publisher = {Association for Computational Linguistics},
+  address = {Bangkok, Thailand},
+  doi = {10.18653/v1/2024.acl-long.828},
+  abstract = {We introduce Contrastive Activation Addition (CAA), a method for steering language models by modifying their activations during forward passes. CAA computes ``steering vectors'' by averaging the difference in residual stream activations between pairs of positive and negative examples of a particular behavior, such as factual versus hallucinatory responses. During inference, these steering vectors are added at all token positions after the user's prompt with either a positive or negative coefficient, allowing precise control over the degree of the targeted behavior. We evaluate CAA's effectiveness on Llama 2 Chat using multiple-choice behavioral question datasets and open-ended generation tasks. We demonstrate that CAA significantly alters model behavior, is effective over and on top of traditional methods like finetuning and system prompt design, and minimally reduces capabilities. Moreover, we gain deeper insights into CAA's mechanisms by employing various activation space interpretation methods. CAA accurately steers model outputs and sheds light on how high-level concepts are represented in Large Language Models (LLMs).},
+  langid = {english},
+  keywords = {generation steering},
+  file = {C:\Users\janek\Zotero\storage\5Y2WCPLB\Rimsky et al. - 2024 - Steering llama 2 via contrastive activation addition.pdf}
 }
 
 @inproceedings{rivera-soto-etal-2021-learning,

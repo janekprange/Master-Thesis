@@ -23,6 +23,7 @@ citekey: turnerActivationAdditionSteering2024
 
 ## Notes
 %% begin notes %%
+- coder under https://github.com/montemac/activation_additions
 - a notebook with the method is found under tinyurl.com/actadd and tinyurl.com/actadd3-llama
 - steer the output of LLMs by changing the activations **on one layer** with a bias that is computed from the difference of two prompts (no backpropagation is needed)
 - the method is used on the relatively small model GPT-2-XL -> is it feasible on larger models such as Llama3? And can I access and manipulate the activations?

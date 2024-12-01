@@ -1,7 +1,7 @@
 \documentclass[]{proposalclass}
 \usetikzlibrary{arrows,arrows.meta,positioning}
 
-\title{Steering large language models towards group-specific explanation generation with interpretable style vectors}
+\title{Developing Interpretable Style Vectors to Steer Large Language Models towards Group-Specific Explanation Generation}
 \type{Master's Thesis}
 \author{Janek Prange}
 \email{janek.prange@stud.uni-hannover.de}
@@ -30,6 +30,7 @@
 \usepackage{enumitem}
 \usepackage{csquotes}
 \usepackage{siunitx}
+\usepackage[nolist,nohyperlinks]{acronym}
 
 \makeatletter
 \renewenvironment{thebibliography}[1]
@@ -106,6 +107,7 @@
 \maketitle
 \tableofcontents
 \newpage
+\input{content/0_acronyms.tex}
 \input{content/1_motivation_problem}
 \input{content/2_goals_tasks}
 \input{content/3_outline}
@@ -113,5 +115,5 @@
 \clearpage
 \bibliographystyle{acl_natbib}
 % AVOID WHITE SPACES BETWEEN BIBLIOGRAPHIES!
-{\footnotesize\bibliography{../literature.bib}}%
+{\footnotesize\bibliography{literature.bib}}%
 \end{document}

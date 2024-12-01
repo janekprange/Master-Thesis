@@ -25,6 +25,7 @@ citekey: konenStyleVectorsSteering2024
 
 ## Notes
 %% begin notes %%
+- coder under https://github.com/DLR-SC/style-vectors-for-steering-llms
 - experiments showing the effectiveness of trained and activation style vectors
 - activation vectors are much faster to train (section 4.2) and have a better performance (figure 4)
 %% end notes %%
