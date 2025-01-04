@@ -1,0 +1,31 @@
+% !TeX root = ..\Proposal.tex
+
+\section{Motivation, Problem, and Research Questions}
+
+\subsection{Motivation \& Problem}
+Information in textual form is an essential part of our daily lives, be it in educational settings, news, entertainment or social media. One important aspect of text is not only its content and what information is portrayed, but also the style in which it is written~\cite{wegmannSameAuthorJust2022}. Style dictates how the text is perceived and how well the message is conveyed and accepted by the reader. Additionally, it can be used to decide which author~\cite{alshomaryLatentSpaceInterpretation2024} or group of people~\cite{10.1007/978-3-642-29047-3_27} has written a text by comparing the stylistic features between documents.
+
+The importance of style was recognized and researched in previous works~\cite{zhu-etal-2024-styleflow, ijcai2020p526,wegmannSameAuthorJust2022}. However, manual style annotation and especially the creation of parallel data is very difficult and time-consuming. Parallel data is data that includes positive and negative examples for each label (or in this case each style), which is required for most supervised learning approaches. For this reason, state-of-the-art style representation approaches use unsupervised learning methods which produce style embeddings that are not interpretable. This increases the difficulty of verifying the quality of the style representation and using it in downstream tasks.
+
+State-of-the-art methods use mainly stylistic features for their task~\cite{alshomaryLatentSpaceInterpretation2024,patelLearningInterpretableStyle2023,konenStyleVectorsSteering2024,zhu-etal-2024-styleflow}. There are however other aspects about the author aside from the style that can be extracted and assist these methods, especially in generating group-specific explanations. This includes information about the background knowledge or experience of the author, which are subsequently called knowledge attributes.
+
+While it is very useful to produce style representations, the current most popular task for the field of natural language processing is arguably the generation of text. \Acp{llm} are a very popular tool for the generation of natural language made possible by the transformer architecture~\cite{NIPS2017_3f5ee243}. In the last years, they have been used for various tasks by a wide and diverse range of audiences, including the explanations of many topics and concepts. However, due to the large number of people using \acp{llm}, new problems arise. While it is of course important that the explanations are factually correct, it is also necessary to consider the linguistic style the audience is accustomed to and the background knowledge it has and steer the text generation appropriately. For example, a technical explanation for a PhD student would probably not be helpful for a middle schooler and vice versa. This is where style representations play a potentially important role in addition to their use in authorship attribution and group membership detection.
+
+% There are existing methods to steer the style of generated text in a specific direction or transfer the style from one text to another~\cite{zhu-etal-2024-styleflow, ijcai2020p526,konenStyleVectorsSteering2024,subramaniExtractingLatentSteering2022}. All of them have in common that they rely on %! TODO: 
+% All of them have in common that they use training data where the content only differs in the steering target to fine-tune an LLM. However, because state-of-the-art style representation methods produce non-interpretable style embeddings, it is difficult to verify the quality of the style embedding and therefore error-prone to use the embedding to generate new text.
+
+% something about steering methods and the motivation behind actAdd
+
+
+\subsection{Research Questions}
+\begin{enumerate}
+	\item How well does the model for the generation of interpretable style representations presented in \citet{patelLearningInterpretableStyle2023} work on group-specific data?
+	\item Does the interpretable style representation method benefit from knowledge attributes in addition to style attributes?
+	\item What is the best way to generate group-specific explanations from style representations? \newline
+	      In this thesis I will explore two possible ways to achieve this:
+	      \begin{itemize}
+		      % \item Mention the group in the prompt (e.g. \enquote{Write the following explanation in the style of a teenager}), % baseline
+		      \item Use the dimensions/attributes of the interpretable style vector in the prompt or
+		      \item extract steering vectors on the activation layer from the style and knowledge attributes following the \ac{actadd} method presented in \citet{turnerActivationAdditionSteering2024}.
+	      \end{itemize}
+\end{enumerate}

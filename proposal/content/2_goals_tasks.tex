@@ -1,0 +1,47 @@
+% !TeX root = ..\Proposal.tex
+
+\section{Thesis Goals and Tasks to Tackle Each Goal}
+\subsection{Extract style attributes from the raw data and train a style representation model}
+In my thesis, I will prompt Llama3.2-3B-instruct %~\cite{dubeyLlama3Herd2024}
+to extract the style attributes from answers to questions posted on Stack Exchange and Reddit. I will use an unsupervised method presented by \citet{patelLearningInterpretableStyle2023}. The forums included in the dataset all have the theme that a specific group of people (i.e. old people, engineers, \ldots) are being asked questions. Because of this, there is a high probability that the answers are written by these groups so that the style differences can be extracted.
+
+\citeauthor{patelLearningInterpretableStyle2023} use a \acl{llm} (in their case ChatGPT) to extract style attributes in an unsupervised fashion. For each input text, the \ac{llm} is prompted around 90 times to describe the text with a focus on different linguistic features. The style descriptions are subsequently transformed into sentences of the form \enquote{The author uses x} or \enquote{The author is x} by prompting the \ac{llm} again. These sentences are the style attributes that form the dimensions of the interpretable style vectors. In my thesis I will additionally extract knowledge attributes which encode the experience and background knowledge of the author. These will be of the form \enquote{The author has experience in x}.
+
+By using the similarity between sentence embeddings of the style attributes to find positive and negative example inputs for specific attributes, multiple models can be trained which produce an agreement score for one style attribute each. These models, which are called \acp{sfam} in \citet{patelLearningInterpretableStyle2023}, are then used to annotate a larger set of data which is used as the basis to train a model that produces interpretable style vectors, where each dimension of the vector is a style attribute. The final model is called the \ac{lisa} embedding model.
+
+While the original method was used to differentiate the style from different authors, in my thesis I will use texts from different groups of people as the basis for my experiments. Differentiating group membership has some useful applications, especially in combination with the interpretable style vector since it can be used to understand which stylistic features different groups of people use when writing text. %? more applications?
+
+SFAM and LISA will not be trained on all style attributes that will be extracted from the raw data, but on a selection of 768 attributes. This will be the size of the interpretable style vector as well. Since there will be a lot more attributes than that, I will take multiple steps to reduce their number and select the best ones.
+
+Firstly, the style attributes will be clustered together with other attributes which have embeddings with a sufficiently high similarity. The attribute closest to the center of each cluster will be the representation for the whole cluster. Subsequently, all attributes that have been used to describe more than \SI{60}{\percent} of the groups will be discarded since they are not useful to distinguish between them. % Additionally, all attributes that were exclusively used for one group will be discarded as well since they are probably too group-specific and can not be generalized.
+The 768 most common of the remaining attributes will be chosen.
+
+The style representation model will be tested on unseen answers from the forums. The model will be tasked with predicting if answers are from the same group of people by using only the interpretable style vector. Additionally, the \ac{stel} framework~\cite{wegmann-nguyen-2021-capture} will be used to test the style representations against a human baseline.
+
+
+\subsection{Compare the performance of the style representation model with and without knowledge attributes}
+Knowledge Attributes, which encode the background knowledge and experience of the author, could potentially be useful to predict group membership in addition to style attributes. Therefore, I will implement the experiments from the previous section a second time with the difference that the knowledge attributes will be used in addition to the style attributes to train the SFAM and LISA models.
+
+To test this method, I will compare the ability of the model to predict group membership with the model which has only access to style attributes. If however all knowledge attributes are discarded and only style attributes are chosen to be present in the interpretable style vector, it will be clear even without this test that the knowledge attributes show no significant improvement to predict group membership.
+
+
+\subsection{Implement different methods to generate text in a specific style with the help of the interpretable style vectors}
+While it will be useful to have a model than can produce interpretable style vectors for arbitrary text, an important task that I will tackle in this thesis is to use the style vector to generate new text in a specific style. There are three different ways to reach this goal that I want to compare.
+\begin{enumerate}
+	\item
+	      Mention the group in the prompt (e.g. \enquote{Write the following explanation for a teenager}). This is the baseline for all further experiments as the style vectors are not used. The style of the text generation can not be changed at a granular level, but it is very easy to implement.
+	\item
+	      Use the dimensions/attributes of the interpretable style vector in the prompt. For this implementation, the most important style attributes for a group are included as part of the prompt to steer the output. This is fairly easy to implement and may give more control over the generation style than the first method.
+	\item
+	      Extract steering vectors on the activation layer from the style and knowledge attributes following the \ac{actadd} method presented in \citet{turnerActivationAdditionSteering2024}. \Ac{actadd} uses a bias added to one activation layer of the model to steer its output. This method has the advantage that it needs very little training data and works even with only one positive and one negative example. The steering vectors are extracted during forward propagation which decreases the time and resource requirements significantly. However, until now it has only been used to steer the output with regard to one attribute (e.g. \enquote{happy} vs. \enquote{sad}), not multiple as would be needed in the case of this thesis.
+
+	      The underlying idea behind this method is that abstract concepts (such as the style and knowledge attributes) are encoded as directions in the activation space of the model~\cite{parkLinearRepresentationHypothesis2024,rimsky-etal-2024-steering}. Following this idea, it should be possible to steer the generation with multiple style attributes simultaneously by combining their steering vectors. This would enable the method to be used for an every combination of attributes while only 768 vectors have to be extracted and saved.
+\end{enumerate}
+
+All methods will be tested by scoring the steered output with the \ac{sfam} model for the attribute that is the target for the steering. If the methods perform well, there should be a significant difference in the agreement score. Additionally, the \ac{lisa} model will be used to ensure that the output is only significantly different with the steered attribute(s) and there are no unwanted impacts on the other attributes.
+
+
+
+% \begin{itemize}
+%   \item using the python libraries numpy~\cite{harris2020array}, pandas~\cite{reback2020pandas,mckinney-proc-scipy-2010}, pytorch~\cite{paszkePyTorchImperativeStyle2019}, transformers~\cite{wolfHuggingFacesTransformersStateart2020}, sentence-transformers~\cite{reimersSentenceBERTSentenceEmbeddings2019} and nltk~\cite{birdNaturalLanguageProcessing2009}
+% \end{itemize}
