@@ -1,0 +1,48 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{graphicx}
+% format numbers
+\usepackage{siunitx}
+%https://tex.cloud.uni-hannover.de/project/6677e7bc8f12321099572893
+\sisetup{
+    locale=DE,
+    group-digits = integer,
+    round-mode = places,
+    round-precision = 3,
+    round-pad = false
+}
+% better itemize and enumerate
+\usepackage{enumitem}
+% \setlist[itemize]{nosep, label=-} 
+% \setlist[enumerate,1]{label=\alph*)}
+% enables \enquote command for better quotation
+\usepackage{csquotes}
+
+% \usepackage{tabularx} 
+% \usepackage{ragged2e}
+% \newcolumntype{L}{>{\RaggedRight}X}
+% \newcolumntype{R}{>{\RaggedLeft}X}
+% \newcolumntype{C}{>{\centering\arraybackslash}X}
+% \newcommand{\hrc}[1]{\multicolumn{1}{C}{#1}}
+% \usepackage{multirow}
+% \usepackage{booktabs}
+
+% All floats are flushed before the next section
+\usepackage[section]{placeins}
+% code typesetting
+\usepackage{listings}
+
+\usepackage{biblatex}
+% \addbibresource{literature.bib}
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+      pdftitle={Developing Interpretable Style Vectors to Steer Large Language Models towards Group-Specific Explanation Generation},
+      pdfsubject={Master Thesis},
+      colorlinks=false,
+      pdfpagemode=UseNone,
+      pdfauthor={Janek Prange}
+      }
+      
