@@ -1,1 +1,29 @@
 \subsection{Style Sentence Generation}
+
+\begin{itemize}
+  \item generation through two step prompting
+  \item first prompting generates style descriptions
+        \begin{itemize}
+          \item multiple descriptions per input
+          \item focus on different targets
+                \begin{itemize}
+                  \item 6 open style prompts
+                  \item 85 targeted prompts that focus on a single style aspect
+                  \item the targets have been taken from (citation)
+                  \item 2 open knowledge prompts
+                \end{itemize}
+          \item example prompt
+        \end{itemize}
+  \item second prompting generates style sentences from the descriptions
+        \begin{itemize}
+          \item All sentences have to start with \enquote{The author}
+          \item the model is instructed to avoid examples and negations
+                \begin{itemize}
+                  \item examples such as \enquote{The author uses filler words such as 'and', 'or' and 'furthermore'.} % TODO: better example
+                  \item examples are bad because they increase the variety of sentences that mean the same thing. This problem should be reduced by the clustering, but it will be better if the final style sentences do not have any examples as well
+                  \item negations such as \enquote{The author does not use words related to food.}
+                  \item the final sentences should not be negated as this mostly is not as clear of a dimension
+                \end{itemize}
+        \end{itemize}
+  \item per description, each distinct style sentence is recorded only once, even if the model generates it multiple times. This is done in case the model generates a bad answer where one sentence is repeated many times
+\end{itemize}
