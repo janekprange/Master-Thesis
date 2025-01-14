@@ -1,0 +1,15 @@
+\subsection{Selecting the Style Vector Attributes}
+
+\begin{itemize}
+  \item the vector has 768 dimensions, the attributes are selected automatically
+  \item a attribute may only be used in a maximum of \SI{60}{\percent} of the groups
+        \begin{itemize}
+          \item otherwise it is not well suited to distinguish between the groups
+        \end{itemize}
+  \item often, the same attribute was used multiple times to describe the same input text
+        \begin{itemize}
+          \item multiple prompts produce the same attribute
+          \item if one prompt produces one attribute multiple times, it is only saved one time
+          \item for further computation, only unique attributes are used
+        \end{itemize}
+\end{itemize}
