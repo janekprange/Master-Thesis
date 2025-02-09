@@ -1,0 +1,117 @@
+% !TeX root = ..\..\thesis.tex
+%
+% ------------------------------------  --> cover title page
+\begin{titlepage}
+  \pdfbookmark[0]{Cover}{Cover}
+  \flushright
+  \hfill
+  \vfill
+  {\LARGE\thesisTitle \par}
+  \rule[5pt]{\textwidth}{.4pt} \par
+  {\Large\thesisName}
+  \vfill
+  \textit{\large\thesisDate} \\
+  % Version: \thesisVersion
+\end{titlepage}
+
+
+
+% ------------------------------------  --> main title page
+
+\begin{titlepage}
+
+  \pdfbookmark[0]{Titlepage}{Titlepage}
+  \tgherosfont
+
+  \begin{figure}
+    \begin{minipage}[t]{8.5cm}
+      \includegraphics[height=1.5cm]{figures/LUHAI_banner.png}\\
+      \textsf{\small{Electrical Engineering and Computer Science,\\
+          Institute of Artificial Intelligence (LUHAI)\\
+          %		\hspace*{1.3cm}Institute of Computer Science\\
+          Appelstraße 9a \\
+          30167 Hannover
+        }}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{4.7cm}
+      \includegraphics[scale=0.3]{figures/luh_logo_grey.pdf}\\
+      \textsf{%Institute of Computer Science\\
+        \hspace*{0.1cm}\small{}
+      }
+    \end{minipage}
+  \end{figure}
+
+  \centering
+  %\textsf{\thesisUniversityDepartment} \\
+  %\textsf{\thesisUniversityInstitute} \\
+  %\textsf{\thesisUniversityGroup} \\
+
+  \vfill
+  {\large \thesisSubject} \\[5mm]
+  {\LARGE \color{ctcolortitle}\textbf{\thesisTitle} \\[10mm]}
+  {\Large \thesisName} \\
+
+  \vfill
+  \begin{minipage}[t]{.27\textwidth}
+    \raggedleft
+    \textit{1. Reviewer}
+  \end{minipage}
+  \hspace*{15pt}
+  \begin{minipage}[t]{.65\textwidth}
+    {\Large \thesisFirstReviewer} \\
+    {\small \thesisFirstReviewerDepartment} \\[-1mm]
+    {\small \thesisFirstReviewerUniversity}
+  \end{minipage} \\[5mm]
+  \begin{minipage}[t]{.27\textwidth}
+    \raggedleft
+    \textit{2. Reviewer}
+  \end{minipage}
+  \hspace*{15pt}
+  \begin{minipage}[t]{.65\textwidth}
+    {\Large \thesisSecondReviewer} \\
+    {\small \thesisSecondReviewerDepartment} \\[-1mm]
+    {\small \thesisSecondReviewerUniversity}
+  \end{minipage} \\[10mm]
+  \begin{minipage}[t]{.27\textwidth}
+    \raggedleft
+    \textit{Supervisors}
+  \end{minipage}
+  \hspace*{15pt}
+  \begin{minipage}[t]{.65\textwidth}
+    \thesisFirstSupervisor\ %and \thesisSecondSupervisor
+  \end{minipage} \\[10mm]
+
+  % Date of Submission: \thesisDate \\
+  \vspace{2cm}
+  \begin{flushright}
+    Date of Submission: \thesisDate \\
+  \end{flushright}
+
+  % \includegraphics[width=210mm,height=70mm]{figures/castle.png}
+  % Set the position of the banner at the bottom of the page
+  \begin{textblock*}{210mm}(0mm,297mm-70mm) % Set X and Y coordinates. 297mm is the height of A4 paper
+    % Include your banner image
+    \includegraphics[width=210mm,height=70mm]{figures/castle.png}
+  \end{textblock*}
+\end{titlepage}
+
+
+% ------------------------------------  --> lower title back for single page layout
+\hfill
+\vfill
+{
+  \small
+  \textbf{\thesisName} \\
+  \textit{\thesisTitle} \\
+  \thesisSubject, \thesisDate \\
+  Reviewers: \thesisFirstReviewer\ \\
+  and \thesisSecondReviewer \\
+  Supervisors: \thesisFirstSupervisor\ %and \thesisSecondSupervisor \\[1.5em]
+  \textbf{\thesisUniversity} \\
+  \textit{\thesisUniversityGroup} \\
+  \thesisUniversityInstitute \\
+  \thesisUniversityDepartment \\
+  \thesisUniversityStreetAddress \\
+  \thesisUniversityPostalCode\ \thesisUniversityCity
+}

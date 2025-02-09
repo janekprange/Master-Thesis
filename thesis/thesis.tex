@@ -1,0 +1,174 @@
+% **************************************************
+% Document Class Definition
+% **************************************************
+\documentclass[%
+    paper=A4,               % paper size --> A4 is default in Germany
+    twoside=true,           % onesite or twoside printing
+    openany,              % doublepage cleaning ends up right side
+    parskip=full,           % spacing value / method for paragraphs
+    chapterprefix=true,     % prefix for chapter marks
+    11pt,                   % font size
+    headings=normal,        % size of headings
+    bibliography=totoc,     % include bib in toc
+    listof=totoc,           % include listof entries in toc
+    titlepage=on,           % own page for each title page
+    captions=tableabove,    % display table captions above the float env
+    chapterprefix=false,    % do not display a prefix for chapters
+    appendixprefix=false,   % but display a prefix for appendix chapter
+    draft=false,            % value for draft version
+]{scrreprt}%
+
+\input{packages.tex}
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{Developing Interpretable Style Vectors to Steer Large Language Models towards Group-Specific Explanation Generation}
+\newcommand{\thesisName}{Janek Prange}
+\newcommand{\matrikelnummer}{10031585}
+\newcommand{\thesisSubject}{Master's Thesis}
+\newcommand{\thesisDate}{June 5, 2025}
+% \newcommand{\thesisVersion}{My First Draft}
+
+\newcommand{\thesisFirstReviewer}{Prof. Dr. rer. nat. Henning Wachsmuth}
+\newcommand{\thesisFirstReviewerUniversity}{\protect{Leibniz University Hannover}}
+\newcommand{\thesisFirstReviewerDepartment}{Electrical Engineering and Computer Science}
+
+\newcommand{\thesisSecondReviewer}{Prof. Dr. rer. nat. Ralph Ewerth}
+\newcommand{\thesisSecondReviewerUniversity}{\protect{Leibniz University Hannover}}
+\newcommand{\thesisSecondReviewerDepartment}{Electrical Engineering and Computer Science}
+
+\newcommand{\thesisFirstSupervisor}{M.Sc. Leandra Fichtel}
+% \newcommand{\thesisSecondSupervisor}{}
+
+\newcommand{\thesisUniversity}{\protect{Leibniz University Hannover}}
+\newcommand{\thesisUniversityDepartment}{Electrical Engineering and Computer Science}
+\newcommand{\thesisUniversityInstitute}{Institute of Artificial Intelligence (LUH-AI)}
+\newcommand{\thesisUniversityGroup}{Natural Language Processing (NLP)}
+\newcommand{\thesisUniversityCity}{Hannover}
+\newcommand{\thesisUniversityStreetAddress}{Welfengarten 1}
+\newcommand{\thesisUniversityPostalCode}{30167}
+
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+
+\input{nomenclature/nomclat}
+
+% **************************************************
+% Document CONTENT
+% **************************************************
+\begin{document}
+
+% **************************************************
+% Description
+% **************************************************
+%\input{content/tasks_desccription/descriptionpage}
+
+
+% --------------------------
+% rename document parts
+% --------------------------
+%\renewcaptionname{ngerman}{\figurename}{Abb.}
+%\renewcaptionname{ngerman}{\tablename}{Tab.}
+\renewcaptionname{english}{\figurename}{Figure}
+\renewcaptionname{english}{\tablename}{Table}
+
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
+\pagestyle{empty}				% no header or footers
+\input{content/00-frontmatter/titlepages}		% INCLUDE: all titlepages
+% \cleardoublepage
+
+\input{content/00-frontmatter/declaration}
+% \clearpage
+
+\pagestyle{plain}				% display just page numbers
+\input{content/00-frontmatter/abstract}		% INCLUDE: the abstracts (english and german)
+% \cleardoublepage
+%
+\input{content/00-frontmatter/acknowledgement} % INCLUDE: acknowledgement
+% \cleardoublepage
+%
+% TODO: here or somewhere else?
+\input{content/00-frontmatter/acronyms} % INCLUDE: acronyms
+% \cleardoublepage
+%
+\currentpdfbookmark{\contentsname}{toc}
+\setcounter{tocdepth}{2}		% define depth of toc
+\tableofcontents				% display table of contents
+\cleardoublepage
+
+% --------------------------
+% Body matter
+% --------------------------
+\newcounter{content}
+\setcounter{content}{
+    \value{page}}               % save value of first content page (is reset by \pagenumbering)
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{
+    \value{content}}            % set page counter to value saved above
+\pagestyle{scrheadings}     	% fancy header and footer
+
+\input{content/content.tex}
+
+% --------------------------
+% Back matter
+% --------------------------
+\appendix\cleardoublepage
+\input{content/99-backmatter/appendix.tex}       % INCLUDE: appendix
+%
+{%
+    % if you are using zotero with the better bibtex plugin,
+    % you can use the following postscript to automatically add the keyword 'preprint' for arXiv papers
+    % (you find the postscript in the export tab of the Better BibTeX preferences, subtab postscript)
+    % https://retorque.re/zotero-better-bibtex/exporting/scripting/
+    % 
+    % if (Translator.BetterBibLaTeX) {
+    %     if (zotero.itemType === 'preprint') {
+    %         const keyword = 'preprint';
+    %         // Retrieve existing keywords, if any
+    %         let keywords = zotero.tags.map(tag => tag.tag);
+    %         // Add the 'preprint' keyword if it's not already present
+    %         if (!keywords.includes(keyword)) {
+    %             keywords.push(keyword);
+    %             tex.add({ name: 'keywords', value: keywords, enc: 'tags' });
+    %         }
+    %     }
+    % }
+
+    \defbibfilter{websites}{
+        type=online
+        and not keyword=preprint
+    }
+    \defbibfilter{notWebsites}{
+        not type=online
+        or keyword=preprint
+    }
+    \setstretch{1.1}
+    \renewcommand{\bibfont}{\normalfont\small}
+    \setlength{\biblabelsep}{0pt}
+    \setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
+    \printbibliography[filter=notWebsites]
+    \newrefcontext[labelprefix={@}]
+    \printbibliography[heading=subbibliography,title={Webpages},filter=websites]
+}
+\clearpage
+
+%
+\input{content/99-backmatter/colophon.tex}
+% \clearpage
+
+
+% \newpage
+% \mbox{}
+
+% **************************************************
+% End of Document CONTENT
+% **************************************************
+\end{document}
