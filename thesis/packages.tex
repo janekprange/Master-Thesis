@@ -1,3 +1,4 @@
+% LTEX: enabled=false
 \usepackage{subfiles}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -8,11 +9,11 @@
 \usepackage{siunitx}
 %https://tex.cloud.uni-hannover.de/project/6677e7bc8f12321099572893
 \sisetup{
-    locale=DE,
-    group-digits = integer,
-    round-mode = places,
-    round-precision = 3,
-    round-pad = false
+  locale=US,
+  group-digits = integer,
+  round-mode = places,
+  round-precision = 3,
+  round-pad = false
 }
 % better itemize and enumerate
 \usepackage{enumitem}
@@ -21,6 +22,10 @@
 % enables \enquote command for better quotation
 % \usepackage{csquotes}
 \usepackage[nolist,nohyperlinks]{acronym}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, shapes, positioning}
+\usepackage{multicol}
 
 \usepackage[absolute]{textpos}
 \setlength{\TPHorizModule}{1mm}
@@ -42,18 +47,18 @@
 \usepackage{listings}
 
 \PassOptionsToPackage{% setup clean thesis style
-    backend=biber,              % Biblatex backend
-    natbib=true,                % Provide natbib command compatibility
-    citestyle=authoryear,       % Citation style within text
-    bibstyle=authoryear,        % Citation style in bibliography
-    dashed=false,               % Don't replace recurrent author names with a dash
-    date=year,                  % Set the publication date in the bibliography to year only
-    urldate=ymd,                % Set the date format for the url labels in the bibliography to YYYY-MM-DD
-    sorting=nyt,                % Sort citations by name-year-title in the bibliography
-    sortcites=false,            % Do not sort the citations within text
-    maxcitenames=1,             % Maximum number of names in document-body citations
-    maxbibnames=99,             % Maximum number of names in bibliography
-    uniquelist=false,           % Don't require unique citation names (year not included) to not overwrite maxcitenames
+  backend=biber,              % Biblatex backend
+  natbib=true,                % Provide natbib command compatibility
+  citestyle=authoryear,       % Citation style within text
+  bibstyle=authoryear,        % Citation style in bibliography
+  dashed=false,               % Don't replace recurrent author names with a dash
+  date=year,                  % Set the publication date in the bibliography to year only
+  urldate=ymd,                % Set the date format for the url labels in the bibliography to YYYY-MM-DD
+  sorting=nyt,                % Sort citations by name-year-title in the bibliography
+  sortcites=false,            % Do not sort the citations within text
+  maxcitenames=1,             % Maximum number of names in document-body citations
+  maxbibnames=99,             % Maximum number of names in bibliography
+  uniquelist=false,           % Don't require unique citation names (year not included) to not overwrite maxcitenames
 }{biblatex}
 \usepackage{biblatex}
 % Don't switch the ordering for the first name in bibliography
@@ -61,29 +66,29 @@
 \bibliography{literature.bib}
 
 \PassOptionsToPackage{% setup clean thesis style
-    figuresep=colon,%
-    hangfigurecaption=false,%
-    hangsection=true,%
-    hangsubsection=true,%
-    sansserif=false,%
-    configurelistings=true,%
-    colorize=full,%
-    colortheme=bluemagenta,% upbisg
-    configurebiblatex=false,%
-    bibfile=literature,%
+  figuresep=colon,%
+  hangfigurecaption=false,%
+  hangsection=true,%
+  hangsubsection=true,%
+  sansserif=false,%
+  configurelistings=true,%
+  colorize=full,%
+  colortheme=bluemagenta,% upbisg
+  configurebiblatex=false,%
+  bibfile=literature,%
 }{cleanthesis}
 \usepackage{cleanthesis}
 
 \usepackage{hyperref}
 \hypersetup{
-    pdftitle={Developing Interpretable Style Vectors to Steer Large Language Models towards Group-Specific Explanation Generation},
-    pdfsubject={Master's Thesis},
-    pdfauthor={Janek Prange}
-    plainpages=false,           %   -
-    colorlinks=false,           %   - colorize links?
-    pdfborder={0 0 0},          %   -
-    breaklinks=true,            %   - allow line break inside links
-    bookmarksnumbered=true,     %
-    bookmarksopen=true,          %
-    pdfpagemode=UseNone,
+  pdftitle={Developing Interpretable Style Vectors to Steer Large Language Models towards Group-Specific Explanation Generation},
+  pdfsubject={Master's Thesis},
+  pdfauthor={Janek Prange}
+  plainpages=false,           %   -
+  colorlinks=false,           %   - colorize links?
+  pdfborder={0 0 0},          %   -
+  breaklinks=true,            %   - allow line break inside links
+  bookmarksnumbered=true,     %
+  bookmarksopen=true,          %
+  pdfpagemode=UseNone,
 }

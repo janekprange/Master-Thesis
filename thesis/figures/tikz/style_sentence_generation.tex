@@ -1,0 +1,60 @@
+\newlength{\mytw}
+\settowidth{\mytw}{A few lines of text in a block}
+\begin{center}
+  \begin{tikzpicture}
+    [> = latex', auto,
+      block/.style ={
+          rectangle,
+          draw=black,
+          thick,
+          % align=flush center,
+          rounded corners,
+          % minimum height=4em
+        },
+    ]
+    \node[block, text width=0.7\linewidth] (answer) {\textbf{Input Text:}\\If the judge believes the award is too high or too low, the judge can use additur or remittitur to reduce the damages. These are essentially offers to both parties to agree to the change in damages. If both parties do not agree, the court can order a new trial.};
+
+    \node[block, minimum height=3cm, text width=0.4\linewidth, below left=of answer.south] (prompt1) {\textbf{Prompt 1 (Grammar Style):}\\Write a long paragraph describing the unique grammar style of the following passage without referring to specifics about the topic.};
+    \node[align=flush center, minimum height=3cm, text width=0.2\linewidth, below=1cm of answer.south] (prompt2) {\ldots};
+    \node[block, minimum height=3cm, text width=0.4\linewidth, below right=of answer.south] (prompt3) {\textbf{Prompt 92 (Background Knowledge):}\\Write a description of the background knowledge the author has based on the following passage.};
+
+    \draw[->] (answer.south) -- (prompt1.north);
+    \draw[->] (answer.south) -- (prompt2.north);
+    \draw[->] (answer.south) -- (prompt3.north);
+
+    \node[block, align=flush center, minimum height=1cm, text width=0.4\linewidth, below=1cm of prompt1] (description1) {Style Description};
+    \node[align=flush center, minimum height=1cm, text width=0.2\linewidth, below=1cm of prompt2] (description2) {\ldots};
+    \node[block, align=flush center, minimum height=1cm, text width=0.4\linewidth, below=1cm of prompt3] (description3) {Style Description};
+
+    \draw[->] (prompt1.south) -- (description1.north);
+    \draw[->] (prompt2.south) -- (description2.north);
+    \draw[->] (prompt3.south) -- (description3.north);
+
+    \node[block, text width=0.7\linewidth, below=1cm of description2] (sentence_prompt) {\textbf{Prompt:}\\Rewrite this description as a long list of short sentences describing the author's writing style  where each sentence is in the format of \enquote{The author is X.} or \enquote{The author uses X.}.};
+
+    \draw[->] (description1.south) -- (sentence_prompt.north);
+    \draw[->] (description2.south) -- (sentence_prompt.north);
+    \draw[->] (description3.south) -- (sentence_prompt.north);
+
+    \node[block, text width=0.95\linewidth, below=1cm of sentence_prompt] (attributes) {\textbf{Style Attributes:}\\
+      % The author uses the passive voice. \\
+      % The author uses active voice. \\
+      % The author uses sentence fragments. \\
+      % The author uses run-on sentences. \\
+      % The author uses words related to visual perception. \\
+      % The author uses words expressing wellness. \\
+      % The author uses a neutral tone. \\
+      The author uses words related to risk. \\
+      The author uses words related to allure. \\
+      The author uses words indicating poverty. \\
+      The author uses words expressing needs. \\
+      The author uses numbers. \\
+      The author explains legal concepts. \\
+      The author uses words indicating men. \\
+      The author uses the word judge. \\
+      \ldots
+    };
+
+    \draw[->] (sentence_prompt.south) -- (attributes.north);
+  \end{tikzpicture}
+\end{center}
