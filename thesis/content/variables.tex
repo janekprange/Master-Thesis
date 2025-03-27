@@ -1,1 +1,26 @@
+\newcommand{\styleVectorSize}{\num{768}}
+\newcommand{\styleEmbeddingSize}{\num{768}}
+% minimum cosine similarity for sentences to be in the same cluster
 \newcommand{\minCosineSimilarity}{\num{0.85}}
+% the maximum similarity that two clusters can have to be selected as a style attribute
+\newcommand{\maxCosineSimilarity}{\num{0.7}}
+% the maximum ratio of groups a cluster is used to describe for it to be selected
+\newcommand{\clusterMaxGroupRatio}{\SI{60}{\percent}}
+
+
+% number of answers used for the style vector creation
+\newcommand{\numAnswersStyleVector}{\num{5500}}
+% number of style descriptions
+\newcommand{\numStyleDescriptions}{\num{0}}
+% number of style sentences
+\newcommand{\numStyleSentences}{\num{0}}
+% number of style sentences from style prompts
+\newcommand{\numStyleSentencesStyle}{\num{0}}
+% number of style sentences from knowledge prompts
+\newcommand{\numStyleSentencesKnowledge}{\num{0}}
+% number of clusters
+\newcommand{\numClusters}{\num{0}}
+% number of clusters from style prompts
+\newcommand{\numClustersStyle}{\num{0}}
+% number of clusters from knowledge prompts
+\newcommand{\numClustersKnowledge}{\num{0}}
