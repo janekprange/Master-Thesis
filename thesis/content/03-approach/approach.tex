@@ -62,6 +62,16 @@ The whole process can be seen in Figure~\ref{fig:style_sentence_generation}.
 
 \section{Clustering}
 \label{sec:approach:clustering}
+A strength of the method to create style sentences described in Section~\ref{sec:approach:style_sentence_generation} is the lack of constraints which results in a large variety of generated sentences. However, this leads to the problem that sentences with the same content can have many different forms. An example for this would be the sentences \enquote{The author uses short and concise sentences.} and \enquote{The author uses concise and short sentences.}, which have exactly the same meaning while having a distinct form.
+
+Since the approach up to this point only checked if sentences are exactly identical, it is more difficult to compare different input texts and to find texts that are an example of a specific style sentence. Additionally, it could be that a sentence would be a good attribute for the style sentence but is not selected by the algorithm described in Section~\ref{sec:approach:selection} because it is used with many different variations.
+To solve this problem, my approach includes clustering the sentences by the cosine similarity of their embeddings with a sentence embedding model. % TODO: citation for the model (and name?)
+
+The clustering algorithm first computes a radius neighbor graph of all sentences where sentences which have a cosine similarity of more than \minCosineSimilarity{}. Subsequently, the clusters are sorted by size and all sentences that have been included in a larger cluster are deleted from all smaller clusters to ensure that each sentence is only included in one cluster. At the same time, it has to be ensured that no sentence is left out of every cluster because for further approaches, the clusters are the relevant data.
+
+For the resulting clusters, the style sentence that is closest to the center is the represantative sentence of the whole cluster.
+
+
 
 \begin{itemize}
   \item often, style sentences are generated that are very similar
