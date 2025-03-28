@@ -13,19 +13,58 @@
 \subsection{Architecture}
 \label{sec:approach:architecture_models:architecture}
 
+\begin{itemize}
+  \item Style Sentence Generation
+  \item Clustering
+  \item Selection of Style Vector Attributes
+  \item Training SFAM and LISA
+  \item Training the embedding model
+  \item Prompt Steering
+  \item Activation Steering
+\end{itemize}
+
 \subsection{Models}
 \label{sec:approach:architecture_models:models}
 
 \begin{itemize}
   \item Llama3.2
   \item Sentence Transformer
-  \item DeBERTa
+  \item DeBERTaV3
   \item \ldots
 \end{itemize}
 
 
 \section{Evaluation Metrics}
 \label{sec:approach:evaluation_metrics}
+
+\begin{itemize}
+  \item SFAM
+        \begin{itemize}
+          \item accuracy and F1 with regard to labels from select examples of the style sentence generation (was the sentence used or not)
+        \end{itemize}
+  \item LISA
+        \begin{itemize}
+          \item MSE, MAE, avg. cosine similarity compared to SFAM prediction
+          \item accuracy and F1 compared to SFAM where both predictions are rounded
+        \end{itemize}
+  \item embedding model
+        \begin{itemize}
+          \item accuracy through triplet loss
+                %? \item variance inside groups
+        \end{itemize}
+  \item steering methods
+        \begin{itemize}
+          \item improvement of L2 distance to group median compared to embedding of unsteered generation
+                \begin{itemize}
+                  \item how strong is the steering?
+                \end{itemize}
+          \item cosine similarity between the vector that is the difference between embedding of steered and unsteered generation
+                \begin{itemize}
+                  \item is the steering in the correct direction?
+                \end{itemize}
+                %? \item the absolute times that the resulting group is the correct one (according to the embedding)
+        \end{itemize}
+\end{itemize}
 
 
 \section{Style Sentence Generation}
@@ -69,7 +108,7 @@ To solve this problem, my approach includes clustering the sentences by the cosi
 
 The clustering algorithm first computes a radius neighbor graph of all sentences where sentences which have a cosine similarity of more than \minCosineSimilarity{}. Subsequently, the clusters are sorted by size and all sentences that have been included in a larger cluster are deleted from all smaller clusters to ensure that each sentence is only included in one cluster. At the same time, it has to be ensured that no sentence is left out of every cluster because for further approaches, the clusters are the relevant data.
 
-For the resulting clusters, the style sentence that is closest to the center is the represantative sentence of the whole cluster.
+For the resulting clusters, the style sentence that is closest to the center is the representative sentence of the whole cluster.
 
 
 % \begin{itemize}
@@ -87,34 +126,71 @@ For the resulting clusters, the style sentence that is closest to the center is 
 \label{sec:approach:selection}
 
 \begin{itemize}
-  \item the vector has \styleVectorSize{} dimensions, the attributes are selected automatically
-  \item a attribute may only be used in a maximum of \clusterMaxGroupRatio{} of the groups
+  \item the vector has \styleVectorSize{} dimensions, a large part (more than \SI{80}{\percent}) of the attributes are selected automatically
+        \begin{itemize}
+          \item the first \numTargetPrompts{} prompts are the clusters that are the closest to the target prompt. This follows the work of \citet{patelLearningInterpretableStyle2023}
+          \item the next \minNumKnowledgePrompts{} prompts are knowledge prompts. The actual number can be more or less than that depending on the rest of the selection process. % explanation?
+        \end{itemize}
+  \item a cluster may only be used in a maximum of \clusterMaxGroupRatio{} of the groups
         \begin{itemize}
           \item otherwise it is not well suited to distinguish between the groups
+          \item often, the same attribute was used multiple times to describe the same input text
+                \begin{itemize}
+                  \item multiple prompts produce the same attribute
+                  \item if one prompt produces one attribute multiple times, it is only saved one time
+                  \item for further computation, for each input text, each attribute is counted only once
+                \end{itemize}
         \end{itemize}
-  \item often, the same attribute was used multiple times to describe the same input text
+  \item for all remaining remaining clusters, the number of answers it has to be used in is increased until a maximum of \maxClustersFirstSelection{} is left
+  \item next, the similarity between all remaining clusters is computed and, in order of occurance, clusters that have a cosine similarity higher than \maxCosineSimilarity{} are removed from the selected
+  \item final selection
         \begin{itemize}
-          \item multiple prompts produce the same attribute
-          \item if one prompt produces one attribute multiple times, it is only saved one time
-          \item for further computation, only unique attributes are used
+          \item compute similarities between clusters selected at this stage
+          \item for all clusters, compute the average similarity of all input texts by looking at the clusters that have been used to describe that input text
+          \item sort sort the clusters by the difference between the most and least matching input text
+          \item select the clusters with the highest difference
+          \item this is done because a style attribute will probably hold more meaningful information and is better suited to differentiate texts if it is very similar to some and very dissimilar to other texts
         \end{itemize}
 \end{itemize}
 
 
-\section{Testing and Training \acs{sfam}}
+\section{Training and Testing \acs{sfam}}
 \label{sec:approach:sfam}
 
 \begin{itemize}
-  \item Selection of training data
+  \item SFAM is a model that takes a style sentence and a text as input and produces an agreement score
+  \item training data
         \begin{itemize}
-          \item in the original paper of \textcite{patelLearningInterpretableStyle2023}, they have done it this way \ldots
-          \item I select the negativ training examples through the similarity style vector
+          \item the \numStyleSentences{} style sentences are used for training
+          \item there are distinct sets of input texts for training, validation and test datasets
+          \item these lead to mostly different sentences (also the differences may be small)
+          \item of all sentences, the best are selected
+                \begin{itemize}
+                  \item compute similarity to all style vector attributes (which are clusters)
+                  \item for each sentence, compute the most similar and most dissimilar input text according to the average similarity to all style attributes that have been used to describe that text (like the final selection of style vector attributes, see Section~\ref{sec:approach:selection}) % TODO: is there a more specific reference to a subsection?
+                  \item if one of the ten most similar input texts was actually described by the style sentence, it is chosen as a positive training sample and the least similar input text that was not described by the sentence as a negative sample
+                  \item otherwise, the sentence is not used for training
+                  \item the same is done for validation and test
+                \end{itemize}
         \end{itemize}
+  \item SFAM is a finetuned DeBERTaV3 model
+        \begin{itemize}
+          \item two fully connected layers with a ReLu in between % TODO: look up
+          \item finally a sigmoid activation function to produce values between 0 and 1
+        \end{itemize}
+  \item optional hyperparameter optimization (with optuna -> citation?) to discover optimal learning rate and weight decay
+  \item early stopping callback with patience of three
+  \item validation metric of accuracy
+  \item testing metric accuracy and f1
 \end{itemize}
 
 
-\section{Testing and Training \acs{lisa}}
+\section{Training and Testing \acs{lisa}}
 \label{sec:approach:lisa}
+
+
+\section{Embedding Model}
+\label{sec:approach:embedding}
 
 
 \section{Possible Improvement through Knowledge Attributes}
