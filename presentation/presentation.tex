@@ -21,15 +21,25 @@
 }
 % better itemize and enumerate
 \usepackage{enumitem}
-% \setlist[itemize]{nosep, label=-} 
+\setlist[itemize]{nosep, label=-} 
 % \setlist[enumerate,1]{label=\alph*)}
 % enables \enquote command for better quotation
-% \usepackage{csquotes}
 \usepackage[nolist,nohyperlinks]{acronym}
 \usepackage{csquotes}
+\usepackage{booktabs}
 
-\usepackage{biblatex}
+\usepackage{tikz}
+\usetikzlibrary{arrows, shapes, positioning, calc}
+
+\usepackage[
+  backend=biber,
+  natbib=true,
+  citestyle=authoryear,
+  maxcitenames=1,
+  maxbibnames=5,
+]{biblatex}
 \bibliography{literature.bib}
+\renewcommand*{\bibfont}{\normalfont\scriptsize}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -68,13 +78,13 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Table of Contents}
+\begin{frame}[shrink,t]{Table of Contents}
   \tableofcontents
 \end{frame}
 
 \AtBeginSection[]
 {
-  \begin{frame}{Table of Contents}
+  \begin{frame}[shrink,t]{Table of Contents}
     \tableofcontents[currentsection]
   \end{frame}
 }
@@ -110,10 +120,12 @@
             \item taken from % TODO
             \item % TODO: how many?
           \end{itemize}
-    \item questions for steering
-          \begin{itemize}
-            \item questions taken from previous works\footauthorcite{petroni-etal-2021-kilt,rooeinKnowYourAudience2023}
-          \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Steering questions}
+  \begin{itemize}
+    \item 100 questions taken from previous works from \citet{petroni-etal-2021-kilt,rooeinKnowYourAudience2023}
   \end{itemize}
 \end{frame}
 
@@ -122,12 +134,34 @@
 % or Creation of the synthetic dataset?
 \section{Creation of the Style Vector Attributes}
 \subsection{Style Sentence Generation}
-\begin{frame}{}
+\begin{frame}{Style Sentence Generation}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
 
+\begin{frame}[shrink]
+  \input{tikz/style_sentence_generation-1.tex}
+\end{frame}
+\begin{frame}[shrink]
+  \input{tikz/style_sentence_generation-2.tex}
 \end{frame}
 
 \subsection{Clustering and Cluster Selection}
 \begin{frame}{}
+
+\end{frame}
+
+\begin{frame}{Resulting synthetic dataset}
+
+  \begin{tabular}{lS}
+    \toprule
+                 & {Number of data points} \\ \midrule
+    Answers      & 5500                    \\
+    Descriptions &                         \\
+    Sentences    &                         \\
+    Clusters     &                         \\ \bottomrule
+  \end{tabular}
 
 \end{frame}
 

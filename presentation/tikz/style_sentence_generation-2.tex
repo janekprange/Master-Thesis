@@ -1,0 +1,44 @@
+\begin{tikzpicture}
+  [> = latex', auto,
+    block/.style ={
+        rectangle,
+        draw=black,
+        thick,
+        % align=flush center,
+        rounded corners,
+        % minimum height=4em
+      },
+  ]
+  \node[block, align=flush center, minimum height=1cm, text width=0.4\linewidth, below=1cm of prompt1] (description1) {Style Description};
+  \node[align=flush center, minimum height=1cm, text width=0.2\linewidth, below=1cm of prompt2] (description2) {\ldots};
+  \node[block, align=flush center, minimum height=1cm, text width=0.4\linewidth, below=1cm of prompt3] (description3) {Style Description};
+
+  \node[block, text width=0.95\linewidth, below=1cm of description2] (sentence_prompt) {\textbf{Prompt:}\\Rewrite this description as a long list of short sentences describing the author's writing style  where each sentence is in the format of \enquote{The author is X.} or \enquote{The author uses X.}.};
+
+  \draw[->] (description1.south) -- ++(0,-1cm);
+  \draw[->] (description2.south) -- ++(0,-1cm);
+  \draw[->] (description3.south) -- ++(0,-1cm);
+
+  \node[block, text width=0.95\linewidth, below=1cm of sentence_prompt] (attributes) {\textbf{Style Attributes:}\\
+    % The author uses the passive voice. \\
+    % The author uses active voice. \\
+    % The author uses sentence fragments. \\
+    % The author uses run-on sentences. \\
+    % The author uses words related to visual perception. \\
+    % The author uses words expressing wellness. \\
+    % The author uses a neutral tone. \\
+    The author uses words related to risk. \\
+    The author uses words related to allure. \\
+    The author uses words indicating poverty. \\
+    The author uses words expressing needs. \\
+    The author uses numbers. \\
+    The author explains legal concepts. \\
+    The author uses words indicating men. \\
+    The author uses the word judge. \\
+    \ldots
+  };
+
+  \draw[->] (sentence_prompt.south) -- +(0,-1cm);
+  \draw[->] let \p1 = (sentence_prompt.south), \p2 = (description1) in (\x2,\y1) -- +(0,-1cm);
+  \draw[->] let \p1 = (sentence_prompt.south), \p2 = (description3) in (\x2,\y1) -- +(0,-1cm);
+\end{tikzpicture}

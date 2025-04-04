@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+  [> = latex', auto,
+    block/.style ={
+        rectangle,
+        draw=black,
+        thick,
+        % align=flush center,
+        rounded corners,
+        % minimum height=4em,
+      },
+  ]
+  \node[block, text width=0.7\linewidth] (answer) {\textbf{Input Text:}\\If the judge believes the award is too high or too low, the judge can use additur or remittitur to reduce the damages. These are essentially offers to both parties to agree to the change in damages. If both parties do not agree, the court can order a new trial.};
+
+  \node[block, minimum height=4.2cm, text width=0.4\linewidth, below left=of answer.south] (prompt1) {\textbf{Prompt 1 (Grammar Style):}\\Write a long paragraph describing the unique grammar style of the following passage without referring to specifics about the topic.};
+  \node[align=flush center, minimum height=4.2cm, text width=0.2\linewidth, below=1cm of answer.south] (prompt2) {\ldots};
+  \node[block, minimum height=4.2cm, text width=0.4\linewidth, below right=of answer.south] (prompt3) {\textbf{Prompt 92 (Background Knowledge):}\\Write a description of the background knowledge the author has based on the following passage.};
+
+  \draw[->] (answer.south) -- (prompt1.north);
+  \draw[->] (answer.south) -- (prompt2.north);
+  \draw[->] (answer.south) -- (prompt3.north);
+
+  \node[block, align=flush center, minimum height=1cm, text width=0.4\linewidth, below=1cm of prompt1] (description1) {Style Description};
+  \node[align=flush center, minimum height=1cm, text width=0.2\linewidth, below=1cm of prompt2] (description2) {\ldots};
+  \node[block, align=flush center, minimum height=1cm, text width=0.4\linewidth, below=1cm of prompt3] (description3) {Style Description};
+
+  \draw[->] (prompt1.south) -- (description1.north);
+  \draw[->] (prompt2.south) -- (description2.north);
+  \draw[->] (prompt3.south) -- (description3.north);
+\end{tikzpicture}

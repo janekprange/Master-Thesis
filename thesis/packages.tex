@@ -28,7 +28,7 @@
 \usepackage[nolist,nohyperlinks]{acronym}
 
 \usepackage{tikz}
-\usetikzlibrary{arrows, shapes, positioning}
+\usetikzlibrary{arrows, shapes, positioning, calc}
 \usepackage{multicol}
 
 \usepackage[absolute]{textpos}
@@ -61,7 +61,7 @@
   sorting=nyt,                % Sort citations by name-year-title in the bibliography
   sortcites=false,            % Do not sort the citations within text
   maxcitenames=1,             % Maximum number of names in document-body citations
-  maxbibnames=99,             % Maximum number of names in bibliography
+  maxbibnames=5,             % Maximum number of names in bibliography
   uniquelist=false,           % Don't require unique citation names (year not included) to not overwrite maxcitenames
 }{biblatex}
 \usepackage{biblatex}
