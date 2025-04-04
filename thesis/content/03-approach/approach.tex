@@ -158,10 +158,10 @@ For the resulting clusters, the style sentence that is closest to the center is 
 \label{sec:approach:sfam}
 
 \begin{itemize}
-  \item SFAM is a model that takes a style sentence and a text as input and produces an agreement score
+  \item \ac{sfam} is a model that takes a style sentence and a text as input and produces an agreement score
   \item training data
         \begin{itemize}
-          \item the \numStyleSentences{} style sentences are used for training
+          % \item the \numStyleSentences{} style sentences are used for training % do not use numbers for approach
           \item there are distinct sets of input texts for training, validation and test datasets
           \item these lead to mostly different sentences (also the differences may be small)
           \item of all sentences, the best are selected
@@ -173,7 +173,7 @@ For the resulting clusters, the style sentence that is closest to the center is 
                   \item the same is done for validation and test
                 \end{itemize}
         \end{itemize}
-  \item SFAM is a finetuned DeBERTaV3 model
+  \item \ac{sfam} is a finetuned DeBERTaV3 model
         \begin{itemize}
           \item two fully connected layers with a ReLu in between % TODO: look up
           \item finally a sigmoid activation function to produce values between 0 and 1
@@ -187,7 +187,15 @@ For the resulting clusters, the style sentence that is closest to the center is 
 
 \section{Training and Testing \acs{lisa}}
 \label{sec:approach:lisa}
-
+\begin{itemize}
+  \item to get values for a style vector, the \styleVectorSize{} forward passes by \ac{sfam} would take too long for most practical applications
+  \item train an additional model that creates the whole vector in one forward pass
+  \item \ac{lisa} like \ac{sfam} is a finetuned DeBERTaV3 model
+        \begin{itemize}
+          \item two fully connected layers with a ReLu in between % TODO: look up
+          \item finally a sigmoid activation function to produce values between 0 and 1
+        \end{itemize}
+\end{itemize}
 
 \section{Embedding Model}
 \label{sec:approach:embedding}

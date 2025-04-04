@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 
+\usepackage[table]{xcolor}
 \usepackage{graphicx}
 % format numbers
 \usepackage{siunitx}
@@ -14,7 +15,9 @@
   round-mode = places,
   round-precision = 3,
   round-pad = false,
-  mode = match % the numbers are printed in text or math mode matching their surrounding
+  mode = match, % the numbers are printed in text or math mode matching their surrounding
+  detect-weight=true,
+  detect-inline-weight=math,
 }
 % better itemize and enumerate
 \usepackage{enumitem}
