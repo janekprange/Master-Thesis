@@ -101,7 +101,7 @@
     \item while existing method in this area show good performance, it is difficult to understand why specific decision where made
           \pause
     \item in my thesis I construct and test a model that produces an interpretable style vector, where each dimension has a real-world meaning
-    \item the vector is translated to an interpretable embedding by a simple model head
+    \item the vector is translated to an interpretable embedding by a simple model head which allows for meaningful comparisons
   \end{itemize}
 \end{frame}
 
@@ -111,7 +111,7 @@
     \item these people have very different backgrounds and therefore different requirements regarding the explanations
           \pause
     \item in my thesis, I investigate different methods to steer the output of LLMS towards the style of different groups
-    \item additionally, the steering should take the background knowledge and experience of these groups into account
+    \item additionally, the steering should take the typical background knowledge and experience of these groups into account
   \end{itemize}
 \end{frame}
 
@@ -208,6 +208,17 @@
     Clusters     & \approx 1000000         \\ \bottomrule
   \end{tabular}
 \end{frame}
+\begin{frame}{Resulting synthetic dataset}{Current Data}
+  \begin{tabular}{lS}
+    \toprule
+                 & {Number of data points} \\ \midrule
+    Answers      & 1600                    \\
+    Prompts      & 92                      \\
+    Descriptions & 147200                  \\
+    Sentences    & \approx 600000          \\
+    Clusters     & \approx 290000          \\ \bottomrule
+  \end{tabular}
+\end{frame}
 
 \begin{frame}{Cluster Selection}
   \begin{itemize}
@@ -232,7 +243,7 @@
     \item gets a style sentence and a text as input and outputs a agreement score between \num{0} and \num{1}
     \item these agreement scores form the style vector
     \item SFAM is trained on the (unclustered) sentences
-          % TODO: performance
+    \item Test Accuracy: \num{0.8964}, Test F1-score: \num{0.8992}
   \end{itemize}
 \end{frame}
 
@@ -268,7 +279,14 @@
     \item a fine-tuned DeBERTaV3 model
     \item gets a text as input and outputs the style vector
     \item LISA is trained on style vectors that are produced by SFAM
-          % TODO: performance
+    \item test performance
+          \begin{itemize}
+            \item MSE: \num{0.100}
+            \item MAE: \num{0.220}
+                  % \item Average Cosine Similarity: \num{0.701}
+            \item Accuracy: \num{0.8318820529513888}
+            \item F1: \num{0.7646265737452764}
+          \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -279,7 +297,7 @@
     \item different style vectors can not be meaningfully compared
     \item the model is trained with a triplet loss with a contrastive objective
     \item training data are style vectors for the different groups
-          % TODO: performance
+    \item Test Accuracy on SFAM embeddings: \num{0.8417}
   \end{itemize}
 \end{frame}
 
@@ -296,7 +314,7 @@
     \item[Prompt Group] ~\linebreak
           The LLM is instructed in the system prompt to write for a group of <group>.
     \item[Prompt Attribute] ~\linebreak
-          The LLM is instructed to write in a specific style. The 5 most important style attribtues and 2 most important knowledge attributes are used.
+          The LLM is instructed to write in a specific style. The 5 most important style attributes and 2 most important knowledge attributes are used.
     \item[Prompt Group Attribute] ~\linebreak
           A combination of both.
   \end{description}
@@ -308,6 +326,9 @@
           \begin{itemize}
             \item euclidean distance: how big was the steering effect
             \item cosine similarity: was the steering in the correct direction
+                  \begin{itemize}
+                    \item measurement between the steering difference and the median embedding of the group
+                  \end{itemize}
           \end{itemize}
   \end{itemize}
   \begin{tabular}{lSS}
@@ -390,7 +411,7 @@
     \item idea: steer the model by manipulating its activation space\footauthorcite{turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}
     \item previous work has shown that real-world concepts are represented as direction in the activation space
     \item the activation vectors are extracted for all layers of the model in a single forward pass
-    \item during steering, the activation vector is added to the at the layer it was taken
+    \item during steering, the activation vector is added to the at the layer it was taken from
   \end{itemize}
 \end{frame}
 
