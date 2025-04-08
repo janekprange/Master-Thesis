@@ -98,19 +98,19 @@
 \begin{frame}{Interpretable Style Embeddings}{Part I}
   \begin{itemize}
     \item embeddings by ML models are an important part of stylistic research, be it authorship attribution or group membership detection
-    \item while existing method in this area show good performance, it is difficult to understand why specific decision where made
+    \item while existing methods in this area show good performance, it is difficult to understand why a specific decision was made
           \pause
-    \item in my thesis I construct and test a model that produces an interpretable style vector, where each dimension has a real-world meaning
+    \item in my thesis, I construct and test a model that produces an interpretable style vector, where each dimension has a real-world meaning
     \item the vector is translated to an interpretable embedding by a simple model head which allows for meaningful comparisons
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Group-Specific Explanation Generation}{Part II}
   \begin{itemize}
-    \item Large Language Models are increasingly used to explain various topics to a large amount of people
+    \item Large Language Models are increasingly used to explain various topics to a large number of people
     \item these people have very different backgrounds and therefore different requirements regarding the explanations
           \pause
-    \item in my thesis, I investigate different methods to steer the output of LLMS towards the style of different groups
+    \item in my thesis, I investigate different methods to steer the output of LLMs towards the style of different groups
     \item additionally, the steering should take the typical background knowledge and experience of these groups into account
   \end{itemize}
 \end{frame}
@@ -133,7 +133,7 @@
             \begin{itemize}
               \item taken from various subreddits such as \enquote{askanelectrician}, \enquote{AskMenOver30}, \enquote{AskPhysics}
               \item \num{11} groups with at least 100 questions
-              \item will be used to test the of the style vector on a foreign domain
+              \item will be used to test the style vector on a foreign domain
             \end{itemize}
           }
     \item<5-> the data is sanitized; only answers to what/how/why questions with a minimum score are selected
@@ -223,7 +223,7 @@
 \begin{frame}{Cluster Selection}
   \begin{itemize}
     \item the final style vector will have 768 attributes
-    \item the clusters are selected in multiple steps, where the most important criteria are as followed
+    \item the clusters are selected in multiple steps, where the most important criteria are as follows
           \begin{itemize}
             \item \num{84} attributes correspond to the 84 target prompts
             \item roughly \num{50} attributes are knowledge clusters
@@ -240,7 +240,7 @@
 \begin{frame}{SFAM}{Style Feature Agreement Model\footauthorcite{patelLearningInterpretableStyle2023}}
   \begin{itemize}
     \item a fine-tuned DeBERTaV3 model
-    \item gets a style sentence and a text as input and outputs a agreement score between \num{0} and \num{1}
+    \item gets a style sentence and a text as input and outputs an agreement score between \num{0} and \num{1}
     \item these agreement scores form the style vector
     \item SFAM is trained on the (unclustered) sentences
     \item Test Accuracy: \num{0.8964}, Test F1-score: \num{0.8992}
@@ -314,7 +314,7 @@
     \item[Prompt Group] ~\linebreak
           The LLM is instructed in the system prompt to write for a group of <group>.
     \item[Prompt Attribute] ~\linebreak
-          The LLM is instructed to write in a specific style. The 5 most important style attributes and 2 most important knowledge attributes are used.
+          The LLM is instructed to write in a specific style. The 5 most important style attributes and the 2 most important knowledge attributes are used.
     \item[Prompt Group Attribute] ~\linebreak
           A combination of both.
   \end{description}
@@ -411,7 +411,7 @@
     \item idea: steer the model by manipulating its activation space\footauthorcite{turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}
     \item previous work has shown that real-world concepts are represented as direction in the activation space
     \item the activation vectors are extracted for all layers of the model in a single forward pass
-    \item during steering, the activation vector is added to the at the layer it was taken from
+    \item during steering, the activation vector is added to the layer it was taken from
   \end{itemize}
 \end{frame}
 
