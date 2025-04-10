@@ -105,6 +105,12 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Interpretable Style Embeddings}{Part I}
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{img/interpretable_style_vector.png}
+  \end{center}
+\end{frame}
+
 \begin{frame}{Group-Specific Explanation Generation}{Part II}
   \begin{itemize}
     \item Large Language Models are increasingly used to explain various topics to a large number of people
@@ -250,26 +256,38 @@
 \begin{frame}{Most important attributes per group}{According to SFAM}
   \textbf{Lawyers}
   \begin{itemize}
-    \item The author is discussing the judicial system.
-    \item The author discusses laws and regulations.
-    \item The author expresses skepticism towards the existing laws.
-    \item The author uses words related to resolving disputes.
-    \item The author references the Constitution.
-    \item[+] The author has a background in law.
-    \item[+] The author is familiar with the concept of a legislature.
+    \item Style Attributes
+          \begin{itemize}
+            \item The author is discussing the judicial system.
+            \item The author discusses laws and regulations.
+            \item The author expresses skepticism towards the existing laws.
+            \item The author uses words related to resolving disputes.
+            \item The author references the Constitution.
+          \end{itemize}
+    \item Knowledge Attributes
+          \begin{itemize}
+            \item The author has a background in law.
+            \item The author is familiar with the concept of a legislature.
+          \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Most important attributes per group}{According to SFAM}
   \textbf{Software Engineers}
   \begin{itemize}
-    \item The author emphasizes the importance of flexibility in code.
-    \item The author prioritizes clarity and simplicity in API design.
-    \item The author uses code snippets.
-    \item The author desires a solution that is easy to implement.
-    \item The author advises against a particular approach.
-    \item[+] The author is familiar with software system design and architecture concepts.
-    \item[+] The author is skilled in Python programming.
+    \item Style Attributes
+          \begin{itemize}
+            \item The author emphasizes the importance of flexibility in code.
+            \item The author prioritizes clarity and simplicity in API design.
+            \item The author uses code snippets.
+            \item The author desires a solution that is easy to implement.
+            \item The author advises against a particular approach.
+          \end{itemize}
+    \item Knowledge Attributes
+          \begin{itemize}
+            \item The author is familiar with software system design and architecture concepts.
+            \item The author is skilled in Python programming.
+          \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -342,47 +360,47 @@
   \end{tabular}
 \end{frame}
 
-\begin{frame}{Results II}
-  \begin{itemize}
-    \item performance for different groups, averaged over all steering methods
-    \item only the 4 best and 4 worst performing groups are shown
-  \end{itemize}
-  \begin{tabular}{lSS}
-    \toprule
-    {Group}              & {Euclidean\ Distance}                              & {Cosine\ Similarity}                               \\
-    \midrule
-    Astronomers          & 1.5674035549163818                                 & 0.4043354094028473                                 \\
-    Computer Scientists  & 1.3228683471679688                                 & 0.2554630935192108                                 \\
-    Electrical Engineers & 1.2279574871063232                                 & 0.12286949157714844                                \\
-    Game Developers      & 1.3090592622756958                                 & -0.017543332651257515                              \\
-    Lawyers              & \cellcolor[gray]{0.8} \bfseries 2.6319475173950195 & \cellcolor[gray]{0.8} \bfseries 0.7551590204238892 \\
-    Philosophers         & 2.3561315536499023                                 & 0.7398480176925659                                 \\
-    Politicians          & 2.535012722015381                                  & 0.702243983745575                                  \\
-    Software Engineers   & 1.3615081310272217                                 & 0.1768019199371338                                 \\
-    \bottomrule
-  \end{tabular}
-\end{frame}
-
-% \begin{frame}{Results III}
+% \begin{frame}{Results II}
 %   \begin{itemize}
-%     \item performance for different groups for the prompt group attribute method
+%     \item performance for different groups, averaged over all steering methods
 %     \item only the 4 best and 4 worst performing groups are shown
 %   \end{itemize}
 %   \begin{tabular}{lSS}
 %     \toprule
 %     {Group}              & {Euclidean\ Distance}                              & {Cosine\ Similarity}                               \\
 %     \midrule
-%     Biologists           & 1.5506118535995483                                 & 0.33786728978157043                                \\
-%     Data Scientists      & 2.1414427757263184                                 & 0.49583321809768677                                \\
-%     Electrical Engineers & 1.334580421447754                                  & 0.03393082693219185                                \\
-%     Game Developers      & 1.4480421543121338                                 & 0.044030994176864624                               \\
-%     Lawyers              & 3.108609199523926                                  & \cellcolor[gray]{0.8} \bfseries 0.8223204016685486 \\
-%     Philosophers         & 2.6420016288757324                                 & 0.7476155757904053                                 \\
-%     Politicians          & \cellcolor[gray]{0.8} \bfseries 3.1334586143493652 & 0.7666002511978149                                 \\
-%     Software Engineers   & 1.611264705657959                                  & 0.2527718245983124                                 \\
+%     Astronomers          & 1.5674035549163818                                 & 0.4043354094028473                                 \\
+%     Computer Scientists  & 1.3228683471679688                                 & 0.2554630935192108                                 \\
+%     Electrical Engineers & 1.2279574871063232                                 & 0.12286949157714844                                \\
+%     Game Developers      & 1.3090592622756958                                 & -0.017543332651257515                              \\
+%     Lawyers              & \cellcolor[gray]{0.8} \bfseries 2.6319475173950195 & \cellcolor[gray]{0.8} \bfseries 0.7551590204238892 \\
+%     Philosophers         & 2.3561315536499023                                 & 0.7398480176925659                                 \\
+%     Politicians          & 2.535012722015381                                  & 0.702243983745575                                  \\
+%     Software Engineers   & 1.3615081310272217                                 & 0.1768019199371338                                 \\
 %     \bottomrule
 %   \end{tabular}
 % \end{frame}
+
+\begin{frame}{Results II}
+  \begin{itemize}
+    \item performance for different groups for the prompt group attribute method
+    \item only the 4 best and 4 worst performing groups are shown
+  \end{itemize}
+  \begin{tabular}{lSS}
+    \toprule
+    {Group}              & {Euclidean\ Distance}                              & {Cosine\ Similarity}                               \\
+    \midrule
+    Biologists           & 1.5506118535995483                                 & 0.33786728978157043                                \\
+    Data Scientists      & 2.1414427757263184                                 & 0.49583321809768677                                \\
+    Electrical Engineers & 1.334580421447754                                  & 0.03393082693219185                                \\
+    Game Developers      & 1.4480421543121338                                 & 0.044030994176864624                               \\
+    Lawyers              & 3.108609199523926                                  & \cellcolor[gray]{0.8} \bfseries 0.8223204016685486 \\
+    Philosophers         & 2.6420016288757324                                 & 0.7476155757904053                                 \\
+    Politicians          & \cellcolor[gray]{0.8} \bfseries 3.1334586143493652 & 0.7666002511978149                                 \\
+    Software Engineers   & 1.611264705657959                                  & 0.2527718245983124                                 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
 
 \begin{frame}{System Prompt Game Developers}{Prompt Group Attribute Steering}
   \justifying
@@ -430,6 +448,7 @@
   \begin{itemize}
     \item the presented method is one automatic process from input data to a model with steering capabilities
     \item the models show promising results
+    \item the method is able to produce meaningful attributes to describe the groups
   \end{itemize}
 \end{frame}
 
