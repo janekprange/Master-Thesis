@@ -80,7 +80,7 @@ After generating the style descriptions, the \ac{llm} is prompted a second time 
 
 Furthermore, the model is instructed to avoid negations and examples since these both lead to increasing problems with the clustering process that is described in Section~\ref{sec:approach:clustering}.
 Sentences that include examples are potentially problematic because it increases the likelihood of sentences which have the exact same content while being of different shape. % TODO: better wording
-Two sentences which differ only in the example are \enquote{The author uses filler words'} and \enquote{The author uses filler words such as 'and', 'or' and 'furthermore'}. While this problem will be reduced by clustering similar sentences, this procedure is not perfect and will be more robust if the model avoids sentences with examples.
+Two sentences which differ only in the example are \enquote{The author uses filler words} and \enquote{The author uses filler words such as 'and', 'or' and 'furthermore'}. While this problem will be reduced by clustering similar sentences, this procedure is not perfect and will be more robust if the model avoids sentences with examples.
 
 Negations on the other hand lead to the problem where the shape of the sentences will be too close while the content is very different. There is a high chance that the sentences \enquote{The author does use long sentences} and \enquote{The author does not use long sentences} will be clustered together because so much of them is the same even though they state the opposite of each other.
 Additionally, the dimensions of the final style vector should not include any negated attributes since the expression \enquote{The author uses short sentences} is much clearer than \enquote{The author does not use long sentences}.
@@ -106,9 +106,28 @@ A strength of the method to create style sentences described in Section~\ref{sec
 Since the approach up to this point only checked if sentences are exactly identical, it is more difficult to compare different input texts and to find texts that are an example of a specific style sentence. Additionally, it could be that a sentence would be a good attribute for the style sentence but is not selected by the algorithm described in Section~\ref{sec:approach:selection} because it is used with many different variations.
 To solve this problem, my approach includes clustering the sentences by the cosine similarity of their embeddings with a sentence embedding model. % TODO: citation for the model (and name?)
 
-The clustering algorithm first computes a radius neighbor graph of all sentences where sentences which have a cosine similarity of more than \minCosineSimilarity{}. Subsequently, the clusters are sorted by size and all sentences that have been included in a larger cluster are deleted from all smaller clusters to ensure that each sentence is only included in one cluster. At the same time, it has to be ensured that no sentence is left out of every cluster because for further approaches, the clusters are the relevant data.
+The clustering algorithm first computes a radius neighbor graph of all sentences where sentences which have a cosine similarity of more than \num{\minCosineSimilarity{}}. Subsequently, the clusters are sorted by size and all sentences that have been included in a larger cluster are deleted from all smaller clusters to ensure that each sentence is only included in one cluster. At the same time, it has to be ensured that no sentence is left out of every cluster because for further approaches, the clusters are the relevant data.
 
 For the resulting clusters, the style sentence that is closest to the center is the representative sentence of the whole cluster.
+
+The size of the resulting synthetic dataset after clustering can be found in table~\ref{table:synthetic_dataset}.
+
+\begin{table}
+  \begin{center}
+    % TODO: alignment of numbers inside the \num command
+    \begin{tabular}{lS}
+      \toprule
+                   & {Number of data points}        \\ \midrule
+      Answers      & \num{\numAnswersStyleVector{}} \\
+      Prompts      & \numPrompts{}                  \\
+      Descriptions & \numStyleDescriptions{}        \\
+      Sentences    & \numStyleSentences{}           \\
+      Clusters     & \num{\numClusters{}}           \\ \bottomrule
+    \end{tabular}
+    \caption{The number of answers and prompts used to create the synthetic dataset and the size of the resulting dataset.}
+    \label{table:synthetic_dataset}
+  \end{center}
+\end{table}
 
 
 % \begin{itemize}
@@ -125,32 +144,49 @@ For the resulting clusters, the style sentence that is closest to the center is 
 \section{Selecting the Style Vector Attributes}
 \label{sec:approach:selection}
 
+Following the previous steps, there is now a synthetic dataset with \num{\numClusters{}} that describe \num{\numAnswersStyleVector{}} answers by \num{\numGroups{}}. Since the final style vector will only consist of \num{\styleVectorSize{}} attributes, a process to select the best attributes is needed. This selection is carried out in multiple steps.
+
+\subsection{Selection of target attributes}
+\label{sec:approach:selection:target_attributes}
+Following the work of \citet{patelLearningInterpretableStyle2023}, the first \num{\numTargetPrompts{}} attributes of the style vector will be selected to correspond to the \num{\numTargetPrompts{}} target prompts which were described in section~\ref{sec:approach:style_sentence_generation}.
+This is done to ensure that the style vector has a robust foundation on some features that are manually selected for being relevant for stylistic research. The ability to automatically create most of the style vector is not reduced since the target attributes only account for around \SI{10}{\percent} of its size.
+
+These attributes are found by creating sentences of the form \enquote{The author uses <target>} and embedding using the SentenceTransformer Model. % TODO: correct name
+Afterward, for each sentence the style cluster with the highest cosine similarity is found.
+All clusters that have been chosen this way to represent the
+% TODO: find a nice final sentence
+
+\subsection{Step 2}
+% \label{} TODO:
+An important characteristic of all attributes that are part of the style vector is that they are as meaningful as possible and helpful to distinguish different groups. Because of that, this step in the cluster selection ensures that only clusters which are used to describe texts by less than \clusterMaxGroupRatio{} of the groups are selected. The cutoff ratio of groups follows the work of \citet{patelLearningInterpretableStyle2023}.
+
+For the next steps of the cluster selection, it is also important that there are not too many possible clusters to select from, otherwise the computation would need too much time and memory. To quickly reduce the number of clusters, the number of times the cluster was used to describe answers is taken into account. The required number of times used is increased until the resulting number of clusters is smaller than \num{\maxClustersFirstSelection}. This number was chosen to be small enough for the following computation but big enough to enable a meaningful selection of style vector attributes.
+
+% TODO: include this?
+A cluster could be used multiple times to describe the same answer. Although the sentence produced by each prompt is only counted once per prompt, multiple prompts could use the same or similar enough sentences to describe the answer. For this selection however, only the number of answers that have been described with the cluster are being counted and not how often the cluster was being used.
+
+\subsection{Step 3}
+% \label{} TODO:
+To ensure that the style vector covers a wide range of attributes, it is important that the attributes do not cover too similar topics. This selection step fulfills this requirement by ensuring that the style vector attributes have a maximum cosine similarity of \num{\maxCosineSimilarity{}}. This process works by ordering the clusters by occurance, selecting them one after the other and deleting all clusters that are too close to the ones that have already been selected.
+
+In the work by \citeauthor{patelLearningInterpretableStyle2023}, they use a maximum cosine similarity of \num{0.8} as a cutoff. I decided to use a lower maximum similarity to increase the variance of the style vector attribute and because of the clusters. % TODO: better explanation
+
+\subsection{Step 4}
+% \label{} TODO:
+The first \num{\numTargetPrompts{}} attributes of the style vector are the target attributes that were selection in Section~\ref{sec:approach:selection:target_attributes}. The next \num{\minNumKnowledgePrompts{}} attributes are knowledge clusters, that is clusters of sentences that were produced by knowledge prompts. The rest of the style attributes are selected in this step to be the ones with the highest range of accordance. % TODO: better word than accordance?
+
+Range of accordance means that the range between the answers that match the attribute really well and the ones that do not match is as big as possible. This further increases the probability that the attributes are well suited to distinguish between different answers and groups.
+
+First of all, the similarity between all clusters that remain after the first selection steps are computed. Afterwards, the for each cluster and each answer the average similarity to all other clusters that have been used to describe that answer is computed. TODO:
+
+
 \begin{itemize}
-  \item the vector has \styleVectorSize{} dimensions, a large part (more than \SI{80}{\percent}) of the attributes are selected automatically
-        \begin{itemize}
-          \item the first \numTargetPrompts{} prompts are the clusters that are the closest to the target prompt. This follows the work of \citet{patelLearningInterpretableStyle2023}
-          \item the next \minNumKnowledgePrompts{} prompts are knowledge prompts. The actual number can be more or less than that depending on the rest of the selection process. % explanation?
-        \end{itemize}
-  \item a cluster may only be used in a maximum of \clusterMaxGroupRatio{} of the groups
-        \begin{itemize}
-          \item otherwise it is not well suited to distinguish between the groups
-          \item often, the same attribute was used multiple times to describe the same input text
-                \begin{itemize}
-                  \item multiple prompts produce the same attribute
-                  \item if one prompt produces one attribute multiple times, it is only saved one time
-                  \item for further computation, for each input text, each attribute is counted only once
-                \end{itemize}
-        \end{itemize}
-  \item for all remaining remaining clusters, the number of answers it has to be used in is increased until a maximum of \maxClustersFirstSelection{} is left
-  \item next, the similarity between all remaining clusters is computed and, in order of occurance, clusters that have a cosine similarity higher than \maxCosineSimilarity{} are removed from the selected
-  \item final selection
-        \begin{itemize}
-          \item compute similarities between clusters selected at this stage
-          \item for all clusters, compute the average similarity of all input texts by looking at the clusters that have been used to describe that input text
-          \item sort sort the clusters by the difference between the most and least matching input text
-          \item select the clusters with the highest difference
-          \item this is done because a style attribute will probably hold more meaningful information and is better suited to differentiate texts if it is very similar to some and very dissimilar to other texts
-        \end{itemize}
+  \item \minNumKnowledgePrompts{} knowledge clusters are selected
+  \item compute similarities between clusters selected at this stage
+  \item for all clusters, compute the average similarity of all input texts by looking at the clusters that have been used to describe that input text
+  \item sort the clusters by the difference between the most and least matching input text
+  \item select the clusters with the highest difference
+  \item this is done because a style attribute will probably hold more meaningful information and is better suited to differentiate texts if it is very similar to some and very dissimilar to other texts
 \end{itemize}
 
 
@@ -188,7 +224,7 @@ For the resulting clusters, the style sentence that is closest to the center is 
 \section{Training and Testing \acs{lisa}}
 \label{sec:approach:lisa}
 \begin{itemize}
-  \item to get values for a style vector, the \styleVectorSize{} forward passes by \ac{sfam} would take too long for most practical applications
+  \item to get values for a style vector, the \num{\styleVectorSize{}} forward passes by \ac{sfam} would take too long for most practical applications
   \item train an additional model that creates the whole vector in one forward pass
   \item \ac{lisa} like \ac{sfam} is a finetuned DeBERTaV3 model
         \begin{itemize}

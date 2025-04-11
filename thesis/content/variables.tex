@@ -1,31 +1,35 @@
-\newcommand{\styleVectorSize}{\num{768}}
-\newcommand{\styleEmbeddingSize}{\num{768}}
+\newcommand{\styleVectorSize}{768}
+\newcommand{\styleEmbeddingSize}{768}
 % minimum cosine similarity for sentences to be in the same cluster
-\newcommand{\minCosineSimilarity}{\num{0.85}}
+\newcommand{\minCosineSimilarity}{0.85}
 % the maximum similarity that two clusters can have to be selected as a style attribute
-\newcommand{\maxCosineSimilarity}{\num{0.7}}
+\newcommand{\maxCosineSimilarity}{0.7}
 % the maximum ratio of groups a cluster is used to describe for it to be selected
 \newcommand{\clusterMaxGroupRatio}{\SI{60}{\percent}}
 % the maximum number of clusters after the first selection step
-\newcommand{\maxClustersFirstSelection}{\num{10000}}
+\newcommand{\maxClustersFirstSelection}{10000}
 % the minimum number of knowledge prompts
-\newcommand{\minNumKnowledgePrompts}{\num{50}}
+\newcommand{\minNumKnowledgePrompts}{50}
 % the number of target prompts
-\newcommand{\numTargetPrompts}{\num{84}}
+\newcommand{\numTargetPrompts}{84}
+\newcommand{\numPrompts}{92}
+
+\newcommand{\numGroups}{11}
+
 
 % number of answers used for the style vector creation
-\newcommand{\numAnswersStyleVector}{\num{5500}}
+\newcommand{\numAnswersStyleVector}{5500}
 % number of style descriptions
-\newcommand{\numStyleDescriptions}{\num{0}}
+\newcommand{\numStyleDescriptions}{0}
 % number of style sentences
-\newcommand{\numStyleSentences}{\num{0}}
+\newcommand{\numStyleSentences}{0}
 % number of style sentences from style prompts
-\newcommand{\numStyleSentencesStyle}{\num{0}}
+\newcommand{\numStyleSentencesStyle}{0}
 % number of style sentences from knowledge prompts
-\newcommand{\numStyleSentencesKnowledge}{\num{0}}
+\newcommand{\numStyleSentencesKnowledge}{0}
 % number of clusters
-\newcommand{\numClusters}{\num{0}}
+\newcommand{\numClusters}{0}
 % number of clusters from style prompts
-\newcommand{\numClustersStyle}{\num{0}}
+\newcommand{\numClustersStyle}{0}
 % number of clusters from knowledge prompts
-\newcommand{\numClustersKnowledge}{\num{0}}
+\newcommand{\numClustersKnowledge}{0}
