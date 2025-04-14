@@ -1,0 +1,665 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{patelLearningInterpretableStyle2023}{online}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=1e2a9b016fa2ee81feaf80e31e76518e}{%
+           family={Patel},
+           familyi={P\bibinitperiod},
+           given={Ajay},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6f8d73738cebb38f81616b4692bd8619}{%
+           family={Rao},
+           familyi={R\bibinitperiod},
+           given={Delip},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=37a8df3f273f6aabb1ccd84c6914e826}{%
+           family={Kothary},
+           familyi={K\bibinitperiod},
+           given={Ansh},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0bdb4144077675c542562bf06665d5b5}{%
+           family={McKeown},
+           familyi={M\bibinitperiod},
+           given={Kathleen},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{24956cff09ed6e8e46167b225350a8bd}
+      \strng{fullhash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{fullhashraw}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{bibnamehash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{authorbibnamehash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{authornamehash}{24956cff09ed6e8e46167b225350a8bd}
+      \strng{authorfullhash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{authorfullhashraw}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Style representation learning builds content-independent representations of author style in text. Stylometry, the analysis of style in text, is often performed by expert forensic linguists and no large dataset of stylometric annotations exists for training. Current style representation learning uses neural methods to disentangle style from content to create style vectors, however, these approaches result in uninterpretable representations, complicating their usage in downstream applications like authorship attribution where auditing and explainability is critical. In this work, we use prompting to perform stylometry on a large number of texts to create a synthetic dataset and train human-interpretable style representations we call LISA embeddings. We release our synthetic stylometry dataset and our interpretable style models as resources.}
+      \field{day}{9}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{pubstate}{prepublished}
+      \field{title}{Learning Interpretable Style Embeddings via Prompting {{LLMs}}}
+      \field{urlday}{27}
+      \field{urlmonth}{9}
+      \field{urlyear}{2024}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2305.12696
+      \endverb
+      \verb{eprint}
+      \verb 2305.12696
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\janek\\Zotero\\storage\\CIUFXHT9\\Patel et al. - 2023 - Learning Interpretable Style Embeddings via Prompting LLMs.pdf;C\:\\Users\\janek\\Zotero\\storage\\B383WVHI\\2305.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2305.12696
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2305.12696
+      \endverb
+      \keyw{authorship attribution,Computer Science - Computation and Language,preprint,reading complete,recommended}
+    \endentry
+    \entry{petroni-etal-2021-kilt}{inproceedings}{}{}
+      \name{author}{13}{}{%
+        {{un=0,uniquepart=base,hash=e1c32989a78998fe3c03c981d0da2dc7}{%
+           family={Petroni},
+           familyi={P\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d205faec67355b6e0ec49f82a492324c}{%
+           family={Piktus},
+           familyi={P\bibinitperiod},
+           given={Aleksandra},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=277117db6b938bd36379979ac719cc02}{%
+           family={Fan},
+           familyi={F\bibinitperiod},
+           given={Angela},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ecbe786a5668bf643d74bb24fe1c3cfe}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ff1d418c989bbd069b95cfb42c4bddee}{%
+           family={Yazdani},
+           familyi={Y\bibinitperiod},
+           given={Majid},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=47c980f95ffa4286e6c23421afca90c7}{%
+           family={De\bibnamedelima Cao},
+           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Nicola},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd549e066aa8013fdd8fda1835236922}{%
+           family={Thorne},
+           familyi={T\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7ac0678b9ae57db7ec09752056af6dd4}{%
+           family={Jernite},
+           familyi={J\bibinitperiod},
+           given={Yacine},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b24392ebfb2c0a35979fc689c389c649}{%
+           family={Karpukhin},
+           familyi={K\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=80a5b436f2c6fbb71e1b9f8e36f5fb98}{%
+           family={Maillard},
+           familyi={M\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a4d47abeed85d1fb3e28a9131c61881d}{%
+           family={Plachouras},
+           familyi={P\bibinitperiod},
+           given={Vassilis},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3ff4029884ead9928954ea33714192c}{%
+           family={Rocktäschel},
+           familyi={R\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6cd024b217f3f2f8126e253b8c84d24d}{%
+           family={Riedel},
+           familyi={R\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Online}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{fullhash}{ae1796d26728ee647b463f6061ebca8d}
+      \strng{fullhashraw}{ae1796d26728ee647b463f6061ebca8d}
+      \strng{bibnamehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{authorbibnamehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{authornamehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{authorfullhash}{ae1796d26728ee647b463f6061ebca8d}
+      \strng{authorfullhashraw}{ae1796d26728ee647b463f6061ebca8d}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2021 {{Conference}} of the {{North American Chapter}} of the {{Association}} for {{Computational Linguistics}}: {{Human Language Technologies}}}
+      \field{langid}{english}
+      \field{month}{6}
+      \field{title}{{{KILT}}: A Benchmark for Knowledge Intensive Language Tasks}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{pages}{2523\bibrangedash 2544}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.18653/v1/2021.naacl-main.200
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/2021.naacl-main.200
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2021.naacl-main.200
+      \endverb
+      \keyw{citation only}
+    \endentry
+    \entry{rooeinKnowYourAudience2023}{online}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=d518e2734a5bc1569d3d1ad458eed81d}{%
+           family={Rooein},
+           familyi={R\bibinitperiod},
+           given={Donya},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7909026a17502dae91069135eb480549}{%
+           family={Curry},
+           familyi={C\bibinitperiod},
+           given={Amanda\bibnamedelima Cercas},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=460909209014ce11714ba7d75523ebc8}{%
+           family={Hovy},
+           familyi={H\bibinitperiod},
+           given={Dirk},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{057d1c61eda7a718b712fc4a58fd77d7}
+      \strng{fullhash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{fullhashraw}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{bibnamehash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{authorbibnamehash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{authornamehash}{057d1c61eda7a718b712fc4a58fd77d7}
+      \strng{authorfullhash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{authorfullhashraw}{8dabda2ea77cbff0d29022e139b2cc56}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Large language models (LLMs) offer a range of new possibilities, including adapting the text to different audiences and their reading needs. But how well do they adapt? We evaluate the readability of answers generated by four state-of-the-art LLMs (commercial and open-source) to science questions when prompted to target different age groups and education levels. To assess the adaptability of LLMs to diverse audiences, we compare the readability scores of the generated responses against the recommended comprehension level of each age and education group. We find large variations in the readability of the answers by different LLMs. Our results suggest LLM answers need to be better adapted to the intended audience demographics to be more comprehensible. They underline the importance of enhancing the adaptability of LLMs in education settings to cater to diverse age and education levels. Overall, current LLMs have set readability ranges and do not adapt well to different audiences, even when prompted. That limits their potential for educational purposes.}
+      \field{day}{4}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{pubstate}{prepublished}
+      \field{shorttitle}{Know Your Audience}
+      \field{title}{Know Your Audience: Do {{LLMs}} Adapt to Different Age and Education Levels?}
+      \field{urlday}{4}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2312.02065
+      \endverb
+      \verb{eprint}
+      \verb 2312.02065
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\janek\\Zotero\\storage\\MW7TYX7M\\Rooein et al. - 2023 - Know Your Audience Do LLMs Adapt to Different Age and Education Levels.pdf;C\:\\Users\\janek\\Zotero\\storage\\JITDKMFD\\2312.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2312.02065
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2312.02065
+      \endverb
+      \keyw{citation only,Computer Science - Artificial Intelligence,Computer Science - Computation and Language,preprint}
+    \endentry
+    \entry{tausczikPsychologicalMeaningWords2010}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=9cd4775ff10c9808e053bfea51af5d97}{%
+           family={Tausczik},
+           familyi={T\bibinitperiod},
+           given={Yla\bibnamedelima R.},
+           giveni={Y\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=86bdb0549f961a432ca631374fd9a114}{%
+           family={Pennebaker},
+           familyi={P\bibinitperiod},
+           given={James\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9ece493694fe4ba4e5b9006c84f15d77}
+      \strng{fullhash}{fb26c6dc97c17338228295ed71786685}
+      \strng{fullhashraw}{fb26c6dc97c17338228295ed71786685}
+      \strng{bibnamehash}{fb26c6dc97c17338228295ed71786685}
+      \strng{authorbibnamehash}{fb26c6dc97c17338228295ed71786685}
+      \strng{authornamehash}{9ece493694fe4ba4e5b9006c84f15d77}
+      \strng{authorfullhash}{fb26c6dc97c17338228295ed71786685}
+      \strng{authorfullhashraw}{fb26c6dc97c17338228295ed71786685}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We are in the midst of a technological revolution whereby, for the first time, researchers can link daily word use to a broad array of real-world behaviors. This article reviews several computerized text analysis methods and describes how Linguistic Inquiry and Word Count (LIWC) was created and validated. LIWC is a transparent text analysis program that counts words in psychologically meaningful categories. Empirical results using LIWC demonstrate its ability to detect meaning in a wide variety of experimental settings, including to show attentional focus, emotionality, social relationships, thinking styles, and individual differences.}
+      \field{issn}{0261-927X, 1552-6526}
+      \field{journaltitle}{Journal of Language and Social Psychology}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{number}{1}
+      \field{shortjournal}{J. Lang. Soc. Psychol.}
+      \field{shorttitle}{The Psychological Meaning of Words}
+      \field{title}{The Psychological Meaning of Words: {{LIWC}} and Computerized Text Analysis Methods}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{29}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{24\bibrangedash 54}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1177/0261927X09351676
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.sagepub.com/doi/10.1177/0261927X09351676
+      \endverb
+      \verb{url}
+      \verb https://journals.sagepub.com/doi/10.1177/0261927X09351676
+      \endverb
+      \keyw{citation only}
+    \endentry
+  \enddatalist
+  \datalist[entry]{nyt/global/518ED29525738CEBDAC49C49E60EA9D3/global/global/global}
+    \entry{patelLearningInterpretableStyle2023}{online}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=1e2a9b016fa2ee81feaf80e31e76518e}{%
+           family={Patel},
+           familyi={P\bibinitperiod},
+           given={Ajay},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6f8d73738cebb38f81616b4692bd8619}{%
+           family={Rao},
+           familyi={R\bibinitperiod},
+           given={Delip},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=37a8df3f273f6aabb1ccd84c6914e826}{%
+           family={Kothary},
+           familyi={K\bibinitperiod},
+           given={Ansh},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0bdb4144077675c542562bf06665d5b5}{%
+           family={McKeown},
+           familyi={M\bibinitperiod},
+           given={Kathleen},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{24956cff09ed6e8e46167b225350a8bd}
+      \strng{fullhash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{fullhashraw}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{bibnamehash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{authorbibnamehash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{authornamehash}{24956cff09ed6e8e46167b225350a8bd}
+      \strng{authorfullhash}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \strng{authorfullhashraw}{3c5a07c00434c71fdb4f818ffaab65f7}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelprefix}{@}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Style representation learning builds content-independent representations of author style in text. Stylometry, the analysis of style in text, is often performed by expert forensic linguists and no large dataset of stylometric annotations exists for training. Current style representation learning uses neural methods to disentangle style from content to create style vectors, however, these approaches result in uninterpretable representations, complicating their usage in downstream applications like authorship attribution where auditing and explainability is critical. In this work, we use prompting to perform stylometry on a large number of texts to create a synthetic dataset and train human-interpretable style representations we call LISA embeddings. We release our synthetic stylometry dataset and our interpretable style models as resources.}
+      \field{day}{9}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{pubstate}{prepublished}
+      \field{title}{Learning Interpretable Style Embeddings via Prompting {{LLMs}}}
+      \field{urlday}{27}
+      \field{urlmonth}{9}
+      \field{urlyear}{2024}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2305.12696
+      \endverb
+      \verb{eprint}
+      \verb 2305.12696
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\janek\\Zotero\\storage\\CIUFXHT9\\Patel et al. - 2023 - Learning Interpretable Style Embeddings via Prompting LLMs.pdf;C\:\\Users\\janek\\Zotero\\storage\\B383WVHI\\2305.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2305.12696
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2305.12696
+      \endverb
+      \keyw{authorship attribution,Computer Science - Computation and Language,preprint,reading complete,recommended}
+    \endentry
+    \entry{petroni-etal-2021-kilt}{inproceedings}{}{}
+      \name{author}{13}{}{%
+        {{un=0,uniquepart=base,hash=e1c32989a78998fe3c03c981d0da2dc7}{%
+           family={Petroni},
+           familyi={P\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d205faec67355b6e0ec49f82a492324c}{%
+           family={Piktus},
+           familyi={P\bibinitperiod},
+           given={Aleksandra},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=277117db6b938bd36379979ac719cc02}{%
+           family={Fan},
+           familyi={F\bibinitperiod},
+           given={Angela},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ecbe786a5668bf643d74bb24fe1c3cfe}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ff1d418c989bbd069b95cfb42c4bddee}{%
+           family={Yazdani},
+           familyi={Y\bibinitperiod},
+           given={Majid},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=47c980f95ffa4286e6c23421afca90c7}{%
+           family={De\bibnamedelima Cao},
+           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Nicola},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd549e066aa8013fdd8fda1835236922}{%
+           family={Thorne},
+           familyi={T\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7ac0678b9ae57db7ec09752056af6dd4}{%
+           family={Jernite},
+           familyi={J\bibinitperiod},
+           given={Yacine},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b24392ebfb2c0a35979fc689c389c649}{%
+           family={Karpukhin},
+           familyi={K\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=80a5b436f2c6fbb71e1b9f8e36f5fb98}{%
+           family={Maillard},
+           familyi={M\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a4d47abeed85d1fb3e28a9131c61881d}{%
+           family={Plachouras},
+           familyi={P\bibinitperiod},
+           given={Vassilis},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3ff4029884ead9928954ea33714192c}{%
+           family={Rocktäschel},
+           familyi={R\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6cd024b217f3f2f8126e253b8c84d24d}{%
+           family={Riedel},
+           familyi={R\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Online}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{fullhash}{ae1796d26728ee647b463f6061ebca8d}
+      \strng{fullhashraw}{ae1796d26728ee647b463f6061ebca8d}
+      \strng{bibnamehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{authorbibnamehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{authornamehash}{55aac74885b766ef3298871560ac9a1c}
+      \strng{authorfullhash}{ae1796d26728ee647b463f6061ebca8d}
+      \strng{authorfullhashraw}{ae1796d26728ee647b463f6061ebca8d}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelprefix}{@}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2021 {{Conference}} of the {{North American Chapter}} of the {{Association}} for {{Computational Linguistics}}: {{Human Language Technologies}}}
+      \field{langid}{english}
+      \field{month}{6}
+      \field{title}{{{KILT}}: A Benchmark for Knowledge Intensive Language Tasks}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{pages}{2523\bibrangedash 2544}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.18653/v1/2021.naacl-main.200
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/2021.naacl-main.200
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/2021.naacl-main.200
+      \endverb
+      \keyw{citation only}
+    \endentry
+    \entry{rooeinKnowYourAudience2023}{online}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=d518e2734a5bc1569d3d1ad458eed81d}{%
+           family={Rooein},
+           familyi={R\bibinitperiod},
+           given={Donya},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7909026a17502dae91069135eb480549}{%
+           family={Curry},
+           familyi={C\bibinitperiod},
+           given={Amanda\bibnamedelima Cercas},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=460909209014ce11714ba7d75523ebc8}{%
+           family={Hovy},
+           familyi={H\bibinitperiod},
+           given={Dirk},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{057d1c61eda7a718b712fc4a58fd77d7}
+      \strng{fullhash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{fullhashraw}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{bibnamehash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{authorbibnamehash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{authornamehash}{057d1c61eda7a718b712fc4a58fd77d7}
+      \strng{authorfullhash}{8dabda2ea77cbff0d29022e139b2cc56}
+      \strng{authorfullhashraw}{8dabda2ea77cbff0d29022e139b2cc56}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelprefix}{@}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Large language models (LLMs) offer a range of new possibilities, including adapting the text to different audiences and their reading needs. But how well do they adapt? We evaluate the readability of answers generated by four state-of-the-art LLMs (commercial and open-source) to science questions when prompted to target different age groups and education levels. To assess the adaptability of LLMs to diverse audiences, we compare the readability scores of the generated responses against the recommended comprehension level of each age and education group. We find large variations in the readability of the answers by different LLMs. Our results suggest LLM answers need to be better adapted to the intended audience demographics to be more comprehensible. They underline the importance of enhancing the adaptability of LLMs in education settings to cater to diverse age and education levels. Overall, current LLMs have set readability ranges and do not adapt well to different audiences, even when prompted. That limits their potential for educational purposes.}
+      \field{day}{4}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{pubstate}{prepublished}
+      \field{shorttitle}{Know Your Audience}
+      \field{title}{Know Your Audience: Do {{LLMs}} Adapt to Different Age and Education Levels?}
+      \field{urlday}{4}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2312.02065
+      \endverb
+      \verb{eprint}
+      \verb 2312.02065
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\janek\\Zotero\\storage\\MW7TYX7M\\Rooein et al. - 2023 - Know Your Audience Do LLMs Adapt to Different Age and Education Levels.pdf;C\:\\Users\\janek\\Zotero\\storage\\JITDKMFD\\2312.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2312.02065
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2312.02065
+      \endverb
+      \keyw{citation only,Computer Science - Artificial Intelligence,Computer Science - Computation and Language,preprint}
+    \endentry
+    \entry{tausczikPsychologicalMeaningWords2010}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=9cd4775ff10c9808e053bfea51af5d97}{%
+           family={Tausczik},
+           familyi={T\bibinitperiod},
+           given={Yla\bibnamedelima R.},
+           giveni={Y\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=86bdb0549f961a432ca631374fd9a114}{%
+           family={Pennebaker},
+           familyi={P\bibinitperiod},
+           given={James\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9ece493694fe4ba4e5b9006c84f15d77}
+      \strng{fullhash}{fb26c6dc97c17338228295ed71786685}
+      \strng{fullhashraw}{fb26c6dc97c17338228295ed71786685}
+      \strng{bibnamehash}{fb26c6dc97c17338228295ed71786685}
+      \strng{authorbibnamehash}{fb26c6dc97c17338228295ed71786685}
+      \strng{authornamehash}{9ece493694fe4ba4e5b9006c84f15d77}
+      \strng{authorfullhash}{fb26c6dc97c17338228295ed71786685}
+      \strng{authorfullhashraw}{fb26c6dc97c17338228295ed71786685}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelprefix}{@}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We are in the midst of a technological revolution whereby, for the first time, researchers can link daily word use to a broad array of real-world behaviors. This article reviews several computerized text analysis methods and describes how Linguistic Inquiry and Word Count (LIWC) was created and validated. LIWC is a transparent text analysis program that counts words in psychologically meaningful categories. Empirical results using LIWC demonstrate its ability to detect meaning in a wide variety of experimental settings, including to show attentional focus, emotionality, social relationships, thinking styles, and individual differences.}
+      \field{issn}{0261-927X, 1552-6526}
+      \field{journaltitle}{Journal of Language and Social Psychology}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{number}{1}
+      \field{shortjournal}{J. Lang. Soc. Psychol.}
+      \field{shorttitle}{The Psychological Meaning of Words}
+      \field{title}{The Psychological Meaning of Words: {{LIWC}} and Computerized Text Analysis Methods}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{29}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{24\bibrangedash 54}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1177/0261927X09351676
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.sagepub.com/doi/10.1177/0261927X09351676
+      \endverb
+      \verb{url}
+      \verb https://journals.sagepub.com/doi/10.1177/0261927X09351676
+      \endverb
+      \keyw{citation only}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

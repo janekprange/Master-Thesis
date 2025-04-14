@@ -1,0 +1,20 @@
+\begin{tikzpicture}[scale=2, >=stealth]
+  % Define vectors
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (2,1);
+  \coordinate (B) at (3,3);
+  \coordinate (C) at (2,4);
+
+  % Draw vectors A, B, and C from the origin
+  \draw[->, thick, blue] (O) -- (A) node[midway, below right=0cm and -1cm, sloped] {unsteered embedding};
+  \draw[->, thick, red] (O) -- (B) node[midway, above, sloped] {steered embedding };
+  \draw[->, thick, green!70!black] (O) -- (C) node[midway, above, sloped] {median group embedding};
+
+  % Draw vector B - A from point A to point B
+  \draw[->, thick, dashed, orange] (A) -- (B) node[midway, below right] {steering effect};
+
+  % Optional: Draw axes
+  \draw[->] (-0.5,0) -- (4,0) node[below right] {$x$};
+  \draw[->] (0,-0.5) -- (0,4) node[above left] {$y$};
+\end{tikzpicture}
+
