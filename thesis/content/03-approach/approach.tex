@@ -193,48 +193,63 @@ First of all, the similarity between all clusters that remain after the first se
 \section{Training and Testing \acs{sfam}}
 \label{sec:approach:sfam}
 
-\begin{itemize}
-  \item \ac{sfam} is a model that takes a style sentence and a text as input and produces an agreement score
-  \item training data
-        \begin{itemize}
-          % \item the \numStyleSentences{} style sentences are used for training % do not use numbers for approach
-          \item there are distinct sets of input texts for training, validation and test datasets
-          \item these lead to mostly different sentences (also the differences may be small)
-          \item of all sentences, the best are selected
-                \begin{itemize}
-                  \item compute similarity to all style vector attributes (which are clusters)
-                  \item for each sentence, compute the most similar and most dissimilar input text according to the average similarity to all style attributes that have been used to describe that text (like the final selection of style vector attributes, see Section~\ref{sec:approach:selection}) % TODO: is there a more specific reference to a subsection?
-                  \item if one of the ten most similar input texts was actually described by the style sentence, it is chosen as a positive training sample and the least similar input text that was not described by the sentence as a negative sample
-                  \item otherwise, the sentence is not used for training
-                  \item the same is done for validation and test
-                \end{itemize}
-        \end{itemize}
-  \item \ac{sfam} is a finetuned DeBERTaV3 model
-        \begin{itemize}
-          \item two fully connected layers with a ReLu in between % TODO: look up
-          \item finally a sigmoid activation function to produce values between 0 and 1
-        \end{itemize}
-  \item optional hyperparameter optimization (with optuna -> citation?) to discover optimal learning rate and weight decay
-  \item early stopping callback with patience of three
-  \item validation metric of accuracy
-  \item testing metric accuracy and f1
-\end{itemize}
+The goal of the method presented in this thesis is to create interpretable style vectors with values between \num{0} and \num{1} that correspond to real world values. To create these values, I will train a model that follows the \acf{sfam} that was presented by \citet{patelLearningInterpretableStyle2023}. It takes an attribute sentence and a text and outputs and agreement score that corresponds to how well the attribute sentence fits to the text.
+
+\ac{sfam} is trained on the synthetic dataset which was created in earlier steps as described in Section~\ref{sec:approach:style_sentence_generation}. The training data includes the unclustered knowledge and style sentences and the input texts that were described by them. There is however some preprocessing necessary, because just because an attribute sentence was not used to describe a text does not mean the text does not match the sentence. It could be that the text was described by a similar sentence or that the \ac{llm} just skipped a topic when describing one text.
+
+The attribute sentences that are used for training are selected in a process similar to the one described in Section%~\ref{}. TODO:
+First, the similarity between all attribute sentences and all Attribute Vector dimensions are computed. Then, for each sentence and each text the average similarity to the dimensions that were used to describe the text is computed. The texts are then sorted by their similarity to the attribute sentence. If the sentence has been used to describe one of the \SI{1}{\percent} most similar texts, this text will be used as a positive training sample and the most dissimilar text where the sentence was not used to describe it is used as a negative training sample. Otherwise, the sentence will not be used for training.
+
+The result dataset is balanced regarding positive and negative samples and has a high probability to only include sentences which actually fit the texts. % TODO: write better
+The same process is used to create the validation and test dataset using different answers. % TODO: write here that the style sentences are largely distinct or later in experiments?
+
+% \begin{itemize}
+%   \item \ac{sfam} is a model that takes a style sentence and a text as input and produces an agreement score
+%   \item training data
+%         \begin{itemize}
+%           % \item the \numStyleSentences{} style sentences are used for training % do not use numbers for approach
+%           \item there are distinct sets of input texts for training, validation and test datasets
+%           \item these lead to mostly different sentences (also the differences may be small)
+%           \item of all sentences, the best are selected
+%                 \begin{itemize}
+%                   \item compute similarity to all style vector attributes (which are clusters)
+%                   \item for each sentence, compute the most similar and most dissimilar input text according to the average similarity to all style attributes that have been used to describe that text (like the final selection of style vector attributes, see Section~\ref{sec:approach:selection}) % TODO: is there a more specific reference to a subsection?
+%                   \item if one of the ten most similar input texts was actually described by the style sentence, it is chosen as a positive training sample and the least similar input text that was not described by the sentence as a negative sample
+%                   \item otherwise, the sentence is not used for training
+%                   \item the same is done for validation and test
+%                 \end{itemize}
+%         \end{itemize}
+%   \item \ac{sfam} is a finetuned DeBERTaV3 model
+%         \begin{itemize}
+%           \item two fully connected layers with a ReLu in between % TODO: look up
+%           \item finally a sigmoid activation function to produce values between 0 and 1
+%         \end{itemize}
+%   \item optional hyperparameter optimization (with optuna -> citation?) to discover optimal learning rate and weight decay
+%   \item early stopping callback with patience of three
+%   \item validation metric of accuracy
+%   \item testing metric accuracy and f1
+% \end{itemize}
 
 
 \section{Training and Testing \acs{lisa}}
 \label{sec:approach:lisa}
-\begin{itemize}
-  \item to get values for a style vector, the \num{\styleVectorSize{}} forward passes by \ac{sfam} would take too long for most practical applications
-  \item train an additional model that creates the whole vector in one forward pass
-  \item \ac{lisa} like \ac{sfam} is a finetuned DeBERTaV3 model
-        \begin{itemize}
-          \item two fully connected layers with a ReLu in between % TODO: look up
-          \item finally a sigmoid activation function to produce values between 0 and 1
-        \end{itemize}
-\end{itemize}
+While \ac{sfam} produces the Attribute Vector with exactly the values that are required, it needs on forward pass per dimension of the vector. Even with a optimized model this takes a too long time for the most applications. The solution is to train an additional model which for the \acf{lisa} model proposed by \citet{patelLearningInterpretableStyle2023}, which gets a text as an input and produces the full Attribute Vector in one forward pass.
+
+The training, validation and test data is created by using \ac{sfam} to create the Attribute Vectors of the corresponding texts and training \ac{lisa} as a regression model.
+
+% \begin{itemize}
+%   \item to get values for a style vector, the \num{\styleVectorSize{}} forward passes by \ac{sfam} would take too long for most practical applications
+%   \item train an additional model that creates the whole vector in one forward pass
+%   \item \ac{lisa} like \ac{sfam} is a finetuned DeBERTaV3 model
+%         \begin{itemize}
+%           \item two fully connected layers with a ReLu in between % TODO: look up
+%           \item finally a sigmoid activation function to produce values between 0 and 1
+%         \end{itemize}
+% \end{itemize}
 
 \section{Embedding Model}
 \label{sec:approach:embedding}
+
 
 
 \section{Possible Improvement through Knowledge Attributes}
