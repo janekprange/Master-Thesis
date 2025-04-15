@@ -1,7 +1,7 @@
 \begin{tikzpicture}[scale=2, >=stealth]
   % Define vectors
   \coordinate (O) at (0,0);
-  \coordinate (A) at (2,1);
+  \coordinate (A) at (2.5,1);
   \coordinate (B) at (3,3);
   \coordinate (C) at (2,4);
 
@@ -12,9 +12,10 @@
 
   % Draw vector B - A from point A to point B
   \draw[->, thick, dashed, orange] (A) -- (B) node[midway, below right] {steering effect};
+  \draw[->, thick, dotted, purple] (A) -- (C) node[midway, above right=2cm and -0.4cm] {optimal steering effect};
 
-  % Optional: Draw axes
-  \draw[->] (-0.5,0) -- (4,0) node[below right] {$x$};
-  \draw[->] (0,-0.5) -- (0,4) node[above left] {$y$};
+  % Draw axes
+  \draw[->] (-0.2,0) -- (4,0) node[below right] {};
+  \draw[->] (0,-0.2) -- (0,4) node[above left] {};
 \end{tikzpicture}
 

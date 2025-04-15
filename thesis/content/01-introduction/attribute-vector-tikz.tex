@@ -27,12 +27,11 @@
   \node (comp) [annotation, below right=1cm and -2cm of vector]
   {The author is\\complimentary.};
 
-  % Arrows from vector components
-  \draw[-{Latex[length=2mm]}, thick] ([xshift=-1.3cm]vector.south) -- (rep.north);
-  \draw[-{Latex[length=2mm]}, thick] ([xshift=1.3cm]vector.south) -- (comp.north);
-
   % Arrow to LISA
   \draw[arrow] (text) -- (lisa);
   % Arrow to vector
   \draw[arrow] (lisa) -- (vectorText);
+  % Arrows from vector components
+  \draw[-{Latex[length=2mm]}, thick] ([xshift=-1.3cm]vector.south) -- (rep.north);
+  \draw[-{Latex[length=2mm]}, thick] ([xshift=1.3cm]vector.south) -- (comp.north);
 \end{tikzpicture}
