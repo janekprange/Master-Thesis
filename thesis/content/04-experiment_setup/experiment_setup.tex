@@ -16,6 +16,67 @@
   \item sqlite Database as data storage?
 \end{itemize}
 
+
+\section{Architecture and Models used}
+\label{sec:approach:architectureModels}
+
+\subsection{Architecture}
+\label{sec:approach:architectureModels:architecture}
+
+\begin{itemize}
+  \item Attribute Sentence Generation
+  \item Clustering
+  \item Selection of Attribute Vector dimensions
+  \item Training SFAM and LISA
+  \item Training the embedding model
+  \item Prompt Steering
+  \item Activation Steering
+\end{itemize}
+
+\subsection{Models}
+\label{sec:approach:architectureModels:models}
+
+\begin{itemize}
+  \item Llama3.2
+  \item Sentence Transformer
+  \item DeBERTaV3
+  \item \ldots
+\end{itemize}
+
+
+\section{Evaluation Metrics}
+\label{sec:approach:evaluationMetrics}
+
+\begin{itemize}
+  \item SFAM
+        \begin{itemize}
+          \item accuracy and F1 with regard to labels from select examples of the attribute sentence generation (was the sentence used or not)
+        \end{itemize}
+  \item LISA
+        \begin{itemize}
+          \item MSE, MAE, avg. cosine similarity compared to SFAM prediction
+          \item accuracy and F1 compared to SFAM where both predictions are rounded
+        \end{itemize}
+  \item embedding model
+        \begin{itemize}
+          \item accuracy through triplet loss
+                %? \item variance inside groups
+        \end{itemize}
+  \item steering methods
+        \begin{itemize}
+          \item improvement of L2 distance to group median compared to embedding of unsteered generation
+                \begin{itemize}
+                  \item how strong is the steering?
+                \end{itemize}
+          \item cosine similarity between the vector that is the difference between embedding of steered and unsteered generation
+                \begin{itemize}
+                  \item is the steering in the correct direction?
+                \end{itemize}
+                %? \item the absolute times that the resulting group is the correct one (according to the embedding)
+        \end{itemize}
+\end{itemize}
+
+
 \section{Steering}
 \label{sec:experimentSetup:steering}
 

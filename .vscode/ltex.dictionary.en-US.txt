@@ -3,3 +3,4 @@ ChatGPT
 SFAM
 STEL
 SBERT-similarity
+softmax
