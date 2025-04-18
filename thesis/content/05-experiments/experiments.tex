@@ -80,7 +80,16 @@
 \begin{figure}
   \begin{center}
     \input{content/05-experiments/steering-metrics-plot.tex}
-    \caption{Embeddings of steered and unsteered generations}
+    \captionsetup{singlelinecheck=off}
+    \caption[]{%
+      All answers that are generated during steering are embedded using the \ac{lisa} model with the embedding head. For each question, the \ac{llm} is prompted without any steering to create an unsteered baseline. Then, for each group and each steering type, the model is prompted with the same question. The median group embedding is derived from the embeddings of all answers that have been used to train \ac{sfam} and \ac{lisa}.
+      The quality of each steering method is measured with different metrics:
+      \begin{enumerate*}
+        \item \textbf{Steering Direction Correctness:} The cosine similarity between the steering effect vector and the optimal steering effect vector.
+        \item \textbf{Steering Effect:} The euclidean distance of the steering effect vector.
+        \item \textbf{Possible Improvement:} The euclidean distance between the steered embedding and the median group embedding.
+      \end{enumerate*}
+    }
   \end{center}
 \end{figure}
 

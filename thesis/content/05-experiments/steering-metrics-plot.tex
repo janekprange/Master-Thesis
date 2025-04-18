@@ -1,21 +1,28 @@
 \begin{tikzpicture}[scale=2, >=stealth]
   % Define vectors
-  \coordinate (O) at (0,0);
-  \coordinate (A) at (2.5,1);
-  \coordinate (B) at (3,3);
-  \coordinate (C) at (2,4);
+  \coordinate (origin) at (0,0);
+  \coordinate (unsteered) at (2.5,1);
+  \coordinate (steered) at (4,3);
+  \coordinate (group) at (2,4);
 
-  % Draw vectors A, B, and C from the origin
-  \draw[->, thick, blue] (O) -- (A) node[midway, below right=0cm and -1cm, sloped] {unsteered embedding};
-  \draw[->, thick, red] (O) -- (B) node[midway, above, sloped] {steered embedding };
-  \draw[->, thick, green!70!black] (O) -- (C) node[midway, above, sloped] {median group embedding};
+  % Draw vectors unsteered, steered, and group from the origin
+  \draw[->, thick, blue] (origin) -- (unsteered) node[midway, below right=0cm and -1cm, sloped] {unsteered embedding};
+  \draw[->, thick, red] (origin) -- (steered) node[midway, above, sloped] {steered embedding };
+  \draw[->, thick, green!70!black] (origin) -- (group) node[midway, above, sloped] {median group embedding};
 
-  % Draw vector B - A from point A to point B
-  \draw[->, thick, dashed, orange] (A) -- (B) node[midway, below right] {steering effect};
-  \draw[->, thick, dotted, purple] (A) -- (C) node[midway, above right=2cm and -0.4cm] {optimal steering effect};
+  % Draw vector steered - unsteered from point unsteered to point steered
+  \draw[->, thick, dashed, orange] (unsteered) -- (steered) node[midway, below right] {steering effect} node[midway, below right=0.6cm and 1.2cm, draw=black, solid, black, circle, inner sep=1pt, minimum size=6pt] {2};
+  \draw[->, thick, dotted, purple] (unsteered) -- (group) node[midway, above right=0.5cm and 0.4cm, anchor=center] {optimal steering effect};
+  % \draw[->, thick, dotted, purple] (unsteered) -- (group) node[midway, above right=2cm and -0.4cm] {optimal steering effect};
+  \draw[->, thick, dotted, black] (steered) -- (group) node[midway, above right] {possible improvement} node[midway, above right=-0.3cm and 2cm, draw=black, solid, black, circle, inner sep=1pt, minimum size=6pt] {3};
+  % \draw[->, thick, dotted, black] (steered) -- (group) node[midway, below right=0cm and 0.5cm] {possible improvement} node[midway, below right=0.6cm and 2.5cm, draw=black, solid, black, circle, inner sep=1pt, minimum size=6pt] {3};
+
 
   % Draw axes
-  \draw[->] (-0.2,0) -- (4,0) node[below right] {};
-  \draw[->] (0,-0.2) -- (0,4) node[above left] {};
-\end{tikzpicture}
+  \draw[->] (-0.2,0) -- (4,0);
+  \draw[->] (0,-0.2) -- (0,4);
 
+  % Draw angle between vectors at point unsteered
+  \pic (direction_correctness) [pic text=1, draw, ->, angle radius=1cm, angle eccentricity=1.3] {angle = steered--unsteered--group};
+  \draw (direction_correctness) circle [radius=3pt];
+\end{tikzpicture}
