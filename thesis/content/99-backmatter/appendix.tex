@@ -2,10 +2,78 @@
 %
 \chapter{Appendix}
 \label{sec:appendix}
+\lstset{
+  breakatwhitespace=true,
+  breaklines=true,
+  breakindent=0pt,
+  numbers=none
+}
 
-\section{Target Attributes}
-\label{sec:appendix:targetAttributes}
-% TODO: description
+\section{Open-ended Style Prompts}
+\label{sec:appendix:openPrompts}
+\begin{description}
+  \item[Grammar Style]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a long paragraph describing the unique grammar style of the following passage without referring to specifics about the topic.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+  \item[Vocabulary Style]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a long paragraph describing the unique vocabulary style of the following passage without referring to specifics about the topic.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+  \item[Punctuation Style]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a long paragraph describing the unique punctuation style of the following passage without referring to specifics about the topic.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+  \item[Grammar Errors]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a long paragraph describing the grammar errors (if any) of the following passage without referring to specifics about the topic.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+  \item[Spelling Errors]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a long paragraph describing the spelling errors (if any) of the following passage without referring to specifics about the topic.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+  \item[Forensic Linguistics]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a long paragraph describing the unique stylometric features of the following passage without referring to specifics about the topic from the perspective of a forensic linguist psychoanalyzing the writer.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+\end{description}
+
+\section{Targeted Style Prompts}
+\label{sec:appendix:targetPrompts}
+
+I use the following template for the targeted style prompts:
+\begin{lstlisting}
+  Write a description about the usage of '{{feature_name}}' by the author of the following passage. If it is used by the author write a long description, otherwise keep the answer short.
+  Passage: {{passage}}
+  Description:
+\end{lstlisting}
+
+For each of the following targeted features, the \textit{feature\_name} is substituted by the feature name. The list of features follows the work of \citetext{patelLearningInterpretableStyle2023} with the exception that \enquote{swear words} is not included twice and \enquote{male pronouns} as well as \enquote{female pronouns} have been removed because the resulting attribute sentences are two similar to each other. Because of the high similarity, the attributes were often in the same clusters even though they were describing different genders.
+
 \begin{multicols}{2}
   \begin{itemize}[nolistsep]
     \item figurative language
@@ -94,3 +162,24 @@
     \item elongated words
   \end{itemize}
 \end{multicols}
+
+\section{Knowledge Prompts}
+\label{sec:appendix:knowledgePrompts}
+\begin{description}
+  \item[Experience]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a description of the experience the author has based on the following passage.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+  \item[Background Knowledge]\leavevmode \newline
+        \begin{minipage}{\linewidth}
+          \begin{lstlisting}
+Write a description of the background knowledge the author has based on the following passage.
+Passage: {{passage}}
+Description:
+\end{lstlisting}
+        \end{minipage}
+\end{description}
