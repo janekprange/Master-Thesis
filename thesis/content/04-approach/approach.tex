@@ -65,21 +65,18 @@ These attributes are found by creating sentences of the form \enquote{The author
 Afterward, for each sentence the style cluster with the highest cosine similarity is found. This cluster is then one of the target attributes of the vector. The knowledge clusters are not taken into account during this selection.
 
 
-%!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% here I am
 \subsection{Filtering out attributes that occur too frequently}
 \label{sec:approach:selection:filteringOccurance}
-An important characteristic of all attributes that are part of the attribute vector is that they are as meaningful as possible and helpful to distinguish different groups. Because of that, this step in the cluster selection ensures that only clusters which are used to describe texts by less than \clusterMaxGroupRatio{} of the groups are selected. The cutoff ratio of groups follows the work of \citet{patelLearningInterpretableStyle2023}.
+An important characteristic of all attributes that are part of the attribute vector is that they are as meaningful as possible and help to distinguish between different groups. To ensure this requirement is met, attribute that describe texts of a too large portion of groups are removed.
 
-For the next steps of the cluster selection, it is also important that there are not too many possible clusters to select from, otherwise the computation would need too much time and memory. To quickly reduce the number of clusters, the number of times the cluster was used to describe answers is taken into account. The required number of times used is increased until the resulting number of clusters is smaller than \num{\maxClustersFirstSelection}. This number was chosen to be small enough for the following computation but big enough to enable a meaningful selection of attribute vector dimensions.
+For the next steps of the cluster selection, it is also important that there are not too many possible clusters to select from, otherwise the computation would need too much time and memory. To quickly reduce the number of clusters, the number of times the cluster was used to describe answers is taken into account. The required number of times used is increased until the resulting number of clusters is small enough.
 
 % TODO: include this?
 A cluster could be used multiple times to describe the same answer. Although the sentence produced by each prompt is only counted once per prompt, multiple prompts could use the same or similar enough sentences to describe the answer. For this selection however, only the number of answers that have been described with the cluster are being counted and not how often the cluster was being used.
 
 \subsection{Removing too similar Attributes}
 \label{sec:approach:selection:removeSimilar}
-To ensure that the attribute vector covers a wide range of attributes, it is important that the attributes do not cover too similar topics. This selection step fulfills this requirement by making sure that the attribute vector dimensions have a maximum cosine similarity of \num{\maxCosineSimilarity}. This process works by ordering the clusters by occurrence, selecting them one after the other and deleting all clusters that are too close to the ones that have already been selected.
-
-In the work of \citeauthor{patelLearningInterpretableStyle2023}, they use a maximum cosine similarity of \num{0.8} as a cutoff. I decided to use a lower maximum similarity to increase the variance of the attribute vector dimensions and because of the clusters. % TODO: better explanation
+To ensure that the attribute vector covers a wide range of attributes, it is important that the attributes do not cover too similar topics. This is achieved by ensuring that the clusters have a maximum cosine distance to each other. This process works by ordering the clusters by occurrence, selecting them one after the other and deleting all clusters that are too close to the ones that have already been selected.
 
 \subsection{Final Selection} % TODO: better name?
 \label{sec:approach:selection:finalSelection}
@@ -87,17 +84,9 @@ The first \num{\numTargetPrompts} dimensions of the attribute vector are the tar
 
 Range of accordance means that the range between the answers that match the attribute really well and the ones that do not match is as big as possible. This further increases the probability that the attributes are well suited to distinguish between different answers and groups.
 
-First, the similarity between all clusters that remain after the first selection steps are computed. Afterward, the for each cluster and each answer the average similarity to all other clusters that have been used to describe that answer is computed. TODO:
+First, the similarity between all clusters that remain after the first selection steps are computed. Afterward, the for each cluster and each answer the average similarity to all other clusters that have been used to describe that answer is computed. The result is a rough estimation of the actual similarity between the current attribute sentence and the answer.
 
-
-% \begin{itemize}
-%   \item \minNumKnowledgePrompts{} knowledge clusters are selected
-%   \item compute similarities between clusters selected at this stage
-%   \item for all clusters, compute the average similarity of all input texts by looking at the clusters that have been used to describe that input text
-%   \item sort the clusters by the difference between the most and least matching input text
-%   \item select the clusters with the highest difference
-%   \item this is done because a style attribute will probably hold more meaningful information and is better suited to differentiate texts if it is very similar to some and very dissimilar to other texts
-% \end{itemize}
+Subsequently, the range between the similarity of the most and least similar answer is computed and the clusters with the highest difference are selected. With the process, the probability of attributes holding meaningful information to distinguish between different groups is increased.
 
 
 \section{Training and Testing \acs{sfam}}
@@ -108,9 +97,9 @@ The goal of the method presented in this thesis is to create interpretable attri
 \ac{sfam} is trained on the synthetic dataset which was created in earlier steps as described in Section~\ref{sec:approach:attributeSentenceGeneration}. The training data includes the unclustered knowledge and style sentences and the input texts that were described by them. There is however some preprocessing necessary, because just because an attribute sentence was not used to describe a text does not mean the text does not match the sentence. It could be that the text was described by a similar sentence or that the \ac{llm} just skipped a topic when describing one text.
 
 The attribute sentences that are used for training are selected in a process similar to the one described in Section~\ref{sec:approach:selection:finalSelection}.
-First, the similarity between all attribute sentences and all Attribute Vector dimensions are computed. Then, for each sentence and each text the average similarity to the dimensions that were used to describe the text is computed. The texts are then sorted by their similarity to the attribute sentence. If the sentence has been used to describe one of the \SI{1}{\percent} most similar texts, this text will be used as a positive training sample and the most dissimilar text where the sentence was not used to describe it is used as a negative training sample. Otherwise, the sentence will not be used for training.
+First, the similarity between all attribute sentences and all attribute vector dimensions are computed. Then, for each sentence and each text the average similarity to the dimensions that were used to describe the text is computed. The texts are then sorted by their similarity to the attribute sentence. If the sentence has been used to describe one of the \SI{1}{\percent} most similar texts, this text will be used as a positive training sample and the most dissimilar text where the sentence was not used to describe it is used as a negative training sample. Otherwise, the sentence will not be used for training.
 
-The result dataset is balanced regarding positive and negative samples and has a high probability to only include sentences which actually fit the texts. % TODO: write better
+The resulting dataset is balanced regarding positive and negative samples and has a high probability to only include sentences which actually fit the texts. % TODO: write better
 The same process is used to create the validation and test dataset using different answers. % TODO: write here that the attribute sentences are largely distinct or later in experiments?
 
 % \begin{itemize}
@@ -190,7 +179,7 @@ While the prompt steering methods are easy to implement, they have the disadvant
 
 The steering vectors are created without any training process, which reduces the required time significantly. For each dimension of the interpretable attribute vector, a separate steering vector is extracted.
 
-\begin{figure}
+\begin{figure}[ht]
   \include{content/04-approach/activation-steering-diagram}
   \label{fig:activationSteering}
   \caption{Todo}
@@ -204,22 +193,20 @@ To get to the steering vector of a group, all attribute steering vectors need to
 Alternatively, instead of including all dimensions of the attribute vector, only the most important attributes can be used to create the group steering vector.
 
 \subsubsection{Text Generation Steering}
-
-
-
-
 \label{sec:approach:steering:activation}
-\begin{itemize}
-  \item strength of the method is that no training is needed
-  \item the activation vectors will be extracted at each layer
-  \item for each attribute vector dimension, an activation vector is extracted
-  \item to create the steering vector for the layer x
-        \begin{enumerate}
-          \item take the attribute vector (for example for a group)
-          \item take a softmax
-          \item multiply the activation vector of each attribute sentence with the corresponding softmax value
-          \item add the weighted activation vectors together
-          \item multiply them with a factor \(\lambda\)
-        \end{enumerate}
-  \item the steering vector is added to the activation vector at layer x during the forward pass of a steered text generation
-\end{itemize}
+To steer the text generation of a \acl{llm}, the computed steering vector is added to a layer of the model during the forward pass. It is important that the layer the vector is insterted into is the same that the vectors that were combined to form the steering vector where taken from. The steering vector can be scaled with a factor \(\lambda\) to further control the strength of the steering effect.
+Because the steering vector is extracted during the first forward pass, it is also inserted exclusively during the first forward pass (\cite{rimsky-etal-2024-steering}).
+% \begin{itemize}
+%   \item strength of the method is that no training is needed
+%   \item the activation vectors will be extracted at each layer
+%   \item for each attribute vector dimension, an activation vector is extracted
+%   \item to create the steering vector for the layer x
+%         \begin{enumerate}
+%           \item take the attribute vector (for example for a group)
+%           \item take a softmax
+%           \item multiply the activation vector of each attribute sentence with the corresponding softmax value
+%           \item add the weighted activation vectors together
+%           \item multiply them with a factor \(\lambda\)
+%         \end{enumerate}
+%   \item the steering vector is added to the activation vector at layer x during the forward pass of a steered text generation
+% \end{itemize}

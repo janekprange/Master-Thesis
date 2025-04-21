@@ -47,7 +47,7 @@
 
 \subsection{Creation of the Synthetic Dataset}
 \begin{itemize}
-  \item to embed the attribute sentences, the model \textit{all-MiniLM-L12-v2} \citetext{reimersSentenceBERTSentenceEmbeddings2019} has been used
+  \item to embed the attribute sentences, the model \textit{all-MiniLM-L12-v2} (\cite{reimersSentenceBERTSentenceEmbeddings2019}) has been used
   \item for clustering, sentences must have a cosine similarity of \num{\minCosineSimilarity} or less to be in the same cluster
   \item resulting dataset in Table~\ref{table:syntheticDataset}
 \end{itemize}
@@ -73,6 +73,16 @@
   \item \num{\numClusters} clusters
   \item \num{\numAnswersStyleVector} answers by \num{\numGroups} groups
   \item select only \num{\styleVectorSize} attributes for the interpretable attribute vector
+  \item filtering out too frequent
+        \begin{itemize}
+          \item max \clusterMaxGroupRatio{} of groups (number taken from \citet{patelLearningInterpretableStyle2023})
+          \item number of clusters smaller er than \num{\maxClustersFirstSelection}. This number was chosen to be small enough for the following computation but big enough to enable a meaningful selection of attribute vector dimensions.
+        \end{itemize}
+  \item too similar
+        \begin{itemize}
+          \item \num{\maxCosineSimilarity} maximum cosine similarity
+          \item In the work of \citeauthor{patelLearningInterpretableStyle2023}, they use a maximum cosine similarity of \num{0.8} as a cutoff. I decided to use a lower maximum similarity to increase the variance of the attribute vector dimensions and because of the clusters. % TODO: better explanation
+        \end{itemize}
 \end{itemize}
 
 
