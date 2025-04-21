@@ -1,0 +1,93 @@
+\begin{tikzpicture}[
+    >=Stealth,
+    attr/.style={
+        matrix of nodes,
+        nodes={anchor=base west, font=\footnotesize},
+        row sep=3pt,
+        inner sep=6pt,
+        nodes in empty cells,
+        draw, rectangle,
+        anchor=north west
+      },
+    % steering‐vector boxes:
+    sv/.style={draw, rectangle, minimum width=3cm, align=center},
+    % generic box:
+    box/.style={draw, rectangle}
+  ]
+
+  % 2) Attribute‐vector matrix (flush)
+  \matrix[attr] (attrvec)
+  at (0,0)
+  {
+    \num{0.653}         \\
+    \num{0.934}         \\
+    \num{0.845}         \\
+    \num{0.103}         \\
+    $\dots$\vphantom{0} \\
+  };
+  \node[above=2pt of attrvec.north] {\small\bfseries Attribute Vector};
+
+  \node[anchor=west] (feature1) at (attrvec.east |- attrvec-1-1.center) {The author uses a positive tone.};
+  \node[anchor=west] (feature2) at (attrvec.east |- attrvec-2-1.center) {The author uses long sentences.};
+  \node[anchor=west] (feature3) at (attrvec.east |- attrvec-3-1.center) {The author uses technical terms.};
+  \node[anchor=west] (feature4) at (attrvec.east |- attrvec-4-1.center) {The author uses code snippets.};
+  \node[anchor=west] (feature5) at (attrvec.east |- attrvec-5-1.center) {\dots};
+
+  % 3) Steering‐vector x‐position
+  \coordinate (steerBase) at ($(feature1.east)+(5cm,0)$);
+
+  % 4) Midpoint for floating “Extraction” box
+  \coordinate (midX)      at ($(feature1.east)!.5!(steerBase.west)$);
+
+  % 6) Steering vectors aligned row‐wise
+  \foreach \i in {1,...,4} {
+      \node[sv] (sv\i) at (steerBase |- feature\i) {Steering Vector};
+    }
+  \node[sv] (sv5) at (steerBase |- feature5) {\dots\vphantom{Steering Vector}};
+
+  % 7) Softmax matrix
+  \matrix (softmax) [
+    attr,
+    below right=2cm and 2cm of feature4.south east
+  ] {
+    \num{0.098}       \\
+    \num{0.201}       \\
+    \num{0.121}       \\
+    \num{0.001}       \\
+    \dots\vphantom{0} \\
+  };
+
+  %––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+  % A) Extraction arrows: from attrvec numbers → each sv
+  \foreach \i in {1,...,5} {
+      \draw[->] (feature3.east |- feature\i) -- (sv\i.west);
+    }
+
+  % 5) Floating “Extraction” box (dashed)
+  \node[box, dashed, fill=white, minimum height=3.5cm, anchor=north, align=center]
+  at ($(midX)+(-0.7cm,0.2cm)$)
+  (extraction) {Extraction}; % {Activation\\Vector\\Extraction}
+
+  % B) Features → Softmax
+  % \draw[->] (attrvec.south) |-  (softmax.north);
+  \draw[<-] let
+  \p1 = (softmax.north),
+  \p2 = (attrvec)
+  in (softmax.north) -- ++(0, 0.5cm) node at ({(\x1 + \x2)/2}, {\y1 + 0.8cm}) {Softmax} -| (attrvec.south);
+
+  % C) SVs → Softmax entries
+  \foreach \i in {1,...,5} {
+      \draw[->] let \p1 = (softmax.east), \p2 = (softmax-\i-1.east) in (sv\i.east) -- ++({0.25cm * \i}, 0) |- (\x1, \y2);
+    }
+
+  % 8) Sum + group Steering Vector
+  \node[draw,circle,left=2cm of softmax-3-1] (sum) {+};
+  \node[sv,left=of sum] (group) {Group Steering Vector};
+
+  % D) Softmax → Sum → Group
+  \foreach \i in {1,...,5} {
+      \draw[] (softmax.west |- softmax-\i-1.west) -- (sum.east);
+    }
+  \draw[->] (sum.west) -- (group.east);
+
+\end{tikzpicture}

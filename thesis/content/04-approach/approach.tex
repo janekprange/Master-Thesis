@@ -185,6 +185,29 @@ Thus, the attribute sentences will have the form \enquote{You are \ldots}.
 The final prompt steering methods will combine the two previous methods and include both the group name and the most important attribute sentences in the system prompt.
 
 \section{Activation Steering}
+
+While the prompt steering methods are easy to implement, they have the disadvantage that they do not allow for fine-grained steering. Even when the most important attributes are included in the system prompt, there is no way to tell the model how strongly each attribute should influence the generated text. To solve this problem, I propose a method to steer the \ac{llm} by manipulating its activation space during inference following the work of \citet{turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
+
+The steering vectors are created without any training process, which reduces the required time significantly. For each dimension of the interpretable attribute vector, a separate steering vector is extracted.
+
+\begin{figure}
+  \include{content/04-approach/activation-steering-diagram}
+  \label{fig:activationSteering}
+  \caption{Todo}
+\end{figure}
+
+\subsubsection{Extracting Steering Vectors}
+The attribute that should be steered towards will be a part of the system prompt similar to the prompt attribute steering described in Section~\ref{sec:approach:steering:prompt}. Following that, the model predicts the next token in one forward pass. From that inference, the vectors after the activation functions of each layer are extracted and saved. The predicted token is not important during this process. % TODO: extract from activation functions or from residual streams?
+
+To get to the steering vector of a group, all attribute steering vectors need to be combined. For that, a softmax of the median attribute vector for a group is created. Afterward, each attribute steering vector is multiplied with the corresponding value of the softmax. Finally, all weighted steering vectors are added together.
+
+Alternatively, instead of including all dimensions of the attribute vector, only the most important attributes can be used to create the group steering vector.
+
+\subsubsection{Text Generation Steering}
+
+
+
+
 \label{sec:approach:steering:activation}
 \begin{itemize}
   \item strength of the method is that no training is needed
@@ -200,7 +223,3 @@ The final prompt steering methods will combine the two previous methods and incl
         \end{enumerate}
   \item the steering vector is added to the activation vector at layer x during the forward pass of a steered text generation
 \end{itemize}
-
-\subsubsection{Extracting Steering Vectors}
-
-\subsubsection{Text Generation Steering}
