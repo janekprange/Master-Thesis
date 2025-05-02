@@ -210,3 +210,52 @@ Because the steering vector is extracted during the first forward pass, it is al
 %         \end{enumerate}
 %   \item the steering vector is added to the activation vector at layer x during the forward pass of a steered text generation
 % \end{itemize}
+
+\clearpage
+\section{For Leandra}
+
+The table from the presentation:
+
+\begin{tabular}{lSS}
+  \toprule
+  {Group}              & {Euclidean\ Distance}                              & {Cosine\ Similarity}                               \\
+  \midrule
+  Biologists           & 1.5506118535995483                                 & 0.33786728978157043                                \\
+  Data Scientists      & 2.1414427757263184                                 & 0.49583321809768677                                \\
+  Electrical Engineers & 1.334580421447754                                  & 0.03393082693219185                                \\
+  Game Developers      & 1.4480421543121338                                 & 0.044030994176864624                               \\
+  Lawyers              & 3.108609199523926                                  & \cellcolor[gray]{0.8} \bfseries 0.8223204016685486 \\
+  Philosophers         & 2.6420016288757324                                 & 0.7476155757904053                                 \\
+  Politicians          & \cellcolor[gray]{0.8} \bfseries 3.1334586143493652 & 0.7666002511978149                                 \\
+  Software Engineers   & 1.611264705657959                                  & 0.2527718245983124                                 \\
+  \bottomrule
+\end{tabular}
+
+The table with the new metrics:
+
+\resizebox{\linewidth}{!}{
+  \begin{tabular}{lSSSS}
+    \toprule
+    {Group}              & {Steering Effect}                                  & {Direction Correctness}                            & {Possible Steering Effect}                        & {Distance Difference}                              \\
+    \midrule
+    Astronomers          & 1.7484214305877686                                 & 0.5161562561988831                                 & 7.244743824005127                                 & 5.496322154998779                                  \\
+    Pilots               & 1.7315958738327026                                 & 0.5180053114891052                                 & 8.215267181396484                                 & 6.483670711517334                                  \\
+    Biologists           & 1.5506118535995483                                 & 0.38158202171325684                                & 5.649219989776611                                 & 4.098607063293457                                  \\
+    Chemists             & 1.5814242362976074                                 & 0.3781886696815491                                 & 8.697698593139648                                 & 7.116274833679199                                  \\
+    Cryptographers       & 2.203723192214966                                  & 0.4798935353755951                                 & 11.444587707519531                                & 9.240863800048828                                  \\
+    Computer Scientists  & 1.6375644207000732                                 & 0.3859226703643799                                 & 7.956028938293457                                 & 6.3184638023376465                                 \\
+    Data Scientists      & 2.1414427757263184                                 & 0.6237024068832397                                 & 10.039475440979004                                & 7.898032188415527                                  \\
+    Electrical Engineers & 1.334580421447754                                  & -0.038641635328531265                              & 7.1854705810546875                                & 5.850890636444092                                  \\
+    Game Developers      & 1.4480421543121338                                 & 0.1651124805212021                                 & 7.710322856903076                                 & 6.262280464172363                                  \\
+    Historians           & 1.5222752094268799                                 & 0.509942352771759                                  & 12.36848258972168                                 & \cellcolor[gray]{0.8} \bfseries 10.846207618713379 \\
+    Lawyers              & 3.108609199523926                                  & 0.7886425852775574                                 & \cellcolor[gray]{0.8} \bfseries 13.44083023071289 & 10.332222938537598                                 \\
+    Mechanical Engineers & 1.676805853843689                                  & 0.5361155867576599                                 & 11.346585273742676                                & 9.669781684875488                                  \\
+    Philosophers         & 2.6420016288757324                                 & 0.8240012526512146                                 & 10.290709495544434                                & 7.648707866668701                                  \\
+    Physicists           & 1.5092840194702148                                 & 0.4641623795032501                                 & 6.5638251304626465                                & 5.054540634155273                                  \\
+    Politicians          & \cellcolor[gray]{0.8} \bfseries 3.1334586143493652 & \cellcolor[gray]{0.8} \bfseries 0.8509434461593628 & 12.980879783630371                                & 9.847421646118164                                  \\
+    Software Engineers   & 1.611264705657959                                  & 0.34105777740478516                                & 8.732571601867676                                 & 7.12130880355835                                   \\
+    \bottomrule
+  \end{tabular}
+}
+
+As expected, the direction is sometimes better and sometimes worse, but roughly the same.

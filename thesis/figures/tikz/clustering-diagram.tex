@@ -1,0 +1,69 @@
+\begin{tikzpicture}[
+    % arrow tip
+    >=Stealth,
+    % box style
+    box/.style={
+        draw,
+        rectangle,
+        minimum width=50mm,
+        minimum height=10mm,
+        align=center
+      },
+    % dashed region style
+    dashedbox/.style={
+        draw,
+        dashed,
+        inner sep=6mm
+      },
+    % default distance between nodes
+    node distance=8mm and 12mm
+  ]
+
+  % Top layer
+  \node[box] (attrib) {Attribute Sentences};
+  \node[box, below left=of attrib]  (stySent) {Style Sentences};
+  \node[box, below right=of attrib] (knSent)  {Knowledge Sentences};
+
+  % Clustering step
+  \node[box, below=of $(stySent)!0.5!(knSent)$] (cluster)
+  {Clustering by Cosine Similarity};
+
+  % Resulting clusters
+  \node[box, below left=of cluster]  (styCl) {Style Clusters};
+  \node[box, below right=of cluster] (knCl)  {Knowledge Clusters};
+
+  % Three sequential steps
+  \node[box, below=of $(styCl)!0.5!(knCl)$] (step1)
+  {used in maximum number of groups\\minimum usages};
+  \node[box, below=of step1] (step2)
+  {clusters with a minimum distance to each other};
+  \node[box, below=of step2] (step3)
+  {clusters with largest difference in agreement levels};
+
+  % Dashed box around those three steps
+  \node[dashedbox, fit=(step1)(step2)(step3)] {};
+
+  % Final attribute-vector block
+  \node[box, below=of step3] (attrVec) {
+    \begin{tabular}{ccc}
+      Targeted Style Attributes & Knowledge Attributes & Style Attributes
+    \end{tabular}
+    \\[2pt]
+    \textbf{Attribute Vector}
+  };
+
+  % Arrows
+  \draw[->] (attrib)  -- (stySent);
+  \draw[->] (attrib)  -- (knSent);
+  \draw[->] (stySent) -- (cluster);
+  \draw[->] (knSent) -- (cluster);
+  \draw[->] (cluster) -- (styCl);
+  \draw[->] (cluster) -- (knCl);
+  \draw[->] (styCl)    -- (step1);
+  \draw[->] (knCl)     -- (step1);
+  \draw[->] (step1)    -- (step2);
+  \draw[->] (step2)    -- (step3);
+  \draw[->] (step3)    -- (attrVec);
+  \draw[->] (attrVec.west) .. controls +(-15mm,0) and +(-15mm,24mm) .. (stySent.west);
+
+\end{tikzpicture}
