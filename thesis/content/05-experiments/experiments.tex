@@ -4,48 +4,30 @@
 
 \section{Environment and Hardware}
 \label{sec:experiments_evaluation:environmentHardware}
-
-\begin{itemize}
-  \item node on a SLURM server cluster
-        \begin{itemize}
-          \item 32 CPU Cores % or 32?
-          \item \SI{128}{\giga\byte} RAM % or 128?
-          \item Nvidia A-100 GPU with \SI{40}{\giga\byte} RAM
-        \end{itemize}
-  \item Python Version
-  \item sqlite Database as data storage? → show schema diagram in appendix
-\end{itemize}
-
-
-\section{Architecture and Models used}
-\label{sec:approach:architectureModels}
-
-\subsection{Architecture}
-\label{sec:approach:architectureModels:architecture}
-
-\begin{itemize}
-  \item Attribute Sentence Generation
-  \item Clustering
-  \item Selection of Attribute Vector dimensions
-  \item Training SFAM and LISA
-  \item Training the embedding model
-  \item Prompt Steering
-  \item Activation Steering
-\end{itemize}
-
-\subsection{Models}
-\label{sec:approach:architectureModels:models}
-
-\begin{itemize}
-  \item Llama3.2
-  \item Sentence Transformer
-  \item DeBERTaV3
-  \item \ldots
-\end{itemize}
+The experiments were conducted on a SLURM cluster using nodes with \num{32} CPU cores, \SI{128}{\giga\byte} RAM and an Nvidia A-100 GPU with \SI{40}{\giga\byte} VRAM. The implementation is written in python 3.10.13. The data is stored in a SQLite database, the database schema can be found in Appendix~\ref{sec:appendix:databaseSchema}.
 
 \section{Implementation}
+\label{sec:experiments_evaluation:implementation}
 
-\subsection{Creation of the Synthetic Dataset}
+\subsection{Attribute Sentence Generation}
+\label{sec:experiments_evaluation:implementation:sentenceGeneration}
+The synthetic dataset that consists of attribute sentences which describe a set of input texts is constructed by prompting an \acs{llm} in a two-step procedure. For this thesis, the open source model Llama 3.2 Instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}}~(\cite{dubeyLlama3Herd2024}) with \num{3} billion parameters has been used. This model has state-of-the-art performance and is freely available, which provides the possibility to run the model directly on the server cluster. Additionally, it improves the reproducibility of the experiments because it is easier to use the exact same model later.
+To improve the performance of the sentence generation, the library vLLM\footnote{\url{https://github.com/vllm-project/vllm}} was used to run the model.
+
+The basis for the generation of the attribute sentences are \num{\numAnswersStyleVector} answers from the stack exchange dataset described in Section %~\ref{}. TODO:
+For each of the answers, the model is prompted \num{\numPrompts} times to create descriptions of the text with the method presented in Section~\ref{sec:approach:attributeSentenceGeneration}.
+
+For each of the resulting \num{\numStyleDescriptions}, the model is prompted again to convert the description into a list of sentences of the form \enquote{The author is \ldots} or \enquote{The author uses \ldots}. The output of the \ac{llm} is split into sentences using the Natural Language Toolkit\footnote{\url{https://www.nltk.org/}} library (\cite{birdNaturalLanguageProcessing2009}). The naive approach of splitting the sentences at the punctuation would not work as they could include punctuations with expressions such as \enquote{e.g.}.
+
+The model is instructed to avoid negations and examples because they can lead to the sentences having a too dissimilar shape while conveying the same meaning. In addition to this constraint that is stated in the prompt, the final sentences are checked to not include the word \enquote{not}. If they do, they are skipped and not used for further computation. During the experiments, \num{\numSentencesWithNegations} sentences have been filtered because of this reason.
+
+After the previous steps, \numStyleSentencesNotUniqueText{} attribute sentences have been produced. After taking into account only unique sentences, \numStyleSentencesText{} attribute sentences are left. Of these, \num{\numStyleSentencesStyle} sentences are style sentences, which means they have been produced by a style prompt, and \num{\numStyleSentencesKnowledge} are knowledge prompts.
+% TODO: are style sentences + knowledge sentences = all sentences? if not, explain
+
+\subsection{Clustering}
+\label{sec:experiments_evaluation:implementation:clustering}
+Although the number of sentences is reduced significantly by checking for exact duplicates, there are still lots of sentences that have basically the same meaning while being not exactly the same. This can lead to the problem that it would not be clear if an attribute sentence has rarely been used to describe the input texts or if the \ac{llm} has just a high syntactic variance in describe one concept.
+
 \begin{itemize}
   \item to embed the attribute sentences, the model \textit{all-MiniLM-L12-v2} (\cite{reimersSentenceBERTSentenceEmbeddings2019}) has been used
   \item for clustering, sentences must have a cosine similarity of \num{\minCosineSimilarity} or less to be in the same cluster
@@ -53,7 +35,6 @@
 \end{itemize}
 \begin{table}[ht]
   \begin{center}
-    % TODO: alignment of numbers inside the \num command
     \begin{tabular}{lS[table-format=7.0]}
       \toprule
                    & {Number of data points} \\ \midrule
@@ -68,14 +49,15 @@
   \end{center}
 \end{table}
 
-\subsection{Attribute Selection}
+\subsection{Selecting the Attribute Vector Dimensions}
+\label{sec:experiments_evaluation:selection}
 \begin{itemize}
   \item \num{\numClusters} clusters
   \item \num{\numAnswersStyleVector} answers by \num{\numGroups} groups
   \item select only \num{\styleVectorSize} attributes for the interpretable attribute vector
   \item filtering out too frequent
         \begin{itemize}
-          \item max \clusterMaxGroupRatio{} of groups (number taken from \citet{patelLearningInterpretableStyle2023})
+          \item max \clusterMaxGroupRatioText{} of groups (number taken from \citet{patelLearningInterpretableStyle2023})
           \item number of clusters smaller er than \num{\maxClustersFirstSelection}. This number was chosen to be small enough for the following computation but big enough to enable a meaningful selection of attribute vector dimensions.
         \end{itemize}
   \item too similar
@@ -85,15 +67,51 @@
         \end{itemize}
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[ht]
   \begin{center}
     \input{figures/tikz/clustering-diagram.tex}
   \end{center}
 \end{figure}
 
 
+Following the previous steps, there is now a synthetic dataset with lots of clusters. Since the final attribute vector will consist of significantly fewer dimensions, a process to select the best ones is needed. This selection is carried out in multiple steps.
+
+\subsubsection{Selection of target attributes}
+\label{sec:experiments_evaluation:selection:targetAttributes}
+Following the work of \citet{patelLearningInterpretableStyle2023}, the first \num{\numTargetPrompts} dimensions of the attribute vector will be selected to correspond to the \num{\numTargetPrompts} target prompts, which were described in Section~\ref{sec:approach:attributeSentenceGeneration}.
+This is done to ensure that the attribute vector has a robust foundation on some features that are manually selected for being relevant for stylistic research. The ability to automatically create most of the attribute vector is not significantly reduced since the target attributes only account for around \SI{10}{\percent} of its size. % TODO: 10% of unknown size of the vector?
+
+These attributes are found by creating sentences of the form \enquote{The author uses <target>} and embedding them using an embedding model.
+Afterward, for each sentence, the style cluster with the highest cosine similarity is found. This cluster is then one of the target attributes of the vector. The knowledge clusters are not taken into account during this selection.
+
+
+\subsubsection{Filtering out attributes that occur too frequently}
+\label{sec:experiments_evaluation:selection:filteringOccurance}
+An important characteristic of all attributes that are part of the attribute vector is that they are as meaningful as possible and help to distinguish between different groups. To ensure this requirement is met, attributes that describe texts of a too large portion of groups are removed.
+
+For the next steps of the cluster selection, it is also important that there are not too many possible clusters to select from, otherwise the computation would need too much time and memory. To quickly reduce the number of clusters, the number of times the cluster was used to describe answers is taken into account. The required number of times used is increased until the resulting number of clusters is small enough.
+
+% TODO: include this?
+A cluster could be used multiple times to describe the same answer. Although the sentence produced by each prompt is only counted once per prompt, multiple prompts could use the same or similar enough sentences to describe the answer. For this selection however, only the number of answers that have been described with the cluster are being counted and not how often the cluster was used.
+
+\subsubsection{Removing too similar Attributes}
+\label{sec:experiments_evaluation:selection:removeSimilar}
+To ensure that the attribute vector covers a wide range of attributes, it is important that the attributes do not cover too similar topics. This is achieved by ensuring that the clusters have a maximum cosine distance to each other. This process works by ordering the clusters by occurrence, selecting them one after the other, and deleting all clusters that are too close to the ones that have already been selected.
+
+\subsubsection{Final Selection} % TODO: better name?
+\label{sec:experiments_evaluation:selection:finalSelection}
+The first \num{\numTargetPrompts} dimensions of the attribute vector are the target attributes that were selected in Section~\ref{sec:approach:selection:targetAttributes}. The next \num{\minNumKnowledgePrompts} dimensions are knowledge clusters, that is clusters of sentences that were produced by knowledge prompts. The rest of the dimensions are selected in this step to be the ones with the highest range of accordance. % TODO: better word than accordance?
+
+Range of accordance means that the range between the answers that match the attribute really well and the ones that do not match is as big as possible. This further increases the probability that the attributes are well suited to distinguish between different answers and groups.
+
+First, the similarity between all clusters that remain after the first selection steps is computed. Afterward, for each cluster and each answer, the average similarity to all other clusters that have been used to describe that answer is computed. The result is a rough estimation of the actual similarity between the current attribute sentence and the answer.
+
+Subsequently, the range between the similarity of the most and least similar answers is computed, and the clusters with the highest difference are selected. With the process, the probability of attributes holding meaningful information to distinguish between different groups is increased.
+
+
+
 \section{Evaluation Metrics}
-\label{sec:approach:evaluationMetrics}
+\label{sec:experiments_evaluation:evaluationMetrics}
 
 \begin{itemize}
   \item SFAM

@@ -7,6 +7,8 @@ paper-code/**
 simple.pdf
 thesis.pdf
 presentation.pdf
+*.drawio
+*.bkp
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
