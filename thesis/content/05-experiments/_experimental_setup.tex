@@ -112,6 +112,8 @@ Subsequently, the range between the similarity of the most and least similar ans
 \subsection{\acf{sfam}}
 \label{sec:experiments:setup:sfam}
 For the creation of the attribute vector, this thesis utilizes the \acl{sfam} proposed by \citet{patelLearningInterpretableStyle2023}. There are however two significant changes in comparison to the original model. For one, DeBERTa-V3-base\footnote{\url{https://huggingface.co/microsoft/deberta-v3-base}} (\cite{he2021deberta}) was used as the base model instead of t5-base. Furthermore, the final output is produced with a regression head with a single output instead of a binary classification head.
+% TODO: explain why not deberta-large?
+% TODO: what hyperparameters where used?
 
 The final layer of the model proposed by \citet{patelLearningInterpretableStyle2023} has to output neurons; one for positive prediction and one for negative prediction. To get the agreement score, a softmax over the two values is used. In contrast to that, the method presented by this thesis uses a final layer with just one output neuron which has a sigmoid activation function. The output of the model therefore is directly the agreement score without any additional computation step.
 
@@ -141,31 +143,23 @@ Because of this, \ac{sfam} is tested not only on unseen attribute sentences but 
 
 \subsection{\acf{lisa} Model}
 \label{sec:experiments:setup:lisa}
+While \ac{sfam} is sufficient to produce the interpretable attribute vectors that are the goal of this thesis, it has the disadvantage a forward pass is required for each individual of the \num{\styleVectorSize} dimensions of the attribute vector. To improve the runtime performance, this thesis implements the \ac{lisa} model following the work of \citet{patelLearningInterpretableStyle2023}.
+% TODO: what hyperparameters where used?
 
-\begin{itemize}
-  \item \ac{sfam} works well, but the creation of one attribute vector requires \num{\styleVectorSize} forward pass, one per dimension
-  \item since this takes too long for practical purposes, a second model, the \acf{lisa} model, is trained based upon the work of \citet{patelLearningInterpretableStyle2023}
-  \item deberta-v3-large instead of \ldots{} used by \citet{patelLearningInterpretableStyle2023}
-  \item sigmoid activation function to only produce values between 0 and 1
-        \begin{itemize}
-          \item \citet{patelLearningInterpretableStyle2023} used np.clip()
-        \end{itemize}
-  \item trained on attribute vectors created by \ac{sfam}
-  \item dataset sizes?
-\end{itemize}
+The model is based upon the newer and more capable DeBERTa-V3-large\footnote{\url{https://huggingface.co/microsoft/deberta-v3-large}} model instead of t5-base. Attached to the model is a regression head which directly outputs the attribute vector in one forward pass. In contrast to \citet{patelLearningInterpretableStyle2023} who cut of output values which are not between \num{0} and \num{1}, the model implemented for this thesis has a sigmoid activation function in the final layer, so the output values of the model are always in the correct range. This has the advantage that the model is less likely to predict extreme agreement scores for attributes. This matches the reality as most attributes match texts mostly but not completely.
+
+\ac{lisa} is trained on the attribute vectors that were created with \ac{sfam}. For this thesis, a training dataset with \num{\lisaTrainingDataSize} samples, a validation dataset with \num{\lisaValDataSize} samples and a test dataset with \num{\lisaTestDataSize} samples were used.
 
 
 \subsection{Embedding Model}
 \label{sec:experiments:setup:embedder}
-\begin{itemize}
-  \item attribute vector vs. attribute embedding
-  \item necessary to compare different texts with each other to for example predict from which group a text was written
-        % TODO: is the model structure correct?
-  \item an embedding head for the \ac{lisa} model with two fully connected layers and a ReLu in between
-  \item input: attribute vector; output: attribute embedding
-  \item training, validation and test data are the same as \ac{lisa}
-  \item trained using triplet loss with a contrastive objective
-\end{itemize}
+While the attribute vector produced by \ac{lisa} is interpretable, it is not suited for the task of group-membership detection. Because the dimensions of the vector are not normalized, attribute vectors of different texts can not be meaningfully compared to each other. To fix this problem, this thesis implements an embedding head for the \ac{lisa} model following the work of \citet{patelLearningInterpretableStyle2023}.
+
+The embedding model consists of two fully connected layers with a ReLu activation function in between. The input is the attribute vector and the output is an embedding with \num{\styleEmbeddingSize} dimensions. The number of embedding dimension follows previous work (\cite{patelLearningInterpretableStyle2023}). The model was trained using a triplet loss with a contrastive learning objective\footnote{\url{https://docs.pytorch.org/docs/stable/generated/torch.nn.TripletMarginLoss.html}} (\cite{NEURIPS2020_d89a66c7}) where the distance is measured as the Euclidean distance with a margin of \num{5.0}.
+
+% TODO:
+% For the training process, a learning rate of \ldots and a weight decay of \ldots was chosen. These values were identified as the best ones with a hyperparameter search using the library optuna\footnote{\url{https://optuna.org/}}.
+Each training sample consists of three attribute vectors, two of the same group and one of a different group. The model creates the embeddings for all three vectors. The training goal is that the anchor embedding is closer to the positive embedding (the same group) than the negative embedding (the different group). The training, validation and test datasets are the same as the ones used for the \ac{lisa} model.
 
 
 \subsection{Steering}
@@ -174,12 +168,23 @@ Because of this, \ac{sfam} is tested not only on unseen attribute sentences but 
 
 \begin{itemize}
   \item repeat approach
+  \item steering with model llama-3.2-3B-instruct
   \item steering prompts in Appendix~\ref{sec:appendix:steeringPrompts}
+  \item steering for each group in the synthetic dataset, \num{11} in total
+  \item for each question, group and steering method, the \ac{llm} is prompted
+        % \item the answers are embedded using the embedding model from Section~\ref{sec:experiments:setup:embedder} % probably evaluation
 \end{itemize}
 
 \subsubsection{Activation Steering}
 \label{sec:experiments:setup:steering:activation}
 
 \begin{itemize}
+  \item using the same model as for prompt steering
+  \item activation vector extraction based on \citet{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}
+        % TODO: which paper is it mostly based on?
+        \begin{itemize}
+          \item Convert each attribute vector dimension into a prompt of the form % TODO: continue
+        \end{itemize}
   \item using layers in the middle based upon the research by \citet{konenStyleVectorsSteering2024,bogdanEmergentEffectsScaling2025}
+  \item activation steering is combined with prompt steering
 \end{itemize}

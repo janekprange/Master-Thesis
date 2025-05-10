@@ -119,6 +119,8 @@ The \ac{lisa} model produces an attribute vector where each dimension correspond
 Because of that, an embedding head for the \ac{lisa} model is trained that produces attribute embeddings. While the dimensions of the embedding are not directly interpretable, they are derived directly from the interpretable attribute vectors and therefore do not lose much interpretability.
 
 \section{Steering Text Generation}
+\label{sec:approach:steering}
+% TODO: more introduction; why is steering important? talk about explanation generation
 The aim of this thesis is to combine the group membership task with the steering of \acp{llm} towards group-specific explanations. Multiple different methods will be presented and compared to each other. The method is split into two groups: changing the system prompt to steer the model and manipulating the output of the activation functions after selected layers.
 
 \subsection{Prompt Steering}
@@ -140,7 +142,7 @@ Thus, the attribute sentences will have the form \enquote{You are \ldots}.
 The final prompt steering methods will combine the two previous methods and include both the group name and the most important attribute sentences in the system prompt.
 
 \section{Activation Steering}
-
+\label{sec:approach:steering:activation}
 While the prompt steering methods are easy to implement, they have the disadvantage that they do not allow for fine-grained steering. Even when the most important attributes are included in the system prompt, there is no way to tell the model how strongly each attribute should influence the generated text. To solve this problem, this thesis proposes a method to steer the \ac{llm} by manipulating its activation space during inference following the work of \citet{turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
 
 The steering vectors are created without any training process, which reduces the required time significantly. For each dimension of the interpretable attribute vector, a separate steering vector is extracted.
