@@ -12,18 +12,18 @@ To improve the performance of the sentence generation, the library vLLM\footnote
 The basis for the generation of the attribute sentences are \num{\numAnswersStyleVector} answers from the stack exchange dataset described in Section %~\ref{}. TODO:
 For each of the answers, the model is prompted \num{\numPrompts} times to create descriptions of the text with the method presented in Section~\ref{sec:approach:attributeSentenceGeneration}.
 
-For each of the resulting \num{\numStyleDescriptions}, the model is prompted again to convert the description into a list of sentences of the form \enquote{The author is \ldots} or \enquote{The author uses \ldots}. The output of the \ac{llm} is split into sentences using the Natural Language Toolkit\footnote{\url{https://www.nltk.org/}} library (\cite{birdNaturalLanguageProcessing2009}). The naive approach of splitting the sentences at the punctuation would not work as they could include punctuations with expressions such as \enquote{e.g.}.
+For each of the resulting \num{\numStyleDescriptions}, the model is prompted again to convert the description into a list of sentences of the form \enquote{The author is \ldots} or \enquote{The author uses \ldots}. The output of the \ac{llm} is split into sentences using the Natural Language Toolkit\footnote{\url{https://www.nltk.org/}} library (\cite{birdNaturalLanguageProcessing2009}). The naive approach of splitting the sentences at the punctuation would not work because they could contain punctuation with expressions like \enquote{e.g.}.
 
-The model is instructed to avoid negations and examples because they can lead to the sentences having a too dissimilar shape while conveying the same meaning. In addition to this constraint that is stated in the prompt, the final sentences are checked to not include the word \enquote{not}. If they do, they are skipped and not used for further computation. During the experiments, \num{\numSentencesWithNegations} sentences have been filtered because of this reason.
+The model is instructed to avoid negations and examples because they can lead to the sentences having too dissimilar a shape while conveying the same meaning. In addition to this constraint that is stated in the prompt, the final sentences are checked to not include the word \enquote{not}. If they do, they are skipped and not used for further computation. During the experiments, \num{\numSentencesWithNegations} sentences have been filtered for this reason.
 
 After the previous steps, \numStyleSentencesNotUniqueText{} attribute sentences have been produced. After taking into account only unique sentences, \numStyleSentencesText{} attribute sentences are left. Of these, \num{\numStyleSentencesStyle} sentences are style sentences, which means they have been produced by a style prompt, and \num{\numStyleSentencesKnowledge} are knowledge prompts.
 % TODO: are style sentences + knowledge sentences = all sentences? if not, explain
 
 \subsection{Clustering}
 \label{sec:experiments:setup:clustering}
-Although the number of sentences is reduced significantly by checking for exact duplicates, there are still lots of sentences that have basically the same meaning while being not exactly the same. This can lead to the problem that it would not be clear if an attribute sentence has rarely been used to describe the input texts or if the \ac{llm} has just a high syntactic variance in describe one concept.
+Although checking for exact duplicates reduces the number of sentences significantly, there are still many sentences that have basically the same meaning, but are not exactly the same. This can lead to the problem that it would not be clear if an attribute sentence has rarely been used to describe the input texts or if the \ac{llm} has just a high syntactic variance in describing one concept.
 
-The solution to this problem that this thesis is to cluster the sentences and use the clusters as attributes by using the sentence that is closest to the center as the representation for the cluster.
+The solution to this problem that this thesis proposes is to cluster the sentences and use the clusters as attributes by using the sentence that is closest to the center as the representation for the cluster.
 The first step for this procedure is to create an embedding of all sentences so they can be compared semantically. The SBERT model \textit{all-MiniLM-L12-v2}\footnote{\url{https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2}} (\cite{reimersSentenceBERTSentenceEmbeddings2019}) was used to create the embeddings.
 
 For the following steps, the style and knowledge sentences have been processed separately to ensure the resulting clusters are either style or knowledge clusters.
@@ -31,7 +31,7 @@ The clustering algorithm first computes a radius neighbor graph of all sentences
 
 % TODO: why 0.85 min similarity?
 
-At this point, there \num{\numClusters} clusters, \num{\numClustersStyle} of which are style clusters and \num{\numClustersKnowledge} are knowledge clusters. The size of the complete synthetic dataset can be found in Table~\ref{table:syntheticDataset}.
+At this point, there are \num{\numClusters} clusters, \num{\numClustersStyle} of which are style clusters and \num{\numClustersKnowledge} are knowledge clusters. The size of the complete synthetic dataset can be found in Table~\ref{table:syntheticDataset}.
 
 \begin{table}[ht]
   \begin{center}
@@ -45,13 +45,13 @@ At this point, there \num{\numClusters} clusters, \num{\numClustersStyle} of whi
       Clusters     & \numClusters            \\ \bottomrule
     \end{tabular}
   \end{center}
-  \caption{The size of the synthetic dataset created for this thesis. The answers are the group-specific input texts that are taken from the stack exchange dataset (see Section~\ref{sec:datasets:stackex}). For each answer and prompt, the \ac{llm} is prompted to create the style and knowledge descriptions. The descriptions are converted to attribute sentences by prompting the model again. Finally, the sentences are clustered together by the cosine similarity of their embeddings. The embeddings where produced with an SBERT model (\cite{reimersSentenceBERTSentenceEmbeddings2019}).}
+  \caption{The size of the synthetic dataset created for this thesis. The answers are the group-specific input texts that are taken from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). For each answer and prompt, the \ac{llm} is prompted to create the style and knowledge descriptions. The descriptions are converted to attribute sentences by prompting the model again. Finally, the sentences are clustered together by the cosine similarity of their embeddings. The embeddings were produced with an SBERT model (\cite{reimersSentenceBERTSentenceEmbeddings2019}).}
   \label{table:syntheticDataset}
 \end{table}
 
 \subsection{Selecting the Attribute Vector Dimensions}
 \label{sec:experiments:setup:selection}
-The synthetic dataset resulting from the previous steps consists of \num{\numClusters} clusters which are the potential dimensions of the interpretable attribute vector. This vector however consists of \num{\styleVectorSize} dimensions as established by \citet{patelLearningInterpretableStyle2023}. Therefore, the best clusters have to be selected to be part of the attribute vector. This selection is carried out in multiple steps which are described in the following section and additionally shown in Figure~\ref{fig:clustering}.
+The synthetic dataset resulting from the previous steps consists of \num{\numClusters} clusters, which are the potential dimensions of the interpretable attribute vector. This vector however consists of \num{\styleVectorSize} dimensions as established by \citet{patelLearningInterpretableStyle2023}. Therefore, the best clusters have to be selected to be part of the attribute vector. This selection is carried out in multiple steps, which are described in the following section and additionally shown in Figure~\ref{fig:clustering}.
 
 \begin{figure}[ht]
   \begin{center}
@@ -79,9 +79,9 @@ The knowledge clusters are not taken into account during this selection. Since a
 \label{sec:experiments:setup:selection:filteringOccurance}
 An important characteristic of all attributes that are part of the attribute vector is that they are as meaningful as possible and help to distinguish between different groups. To ensure this requirement is met, attributes that describe texts of a too large portion of groups are removed. Based upon the work of \citet{patelLearningInterpretableStyle2023}, the maximum number of groups that can be described by an attribute cluster is \SI{60}{\percent}.
 
-At the same time, the number of clusters that are taken into account for the next selection steps has to reduced because these steps have a quadratic memory requirement. To quickly reduce the number of clusters, the number of times the cluster was used to describe answers is taken into account. The required number of times used is increased until the resulting number of clusters is small enough. This way, the largest clusters that are not used to describe too many groups are used for the next steps.
+At the same time, the number of clusters that are taken into account for the next selection steps has to be reduced because these steps have a quadratic memory requirement. To quickly reduce the number of clusters, the number of times the cluster was used to describe answers is taken into account. The required number of times used is increased until the resulting number of clusters is small enough. This way, the largest clusters that are not used to describe too many groups are used for the next steps.
 
-To determine, how many times a cluster was used to describe an answer, each sentence is only counted once per answer. Multiple prompts could produce the same attribute sentence to describe an answer; counting all of them would however distort the number of usages of the clusters.
+To determine how many times a cluster was used to describe an answer, each sentence is only counted once per answer. Multiple prompts could produce the same attribute sentence to describe an answer; counting all of them would however distort the number of usages of the clusters.
 
 \subsubsection{Removing too similar Attributes}
 \label{sec:experiments:setup:selection:removeSimilar}
@@ -91,16 +91,16 @@ The cosine similarity is computed between the embeddings of the attribute senten
 % TODO: explanation why 0.7
 \begin{itemize}
   \item patel et al have a maximum cosine similarity of 0.8, I have 0.7
-  \item in this case, sentences that have a similarity higher than 0.85, they are in the same cluster
-  \item a lower maximum similarity garantees a broader attribute vector
+  \item in this case, sentences that have a similarity higher than 0.85 are in the same cluster
+  \item a lower maximum similarity guarantees a broader attribute vector
   \item when lower than 0.7, there are not enough attribute candidates
 \end{itemize}
 
 \subsubsection{Final Selection} % TODO: better name?
 \label{sec:experiments:setup:selection:finalSelection}
-The first \num{\numTargetPrompts} dimensions of the attribute vector are the target attributes that were selected in Section~\ref{sec:experiments:setup:selection:targetAttributes}. The next \num{\minNumKnowledgePrompts} dimensions are knowledge clusters, that is clusters of sentences that were produced by knowledge prompts. The rest of the dimensions are selected in this step to be the ones with the highest difference in agreement levels.
+The first \num{\numTargetPrompts} dimensions of the attribute vector are the target attributes that were selected in Section~\ref{sec:experiments:setup:selection:targetAttributes}. The next \num{\minNumKnowledgePrompts} dimensions are knowledge clusters, that is, clusters of sentences that were produced by knowledge prompts. The rest of the dimensions are selected in this step to be the ones with the highest difference in agreement levels.
 
-Difference in agreement levels means that the range between the answers that match the attribute really well and the ones that do not match is as big as possible. This further increases the probability that the attributes are well suited to distinguish between different answers and groups.
+A difference in agreement levels means that the range between responses that fit the attribute well and those that do not is as wide as possible. This further increases the likelihood that the attributes are good at distinguishing between different responses and groups.
 
 % TODO: complete code
 \lstinputlisting[language=Python, caption={Pseudo code for the final cluster selection step.}]{content/05-experiments/final-cluster-selection.py}
@@ -113,23 +113,23 @@ Subsequently, the range between the similarity of the most and least similar ans
 \label{sec:experiments:setup:sfam}
 For the creation of the attribute vector, this thesis utilizes the \acl{sfam} proposed by \citet{patelLearningInterpretableStyle2023}. There are however two significant changes in comparison to the original model. For one, DeBERTa-V3-base\footnote{\url{https://huggingface.co/microsoft/deberta-v3-base}} (\cite{he2021deberta}) was used as the base model instead of t5-base. Furthermore, the final output is produced with a regression head with a single output instead of a binary classification head.
 % TODO: explain why not deberta-large?
-% TODO: what hyperparameters where used?
+% TODO: what hyperparameters were used?
 
-The final layer of the model proposed by \citet{patelLearningInterpretableStyle2023} has to output neurons; one for positive prediction and one for negative prediction. To get the agreement score, a softmax over the two values is used. In contrast to that, the method presented by this thesis uses a final layer with just one output neuron which has a sigmoid activation function. The output of the model therefore is directly the agreement score without any additional computation step.
+The final layer of the model proposed by \citet{patelLearningInterpretableStyle2023} has to output neurons; one for positive prediction and one for negative prediction. To get the agreement score, a softmax over the two values is used. In contrast to that, the method presented by this thesis uses a final layer with just one output neuron which has a sigmoid activation function. Therefore, the output of the model is the agreement score without any additional computation step.
 
 The input to the model is truncated to 512 tokens following the work of \citet{patelLearningInterpretableStyle2023}.
 
-\acs{sfam} is trained on the synthetic dataset that was described in the previous sections. The training data is balanced and consists of attribute sentences with one answer from the Stack Exchange Dataset (see Section~\ref{sec:datasets:stackex}) which fits the attribute sentence as a positive sample and one answer which does not fit the sentence as a negative sample. The input to the model is a string of the form \enquote{\(\{\{a\}\}~|||~\{\{t\}\}\)}, where \(a\) is the attribute sentence and \(t\) is the text that is the positive or negative sample.
+\acs{sfam} is trained on the synthetic dataset that was described in the previous sections. The training data is balanced and consists of attribute sentences with one answer from the Stack Exchange Dataset (see Section~\ref{sec:datasets:stackex}), which fits the attribute sentence as a positive sample and one answer which does not fit the sentence as a negative sample. The input to the model is a string of the form \enquote{\(\{\{a\}\}~|||~\{\{t\}\}\)}, where \(a\) is the attribute sentence and \(t\) is the text that is the positive or negative sample.
 
 The selection of the attribute sentences and answers used for training is similar to the process described in Section~\ref{sec:experiments:setup:selection:finalSelection} and differs from \citet{patelLearningInterpretableStyle2023}. They select sentences for training at random and choose a text that is described with the sentence in the synthetic dataset as a positive sample. A negative sample is selected by sampling a text that is described by the sentence with the largest cosine distance to the current sentence.
 The potential problem with this process is that the annotation in the synthetic dataset is not perfect and it is possible that the text that are selected as a positive sample do not actually correspond to the sentence.
 
-The method proposed in this thesis instead orders all answers by a heuristic similarity to the sentence and selects one of the most similar to a positive sample and one of the most dissimilar as a negative sample. For each sentence, firstly the heuristic similarity to each text is computed. This is done by computing the similarity to all attribute vector dimensions that are used to describe the text in the synthetic dataset. The average of these similarities serves as an approximation for the actual similarity.
+The method proposed in this thesis instead orders all answers by a heuristic similarity to the sentence and selects one of the most similar to a positive sample and one of the most dissimilar as a negative sample. For each sentence, first the heuristic similarity to each text is computed. This is done by computing the similarity to all attribute vector dimensions that are used to describe the text in the synthetic dataset. The average of these similarities serves as an approximation for the actual similarity.
 
-Subsequently, the answers are ordered by their heuristic similarity to the attribute sentence. The positive training sample is the most similar text where the sentence was actually used to describe it in the synthetic dataset. The negative trainings sample is the most dissimilar where the sentence was not used to describe it. If a candidate for the positive sample is not in the top \sfamDataTopPercentText{}, the sentence is not used for the \ac{sfam} training dataset. % TODO: reason
-Since the synthetic dataset consist of \numStyleSentencesText{} attribute sentences and the \ac{sfam} training dataset consists of only \num{\sfamTrainingDataSize} samples, it is no problem to discard sentences where the positive sample does not have a sufficiently high heuristic similarity.
+Subsequently, the answers are ordered by their heuristic similarity to the attribute sentence. The positive training sample is the most similar text where the sentence was used to describe it in the synthetic dataset. The negative training sample is the most dissimilar sentence that was not described by the sentence. If a candidate for the positive sample is not in the top \sfamDataTopPercentText{}, the sentence is not used for the \ac{sfam} training dataset. % TODO: reason
+Since the synthetic dataset consists of \numStyleSentencesText{} attribute sentences and the \ac{sfam} training dataset consists of only \num{\sfamTrainingDataSize} samples, it is no problem to discard sentences where the positive sample does not have a sufficiently high heuristic similarity.
 
-The validation and test datasets are produced with the same method. However, while \citet{patelLearningInterpretableStyle2023} just sample distinct sets of sentences for the training, validation and test datasets, for this thesis the input texts themselves are assigned to the different dataset categories. The attribute sentences produced from these texts are also largely distinct, also this is not enforced and simply a side effect of the \ac{llm} using different formulations for the same concepts (see Figure~\ref{fig:sfamDatasetSplit}).
+The validation and test datasets are produced with the same method. However, while \citet{patelLearningInterpretableStyle2023} sample distinct sets of sentences for the training, validation, and test datasets, for this thesis the input texts themselves are assigned to the different dataset categories. The attribute sentences produced from these texts are also largely distinct, also this is not enforced and simply a side effect of the \ac{llm} using different formulations for the same concepts (see Figure~\ref{fig:sfamDatasetSplit}).
 Because of this, \ac{sfam} is tested not only on unseen attribute sentences but on unseen texts as well.
 
 \begin{figure}[ht]
@@ -143,10 +143,10 @@ Because of this, \ac{sfam} is tested not only on unseen attribute sentences but 
 
 \subsection{\acf{lisa} Model}
 \label{sec:experiments:setup:lisa}
-While \ac{sfam} is sufficient to produce the interpretable attribute vectors that are the goal of this thesis, it has the disadvantage a forward pass is required for each individual of the \num{\styleVectorSize} dimensions of the attribute vector. To improve the runtime performance, this thesis implements the \ac{lisa} model following the work of \citet{patelLearningInterpretableStyle2023}.
-% TODO: what hyperparameters where used?
+While \ac{sfam} is sufficient to produce the interpretable attribute vectors that are the goal of this thesis, it has the disadvantage that a forward pass is required for each individual of the \num{\styleVectorSize} dimensions of the attribute vector. To improve the runtime performance, this thesis implements the \ac{lisa} model following the work of \citet{patelLearningInterpretableStyle2023}.
+% TODO: what hyperparameters were used?
 
-The model is based upon the newer and more capable DeBERTa-V3-large\footnote{\url{https://huggingface.co/microsoft/deberta-v3-large}} model instead of t5-base. Attached to the model is a regression head which directly outputs the attribute vector in one forward pass. In contrast to \citet{patelLearningInterpretableStyle2023} who cut of output values which are not between \num{0} and \num{1}, the model implemented for this thesis has a sigmoid activation function in the final layer, so the output values of the model are always in the correct range. This has the advantage that the model is less likely to predict extreme agreement scores for attributes. This matches the reality as most attributes match texts mostly but not completely.
+The model is based upon the newer and more capable DeBERTa-V3-large\footnote{\url{https://huggingface.co/microsoft/deberta-v3-large}} model instead of t5-base. Attached to the model is a regression head that directly outputs the attribute vector in one forward pass. Unlike \citet{patelLearningInterpretableStyle2023}, who truncate output values that are not between \num{0} and \num{1}, the model implemented for this thesis has a sigmoid activation function in the final layer, so that the output values of the model are always in the correct range. This has the advantage that the model is less likely to predict extreme agreement scores for attributes. This matches the reality, as most attributes match texts mostly, but not completely.
 
 \ac{lisa} is trained on the attribute vectors that were created with \ac{sfam}. For this thesis, a training dataset with \num{\lisaTrainingDataSize} samples, a validation dataset with \num{\lisaValDataSize} samples and a test dataset with \num{\lisaTestDataSize} samples were used.
 

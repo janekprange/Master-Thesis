@@ -126,7 +126,7 @@ The aim of this thesis is to combine the group membership task with the steering
 \subsection{Prompt Steering}
 \label{sec:approach:steering:prompt}
 % TODO: write better (and more?)
-This thesis proposes three different approaches to modify the system prompt of the \ac{llm} to steer its output. The first steering method makes use of the inherit knowledge of the model by instructing it to write the explanation for the specified group. The second method will extract the most important dimensions of the interpretable attribute vector for the group and instructing the model to match the style and background knowledge of the group. The third method will combine both methods.
+This thesis proposes three different approaches to modify the system prompt of the \ac{llm} to steer its output. The first steering method makes use of the inherent knowledge of the model by instructing it to write the explanation for the specified group. The second method will extract the most important dimensions of the interpretable attribute vector for the group and instruct the model to match the style and background knowledge of the group. The third method will combine both methods.
 
 
 \subsection{Activation Steering}
@@ -134,9 +134,9 @@ This thesis proposes three different approaches to modify the system prompt of t
 While the prompt steering methods are easy to implement and do not require any changes to the model itself, they have the disadvantage that they do not allow for fine-grained steering. Even when the most important attributes are included in the system prompt, there is no way to tell the model how strongly each attribute should influence the generated text. To solve this problem, this thesis proposes a method to steer the \ac{llm} by manipulating its activation space during inference based on the work of \citet{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
 
 \subsubsection{Extracting Steering Vectors}
-The attribute that should be steered towards will be a part of the system prompt similar to the prompt attribute steering described in Section~\ref{sec:approach:steering:prompt}. Following that, the model predicts the next token in one forward pass. From that inference, the vectors after the activation functions of each layer are extracted and saved. The predicted token is not important during this process. % TODO: extract from activation functions or from residual streams?
+The attribute that should be steered towards will be a part of the system prompt similar to the prompt attribute steering described in Section~\ref{sec:approach:steering:prompt}. Following that, the model predicts the next token in one forward pass. From that inference, the vectors after the activation functions of each layer are extracted and saved. The predicted token is not important during this process. % TODO: extract from activation functions or residual streams?
 
-To get the steering vector of a group, all attribute steering vectors need to be combined. For that, a softmax of the median attribute vector for a group is created. Afterward, each attribute steering vector is multiplied with the corresponding value of the softmax. Finally, all weighted steering vectors are added together.
+To get the steering vector of a group, all attribute steering vectors need to be combined. For that, a softmax of the median attribute vector for a group is created. Afterward, each attribute steering vector is multiplied by the corresponding value of the softmax. Finally, all weighted steering vectors are added together.
 
 Alternatively, instead of including all dimensions of the attribute vector, only the most important attributes can be used to create the group steering vector.
 
@@ -148,8 +148,8 @@ Alternatively, instead of including all dimensions of the attribute vector, only
 
 
 \subsubsection{Text Generation Steering}
-To steer the text generation of a \acl{llm}, the computed steering vector is added to a layer of the model during the forward pass. The layer the vector is inserted into must be the same as the vectors that were combined to form the steering vector where taken from. The steering vector can be scaled with a factor \(\lambda\) to further control the strength of the steering effect.
-Because the steering vector is extracted during the first forward pass, it is also inserted exclusively during the first forward pass (\cite{rimsky-etal-2024-steering}).
+To steer the text generation of a \acl{llm}, the computed steering vector is added to a layer of the model during the forward pass. The layer the vector is inserted into must be the same as the one the vectors that were combined to form the steering vector were taken from. The steering vector is scaled with a factor \(\lambda\) to further control the strength of the steering effect.
+% Because the steering vector is extracted during the first forward pass, it is also inserted exclusively during the first forward pass (\cite{rimsky-etal-2024-steering}).
 % \begin{itemize}
 %   \item strength of the method is that no training is needed
 %   \item the activation vectors will be extracted at each layer
