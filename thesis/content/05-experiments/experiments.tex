@@ -29,32 +29,30 @@ The experiments were conducted on a SLURM cluster using nodes with \num{32} CPU 
 %         % \item how often attribute vector dimensions have been used -> targeted dimension very often, for the others it would be more interesting
 % \end{itemize}
 
-\section{Model performance}
+\section{Evaluating Model Performance}
 \label{sec:experiments:models}
+The three models that are presented in this thesis, \ac{sfam}, \ac{lisa} and the embedding model, are all trained on test datasets that are constructed similarly to their training and validation datasets but consist of unseen data.
 
-\begin{itemize}
-  \item \ac{sfam} is evaluated on a test dataset that is created the same way as the training dataset (see Section~\ref{sec:experiments:setup:sfam})
-        \begin{itemize}
-          \item task is to predict if a attribute sentence fits a text
-          \item ground trouth is if the sentence was used to describe the answer or not in the attribute sentence generation (see Section~\ref{sec:experiments:setup:sentenceGeneration})
-          \item the prediction of \ac{sfam} is a value between \num{0} and \num{1}; it is rounded and compared to the ground truth
-          \item the evaluation metrics are accuracy, F1
-        \end{itemize}
-  \item \ac{lisa} is evaluated against attribute vectors created by \ac{sfam}
-        \begin{itemize}
-          \item evaluation metrics are MSE, MAE and the average cosine similarity between the attribute vectors
-          \item additionally, both vectors are rounded so they represent the prediction if the attribute fits or not; on that, accuracy and F1 is used
-        \end{itemize}
-  \item the embedding model is evaluated by comparing the embeddings of three answers, two of which are from the same group
-        \begin{itemize}
-          \item the task is for the model to produce embeddings that are closer to each other for answers from the same group
-          \item evaluation metrics are accuracy and F1 for both cosine and euclidean distance
-        \end{itemize}
-\end{itemize}
+For \ac{sfam}, the test dataset is constructed from unseen answers of the synthetic dataset described in Section~\ref{sec:approach:attributeSentenceGeneration}. The test data is balanced and consists of \num{\sfamTestDataSize} samples which were extracted with the method described in Section~\ref{sec:experiments:setup:sfam}.
+During the test, \ac{sfam} is tasked with predicting if an attribute sentence matches a given answer. The ground trouth for this task is if the attribute sentence was actually used to describe the answer in the synthetic dataset. The agreement score that \ac{sfam} produces is rounded to either one (positive prediction) or zero (negative prediction) and compared to the ground truth. % TODO: mention evaluation metrics?
 
-\section{Steering Performance}
+\ac{lisa} is trained and evaluated attribute vectors created with \ac{sfam}. The evaluation is conducted on \num{\lisaTestDataSize} unseen samples. % TODO: mention evaluation metrics?
+% \begin{itemize}
+%   \item evaluation metrics are MSE, MAE and the average cosine similarity between the attribute vectors
+%   \item additionally, both vectors are rounded so they represent the prediction if the attribute fits or not; on that, accuracy and F1 is used
+% \end{itemize}
+
+The embedding model is trained and evaluated on the same data as \ac{lisa}. To test the model, the attribute vectors that were created during the evaluation of \ac{lisa} are embedded. These embeddings are subsequently tested on wether ones of from the same group are closer to each other compared to embeddings from different groups. % TODO: mention evaluation metrics?
+% \begin{itemize}
+%   \item the task is for the model to produce embeddings that are closer to each other for answers from the same group
+%   \item evaluation metrics are accuracy and F1 for both cosine and euclidean distance
+% \end{itemize}
+This task is repeated with data from a foreign domain. For this, the group-specific answers from the AskX % TODO: correct name
+dataset (see Section~\ref{sec:datasets:askx}) are used. The answers in this dataset have a different writing style than the ones in the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}) that has been used so far. Additionally, the groups of people that are represented are different, which tests the generalization capabilities of the approach as overly specific attributes, for example \enquote{The author uses computer science concepts.} for a computer scientist, bring no benefit on the foreign domain.
+
+\section{Evaluating Steering Performance}
 \label{sec:experiments:steering}
-\begin{itemize}
-  \item
-\end{itemize}
+All steering method that have been introduced in the previous sections are compared on the same experiments to ensure comparable results. The evaluation uses questions from the steering dataset (see Section~\ref{sec:datasets:steering}). For the groups that are being used to steer the explanations towards and the extraction of the most important attributes, the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration}) is being used.
 
+For each question and each group, the \ac{llm} generates an explanation while being steered by one of the methods. After that, the explanations are being embedded using the embedding model introduced in Section~\ref{sec:approach:embedding}. These embeddings are then being compared to the median embedding of all answers in the synthetic dataset from that group to measure if the steering method had an effect compared to the unsteered baseline generation.
+To extract the group embedding, the median of all embeddings is used opposed to the mean because it is less sensitive to outliers. This is necessary as there is no guarantee that the group-specific answers that are being used for the creation of the synthetic dataset are actually written by members of that group.

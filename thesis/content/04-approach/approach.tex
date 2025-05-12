@@ -121,37 +121,17 @@ Because of that, an embedding head for the \ac{lisa} model is trained that produ
 \section{Steering Text Generation}
 \label{sec:approach:steering}
 % TODO: more introduction; why is steering important? talk about explanation generation
-The aim of this thesis is to combine the group membership task with the steering of \acp{llm} towards group-specific explanations. Multiple different methods will be presented and compared to each other. The method is split into two groups: changing the system prompt to steer the model and manipulating the output of the activation functions after selected layers.
+The aim of this thesis is to combine the group membership task with the steering of \aclp{llm} towards group-specific explanations. Multiple different methods will be presented and compared to each other. The method is split into two groups: changing the system prompt to steer the model and manipulating the output of the activation functions after selected layers.
 
 \subsection{Prompt Steering}
 \label{sec:approach:steering:prompt}
-I will be looking at three different methods of changing the system prompt to adapt the way the \ac{llm} answers questions by the user to match a specific group.
+% TODO: write better (and more?)
+This thesis proposes three different approaches of changing the system prompt of the \ac{llm} to steer its output. The first steering method makes use of the inherit knowledge of the model by instructing it to write the explanation for the specified group. The second method will extract the most important dimensions of the interpretable attribute vector for the group and instructing the model to match the style and background knowledge of the group. The third method will combine both methods.
 
-The first and simplest way to change the system prompt is to instruct the model to write an explanation for a specified group. In this case, the system prompt includes the following sentence:
-\begin{quote}
-  You are an author who writes a helpful explanation for a group of <group>.
-\end{quote}
 
-While this method can not be influenced regarding the direction or strength of the steering effect, it is very easy to implement and will serve as a baseline to compare the other steering methods against.
-
-For the second prompt steering approach, the data that is used to extract the features of the attribute vector as described in Section~\ref{sec:approach:attributeSentenceGeneration} will be used to determine the most important attributes that differentiate each group from all the others. The most important style and knowledge attribute will then be a part of the system prompt.
-
-For the attributes to be able to be effectively used in the system prompt, they can not be of the form \enquote{The author is \ldots}. Instead, the attributes are automatically rewritten to address the model directly, as this role-playing is a strength of modern \aclp{llm}. % TODO: citation
-Thus, the attribute sentences will have the form \enquote{You are \ldots}.
-
-The final prompt steering methods will combine the two previous methods and include both the group name and the most important attribute sentences in the system prompt.
-
-\section{Activation Steering}
+\subsection{Activation Steering}
 \label{sec:approach:steering:activation}
-While the prompt steering methods are easy to implement, they have the disadvantage that they do not allow for fine-grained steering. Even when the most important attributes are included in the system prompt, there is no way to tell the model how strongly each attribute should influence the generated text. To solve this problem, this thesis proposes a method to steer the \ac{llm} by manipulating its activation space during inference following the work of \citet{turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
-
-The steering vectors are created without any training process, which reduces the required time significantly. For each dimension of the interpretable attribute vector, a separate steering vector is extracted.
-
-\begin{figure}[ht]
-  \input{figures/tikz/activation-steering-diagram.tex}
-  \label{fig:activationSteering}
-  \caption{Todo}
-\end{figure}
+While the prompt steering methods are easy to implement and do not require any changes to the model itself, they have the disadvantage that they do not allow for fine-grained steering. Even when the most important attributes are included in the system prompt, there is no way to tell the model how strongly each attribute should influence the generated text. To solve this problem, this thesis proposes a method to steer the \ac{llm} by manipulating its activation space during inference based on the work of \citet{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
 
 \subsubsection{Extracting Steering Vectors}
 The attribute that should be steered towards will be a part of the system prompt similar to the prompt attribute steering described in Section~\ref{sec:approach:steering:prompt}. Following that, the model predicts the next token in one forward pass. From that inference, the vectors after the activation functions of each layer are extracted and saved. The predicted token is not important during this process. % TODO: extract from activation functions or from residual streams?
@@ -160,8 +140,14 @@ To get the steering vector of a group, all attribute steering vectors need to be
 
 Alternatively, instead of including all dimensions of the attribute vector, only the most important attributes can be used to create the group steering vector.
 
+\begin{figure}[ht]
+  \input{figures/tikz/activation-steering-diagram.tex}
+  \label{fig:activationSteering}
+  \caption{Todo}
+\end{figure}
+
+
 \subsubsection{Text Generation Steering}
-\label{sec:approach:steering:activation}
 To steer the text generation of a \acl{llm}, the computed steering vector is added to a layer of the model during the forward pass. The layer the vector is inserted into must be the same as the vectors that were combined to form the steering vector where taken from. The steering vector can be scaled with a factor \(\lambda\) to further control the strength of the steering effect.
 Because the steering vector is extracted during the first forward pass, it is also inserted exclusively during the first forward pass (\cite{rimsky-etal-2024-steering}).
 % \begin{itemize}

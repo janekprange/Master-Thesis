@@ -6,11 +6,22 @@
         row sep=3pt,
         inner sep=6pt,
         nodes in empty cells,
-        draw, rectangle,
+        draw,
+        rectangle,
         anchor=north west
       },
+    dcs/.style={
+        fill=white,
+        double copy shadow={shadow xshift=0.5ex,shadow yshift=-0.3ex}
+      },
     % steering‐vector boxes:
-    sv/.style={draw, rectangle, minimum width=3cm, align=center},
+    sv/.style={
+        draw,
+        rectangle,
+        minimum width=3cm,
+        align=center,
+        dcs
+      },
     % generic box:
     box/.style={draw, rectangle}
   ]
@@ -48,6 +59,7 @@
   % 7) Softmax matrix
   \matrix (softmax) [
     attr,
+    dcs,
     below right=2cm and 2cm of feature4.south east
   ] {
     \num{0.098}       \\
