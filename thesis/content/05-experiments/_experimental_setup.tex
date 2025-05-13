@@ -53,12 +53,12 @@ At this point, there are \num{\numClusters} clusters, \num{\numClustersStyle} of
 \label{sec:experiments:setup:selection}
 The synthetic dataset resulting from the previous steps consists of \num{\numClusters} clusters, which are the potential dimensions of the interpretable attribute vector. This vector however consists of \num{\styleVectorSize} dimensions as established by \citet{patelLearningInterpretableStyle2023}. Therefore, the best clusters have to be selected to be part of the attribute vector. This selection is carried out in multiple steps, which are described in the following section and additionally shown in Figure~\ref{fig:clustering}.
 
-\begin{figure}[ht]
+\begin{figure}[h!t]
   \begin{center}
     % \input{figures/tikz/clustering-diagram.tex}
     \includegraphics[width=9cm]{figures/clustering_diagram.png}
   \end{center}
-  \caption{TODO:}
+  \caption{The approach so far (see Figure~\ref{fig:attributeSentenceGeneration}) has produced about \numStyleSentencesText{} unique attribute sentences. While these sentences are syntactically distinct from each other, semantically they can be very close. To improve the performance of the method proposed in this thesis, similar sentences are clustered. First, all sentences are embedded. Then, sentences with a cosine similarity higher than \num{\minCosineSimilarity} are clustered together while ensuring that every sentence is in exactly one cluster. The clustering is performed separately for style and knowledge sentences. From the resulting \num{\numClustersStyle} style clusters and \num{\numClustersKnowledge} knowledge clusters, the best ones are selected in multiple steps until the final interpretable attribute vector with \num{\styleVectorSize} dimensions is created, where each dimension corresponds to one cluster. The first \num{\numTargetPrompts} dimensions of the attribute vector are selected separately and correspond to the targeted prompts presented in Section~\ref{sec:approach:attributeSentenceGeneration}.}
   \label{fig:clustering}
 \end{figure}
 
@@ -103,7 +103,7 @@ The first \num{\numTargetPrompts} dimensions of the attribute vector are the tar
 A difference in agreement levels means that the range between responses that fit the attribute well and those that do not is as wide as possible. This further increases the likelihood that the attributes are good at distinguishing between different responses and groups.
 
 % TODO: complete code
-\lstinputlisting[language=Python, caption={Pseudo code for the final cluster selection step.}]{content/05-experiments/final-cluster-selection.py}
+% \lstinputlisting[language=Python, caption={Pseudo code for the final cluster selection step.}]{content/05-experiments/final-cluster-selection.py}
 
 First, the similarity between all clusters that remain after the first selection steps is computed. Afterward, for each cluster and each answer, the average similarity to all other clusters that have been used to describe that answer is computed. The result is a rough estimation of the actual similarity between the current attribute sentence and the answer.
 

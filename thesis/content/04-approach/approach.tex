@@ -24,8 +24,7 @@ After generating the descriptions, the \ac{llm} is prompted a second time to rew
 
 \begin{figure}[ht]
   \input{figures/tikz/sentence-generation-diagram.tex}
-  % TODO: better caption
-  \caption{The process to generate attribute sentences.}
+  \caption{The two-step process to generate attribute sentences based on the work of \citet{patelLearningInterpretableStyle2023}. The inputs are group-specific answers from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). An \acs{llm} is prompted \num{\numPrompts} times to generate different descriptions of the input text. The prompts focus on different stylistic aspects and the knowledge of the author. Afterward, the \acs{llm} is prompted a second time to convert the descriptions into attribute sentences of a consistent shape.}
   \label{fig:attributeSentenceGeneration}
 \end{figure}
 
@@ -143,7 +142,7 @@ Alternatively, instead of including all dimensions of the attribute vector, only
 \begin{figure}[ht]
   \input{figures/tikz/activation-steering-diagram.tex}
   \label{fig:activationSteering}
-  \caption{Todo}
+  \caption{This figure shows the process of extracting activation vectors that can be used to steer the \acs{llm}. The basis for the extraction is the interpretable attribute vector presented in this thesis, where each of the dimensions corresponds to a real-world concept in the form of an attribute sentence. For each of these sentences the model is queried. The sentence is changed from the form \enquote{The author uses \ldots} to \enquote{You use \ldots} and presented as part of the system prompt. The model then performs one forward pass, from which the activation vector is extracted at the end of each layer. These vectors encode the concept of the attribute sentence (\cite{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}). To create the steering vector, the activation vectors are weighted by the corresponding softmax value of the attribute vector and added together. While this thesis uses the median group attribute vector as the basis for steering towards group-specific explanations, it would be possible to use the attribute vector of a text to mimic its style.}
 \end{figure}
 
 

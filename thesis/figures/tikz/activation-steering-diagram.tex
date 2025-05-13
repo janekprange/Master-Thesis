@@ -18,7 +18,7 @@
     sv/.style={
         draw,
         rectangle,
-        minimum width=3cm,
+        minimum width=3.3cm,
         align=center,
         dcs
       },
@@ -52,9 +52,9 @@
 
   % 6) Steering vectors aligned row‐wise
   \foreach \i in {1,...,4} {
-      \node[sv] (sv\i) at (steerBase |- feature\i) {Steering Vector};
+      \node[sv] (sv\i) at (steerBase |- feature\i) {Activation Vector};
     }
-  \node[sv] (sv5) at (steerBase |- feature5) {\dots\vphantom{Steering Vector}};
+  \node[sv] (sv5) at (steerBase |- feature5) {\dots\vphantom{Activation Vector}};
 
   % 7) Softmax matrix
   \matrix (softmax) [
@@ -94,7 +94,7 @@
 
   % 8) Sum + group Steering Vector
   \node[draw,circle,left=2cm of softmax-3-1] (sum) {+};
-  \node[sv,left=of sum] (group) {Group Steering Vector};
+  \node[sv,left=of sum] (group) {Steering Vector};
 
   % D) Softmax → Sum → Group
   \foreach \i in {1,...,5} {
