@@ -146,7 +146,7 @@ Alternatively, instead of including all dimensions of the attribute vector, only
 \end{figure}
 
 
-\subsubsection{Text Generation Steering}
+\subsubsection{Steering of Explanation Generation}
 To steer the text generation of a \acl{llm}, the computed steering vector is added to a layer of the model during the forward pass. The layer the vector is inserted into must be the same as the one the vectors that were combined to form the steering vector were taken from. The steering vector is scaled with a factor \(\lambda\) to further control the strength of the steering effect.
 % Because the steering vector is extracted during the first forward pass, it is also inserted exclusively during the first forward pass (\cite{rimsky-etal-2024-steering}).
 % \begin{itemize}

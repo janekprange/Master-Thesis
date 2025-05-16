@@ -56,3 +56,6 @@ All steering method that have been introduced in the previous sections are compa
 
 For each question and each group, the \ac{llm} generates an explanation while being steered by one of the methods. After that, the explanations are being embedded using the embedding model introduced in Section~\ref{sec:approach:embedding}. These embeddings are then being compared to the median embedding of all answers in the synthetic dataset from that group to measure if the steering method had an effect compared to the unsteered baseline generation.
 To extract the group embedding, the median of all embeddings is used opposed to the mean because it is less sensitive to outliers. This is necessary as there is no guarantee that the group-specific answers that are being used for the creation of the synthetic dataset are actually written by members of that group.
+
+\subsection{Activation Steering Performance}
+During steering, only layers in the middle of the model are being used based upon the work of \citet{konenStyleVectorsSteering2024,bogdanEmergentEffectsScaling2025}, as these layers typically hold the information with the complexity level of the attribute sentences. The experiments will be repeated for the layers % TODO: continue
