@@ -129,16 +129,17 @@ The method proposed in this thesis instead orders all answers by a heuristic sim
 Subsequently, the answers are ordered by their heuristic similarity to the attribute sentence. The positive training sample is the most similar text where the sentence was used to describe it in the synthetic dataset. The negative training sample is the most dissimilar sentence that was not described by the sentence. If a candidate for the positive sample is not in the top \sfamDataTopPercentText{}, the sentence is not used for the \ac{sfam} training dataset. % TODO: reason
 Since the synthetic dataset consists of \numStyleSentencesText{} attribute sentences and the \ac{sfam} training dataset consists of only \num{\sfamTrainingDataSize} samples, it is no problem to discard sentences where the positive sample does not have a sufficiently high heuristic similarity.
 
-The validation and test datasets are produced with the same method. However, while \citet{patelLearningInterpretableStyle2023} sample distinct sets of sentences for the training, validation, and test datasets, for this thesis the input texts themselves are assigned to the different dataset categories. The attribute sentences produced from these texts are also largely distinct, also this is not enforced and simply a side effect of the \ac{llm} using different formulations for the same concepts (see Figure~\ref{fig:sfamDatasetSplit}).
+The validation and test datasets are produced with the same method. However, while \citet{patelLearningInterpretableStyle2023} sample distinct sets of sentences for the training, validation, and test datasets, for this thesis the input texts themselves are assigned to the different dataset categories. The attribute sentences produced from these texts are also largely distinct, also this is not enforced and simply a side effect of the \ac{llm} using different formulations for the same concepts. % (see Figure~\ref{fig:sfamDatasetSplit}).
 Because of this, \ac{sfam} is tested not only on unseen attribute sentences but on unseen texts as well.
 
-\begin{figure}[ht]
-  \begin{center}
-    \input{figures/python/sfam_dataset_split.pgf}
-  \end{center}
-  \caption{TODO:}
-  \label{fig:sfamDatasetSplit}
-\end{figure}
+% TODO: improve?
+% \begin{figure}[ht]
+%   \begin{center}
+%     \input{figures/python/sfam_dataset_split.pgf}
+%   \end{center}
+%   \caption{TODO:}
+%   \label{fig:sfamDatasetSplit}
+% \end{figure}
 
 
 \subsection{\acf{lisa} Model}
