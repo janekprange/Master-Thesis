@@ -29,33 +29,56 @@ The experiments were conducted on a SLURM cluster using nodes with \num{32} CPU 
 %         % \item how often attribute vector dimensions have been used -> targeted dimension very often, for the others it would be more interesting
 % \end{itemize}
 
-\section{Evaluating Model Performance}
+\section{Testing Model Performance}
 \label{sec:experiments:models}
 The three models that are presented in this thesis, \ac{sfam}, \ac{lisa} and the embedding model, are all trained on test datasets that are constructed similarly to their training and validation datasets but consist of unseen data.
 
 For \ac{sfam}, the test dataset is constructed from unseen answers of the synthetic dataset described in Section~\ref{sec:approach:attributeSentenceGeneration}. The test data is balanced and consists of \num{\sfamTestDataSize} samples which were extracted with the method described in Section~\ref{sec:experiments:setup:sfam}.
-During the test, \ac{sfam} is tasked with predicting if an attribute sentence matches a given answer. The ground trouth for this task is if the attribute sentence was actually used to describe the answer in the synthetic dataset. The agreement score that \ac{sfam} produces is rounded to either one (positive prediction) or zero (negative prediction) and compared to the ground truth. % TODO: mention evaluation metrics?
+During the test, \ac{sfam} is tasked with predicting if an attribute sentence matches a given answer. The ground trouth for this task is if the attribute sentence was actually used to describe the answer in the synthetic dataset. The agreement score that \ac{sfam} produces is rounded to either one (positive prediction) or zero (negative prediction) and compared to the ground truth with accuracy and F1 as the metric.
 
-\ac{lisa} is trained and evaluated attribute vectors created with \ac{sfam}. The evaluation is conducted on \num{\lisaTestDataSize} unseen samples. % TODO: mention evaluation metrics?
-% \begin{itemize}
-%   \item evaluation metrics are MSE, MAE and the average cosine similarity between the attribute vectors
-%   \item additionally, both vectors are rounded so they represent the prediction if the attribute fits or not; on that, accuracy and F1 is used
-% \end{itemize}
+\ac{lisa} is trained and evaluated attribute vectors created with \ac{sfam}. The evaluation is conducted on \num{\lisaTestDataSize} unseen texts. The model is evaluated with the metrics \ac{mse}, \ac{mae} and the average cosine similarity between the attribute vectors produced by \ac{sfam} and \ac{lisa}. Additionally, the attribute vectors from both models are rounded to produce a prediction if specific attributes are present in a given text. These predictions are subsequently compared with the accuracy and F1 metric.
 
-The embedding model is trained and evaluated on the same data as \ac{lisa}. To test the model, the attribute vectors that were created during the evaluation of \ac{lisa} are embedded. These embeddings are subsequently tested on wether ones of from the same group are closer to each other compared to embeddings from different groups. % TODO: mention evaluation metrics?
-% \begin{itemize}
-%   \item the task is for the model to produce embeddings that are closer to each other for answers from the same group
-%   \item evaluation metrics are accuracy and F1 for both cosine and euclidean distance
-% \end{itemize}
-This task is repeated with data from a foreign domain. For this, the group-specific answers from the AskX % TODO: correct name
-dataset (see Section~\ref{sec:datasets:askx}) are used. The answers in this dataset have a different writing style than the ones in the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}) that has been used so far. Additionally, the groups of people that are represented are different, which tests the generalization capabilities of the approach as overly specific attributes, for example \enquote{The author uses computer science concepts.} for a computer scientist, bring no benefit on the foreign domain.
+The embedding model is trained and evaluated on the same data as \ac{lisa}. To test the model, the attribute vectors that were created during the evaluation of \ac{lisa} are embedded. These embeddings are subsequently tested on whether ones of from the same group are closer to each other compared to embeddings from different groups. The comparison is always conducted in triplets and evaluated with accuracy and F1 metric based on the fact if the model placed the embedding of the same group or the other group closer. While the model is trained with Euclidean distance, the evaluation is presented for both Euclidean and cosine distance.
 
-\section{Evaluating Steering Performance}
+Additionally, the model is tested on whether the embeddings of texts are closest to the median embedding of the correct group. The median embeddings are extracted from the training and validation data. The test is evaluated with the metrics accuracy, precision, recall and F1. % TODO: are these the correct metrics?
+
+The embedding model evaluations are repeated with data from a foreign domain. For this, the group-specific answers from the AskX % TODO: correct name
+dataset (see Section~\ref{sec:datasets:askx}) are used. The answers in this dataset have a different writing style than the ones in the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}) that has been used so far. Additionally, the groups of people that are represented are different, which tests the generalization capabilities of the approach as overly specific attributes, for example \enquote{The author uses computer science concepts.}, bring little to no benefit on the foreign domain. To test whether text embeddings are closest to the median group embedding of the correct group, one half of the AskX data is used to extract the median group embeddings and the other half is used for the actual test.
+
+\section{Testing Steering Performance}
 \label{sec:experiments:steering}
-All steering method that have been introduced in the previous sections are compared on the same experiments to ensure comparable results. The evaluation uses questions from the steering dataset (see Section~\ref{sec:datasets:steering}). For the groups that are being used to steer the explanations towards and the extraction of the most important attributes, the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration}) is being used.
+To ensure comparable results, all steering methods introduced in previous sections are compared using the same experiments. The evaluation uses questions from the steering dataset (see Section~\ref{sec:datasets:steering}). The synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration}) is used to identify the groups to steer the explanations towards and to extract the most important attributes of the groups.
 
-For each question and each group, the \ac{llm} generates an explanation while being steered by one of the methods. After that, the explanations are being embedded using the embedding model introduced in Section~\ref{sec:approach:embedding}. These embeddings are then being compared to the median embedding of all answers in the synthetic dataset from that group to measure if the steering method had an effect compared to the unsteered baseline generation.
+First, for each question, the \ac{llm} produces an unsteered explanation that acts as a baseline.
+Then, for each  question and group, the \ac{llm} generates an explanation while being steered by one of the steering methods presented in Section~\ref{sec:experiments:setup:steering}. After that, the explanations are being embedded using the embedding model introduced in Section~\ref{sec:approach:embedding}. These embeddings are finally compared to the median embedding of all answers in the synthetic dataset from that group to measure if the steering method had an effect compared to the unsteered baseline generation.
 To extract the group embedding, the median of all embeddings is used opposed to the mean because it is less sensitive to outliers. This is necessary as there is no guarantee that the group-specific answers that are being used for the creation of the synthetic dataset are actually written by members of that group.
 
+All steering approaches are evaluated with for different metrics that describe the steering effect. As Figure~\ref{fig:steeringMetrics} shows, the first metric is the \textbf{steering direction correctness}, which describes if the method steers the explanation towards the style and background knowledge of the correct group. This is an important metric as a very strong steering effect would not be helpful if it steers towards the wrong group. The second metric is the \textbf{steering effect} itself. It is computed from the Euclidean distance between the embeddings of the unsteered and steered explanation and describe how strong the explanation was changed by the steering methods.
+
+Finally, there are two more metrics that show how strong the steering effect could have been. This is important as a low steering effect is not as bad if the unsteered embedding is already very close to the median group embedding. These metrics are the \textbf{optimal steering effect}, which is the Euclidean distance between the unsteered embedding and the median group embedding, and the \textbf{possible improvement}. It is the Euclidean distance between the embedding of the steered explanation and the median group embedding and describes how much better the steering effect could have been if the direction or strength of steering would be better.
+
+\begin{figure}[ht]
+  \begin{center}
+    \input{figures/tikz/steering-metrics-plot.tex}
+  \end{center}
+  \captionsetup{singlelinecheck=off}
+  \caption[]{%
+    All answers that are generated during steering are embedded using the \ac{lisa} model with the embedding head. For each question, the \ac{llm} is prompted without any steering to create an unsteered baseline. Then, for each group and each steering type, the model is prompted with the same question. The median group embedding is derived from the embeddings of all answers that have been used to train \ac{sfam} and \ac{lisa}.
+    The quality of each steering method is measured with different metrics:
+    \begin{enumerate*}
+      \item \textbf{Steering Direction Correctness:} The cosine similarity between the steering effect vector and the optimal steering effect vector.
+      \item \textbf{Steering Effect:} The Euclidean distance of the steering effect vector.
+      \item \textbf{Optimal Steering Effect:} The Euclidean distance between the unsteered embedding and the median group embedding.
+      \item \textbf{Possible Improvement:} The Euclidean distance between the steered embedding and the median group embedding.
+            % \item difference between steering effect and optimal steering effect
+            % \item difference (or ratio?) between steering effect and possible steering effect
+    \end{enumerate*}
+  }
+  \label{fig:steeringMetrics}
+\end{figure}
+
 \subsection{Activation Steering Performance}
-During steering, only layers in the middle of the model are being used based upon the work of \citet{konenStyleVectorsSteering2024,bogdanEmergentEffectsScaling2025}, as these layers typically hold the information with the complexity level of the attribute sentences. The experiments will be repeated for the layers % TODO: continue
+The activation steering is evaluated with the same experiments as the prompt steering. Additionally, both steering methods are combined so that there are four different activation steering methods in total. % TODO: mention names of methods?
+
+However, there are two hyperparameters for the activation steering that have to be evaluated as well. For one, it is the layer or layers that are manipulated with the steering vector. According to the work of \citet{konenStyleVectorsSteering2024,bogdanEmergentEffectsScaling2025}, information with the complexity level of the attribute sentences are held in the layers in the middle of the model. Since the \ac{llm} Llama3.2-3B Instruct that has been used for this task has \num{28} layers in total, for these experiments the layers between \num{13} and \num{17} have been chosen. Additionally, the test is conducted with multiple layers being used for steering in parallel.
+The other hyperparameter is the scaling factor \(\lambda\) that the steering vector is multiplied with before steering. If \(\lambda\) is too low, there will be no steering effect, but if it is too high the model will not be able to properly predict the next token. For these experiments, the values \num{0.25} and \num{0.5} have been chosen.

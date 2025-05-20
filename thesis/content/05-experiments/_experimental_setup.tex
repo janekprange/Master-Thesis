@@ -6,7 +6,7 @@
 
 \subsection{Attribute Sentence Generation}
 \label{sec:experiments:setup:sentenceGeneration}
-The synthetic dataset that consists of attribute sentences which describe a set of input texts is constructed by prompting an \acs{llm} in a two-step procedure. For this thesis, the open source model Llama 3.2 Instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}}~(\cite{dubeyLlama3Herd2024}) with \num{3} billion parameters has been used. This model has state-of-the-art performance and is freely available, which provides the possibility to run the model directly on the server cluster. Additionally, it improves the reproducibility of the experiments because it is easier to use the exact same model later.
+The synthetic dataset that consists of attribute sentences which describe a set of input texts is constructed by prompting an \acs{llm} in a two-step procedure. For this thesis, the open source model Llama3.2-3B Instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}}~(\cite{dubeyLlama3Herd2024}) with \num{3} billion parameters has been used. This model has state-of-the-art performance and is freely available, which provides the possibility to run the model directly on the server cluster. Additionally, it improves the reproducibility of the experiments because it is easier to use the exact same model later.
 To improve the performance of the sentence generation, the library vLLM\footnote{\url{https://github.com/vllm-project/vllm}} was used to run the model.
 
 The basis for the generation of the attribute sentences are \num{\numAnswersStyleVector} answers from the stack exchange dataset described in Section %~\ref{}. TODO:
