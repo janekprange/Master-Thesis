@@ -1,1 +1,2 @@
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QThe forums included in the dataset all have the theme where a specific group of people (i.e. people over 30, engineers, ) are asked questions.\\E$"}
+{"rule":"SMALL_NUMBER_OF","sentence":"^\\QAuthorship attribution typically involves many authors, each of whom contributes a small number of texts.\\E$"}
