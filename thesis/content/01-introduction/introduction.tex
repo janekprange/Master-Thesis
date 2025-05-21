@@ -1,20 +1,79 @@
 \chapter{Introduction}
 \label{sec:introduction}
+Textual information is an essential part of our daily lives, whether in educational settings, the news, entertainment, or social media. An important aspect of text is not only its content, but also the style in which it is written (\cite{wegmannSameAuthorJust2022}). Style dictates how the text is perceived and how well the reader understands and accepts the message. Additionally, stylistic features can be used to determine the author (\cite{alshomaryLatentSpaceInterpretation2024}) or group of people (\cite{10.1007/978-3-642-29047-3_27}) who wrote a text by comparing them between documents.
 
-\begin{figure}[ht]
-  \begin{center}
-    \input{content/01-introduction/attribute-vector-tikz.tex}
-    \caption{How the vector works}
-  \end{center}
-\end{figure}
+Previous work by \citet{zhu-etal-2024-styleflow, ijcai2020p526,wegmannSameAuthorJust2022} has recognized and researched the importance of style. However, there is a problem with automatic stylistic investigations. Manually annotating style, particularly creating parallel data with positive and negative examples for each label or style, is complicated and time-consuming. Since this is necessary for most supervised learning approaches, state-of-the-art style representation methods use unsupervised learning techniques that generate non-interpretable style embeddings. This makes it more difficult to verify the quality of the style representation and apply it to subsequent tasks.
 
-\section{Motivation}
-\label{sec:introduction:motivation}
+% TODO: write better; do not mention text generation before it is introduced
+
+State-of-the-art methods mainly use stylistic features for their tasks (\cite{alshomaryLatentSpaceInterpretation2024,patelLearningInterpretableStyle2023,konenStyleVectorsSteering2024,zhu-etal-2024-styleflow}). However, there are other aspects of the author, aside from style, that can be extracted to assist these methods, especially in generating group-specific explanations. This includes information about the author's background knowledge or experience, subsequently called knowledge attributes.
+
+While producing style representations is useful, one of the currently most important tasks in natural language processing is generating text. \Acp{llm} are a popular tool for generating natural language, made possible by transformer architecture (\cite{NIPS2017_3f5ee243}). In recent years, they have been used for various tasks by a wide range of audiences, including the explanation of many topics and concepts. However, due to the large number of people using \acp{llm}, new problems arise. While it is important that the explanations are factually correct, it is also necessary to consider the audience's linguistic style and background knowledge and adapt the text generation accordingly. For instance, a technical explanation intended for a Ph.D. student would likely be unhelpful for a middle schooler, and vice versa. Style representations play a potentially important role here, in addition to their use in authorship attribution and group membership detection.
 
 
 \section{Problem Statement}
 \label{sec:introduction:problemStatement}
 
+\begin{itemize}
+  \item Previous work is well suited for authorship attribution tasks
+  \item this thesis aims to adapt the approach for group membership detection
+        \begin{itemize}
+          \item problem is similar because groups typically differentiate in how the texts are written
+          \item the data is however quite different; instead of many author with few texts each there are few groups with many texts each
+        \end{itemize}
+\end{itemize}
+
+\begin{description}
+  \item[Research Question 1] How well are the interpretable style representations suited to detect the group membership of different authors?
+\end{description}
+
+\begin{itemize}
+  \item this thesis extends the approach of \citet{patelLearningInterpretableStyle2023} to include knowledge attributes in the attribute vector
+  \item this is important information as the groups can differ heavily by their experience and background knowledge
+  \item these attributes can therefor help to differentiate between groups
+\end{itemize}
+% TODO: include this? I could show experiments how important knowledge attributes are to differentiate groups
+\begin{description}
+  \item[Research Question 1.1] Does the interpretable style representation benefit from knowledge attributes in addition to style attributes?
+\end{description}
+
+\begin{itemize}
+  \item while group membership detection is an important task, with the current popularity the ability to steer the output of \acp{llm} to generate group-specific explanations is even more relevant
+  \item this thesis aims to use the attribute vector to improve existing steering methods
+\end{itemize}
+
+\begin{description}
+  \item[Research Question 2] What is the best way to generate group-specific explanations from style representations? % TODO: write better
+\end{description}
+
+\begin{itemize}
+  \item this thesis will investigate different steering methods
+  \item firstly, the \ac{llm} will be steered by changing its system prompt in different ways
+  \item these methods include an approach to formulate the steering system prompt with the help of the attribute vector that is presented in the first part of the thesis
+\end{itemize}
+
+\begin{description}
+  \item[Research Question 2.1] Can the attribute vector presented in this thesis be used to improve existing steering methods that change the system prompt?
+\end{description}
+
+\begin{itemize}
+  \item while changing the system prompt is a very popular, reliable and easy to implement method to steer the model, it has the disadvantage that it does not allow for fine-grained steering
+  \item the rough direction can be specified, but not how strong the steering effect is
+  \item this thesis presents a method that steers an \acs{llm} by manipulating the activation space after specific layers of the model to steer it towards specific concepts that correspond to dimensions of the interpretable attribute vector that is presented in the first part of the thesis
+  \item builds upon work by \citet{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}
+\end{itemize}
+
+\begin{description}
+  \item[Research Question 2.2] Can the newly proposed method of steering a \ac{llm} by manipulating its activation space be used to improve existing steering methods?
+\end{description}
 
 \section{Goals of the thesis}
 \label{sec:introduction:goals}
+
+
+\begin{figure}[ht]
+  \begin{center}
+    \input{content/01-introduction/attribute-vector-tikz.tex}
+    \caption{An example of a \num{\styleVectorSize}-dimensional attribute vector that was generated with the method presented in this thesis.} % TODO: more caption?
+  \end{center}
+\end{figure}

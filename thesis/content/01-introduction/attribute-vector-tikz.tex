@@ -7,9 +7,9 @@
   annotation/.style={draw=none, align=center, font=\small}
   ]
 
-  % Top text
-  \node (text)[align=center, text width=10cm, font=\itshape]
-  {\enquote{Really really cool action movie imo. Casting is great too. It's like they were all born for their role in that movie.}};
+  % Top text (answer with id 25190, question sample id electronics_548843)
+  \node (text)[align=center, text width=0.8\linewidth, font=\itshape]
+  {\enquote{12V and 3A is 36 watts. You could use a step-up converter to convert 5V to 12V, but no normal ordinary power bank will give out 36 watts at 5V, that's 7.2 amps. Just connect it to mains powered power supply that can provide 12V and 3A.}};
 
   % LISA box
   \node (lisa) [below=of text, box, font=\bfseries] {LISA};
@@ -17,15 +17,15 @@
   % Vector representation
   \node (vectorText) [below=of lisa, align=center]
   {\num{\styleVectorSize}-dimensional interpretable attribute vector};
-  \node (vector) [below=0cm of vectorText, align=center] {\Large $\left[ 0.889,\ \dots,\ \pmb{0.613},\ \dots,\ \pmb{1.000},\ \dots,\ 0.949 \right]$};
+  \node (vector) [below=0cm of vectorText, align=center] {\Large $\left[ 0.889,\ \dots,\ \pmb{0.977},\ \dots,\ \pmb{0.991},\ \dots,\ 0.241 \right]$};
 
 
   % Annotations
   \node (rep) [annotation, below left=1cm and -2cm of vector]
-  {The author is\\repeating words.};
+  {The author describes\\energy conversion processes.}; % style vector index 305
 
   \node (comp) [annotation, below right=1cm and -2cm of vector]
-  {The author is\\complimentary.};
+  {The author is writing\\about power supply.}; % style vector index 659
 
   % Arrow to LISA
   \draw[arrow] (text) -- (lisa);
