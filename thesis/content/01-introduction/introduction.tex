@@ -1,26 +1,31 @@
 \chapter{Introduction}
 \label{sec:introduction}
-% TODO: introduce interpretable attribute vector (dimensions, values between 0 and 1)
-Textual information is an essential part of our daily lives, whether in educational settings, the news, entertainment, or social media. An important aspect of text is not only its content, but also the style in which it is written (\cite{wegmannSameAuthorJust2022}). Style dictates how the text is perceived and how well the reader understands and accepts the message. Additionally, stylistic features can be used to determine the author (\cite{alshomaryLatentSpaceInterpretation2024}) or group of people (\cite{10.1007/978-3-642-29047-3_27}) who wrote a text by comparing them between documents.
+Textual information plays a crucial role in daily life, appearing in various contexts, such as educational environments, news articles, entertainment media, and social media platforms. As noted in \cite{wegmannSameAuthorJust2022}, an important aspect of text is not only the message it conveys, but also the style in which it is presented. The style of a text significantly influences its reception, shaping how effectively the message is understood and how well it is accepted by the audience.
 
-% TODO: reference figure
+Stylistic features also serve analytical purposes; for instance, they can be used to identify the author of a text, as shown in \cite{alshomaryLatentSpaceInterpretation2024}, or to attribute the text to a particular group of individuals, as demonstrated by \cite{10.1007/978-3-642-29047-3_27}. Previous work, such as that of \citet{zhu-etal-2024-styleflow, ijcai2020p526, wegmannSameAuthorJust2022}, has highlighted the importance of style in textual analysis.
+
+However, automating stylistic investigations with machine learning poses several challenges. One significant issue is the complexity and time-consuming nature of manual style annotations. Additionally, it is difficult to generate parallel datasets that include positive and negative examples for each stylistic label.
+
+Because supervised learning methods rely on annotated data for training, state-of-the-art style representation methods tend to use unsupervised learning techniques. % TODO: citation
+While effective, these methods often produce style embeddings that are difficult to interpret, which makes it harder to verify their quality and apply them to other tasks effectively.
+
+To address these limitations, this thesis introduces interpretable attribute vectors based on the methodology proposed by \citet{patelLearningInterpretableStyle2023}. Figure~\ref{fig:attributeVector} illustrates the composition of these vectors. Each dimension of the vector corresponds to a real-world concept, and the associated value, ranging from \num{0} to \num{1}, indicates the extent to which a text aligns with the specified attribute.
+
 \begin{figure}[ht]
   \begin{center}
     \input{content/01-introduction/attribute-vector-tikz.tex}
     \caption{An example of a \num{\styleVectorSize}-dimensional attribute vector that was generated with the method presented in this thesis.} % TODO: more caption?
+    \label{fig:attributeVector}
   \end{center}
 \end{figure}
 
-Previous work by \citet{zhu-etal-2024-styleflow, ijcai2020p526,wegmannSameAuthorJust2022} has recognized and researched the importance of style. However, there is a problem with automatic stylistic investigations. Manually annotating style, particularly creating parallel data with positive and negative examples for each label or style, is complicated and time-consuming. Since this is necessary for most supervised learning approaches, state-of-the-art style representation methods use unsupervised learning techniques that generate non-interpretable style embeddings. This makes it more difficult to verify the quality of the style representation and apply it to subsequent tasks.
+While state-of-the-art methods primarily focus on stylistic features for tasks such as authorship attribution, as shown in works by \citet{alshomaryLatentSpaceInterpretation2024, patelLearningInterpretableStyle2023, konenStyleVectorsSteering2024, zhu-etal-2024-styleflow}, other types of author-related attributes can complement these stylistic analyses. One such attribute is the author's background knowledge or experience, referred to as knowledge attributes. The interpretable attribute vector developed in this thesis therefore includes both stylistic and knowledge-related dimensions.
 
-% TODO: write better; do not mention text generation before it is introduced
+In addition to their relevance in tasks such as authorship attribution, group membership detection, or text classification more generally, these representations are also applicable in text generation, which is one of the most prominent applications in contemporary natural language processing. \Acp{llm}, which are based on the transformer architecture as introduced in \cite{NIPS2017_3f5ee243}, are widely used tools for generating natural language text. In recent years, \acp{llm} have been used for a wide range of tasks, including providing explanations for various topics and concepts.
 
-State-of-the-art methods mainly use stylistic features for their tasks (\cite{alshomaryLatentSpaceInterpretation2024,patelLearningInterpretableStyle2023,konenStyleVectorsSteering2024,zhu-etal-2024-styleflow}). However, there are other aspects of the author, aside from style, that can be extracted to assist these methods, especially in generating group-specific explanations. This includes information about the author's background knowledge or experience, subsequently called knowledge attributes.
-
-While producing style representations is useful, one of the currently most important tasks in natural language processing is generating text. \Acp{llm} are a popular tool for generating natural language, made possible by transformer architecture (\cite{NIPS2017_3f5ee243}). In recent years, they have been used for various tasks by a wide range of audiences, including the explanation of many topics and concepts. However, due to the large number of people using \acp{llm}, new problems arise. While it is important that the explanations are factually correct, it is also necessary to consider the audience's linguistic style and background knowledge and adapt the text generation accordingly. For instance, a technical explanation intended for a Ph.D. student would likely be unhelpful for a middle schooler, and vice versa. Style representations play a potentially important role here, in addition to their use in authorship attribution and group membership detection.
+As more users depend on \acp{llm}, new challenges emerge beyond ensuring the factual correctness of the generated explanations. One such challenge involves tailoring the language and conceptual content of the explanation to suit the linguistic style and background knowledge of the target audience. For instance, an explanation suitable for a Ph.D. student might be inappropriate for a middle school student, and vice versa. Style and knowledge representations can be instrumental in aligning the linguistic output with the expectations and comprehension levels of different user groups to produce the best explanations for all audiences.
 
 
-% TODO: include question 1.1? I could show experiments how important knowledge attributes are to differentiate groups
 \section{Problem Statement}
 \label{sec:introduction:problemStatement}
 

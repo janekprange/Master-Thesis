@@ -176,17 +176,26 @@ While this method can not be influenced regarding the direction or strength of t
 
 The second approach is the \textbf{Prompt Attribute Steering} method. Here, the most important dimensions of the attribute vector of a group are used to steer the model. The most important attributes are extracted from the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration} and Section~\ref{sec:experiments:setup:sentenceGeneration}) by computing the point-biserial\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pointbiserialr.html}} correlation for each dimension of the interpretable attribute vector in relation with the groups.
 
-% TODO: attribute prompt with place holders
-
 For the steering process, the most important \num{\numImportantAttributesStyle} style attributes and \num{\numImportantAttributesKnowledge} knowledge attributes are used in the prompt. This number was chosen because more attributes would, for one, make it more difficult for the \ac{llm} to steer its generation towards all mentioned attributes, and on the other hand, make it likelier that the attributes are not very important for the group. Related to that, the number of knowledge attributes has to be lower than the number of style attributes because only \num{\minNumKnowledgePrompts} out of \num{\styleVectorSize} dimensions of the interpretable attribute vector are knowledge attributes. Using a higher number would therefore increase the chance of an irrelevant knowledge attribute being part of the system prompt.
 
 For the attributes to be able to be effectively used in the system prompt, they can not be of the form \enquote{The author is \ldots}. Instead, the style attributes are automatically rewritten to address the model directly, as this role-playing is a strength of modern \aclp{llm}. % TODO: citation
 Thus, the attribute sentences will have the form \enquote{You are \ldots}.
-However, the knowledge attributes cannot be written this way because they describe the knowledge of the audience, not the knowledge of the model. Therefore, the system prompt includes an instruction to write for a group of people with some special knowledge. Afterwards, the knowledge attributes are written in the form \enquote{They are \ldots}. An example for a complete attribute steering prompt can be found in Appendix~\ref{sec:appendix:steeringPrompts:attribute}. % TODO: maybe steering prompt here in quote instead of appendix?
+However, the knowledge attributes cannot be written this way because they describe the knowledge of the audience, not the knowledge of the model. Therefore, the system prompt includes an instruction to write for a group of people with some special knowledge. Afterward, the knowledge attributes are written in the form \enquote{They are \ldots}. The attributes are subsequently inserted into the following template:
+\begin{quote} % TODO: include final steering prompt
+  You are an author who writes a short and helpful explanation. \newline
+  <rephrased style attributes> \\[5pt]
+  You write for a group of people who have the following background knowledge and experience: \newline
+  <rephrased knowledge attributes>
+\end{quote}
 
-The final \textbf{Prompt Group Attribute Steering} method will combine the two previous methods and include both the group name and the most important attribute sentences in the system prompt.
+The final \textbf{Prompt Group Attribute Steering} method will combine the two previous methods and include both the group name and the most important attribute sentences in the system prompt, which results in the following template:
 
-% TODO: group attribute prompt with place holders
+\begin{quote} % TODO: include final steering prompt
+  You are an author who writes a helpful explanation for a group of <group>. \newline
+  <rephrased style attributes> \\[5pt]
+  You write for a group of people who have the following background knowledge and experience: \newline
+  <rephrased knowledge attributes>
+\end{quote}
 
 %  experiment, not setup
 % Per steering method, the \ac{llm} will be prompted for each of the \num{\steeringDataSize} questions in the steering dataset (see Section~\ref{sec:datasets:steering}) and each of the \num{\numGroups} groups to generate a group-specific explanation.
