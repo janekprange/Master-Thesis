@@ -12,7 +12,20 @@
 
 \section{AskX Dataset}%
 \label{sec:datasets:askx}
-% We derive this corpus from Reddit, an online discussion forum in which users publicly post messages to which other users post responses. Reddit is structured into subreddits, each of which focuses on a specific topic, has subreddit-specific posting rules, and subredditspecific moderators that enforce these rules. We consider a specific kind of subreddit that follows the "AskX" schema. Examples of such subreddits are "AskAGerman" and "AskAnAmerican". As per the rules of these subreddits, anyone can ask a question, but only members of the specific demographic should answer these questions. So, in "AskAGerman", all answers should be written by German nationals. We identified 91 subreddits that follow the AskX schema. From these, we manually selected 13 AskX subreddits from which to derive a corpus (see Table 1).
+% compare https://arxiv.org/pdf/2309.03876
+\begin{itemize}
+  \item The corpus is derived from Reddit, an online discussion forum where users publicly post messages and others post responses.
+  \item Reddit is organized into subreddits, each focused on a specific topic.
+  \item Each subreddit has its own posting rules and moderators who enforce them.
+  \item The focus is on a specific kind of subreddit that follows the \enquote{AskX} schema.
+  \item Examples of such subreddits include \enquote{Askelectricians} and \enquote{Askteens}.
+  \item In these subreddits, anyone can ask a question, but only members of the specified demographic should answer.
+  \item For instance, in \enquote{Askelectricians}, only electricians should respond to questions.
+  \item A total of 26 subreddits following the AskX schema were identified.
+  \item From these, 24 AskX subreddits were manually selected and grouped together to derive the corpus, as can be seen in Appendix~\ref{sec:appendix:datasets:askx}
+  \item grouping together because there were too few answers from most subreddits
+\end{itemize}
+
 
 
 \section{Steering Dataset}%

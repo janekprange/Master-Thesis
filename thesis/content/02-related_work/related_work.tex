@@ -1,30 +1,44 @@
 \chapter{Background Knowledge and Related Work}
-\label{sec:relatedWork_backgroundKnowledge}
-\section{Embeddings}
-\label{sec:relatedWork_backgroundKnowledge:embeddings}
+\label{sec:background}
 \begin{itemize}
-  \item embeddings in general
-  \item style embeddings
+  \item This chapter provides an overview over key concepts and research relevant for this thesis
+  \item the aim is to contextualize the proposed approaches into the current state of research
 \end{itemize}
+
+
+\section{Embeddings}
+\label{sec:background:embeddings}
+% TODO: add a plot to explain embeddings?
+\begin{itemize}
+  \item early models learn fixed vectors for words and produce static word embeddings
+  \item for example Word2Vec (\cite{mikolovEfficientEstimationWord2013}) and GloVe (\cite{penningtonGloveGlobalVectors2014}) capture semantic similarity from co-occurrence counts
+  \item These static embeddings are efficient but ignore word sense variation across contexts
+  \item Newer models produce context-dependent vectors (Contextual Word Embeddings)
+  \item ELMo (\cite{petersDeepContextualizedWord2018}) uses bidirectional LSTMs to generate embeddings sensitive to surrounding words.
+  \item Transformer-based models like BERT (\cite{devlin-etal-2019-bert}) produce deep contextual embeddings
+  \item taking the context into account is important because it enables disambiguation of polysemous words and captures nuanced meanings based on usage
+  \item for instance, the word \enquote{bank} can refer to a financial institution or the side of a river, and only contextual cues can determine the correct interpretation
+  \item contextual embeddings improve performance across a wide range of \ac{nlp} tasks, such as question answering, named entity recognition, and machine translation
+  \item these models have led to state-of-the-art results and have become foundational in modern \ac{nlp} pipelines
+\end{itemize}
+
+
+\section{Stylistic Investigations}
+\label{sec:background:styleInvestigations}
+% state of the art methods
+% possibilities of Stylistic Feature Extraction (in contrast to the method presented in this thesis)
 
 
 \section{Large Language Models}
-\label{sec:relatedWork_backgroundKnowledge:llm}
-\begin{itemize}
-  \item prompting, autoregressiv, token-based
-\end{itemize}
-
-
-\section{Activation Layer Steering}
-\label{sec:relatedWork_backgroundKnowledge:activation}
-
-\section{Feature Extraction}
-
-
-\section{Related Work}
-
-
-\subsection{Stylistic Investigations} %? Style Embeddings
+\label{sec:background:llm}
+% prompting, autoregressiv, token-based
 
 
 \subsection{Steering of Large Language Models}
+\label{sec:background:llm:steering}
+% what state-of-the-art steering methods exist (mostly prompt engineering)
+
+
+\subsection{Activation Layer Steering}
+\label{sec:background:llm:activation}
+% structure of the llm, concepts in activation space of the model
