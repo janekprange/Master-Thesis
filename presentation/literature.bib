@@ -208,6 +208,21 @@
   keywords = {Computer Science - Computation and Language,preprint}
 }
 
+@online{huLoRALowrankAdaptation2021,
+  title = {{{LoRA}}: Low-Rank Adaptation of Large Language Models},
+  shorttitle = {{{LoRA}}},
+  author = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  date = {2021},
+  doi = {10.48550/ARXIV.2106.09685},
+  url = {https://arxiv.org/abs/2106.09685},
+  urldate = {2025-05-24},
+  abstract = {An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full fine-tuning, which retrains all model parameters, becomes less feasible. Using GPT-3 175B as an example -- deploying independent instances of fine-tuned models, each with 175B parameters, is prohibitively expensive. We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks. Compared to GPT-3 175B fine-tuned with Adam, LoRA can reduce the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times. LoRA performs on-par or better than fine-tuning in model quality on RoBERTa, DeBERTa, GPT-2, and GPT-3, despite having fewer trainable parameters, a higher training throughput, and, unlike adapters, no additional inference latency. We also provide an empirical investigation into rank-deficiency in language model adaptation, which sheds light on the efficacy of LoRA. We release a package that facilitates the integration of LoRA with PyTorch models and provide our implementations and model checkpoints for RoBERTa, DeBERTa, and GPT-2 at https://github.com/microsoft/LoRA.},
+  langid = {english},
+  pubstate = {prepublished},
+  version = {2},
+  keywords = {Artificial Intelligence (cs.AI),citation only,Computation and Language (cs.CL),FOS: Computer and information sciences,Machine Learning (cs.LG),preprint}
+}
+
 @inproceedings{ijcai2020p526,
   title = {Text Style Transfer via Learning Style Instance Supported Latent Space},
   booktitle = {Proceedings of the Twenty-Ninth International Joint Conference on Artificial Intelligence, {{IJCAI-20}}},
@@ -273,6 +288,21 @@
   keywords = {Computer Science - Computation and Language,generation steering,preprint}
 }
 
+@online{liPrefixtuningOptimizingContinuous2021,
+  title = {Prefix-Tuning: Optimizing Continuous Prompts for Generation},
+  shorttitle = {Prefix-Tuning},
+  author = {Li, Xiang Lisa and Liang, Percy},
+  date = {2021},
+  doi = {10.48550/ARXIV.2101.00190},
+  url = {https://arxiv.org/abs/2101.00190},
+  urldate = {2025-05-24},
+  abstract = {Fine-tuning is the de facto way to leverage large pretrained language models to perform downstream tasks. However, it modifies all the language model parameters and therefore necessitates storing a full copy for each task. In this paper, we propose prefix-tuning, a lightweight alternative to fine-tuning for natural language generation tasks, which keeps language model parameters frozen, but optimizes a small continuous task-specific vector (called the prefix). Prefix-tuning draws inspiration from prompting, allowing subsequent tokens to attend to this prefix as if it were "virtual tokens". We apply prefix-tuning to GPT-2 for table-to-text generation and to BART for summarization. We find that by learning only 0.1\textbackslash\% of the parameters, prefix-tuning obtains comparable performance in the full data setting, outperforms fine-tuning in low-data settings, and extrapolates better to examples with topics unseen during training.},
+  langid = {english},
+  pubstate = {prepublished},
+  version = {1},
+  keywords = {citation only,Computation and Language (cs.CL),FOS: Computer and information sciences,preprint}
+}
+
 @inproceedings{mckinney-proc-scipy-2010,
   title = {Data {{Structures}} for {{Statistical Computing}} in {{Python}}},
   booktitle = {Proceedings of the 9th {{Python}} in {{Science Conference}}},
@@ -301,6 +331,24 @@
   keywords = {citation only,Computer Science - Computation and Language,preprint}
 }
 
+@online{minaeeLargeLanguageModels2025,
+  title = {Large Language Models: A Survey},
+  shorttitle = {Large Language Models},
+  author = {Minaee, Shervin and Mikolov, Tomas and Nikzad, Narjes and Chenaghlu, Meysam and Socher, Richard and Amatriain, Xavier and Gao, Jianfeng},
+  date = {2025-03-23},
+  eprint = {2402.06196},
+  eprinttype = {arXiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2402.06196},
+  url = {http://arxiv.org/abs/2402.06196},
+  urldate = {2025-05-23},
+  abstract = {Large Language Models (LLMs) have drawn a lot of attention due to their strong performance on a wide range of natural language tasks, since the release of ChatGPT in November 2022. LLMs' ability of general-purpose language understanding and generation is acquired by training billions of model's parameters on massive amounts of text data, as predicted by scaling laws \textbackslash cite\{kaplan2020scaling,hoffmann2022training\}. The research area of LLMs, while very recent, is evolving rapidly in many different ways. In this paper, we review some of the most prominent LLMs, including three popular LLM families (GPT, LLaMA, PaLM), and discuss their characteristics, contributions and limitations. We also give an overview of techniques developed to build, and augment LLMs. We then survey popular datasets prepared for LLM training, fine-tuning, and evaluation, review widely used LLM evaluation metrics, and compare the performance of several popular LLMs on a set of representative benchmarks. Finally, we conclude the paper by discussing open challenges and future research directions.},
+  langid = {english},
+  pubstate = {prepublished},
+  file = {C\:\\Users\\janek\\Zotero\\storage\\7MQN7RBM\\Minaee et al. - 2025 - Large Language Models A Survey.pdf;C\:\\Users\\janek\\Zotero\\storage\\22DNH9AJ\\2402.html},
+  keywords = {citation only,Computer Science - Artificial Intelligence,Computer Science - Computation and Language,preprint}
+}
+
 @inproceedings{NEURIPS2020_d89a66c7,
   title = {Supervised Contrastive Learning},
   booktitle = {Advances in {{Neural Information Processing Systems}}},
@@ -323,7 +371,39 @@
   date = {2017},
   volume = {30},
   publisher = {Curran Associates, Inc.},
-  url = {https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf}
+  url = {https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf},
+  keywords = {citation only}
+}
+
+@online{okulskaStyloMetrixOpensourceMultilingual2023,
+  title = {{{StyloMetrix}}: An Open-Source Multilingual Tool for Representing Stylometric Vectors},
+  shorttitle = {{{StyloMetrix}}},
+  author = {Okulska, Inez and Stetsenko, Daria and Kołos, Anna and Karlińska, Agnieszka and Głąbińska, Kinga and Nowakowski, Adam},
+  date = {2023-09-22},
+  eprint = {2309.12810},
+  eprinttype = {arXiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2309.12810},
+  url = {http://arxiv.org/abs/2309.12810},
+  urldate = {2025-05-23},
+  abstract = {This work aims to provide an overview on the open-source multilanguage tool called StyloMetrix. It offers stylometric text representations that cover various aspects of grammar, syntax and lexicon. StyloMetrix covers four languages: Polish as the primary language, English, Ukrainian and Russian. The normalized output of each feature can become a fruitful course for machine learning models and a valuable addition to the embeddings layer for any deep learning algorithm. We strive to provide a concise, but exhaustive overview on the application of the StyloMetrix vectors as well as explain the sets of the developed linguistic features. The experiments have shown promising results in supervised content classification with simple algorithms as Random Forest Classifier, Voting Classifier, Logistic Regression and others. The deep learning assessments have unveiled the usefulness of the StyloMetrix vectors at enhancing an embedding layer extracted from Transformer architectures. The StyloMetrix has proven itself to be a formidable source for the machine learning and deep learning algorithms to execute different classification tasks.},
+  langid = {english},
+  pubstate = {prepublished},
+  file = {C\:\\Users\\janek\\Zotero\\storage\\QJAKCXSB\\Okulska et al. - 2023 - StyloMetrix An Open-Source Multilingual Tool for Representing Stylometric Vectors.pdf;C\:\\Users\\janek\\Zotero\\storage\\XKWU8KLZ\\2309.html},
+  keywords = {Computer Science - Computation and Language,preprint}
+}
+
+@online{oparaStyloAIDistinguishingAIgenerated2024a,
+  title = {{{StyloAI}}: Distinguishing {{AI-generated}} Content with Stylometric Analysis},
+  shorttitle = {{{StyloAI}}},
+  author = {Opara, Chidimma},
+  date = {2024-05-16},
+  url = {https://arxiv.org/abs/2405.10129v1},
+  urldate = {2025-05-23},
+  abstract = {The emergence of large language models (LLMs) capable of generating realistic texts and images has sparked ethical concerns across various sectors. In response, researchers in academia and industry are actively exploring methods to distinguish AI-generated content from human-authored material. However, a crucial question remains: What are the unique characteristics of AI-generated text? Addressing this gap, this study proposes StyloAI, a data-driven model that uses 31 stylometric features to identify AI-generated texts by applying a Random Forest classifier on two multi-domain datasets. StyloAI achieves accuracy rates of 81\% and 98\% on the test set of the AuTextification dataset and the Education dataset, respectively. This approach surpasses the performance of existing state-of-the-art models and provides valuable insights into the differences between AI-generated and human-authored texts.},
+  langid = {english},
+  organization = {Arxiv.org},
+  file = {C:\Users\janek\Zotero\storage\2QUI723U\Opara - 2024 - StyloAI Distinguishing AI-Generated Content with Stylometric Analysis.pdf}
 }
 
 @online{parkLinearRepresentationHypothesis2024,
@@ -499,6 +579,24 @@
   pubstate = {prepublished},
   file = {C\:\\Users\\janek\\Zotero\\storage\\MW7TYX7M\\Rooein et al. - 2023 - Know Your Audience Do LLMs Adapt to Different Age and Education Levels.pdf;C\:\\Users\\janek\\Zotero\\storage\\JITDKMFD\\2312.html},
   keywords = {citation only,Computer Science - Artificial Intelligence,Computer Science - Computation and Language,preprint}
+}
+
+@online{schulhoffPromptReportSystematic2024,
+  title = {The Prompt Report: A Systematic Survey of Prompt Engineering Techniques},
+  shorttitle = {The Prompt Report},
+  author = {Schulhoff, Sander and Ilie, Michael and Balepur, Nishant and Kahadze, Konstantine and Liu, Amanda and Si, Chenglei and Li, Yinheng and Gupta, Aayush and Han, HyoJung and Schulhoff, Sevien and Dulepet, Pranav Sandeep and Vidyadhara, Saurav and Ki, Dayeon and Agrawal, Sweta and Pham, Chau and Kroiz, Gerson and Li, Feileen and Tao, Hudson and Srivastava, Ashay and Da Costa, Hevander and Gupta, Saloni and Rogers, Megan L. and Goncearenco, Inna and Sarli, Giuseppe and Galynker, Igor and Peskoff, Denis and Carpuat, Marine and White, Jules and Anadkat, Shyamal and Hoyle, Alexander and Resnik, Philip},
+  date = {2024},
+  eprint = {2406.06608},
+  eprinttype = {arXiv},
+  doi = {10.48550/arXiv.2406.06608},
+  url = {https://arxiv.org/abs/2406.06608},
+  urldate = {2025-05-24},
+  abstract = {Generative Artificial Intelligence (GenAI) systems are increasingly being deployed across diverse industries and research domains. Developers and end-users interact with these systems through the use of prompting and prompt engineering. Although prompt engineering is a widely adopted and extensively researched area, it suffers from conflicting terminology and a fragmented ontological understanding of what constitutes an effective prompt due to its relatively recent emergence. We establish a structured understanding of prompt engineering by assembling a taxonomy of prompting techniques and analyzing their applications. We present a detailed vocabulary of 33 vocabulary terms, a taxonomy of 58 LLM prompting techniques, and 40 techniques for other modalities. Additionally, we provide best practices and guidelines for prompt engineering, including advice for prompting state-of-the-art (SOTA) LLMs such as ChatGPT. We further present a meta-analysis of the entire literature on natural language prefix-prompting. As a culmination of these efforts, this paper presents the most comprehensive survey on prompt engineering to date.},
+  langid = {english},
+  pubstate = {prepublished},
+  version = {6},
+  file = {C\:\\Users\\janek\\Zotero\\storage\\6HZJUSQS\\Schulhoff et al. - 2025 - The Prompt Report A Systematic Survey of Prompt Engineering Techniques.pdf;C\:\\Users\\janek\\Zotero\\storage\\KHJ5T46J\\2406.html},
+  keywords = {Artificial Intelligence (cs.AI),citation only,Computation and Language (cs.CL),Computer Science - Artificial Intelligence,Computer Science - Computation and Language,FOS: Computer and information sciences,preprint}
 }
 
 @online{subramaniExtractingLatentSteering2022,
