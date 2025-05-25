@@ -5,27 +5,16 @@ This chapter provides an overview of the key concepts and relevant research for 
 
 \section{Embeddings}
 \label{sec:background:embeddings}
-Embeddings form the foundation of many modern \ac{nlp} systems by providing a mathematical representation of words, texts or other concepts in a continuous vector space, as illustrated in Figure~\ref{fig:embeddings}. These representations capture semantic relationships, enabling machines to better understand and process human language. This section provides an overview of the evolution of embedding techniques, from early static word vectors to more recent context-aware models. Additionally, it emphasizes the importance of embeddings in a variety of \ac{nlp} applications.
+Embeddings form the foundation of many modern \ac{nlp} systems by providing a mathematical representation of words, texts, or other concepts in a continuous vector space, as illustrated in Figure~\ref{fig:embeddings}. These representations capture semantic relationships, enabling machines to better understand and process human language. This section provides an overview of the evolution of embedding techniques, from early static word vectors to more recent context-aware models. Additionally, it emphasizes the importance of embeddings in a variety of \ac{nlp} applications.
 
 \begin{figure}[h!t]
   \centering
   \input{figures/tikz/embeddings.tex}
-  \caption[]{This figure (\cite{WordEmbeddingDemo}) shows a simplified visualization of a word embedded in a semantic feature space. In such embeddings, the absolute position of words in the space is meaningless; only the relative positions of the points matter. Words that are semantically similar are represented by points that are located close to one another in the embedding space. Additionally, certain directions in the embedding space may correspond to real-world concepts. For instance, in this example, certain directions correspond to age or gender.
+  \caption[]{This figure (\cite{WordEmbeddingDemo}) shows a simplified visualization of a word embedded in a semantic feature space. In such embeddings, the absolute position of words in the space is meaningless; only the relative positions of the points matter. Semantically similar words are represented by points that are located close to one another in the embedding space. Additionally, certain directions in the embedding space may correspond to real-world concepts. For instance, in this example, certain directions correspond to age or gender.
 
     Word embeddings are typically generated using unsupervised learning methods. Consequently, the individual dimensions of the embeddings do not explicitly correspond to interpretable, real-world concepts. This differs from the current illustration, where each axis is clearly labeled with a human-understandable attribute. Nevertheless, two key characteristics generally remain valid: embeddings that are close together tend to be semantically similar, and some directions in the embedding space can reflect meaningful concepts.}
   \label{fig:embeddings}
 \end{figure}
-
-% \begin{itemize}
-%   \item This figure displays a simplified visualization for a word embedding
-%   \item in embeddings, the position of words in the embedding space is not important and has no real meaning, just the relation between points
-%   \item points that are close to each other are more similar
-%   \item directions correspond to real-world concepts
-%   \item most embeddings are created using unsupervised learning methods
-%   \item because of that, the dimensions of the embeddings do not directly correspond to real-world concepts as is the case in this illustration
-%   \item the characteristic that embeddings that are close to each other are similar to each other and some directions correspond to specific concepts remains true
-%   \item there exist methods to relate directions in the embedding space with real-world concepts and make it more interpretable; this thesis presents one such method
-% \end{itemize}
 
 Early models for word representation focused on learning fixed vectors for each word, resulting in what are known as static word embeddings. These embeddings assign the same vector to a word regardless of the context in which it appears. Well-known examples of such approaches include Word2Vec (\cite{mikolovEfficientEstimationWord2013}) and GloVe (\cite{penningtonGloveGlobalVectors2014}), both of which capture semantic similarities based on word co-occurrence statistics in large text corpora.
 
