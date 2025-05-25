@@ -3,41 +3,22 @@
 
 \section{Stack Exchange Dataset}%
 \label{sec:datasets:stackex}
+The main dataset used in this thesis is derived from Stack Exchange\footnote{\url{https://stackexchange.com/}}, a network of online Q\&A forums. Stack Exchange is structured as a collection of topic-specific communities where users can post questions and provide answers. For this thesis, the focus is on forums for specific groups, such as \url{biology.stackexchange.com}, designed for biologists and others interested in biology-related discussions.
 
-\begin{itemize}
-  \item main dataset used in this thesis
-  \item taken from Stack Exchange\footnote{\url{https://stackexchange.com/}}, a network of online Q\&A forums
-        % TODO: @chatgpt describe stack exchange further, similar to the description of reddit in the askx dataset
-  \item the focus was on forums that focus on a specific group of people, like \url{https://biology.stackexchange.com/} for biologists
-  \item only what/how/why questions are used to ensure that there was an actual explanation of a concept in the answer
-  \item \num{16} group-specific forums where identified
-  \item \num{11} of these where used for the experiments
-  \item the selected groups and the number of answers used can be found in Appendix~\ref{sec:appendix:datasets:stackex}
-\end{itemize}
+To ensure that the answers that are being used for the thesis actually include explanations, only questions that begin with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed conceptual explanations in the answers. From the full set of Stack Exchange forums, \num{16} group-specific forums are identified as relevant. Out of these, \num{11} are selected for the experimental evaluation carried out in this thesis. The specific groups and the corresponding number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
+To ensure the answers used in the thesis include explanations, only questions beginning with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed, conceptual responses. Of the full set of Stack Exchange forums, \num{16} group-specific forums were identified as relevant. \num{11} of these are selected for the experimental evaluation carried out in this thesis. The specific groups and the number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
 
 \section{AskX Dataset}%
 \label{sec:datasets:askx}
-% compare https://arxiv.org/pdf/2309.03876
-\begin{itemize}
-  \item The corpus is derived from Reddit\footnote{\url{https://www.reddit.com/}}, an online discussion forum where users publicly post messages and others post responses.
-  \item Reddit is organized into subreddits, each focused on a specific topic.
-  \item Each subreddit has its own posting rules and moderators who enforce them.
-  \item The focus is on a specific kind of subreddit that follows the \enquote{AskX} schema.
-  \item Examples of such subreddits include \enquote{Askelectricians} and \enquote{Askteens}.
-  \item In these subreddits, anyone can ask a question, but only members of the specified demographic should answer.
-  \item For instance, in \enquote{Askelectricians}, only electricians should respond to questions.
-  \item A total of \num{26} subreddits following the AskX schema were identified.
-  \item From these, \num{24} subreddits were manually selected and grouped together to derive the corpus, as can be seen in Appendix~\ref{sec:appendix:datasets:askx}
-  \item similar subreddits had to be manually grouped together because there were too few answers in some of them
-  \item only what/how/why questions are used to ensure that there was an actual explanation of a concept in the answer
-\end{itemize}
+The second dataset used in this thesis is derived from Reddit\footnote{\url{https://www.reddit.com/}}, a widely used online discussion platform where users submit posts and others respond. Reddit is organized into subforums, known as \enquote{subreddits}, that focus on specific topics and have their own rules and moderation policies.
 
+This dataset focuses on a specific category of subreddits that follow the \enquote{AskX} schema. In these subreddits, any user may pose a question, but only individuals belonging to a specific demographic are expected to respond. Examples include \enquote{Askelectricians}, where only electricians are encouraged to answer, and \enquote{Askteens}, where answers should come from teenagers. A total of \num{26} such AskX subreddits were initially identified.
 
+% TODO: is this the correct number?
+From this pool, \num{24} subreddits are manually selected and grouped to create a unified corpus. The grouping process is necessary because some subreddits do not have enough answers to be treated independently. As with the Stack Exchange dataset, only questions that start with \enquote{what}, \enquote{how}, or \enquote{why} are retained to ensure that the dataset contains genuine explanations. Further details on the selected subreddits and the grouping process are provided in Appendix~\ref{sec:appendix:datasets:askx}.
 
 \section{Steering Dataset}%
 \label{sec:datasets:steering}
-\begin{itemize}
-  % TODO: continue
-  \item questions taken from \citet{petroni-etal-2021-kilt,rooeinKnowYourAudience2023}
-  \item details in Appendix~\ref{sec:appendix:datasets}
-\end{itemize}
+For steering experiments, it is essential to use high-quality questions that elicit meaningful, conceptually rich responses. While questions from the Stack Exchange and AskX datasets could be used for this purpose, they do not consistently meet the quality and clarity required for steering tasks.
+
+Instead, this thesis uses a steering dataset consisting of questions taken from the works of \citet{petroni-etal-2021-kilt,rooeinKnowYourAudience2023}. These studies focus on question answering and compile carefully curated lists of what, how, and why questions. These questions are particularly well-suited to the steering experiments conducted in this thesis and offer a reliable benchmark for evaluating the ability of the model to generate group-specific responses. Further details regarding this dataset can be found in Appendix~\ref{sec:appendix:datasets}.
