@@ -204,7 +204,7 @@ The final \textbf{Prompt Group Attribute Steering} method will combine the two p
 
 \subsubsection{Activation Steering}
 \label{sec:experiments:setup:steering:activation}
-While steering a \ac{llm} by changing its system prompt is a reliable method with good results, it has the disadvantage that it is difficult to change the strength of the steering effect. Since the values of the interpretable attribute vector represent how strongly an attribute matches a text, it would be useful to incorporate this information into the steering.
+While steering an \acs{llm} by changing its system prompt is a reliable method with good results, it has the disadvantage that it is difficult to change the strength of the steering effect. Since the values of the interpretable attribute vector represent how strongly an attribute matches a text, it would be useful to incorporate this information into the steering.
 
 The activation steering approach first extracts the activation vectors at each layer of the model that correspond to each dimension of the attribute vector. The extraction is done in one forward pass and is based upon the work of \citet{konenStyleVectorsSteering2024}. % turnerActivationAdditionSteering2024,rimsky-etal-2024-steering
 Afterward, the activation vectors are combined weighted by their importance according to the interpretable attribute vector. The result steering vector is added at the layer of the model from which it was extracted during the explanation generation. It is scaled with a factor \(\lambda\) that determines the strength of the steering effect.

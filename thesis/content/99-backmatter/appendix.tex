@@ -11,12 +11,61 @@
 
 \section{Datasets}
 \label{sec:appendix:datasets}
+For the experiments conducted in this thesis, group-specific answers from different sources have been utilized, as described in Section~\ref{sec:datasets}. These answers were divided into training, validation, and test sets to fine-tune various models. Within each of these splits, the groups were represented equally to ensure balanced training and evaluation conditions.
+
+\begin{tabular}{llSS}
+  \toprule
+  {Purpose}             & {Dataset}      & {Number of Answers} & {Answers per Group} \\
+  \midrule
+  \acs{sfam} train      & Stack Exchange & 4400                & 400                 \\
+  \acs{sfam} validation & Stack Exchange & 550                 & 50                  \\
+  \acs{sfam} test       & Stack Exchange & 550                 & 50                  \\
+  \acs{lisa} train      & Stack Exchange & 55000               & 5000                \\
+  \acs{lisa} validation & Stack Exchange & 3300                & 300                 \\
+  \acs{lisa} test       & Stack Exchange & 2200                & 200                 \\
+  foreign domain test   & AskX           & 1000                & 100                 \\ % TODO: use correct numbers
+  \bottomrule
+\end{tabular}
+
+In addition to the datasets used for training and evaluation, a total of \num{400} questions were employed in the steering experiments, as detailed in Section~\ref{sec:datasets:steering}. Of these questions, \num{320} were sourced from the work of \citet{petroni-etal-2021-kilt}, while the remaining \num{80} questions were taken from the work of \citet{rooeinKnowYourAudience2023}.
+
+\clearpage
+
 \subsection{Stack Exchange}
 \label{sec:appendix:datasets:stackex}
+In the following table, all groups that were extracted from Stack Exchange and the number of answers to what/how/why questions are listed.
+
+\begin{tabular}{lSS}
+  \toprule
+  {Group}              & {Answers Total} & {Answers Used} \\
+  \midrule
+  Astronomers          & 3955            & 0              \\
+  Pilots               & 12315           & 6000           \\
+  Biologists           & 6438            & 6000           \\
+  Chemists             & 8131            & 6000           \\
+  Cryptographers       & 5185            & 0              \\
+  Computer Scientists  & 6364            & 6000           \\
+  Data Scientists      & 4262            & 0              \\
+  Electrical Engineers & 21506           & 6000           \\
+  Game Developers      & 10835           & 6000           \\
+  Historians           & 7176            & 6000           \\
+  Lawyers              & 5148            & 0              \\
+  Mechanical Engineers & 3682            & 0              \\
+  Philosophers         & 8554            & 6000           \\
+  Physicists           & 46193           & 6000           \\
+  Politicians          & 12855           & 6000           \\
+  Software Engineers   & 31840           & 6000           \\
+  \bottomrule
+\end{tabular}
+
+\vfill
+\clearpage
 
 \subsection{Reddit (AskX)}
 \label{sec:appendix:datasets:askx}
-% TODO: short description
+The following table presents an overview of the Subreddits from which the answers used for the experiments in this thesis were sourced. It also includes information on the number of answers to what/how/why question extracted from each Subreddit. Furthermore, the table illustrates how the Subreddits were grouped. Finally, it specifies the number of answers that were actually utilized in the experiments.
+
+% TODO: updated table
 \begin{tabular}{ll}
   \toprule
   {Data Subgroup}    & {Data Group} \\
@@ -49,8 +98,10 @@
   \bottomrule
 \end{tabular}
 
+\section{Prompts for Attribute Sentence Generation}
+The following prompts are used to create the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration}). Many of the prompts have been taken from the work of \citet{patelLearningInterpretableStyle2023} with the notable exception of the knowledge prompts, which are part of the extension to existing approach presented in this thesis.
 
-\section{Open-ended Style Prompts}
+\subsection{Open-ended Style Prompts}
 \label{sec:appendix:openPrompts}
 \begin{description}
   \item[Grammar Style]\leavevmode \newline
@@ -103,10 +154,10 @@ Description:
         \end{minipage}
 \end{description}
 
-\section{Targeted Style Prompts}
+\subsection{Targeted Style Prompts}
 \label{sec:appendix:targetPrompts}
 
-I use the following template for the targeted style prompts:
+In this thesis, the following template for the targeted style prompts are being used:
 \begin{lstlisting}
   Write a description about the usage of '{{feature_name}}' by the author of the following passage. If it is used by the author write a long description, otherwise keep the answer short.
   Passage: {{passage}}
@@ -204,7 +255,7 @@ For each of the following targeted features, the \textit{feature\_name} is subst
   \end{itemize}
 \end{multicols}
 
-\section{Knowledge Prompts}
+\subsection{Knowledge Prompts}
 \label{sec:appendix:knowledgePrompts}
 \begin{description}
   \item[Experience]\leavevmode \newline
@@ -228,13 +279,3 @@ Description:
 \section{Database Schema}
 \label{sec:appendix:databaseSchema}
 % TODO
-
-\section{Steering Prompts}
-\label{sec:appendix:steeringPrompts}
-% TODO
-
-\subsection{Steering With the Most Important Attributes}
-\label{sec:appendix:steeringPrompts:attribute}
-
-\subsection{Activation Vector Extraction}
-\label{sec:appendix:steeringPrompts:activationExtraction}

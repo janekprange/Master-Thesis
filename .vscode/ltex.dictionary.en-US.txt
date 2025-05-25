@@ -5,3 +5,9 @@ STEL
 SBERT-similarity
 softmax
 SBERT
+Stylometric
+GloVe
+ELMo
+Stylometrix
+StyloAI
+stylometric

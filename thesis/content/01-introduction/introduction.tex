@@ -1,8 +1,8 @@
 \chapter{Introduction}
 \label{sec:introduction}
-Textual information plays a crucial role in daily life, appearing in various contexts, such as educational environments, news articles, entertainment media, and social media platforms. As noted in \cite{wegmannSameAuthorJust2022}, an important aspect of text is not only the message it conveys, but also the style in which it is presented. The style of a text significantly influences its reception, shaping how effectively the message is understood and how well it is accepted by the audience.
+Textual information plays a crucial role in daily life, appearing in various contexts, such as educational environments, news articles, entertainment media, and social media platforms. As noted in \citet{wegmannSameAuthorJust2022}, an important aspect of text is not only the message it conveys, but also the style in which it is presented. The style of a text significantly influences its reception, shaping how effectively the message is understood and how well it is accepted by the audience.
 
-Stylistic features also serve analytical purposes; for instance, they can be used to identify the author of a text, as shown in \cite{alshomaryLatentSpaceInterpretation2024}, or to attribute the text to a particular group of individuals, as demonstrated by \cite{10.1007/978-3-642-29047-3_27}. Previous work, such as that of \citet{zhu-etal-2024-styleflow, ijcai2020p526, wegmannSameAuthorJust2022}, has highlighted the importance of style in textual analysis.
+Stylistic features also serve analytical purposes; for instance, they can be used to identify the author of a text, as shown in \citet{alshomaryLatentSpaceInterpretation2024}, or to attribute the text to a particular group of individuals, as demonstrated by \citet{10.1007/978-3-642-29047-3_27}. Previous work, such as that of \citet{zhu-etal-2024-styleflow, ijcai2020p526, wegmannSameAuthorJust2022}, has highlighted the importance of style in textual analysis.
 
 However, automating stylistic investigations with machine learning poses several challenges. One significant issue is the complexity and time-consuming nature of manual style annotations. Additionally, it is difficult to generate parallel datasets that include positive and negative examples for each stylistic label.
 
@@ -19,9 +19,10 @@ To address these limitations, this thesis introduces interpretable attribute vec
   \end{center}
 \end{figure}
 
-While state-of-the-art methods primarily focus on stylistic features for tasks such as authorship attribution, as shown in works by \citet{alshomaryLatentSpaceInterpretation2024, patelLearningInterpretableStyle2023, konenStyleVectorsSteering2024, zhu-etal-2024-styleflow}, other types of author-related attributes can complement these stylistic analyses. One such attribute is the author's background knowledge or experience, referred to as knowledge attributes. The interpretable attribute vector developed in this thesis therefore includes both stylistic and knowledge-related dimensions.
+While state-of-the-art methods primarily focus on stylistic features for tasks such as authorship attribution, as shown in works by \citet{alshomaryLatentSpaceInterpretation2024, patelLearningInterpretableStyle2023, konenStyleVectorsSteering2024, zhu-etal-2024-styleflow}, other types of author-related attributes can complement these stylistic analyses. One such attribute is the author's background knowledge or experience, referred to as knowledge attributes. % TODO: why is knowledge important? citation
+The interpretable attribute vector developed in this thesis therefore includes both stylistic and knowledge-related dimensions.
 
-In addition to their relevance in tasks such as authorship attribution, group membership detection, or text classification more generally, these representations are also applicable in text generation, which is one of the most prominent applications in contemporary natural language processing. \Acp{llm}, which are based on the transformer architecture as introduced in \cite{NIPS2017_3f5ee243}, are widely used tools for generating natural language text. In recent years, \acp{llm} have been used for a wide range of tasks, including providing explanations for various topics and concepts.
+In addition to their relevance in tasks such as authorship attribution, group membership detection, or text classification more generally, these representations are also applicable in text generation, which is one of the most prominent applications in contemporary natural language processing. \Acp{llm}, which are based on the transformer architecture as introduced in \citet{NIPS2017_3f5ee243}, are widely used tools for generating natural language text. In recent years, \acp{llm} have been used for a wide range of tasks, including providing explanations for various topics and concepts.
 
 As more users depend on \acp{llm}, new challenges emerge beyond ensuring the factual correctness of the generated explanations. One such challenge involves tailoring the language and conceptual content of the explanation to suit the linguistic style and background knowledge of the target audience. For instance, an explanation suitable for a Ph.D. student might be inappropriate for a middle school student, and vice versa. Style and knowledge representations can be instrumental in aligning the linguistic output with the expectations and comprehension levels of different user groups to produce the best explanations for all audiences.
 
@@ -60,7 +61,7 @@ Despite its popularity, steering through system prompt modification has the limi
 To overcome this limitation, this thesis introduces a novel method for fine-grained steering that manipulates the activation space of the \ac{llm}. This technique involves altering the model's internal representations after specific layers, steering the activations toward particular conceptual directions that correspond to the dimensions of the interpretable attribute vector. This method builds upon recent research in activation-based model manipulation, including the work of \citet{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
 
 \begin{description}
-  \item[Research Question 2.2] Can the newly proposed method of steering a \ac{llm} by manipulating its activation space be used to improve existing steering methods?
+  \item[Research Question 2.2] Can the newly proposed method of steering an \acs{llm} by manipulating its activation space be used to improve existing steering methods?
 \end{description}
 
 

@@ -1,2 +1,3 @@
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QThe forums included in the dataset all have the theme where a specific group of people (i.e. people over 30, engineers, ) are asked questions.\\E$"}
 {"rule":"SMALL_NUMBER_OF","sentence":"^\\QAuthorship attribution typically involves many authors, each of whom contributes a small number of texts.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QA recent alternative to these methods is activation steering, which directly alters the hidden states of an \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q during inference to guide its output.\\E$"}
