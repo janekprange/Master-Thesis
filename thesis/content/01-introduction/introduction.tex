@@ -29,40 +29,29 @@ As more users depend on \acp{llm}, new challenges emerge beyond ensuring the fac
 
 \section{Problem Statement}
 \label{sec:introduction:problemStatement}
-
 Previous research has demonstrated that existing methods are highly effective for authorship attribution tasks. These approaches identify and distinguish individual writing styles, enabling the attribution of anonymous texts to specific authors with a high degree of accuracy. However, the goal of this thesis is to adapt and extend these techniques to address a related yet distinct challenge: group membership detection.
 
 Though similar in concept, group membership detection differs from authorship attribution in significant ways. Like authorship attribution, group membership detection relies on distinguishing characteristics in the way texts are written. Groups often exhibit unique stylistic features that can serve as indicators of group identity. However, the underlying data structure presents a key distinction. Authorship attribution typically involves many authors, each of whom contributes a small number of texts. In contrast, group membership detection usually involves only a few groups, each of which provides a relatively large volume of textual data. This fundamental difference in data composition requires new approaches tailored specifically to group detection.
 
-\begin{description}
-  \item[Research Question 1] How well are the interpretable style representations suited to detect the group membership of different authors?
-\end{description}
+\researchQuestion{rq:interpretableGroupDetect}{How well are the interpretable style representations suited to detect the group membership of different authors?}
 
 To investigate this question, this thesis extends the interpretable style representation model proposed by \citet{patelLearningInterpretableStyle2023}. The extension involves augmenting the existing style vector with additional knowledge-based attributes. These attributes capture essential information such as the experience level and background knowledge of the authors, which are factors that can vary significantly between groups. As these knowledge characteristics influence how individuals express ideas in writing, their inclusion has the potential to enhance the model's ability to differentiate between groups.
 
-\begin{description}
-  \item[Research Question 1.1] Does the interpretable style representation benefit from knowledge attributes in addition to style attributes?
-\end{description}
+\researchSubQuestion{rq:interpretableGroupDetect:knowledgeAttributes}{Does the interpretable style representation benefit from knowledge attributes in addition to style attributes?}
 
 While the task of detecting group membership is valuable in itself, as \aclp{llm} are becoming more popular, the ability to use them to generate group-specific explanations has gained increasing relevance. \acp{llm} are used in many applications to explain concepts to a large variety of groups of people. While the factual correctness of these explanations is important, the comprehensibility of the explanation is increased if the model can reflect the style and background knowledge of the recipient of the explanation. This thesis compares different steering methods and how the interpretable attribute vector that is presented in the first part of the thesis can contribute to existing methods for steering \ac{llm} outputs to better align with group-specific characteristics.
 
-\begin{description}
-  \item[Research Question 2] What is the best way to generate group-specific explanations from style representations?
-\end{description}
+\researchQuestion{rq:generateExplanation}{What is the best way to generate group-specific explanations from style representations?}
 
 To address this question, several steering methods for \acp{llm} will be examined. The initial focus will be on system prompt engineering, a widely used and accessible method for influencing model behavior. In particular, the thesis explores how the interpretable attribute vector can be used to guide the construction of system prompts that produce group-specific outputs. This includes formulating prompts to include dimensions of the interpretable attribute vector that are particularly relevant to a specific group.
 
-\begin{description}
-  \item[Research Question 2.1] Can the attribute vector presented in this thesis be used to improve existing steering methods that change the system prompt?
-\end{description}
+\researchSubQuestion{rq:generateExplanation:attributeVector}{Can the attribute vector presented in this thesis be used to improve existing steering methods that change the system prompt?}
 
 Despite its popularity, steering through system prompt modification has the limitation that it does not allow for fine-grained control over the steering. While it can guide the model in a general direction, it lacks the capacity to precisely modulate the strength of the steering effect.
 
 To overcome this limitation, this thesis introduces a novel method for fine-grained steering that manipulates the activation space of the \ac{llm}. This technique involves altering the model's internal representations after specific layers, steering the activations toward particular conceptual directions that correspond to the dimensions of the interpretable attribute vector. This method builds upon recent research in activation-based model manipulation, including the work of \citet{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
 
-\begin{description}
-  \item[Research Question 2.2] Can the newly proposed method of steering an \acs{llm} by manipulating its activation space be used to improve existing steering methods?
-\end{description}
+\researchSubQuestion{rq:generateExplanation:activation}{Can the newly proposed method of steering an \acs{llm} by manipulating its activation space be used to improve existing steering methods?}
 
 
 \section{Goals of the thesis}
@@ -85,10 +74,10 @@ This thesis is guided by the research questions defined in Section~\ref{sec:intr
         Although the interpretable attribute vector is structured, its dimensions are not normalized. This limits the ability to directly compare different vectors. To address this issue, the model from the previous step is extended with an embedding head based on the approach presented by \citet{patelLearningInterpretableStyle2023}. This component generates normalized embeddings from the interpretable vectors that are suitable for group membership detection. These embeddings enable meaningful comparisons across texts and allow for clustering or classification of texts by group identity.
 
   \item[Steering a Large Language Model with System Prompt Engineering]\hspace{\maxstretch}
-        This goal addresses research question 2.1 and explores how the interpretable attribute vector can improve system prompt engineering techniques for \acp{llm}. Different prompt construction strategies are designed and evaluated, with a focus on integrating the most relevant attribute dimensions for a target group. The goal is to generate outputs that align with the linguistic style and background knowledge of the target group by embedding these attributes into the system prompt.
+        This goal addresses research question~\ref{rq:generateExplanation:attributeVector} and explores how the interpretable attribute vector can improve system prompt engineering techniques for \acp{llm}. Different prompt construction strategies are designed and evaluated, with a focus on integrating the most relevant attribute dimensions for a target group. The goal is to generate outputs that align with the linguistic style and background knowledge of the target group by embedding these attributes into the system prompt.
 
   \item[Steering a Large Language Model with Activation Steering]\hphantom{i}
-        The final goal of the thesis addresses research question 2.2 and proposes a novel method for activation-based steering. This method manipulates the activations at the end of each transformer layer of the \ac{llm} by injecting steering vectors that are derived from internal model activations. The steering vectors are produced by combining activation vectors corresponding to specific dimensions of the interpretable attribute vector. Furthermore, this steering method is used in conjunction with various prompt steering methods to directly compare their performance.
+        The final goal of the thesis addresses research question~\ref{rq:generateExplanation:activation} and proposes a novel method for activation-based steering. This method manipulates the activations at the end of each transformer layer of the \ac{llm} by injecting steering vectors that are derived from internal model activations. The steering vectors are produced by combining activation vectors corresponding to specific dimensions of the interpretable attribute vector. Furthermore, this steering method is used in conjunction with various prompt steering methods to directly compare their performance.
 \end{description}
 
 Together, these goals form a comprehensive framework for interpretable text representation and personalized language model behavior. Beginning with the creation of the synthetic dataset, the thesis develops tools for generating and leveraging interpretable style and knowledge vectors. Ultimately, these tools are applied to guide the LLMs in ways that reflect group identity and communicative needs.

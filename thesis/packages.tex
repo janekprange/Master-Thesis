@@ -115,3 +115,21 @@
   bookmarksopen=true,          %
   pdfpagemode=UseNone,
 }
+
+% custom command to produce formatted referenceble research questions
+\newcounter{researchQuestion}
+\newcounter{researchSubQuestion}[researchQuestion]
+\renewcommand{\theresearchQuestion}{\arabic{researchQuestion}}
+\renewcommand{\theresearchSubQuestion}{\theresearchQuestion.\arabic{researchSubQuestion}}
+\newcommand{\researchQuestion}[2]{%
+  \begin{description}
+    \refstepcounter{researchQuestion}\label{#1}%
+    \item[Research Question~\theresearchQuestion] #2
+  \end{description}
+}
+\newcommand{\researchSubQuestion}[2]{%
+  \begin{description}
+    \refstepcounter{researchSubQuestion}\label{#1}%
+    \item[Research Question~\theresearchSubQuestion] #2
+  \end{description}
+}

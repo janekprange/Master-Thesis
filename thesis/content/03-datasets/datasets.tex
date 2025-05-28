@@ -1,12 +1,15 @@
 \chapter{Datasets}%
 \label{sec:datasets}
 
+% TODO: introduction
+
 \section{Stack Exchange Dataset}%
 \label{sec:datasets:stackex}
 The main dataset used in this thesis is derived from Stack Exchange\footnote{\url{https://stackexchange.com/}}, a network of online Q\&A forums. Stack Exchange is structured as a collection of topic-specific communities where users can post questions and provide answers. For this thesis, the focus is on forums for specific groups, such as \url{biology.stackexchange.com}, designed for biologists and others interested in biology-related discussions.
 
-To ensure that the answers that are being used for the thesis actually include explanations, only questions that begin with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed conceptual explanations in the answers. From the full set of Stack Exchange forums, \num{16} group-specific forums are identified as relevant. Out of these, \num{11} are selected for the experimental evaluation carried out in this thesis. The specific groups and the corresponding number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
-To ensure the answers used in the thesis include explanations, only questions beginning with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed, conceptual responses. Of the full set of Stack Exchange forums, \num{16} group-specific forums were identified as relevant. \num{11} of these are selected for the experimental evaluation carried out in this thesis. The specific groups and the number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
+To ensure that the answers that are being used for the thesis actually include explanations, only questions that begin with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed conceptual explanations in the answers according to \citet{millerExplanationArtificialIntelligence2019}. From the full set of Stack Exchange forums, \num{16} group-specific forums are identified as relevant. % TODO: why 11?
+Out of these, \num{11} are selected for the experimental evaluation carried out in this thesis. The specific groups and the corresponding number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
+% To ensure the answers used in the thesis include explanations, only questions beginning with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed, conceptual responses. Of the full set of Stack Exchange forums, \num{16} group-specific forums were identified as relevant. \num{11} of these are selected for the experimental evaluation carried out in this thesis. The specific groups and the number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
 
 \section{AskX Dataset}%
 \label{sec:datasets:askx}
@@ -21,4 +24,5 @@ From this pool, \num{24} subreddits are manually selected and grouped to create 
 \label{sec:datasets:steering}
 For steering experiments, it is essential to use high-quality questions that elicit meaningful, conceptually rich responses. While questions from the Stack Exchange and AskX datasets could be used for this purpose, they do not consistently meet the quality and clarity required for steering tasks.
 
+% TODO: from kilt, I used ELI5 test dataset
 Instead, this thesis uses a steering dataset consisting of questions taken from the works of \citet{petroni-etal-2021-kilt,rooeinKnowYourAudience2023}. These studies focus on question answering and compile carefully curated lists of what, how, and why questions. These questions are particularly well-suited to the steering experiments conducted in this thesis and offer a reliable benchmark for evaluating the ability of the model to generate group-specific responses. Further details regarding this dataset can be found in Appendix~\ref{sec:appendix:datasets}.

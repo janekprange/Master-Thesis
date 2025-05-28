@@ -1,6 +1,8 @@
 \chapter{Evaluation and Discussion}
 \label{sec:evaluation}
 
+% TODO: baseline in die Tabellen schreiben (random wäre accuracy 0.5)
+
 % pandoc.exe --ignore-args --citeproc --bibliography=literature.bib --wrap=none -o thesis.txt thesis.tex --verbose
 
 % \section{Evaluation Metrics}
@@ -35,6 +37,16 @@
 %         \end{itemize}
 % \end{itemize}
 
+\section{Importance of Knowledge Attributes}
+\begin{itemize}
+  \item answers research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes}
+\end{itemize}
+\begin{table}[ht]
+  \resultKnowledgeImportance{}
+  \label{table:knowledgeImportance}
+  \caption{TODO:}
+\end{table}
+
 
 \section{\acs{sfam}}
 \begin{itemize}
@@ -57,8 +69,8 @@
 
 \begin{table}[ht]
   \resultSfam{}
-  \caption{TODO:}
   \label{table:resultSFAM}
+  \caption{TODO:}
 \end{table}
 
 
@@ -70,6 +82,33 @@
 
 \begin{table}[ht]
   \resultLisa{}
-  \caption{TODO:}
   \label{table:resultLISA}
+  \caption{TODO:}
+\end{table}
+
+
+\section{Embedding Model}
+
+\begin{table}
+  \resultEmbedder{}
+  \label{table:resultEmbedder}
+  \caption{TODO: result embedder}
+\end{table}
+
+\begin{table}
+  \resultEmbedderToMedians{}
+  \label{table:resultEmbedderToMedians}
+  \caption{TODO: result embedder to medians}
+\end{table}
+
+\begin{table}
+  \resultEmbedderForeignDomain{}
+  \label{table:resultEmbedderForeignDomain}
+  \caption{TODO: result embedder foreign domain}
+\end{table}
+
+\begin{table}
+  \resultEmbedderToMediansForeignDomain{}
+  \label{table:resultEmbedderToMediansForeignDomain}
+  \caption{TODO: result embedder to medians foreign domain}
 \end{table}
