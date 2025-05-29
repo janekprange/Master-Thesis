@@ -18,6 +18,8 @@ The model is instructed to avoid negations and examples because they can lead to
 
 After the previous steps, \numStyleSentencesNotUniqueText{} attribute sentences have been produced. After taking into account only unique sentences, \numStyleSentencesText{} attribute sentences are left. Of these, \num{\numStyleSentencesStyle} sentences are style sentences, which means they have been produced by a style prompt, and \num{\numStyleSentencesKnowledge} are knowledge prompts.
 % TODO: are style sentences + knowledge sentences = all sentences? if not, explain
+% TODO: include plot?
+% \input{generated/number_of_attributes_per_answer.pgf}
 
 \subsection{Clustering}
 \label{sec:experiments:setup:clustering}
@@ -34,6 +36,7 @@ The clustering algorithm first computes a radius neighbor graph of all sentences
 At this point, there are \num{\numClusters} clusters, \num{\numClustersStyle} of which are style clusters and \num{\numClustersKnowledge} are knowledge clusters. The size of the complete synthetic dataset can be found in Table~\ref{table:syntheticDataset}.
 
 \begin{table}[ht]
+  \caption{The size of the synthetic dataset created for this thesis. The answers are the group-specific input texts that are taken from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). For each answer and prompt, the \ac{llm} is prompted to create the style and knowledge descriptions. The descriptions are converted to attribute sentences by prompting the model again. Finally, the sentences are clustered together by the cosine similarity of their embeddings. The embeddings were produced with an SBERT model (\cite{reimersSentenceBERTSentenceEmbeddings2019}).}
   \begin{center}
     \begin{tabular}{lS[table-format=7.0]}
       \toprule
@@ -43,9 +46,8 @@ At this point, there are \num{\numClusters} clusters, \num{\numClustersStyle} of
       Descriptions & \numStyleDescriptions   \\
       Sentences    & \numStyleSentences      \\
       Clusters     & \numClusters            \\ \bottomrule
-    \end{tabular}
-  \end{center}
-  \caption{The size of the synthetic dataset created for this thesis. The answers are the group-specific input texts that are taken from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). For each answer and prompt, the \ac{llm} is prompted to create the style and knowledge descriptions. The descriptions are converted to attribute sentences by prompting the model again. Finally, the sentences are clustered together by the cosine similarity of their embeddings. The embeddings were produced with an SBERT model (\cite{reimersSentenceBERTSentenceEmbeddings2019}).}
+    \end{tabular}%
+  \end{center}%
   \label{table:syntheticDataset}
 \end{table}
 

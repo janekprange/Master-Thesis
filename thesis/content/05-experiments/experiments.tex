@@ -29,8 +29,13 @@ The experiments were conducted on a SLURM cluster using nodes with \num{32} CPU 
 %         % \item how often attribute vector dimensions have been used -> targeted dimension very often, for the others it would be more interesting
 % \end{itemize}
 
-% TODO: write
 \section{Importance of Knowledge Attributes for the Interpretable Attribute Vector}
+Knowledge attributes are an extension of the state-of-the-art style vector and a novel contribution of this thesis. This experiment is designed to address research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes} by evaluating the significance of the knowledge attributes in the context of group membership detection tasks.
+
+It involves analyzing the median attribute vectors for each group across all answers in the synthetic dataset introduced in Sections~\ref{sec:approach:attributeSentenceGeneration} and \ref{sec:experiments:setup:sentenceGeneration}. For each group, the dimensions of the interpretable attribute vector are ordered by their importance in distinguishing the target group from the others. The importance of each dimension is measured using the point-biserial correlation coefficient, similar to the methodology described in Section~\ref{sec:experiments:setup:steering:prompt}.
+
+If the most important attributes for group differentiation do not include knowledge attributes, then knowledge attributes are not essential for group membership detection. Conversely, if knowledge dimensions are among the top-ranked attributes, this would indicate their value in enhancing group-specific text representations.
+
 
 \section{Testing Model Performance}
 \label{sec:experiments:models}
@@ -47,6 +52,7 @@ Additionally, the model is tested on whether the embeddings of texts are closest
 
 The embedding model evaluations are repeated with data from a foreign domain. For this, the group-specific answers from the AskX % TODO: correct name
 dataset (see Section~\ref{sec:datasets:askx}) are used. The answers in this dataset have a different writing style than the ones in the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}) that has been used so far. Additionally, the groups of people that are represented are different, which tests the generalization capabilities of the approach as overly specific attributes, for example \enquote{The author uses computer science concepts.}, bring little to no benefit on the foreign domain. To test whether text embeddings are closest to the median group embedding of the correct group, one half of the AskX data is used to extract the median group embeddings and the other half is used for the actual test.
+%? variance inside groups
 
 \section{Testing Steering Performance}
 \label{sec:experiments:steering}
@@ -59,6 +65,8 @@ To extract the group embedding, the median of all embeddings is used opposed to 
 All steering approaches are evaluated with for different metrics that describe the steering effect. As Figure~\ref{fig:steeringMetrics} shows, the first metric is the \textbf{steering direction correctness}, which describes if the method steers the explanation towards the style and background knowledge of the correct group. This is an important metric as a very strong steering effect would not be helpful if it steers towards the wrong group. The second metric is the \textbf{steering effect} itself. It is computed from the Euclidean distance between the embeddings of the unsteered and steered explanation and describe how strong the explanation was changed by the steering methods.
 
 Finally, there are two more metrics that show how strong the steering effect could have been. This is important as a low steering effect is not as bad if the unsteered embedding is already very close to the median group embedding. These metrics are the \textbf{optimal steering effect}, which is the Euclidean distance between the unsteered embedding and the median group embedding, and the \textbf{possible improvement}. It is the Euclidean distance between the embedding of the steered explanation and the median group embedding and describes how much better the steering effect could have been if the direction or strength of steering would be better.
+
+%? the absolute times that the resulting group is the correct one (according to the embedding)
 
 \begin{figure}[ht]
   \begin{center}

@@ -5,46 +5,14 @@
 
 % pandoc.exe --ignore-args --citeproc --bibliography=literature.bib --wrap=none -o thesis.txt thesis.tex --verbose
 
-% \section{Evaluation Metrics}
-% \label{sec:evaluation:metrics}
-
-% \begin{itemize}
-%   \item SFAM
-%         \begin{itemize}
-%           \item accuracy and F1 with regard to labels from select examples of the attribute sentence generation (was the sentence used or not)
-%         \end{itemize}
-%   \item LISA
-%         \begin{itemize}
-%           \item MSE, MAE, avg. cosine similarity compared to SFAM prediction
-%           \item accuracy and F1 compared to SFAM where both predictions are rounded
-%         \end{itemize}
-%   \item embedding model
-%         \begin{itemize}
-%           \item accuracy through triplet loss
-%                 %? \item variance inside groups
-%         \end{itemize}
-%   \item steering methods
-%         \begin{itemize}
-%           \item improvement of L2 distance to group median compared to embedding of unsteered generation
-%                 \begin{itemize}
-%                   \item how strong is the steering?
-%                 \end{itemize}
-%           \item cosine similarity between the vector that is the difference between embedding of steered and unsteered generation
-%                 \begin{itemize}
-%                   \item is the steering in the correct direction?
-%                 \end{itemize}
-%                 %? \item the absolute times that the resulting group is the correct one (according to the embedding)
-%         \end{itemize}
-% \end{itemize}
-
 \section{Importance of Knowledge Attributes}
 \begin{itemize}
   \item answers research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes}
 \end{itemize}
 \begin{table}[ht]
-  \resultKnowledgeImportance{}
-  \label{table:knowledgeImportance}
   \caption{TODO:}
+  \resultKnowledgeImportance{}%
+  \label{table:knowledgeImportance}
 \end{table}
 
 
@@ -68,9 +36,9 @@
 \end{itemize}
 
 \begin{table}[ht]
-  \resultSfam{}
-  \label{table:resultSFAM}
   \caption{TODO:}
+  \resultSfam{}%
+  \label{table:resultSFAM}
 \end{table}
 
 
@@ -81,34 +49,75 @@
 \end{itemize}
 
 \begin{table}[ht]
-  \resultLisa{}
-  \label{table:resultLISA}
   \caption{TODO:}
+  \resultLisa{}%
+  \label{table:resultLISA}
 \end{table}
 
 
 \section{Embedding Model}
 
-\begin{table}
-  \resultEmbedder{}
-  \label{table:resultEmbedder}
+\begin{table}[ht]
   \caption{TODO: result embedder}
+  \resultEmbedder{}%
+  \label{table:resultEmbedder}
 \end{table}
 
-\begin{table}
-  \resultEmbedderToMedians{}
-  \label{table:resultEmbedderToMedians}
+\begin{table}[ht]
   \caption{TODO: result embedder to medians}
+  \resultEmbedderToMedians{}%
+  \label{table:resultEmbedderToMedians}
 \end{table}
 
-\begin{table}
-  \resultEmbedderForeignDomain{}
-  \label{table:resultEmbedderForeignDomain}
+\begin{table}[ht]
   \caption{TODO: result embedder foreign domain}
+  \resultEmbedderForeignDomain{}%
+  \label{table:resultEmbedderForeignDomain}
 \end{table}
 
-\begin{table}
-  \resultEmbedderToMediansForeignDomain{}
-  \label{table:resultEmbedderToMediansForeignDomain}
+\begin{table}[ht]
   \caption{TODO: result embedder to medians foreign domain}
+  \resultEmbedderToMediansForeignDomain{}%
+  \label{table:resultEmbedderToMediansForeignDomain}
 \end{table}
+
+\section{Steering} % TODO: better title
+\begin{table}[ht]
+  \caption{TODO:}
+  \centering
+  \resultSteeringType{}%
+  \label{table:resultSteeringType}
+\end{table}
+
+\begin{table}[ht]
+  \caption{TODO:}
+  \centering
+  \resultSteeringGroup{}%
+  \label{resultSteeringGroup:resultSteeringType}
+\end{table}
+
+\begin{table}[ht]
+  \caption{TODO:}
+  \centering
+  \resultSteeringGroupPromptgroupattribute{}%
+  \label{table:resultSteeringGroup}
+\end{table}
+
+\begin{figure}[ht]
+  \begin{subfigure}[c]{0.45\linewidth}
+    \resizebox{\linewidth}{!}{
+      \import{generated}{activation_steering_performance-direction_correctness.pgf}%
+    }
+    \subcaption{The direction correctness of the activation steering with different \(\lambda\) values and layers.}%
+    \label{fig:activationSteeringHPO:directionCorrectness}
+  \end{subfigure}
+  \begin{subfigure}[c]{0.45\linewidth}
+    \resizebox{\linewidth}{!}{
+      \import{generated}{activation_steering_performance-steering_effect.pgf}%
+    }
+    \subcaption{The steering effect of the activation steering with different \(\lambda\) values and layers.}%
+    \label{fig:activationSteeringHPO:steeringEffect}
+  \end{subfigure}
+  \caption{TODO:}%
+  \label{fig:activationSteeringHPO}
+\end{figure}
