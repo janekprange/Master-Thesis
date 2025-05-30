@@ -29,8 +29,14 @@ Software Engineers & 7 & 11 & 13 \\
 %%%%%% SFAM evaluation %%%%%%
 
 \newcommand{\resultSfam}{
-% Skipped evaluation
-
+  \begin{tabular}{lS}
+    \toprule
+    {0}      & {1}                                                \\
+    \midrule
+    Accuracy & 0.856                                              \\
+    F1       & \cellcolor[gray]{0.8} \bfseries 0.8565737051792829 \\
+    \bottomrule
+  \end{tabular}
 }
 
 %%%%%% LISA evaluation %%%%%%
@@ -54,7 +60,7 @@ F1 & 0.8481522434299483 \\
 
 \newcommand{\resultEmbedder}{
 \begin{tblr}{
-colspec={ l S },
+colspec={ X S },
 }
 \toprule
 Baseline Accuracy & 0.5 \\
@@ -70,7 +76,7 @@ F1 (Cosine) & 0.8928032209360846 \\
 
 \newcommand{\resultEmbedderToMedians}{
 \begin{tblr}{
-colspec={ l S },
+colspec={ X S },
 }
 \toprule
 Baseline Accuracy & 0.09090909090909091 \\
@@ -86,7 +92,7 @@ F1 (Cosine) & 0.5897435897435898 \\
 
 \newcommand{\resultEmbedderForeignDomain}{
 \begin{tblr}{
-colspec={ l S },
+colspec={ X S },
 }
 \toprule
 Baseline Accuracy & 0.5 \\
@@ -102,7 +108,7 @@ F1 (Cosine) & 0.8505747126436781 \\
 
 \newcommand{\resultEmbedderToMediansForeignDomain}{
 \begin{tblr}{
-colspec={ l S },
+colspec={ X S },
 }
 \toprule
 Baseline Accuracy & 0.14285714285714285 \\
