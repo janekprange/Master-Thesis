@@ -1,13 +1,29 @@
 \chapter{Conclusion}
 \label{sec:conclusion}
+\begin{itemize}
+  \item this thesis presents a comprehensive framework for interpretable text representation and steering of \acp{llm} towards group-specific explanations in one continuous pipeline
+  \item the process starts with group-specific texts, produces an interpretable attribute vector that can be used for group-membership detection and ends with different approaches to steer \aclp{llm} towards group-specific explanations, including with a novel activation-based steering approach
+  \item this includes creating a synthetic dataset annotated with style and knowledge attributes
 
-\section{Future Work/Improvements} % TODO: better title
+  \item the experiments have established that the addition of knowledge attributes to the style vector proposed by \citet{patelLearningInterpretableStyle2023} is helpful for group membership detection
+  \item they have furthermore demonstrated that the automatic creation of the attribute vector and the \ac{lisa} model which produces it performs well
+  \item the experiments have shown that the steering through prompt engineering benefits from the information in the interpretable attribute vector
+  \item finally, the experiments have confirmed the effectiveness of the novel activation-based steering approach in generating group-specific explanations
+
+  \item however, this thesis also demonstrated that the training process for the \ac{lisa} model requires large amounts of data
+  \item additionally, it has shown that not all groups benefit equally strong from the steering methods
+\end{itemize}
+
+\section{Limitations and Future Work}
+\begin{itemize}
+  \item while this thesis contributes to the fields of group membership detection and \ac{llm} steering, it is important
+\end{itemize}
 \begin{itemize}
   \item use data for the experiments that is guaranteed to be written by specific groups
   \item use more and better data (often a possible improvement in ML/NLP)
   \item probing study to find the best layer for activation steering
   \item further experiments, if a different number of important attributes has an effect on steering (prompt steering and activation steering)
-  \item compare \ac{sfam} to human judgements like \citet{patelLearningInterpretableStyle2023}
+  \item compare \ac{sfam} to human judgments like \citet{patelLearningInterpretableStyle2023}
   \item activation steering not based on the median attribute vector of a group but the attribute vector of a single text to replicate its style.
   \item Multidimensional Analysis (MDA) \newline
         MDA assesses linguistic features across multiple dimensions to profile text styles. For instance, Biber's MDA framework evaluates texts based on factors like formality, narrative style, and informational density. Recent advancements include Neurobiber, a transformer-based system that predicts 96 stylistic features efficiently, facilitating large-scale stylometric research.

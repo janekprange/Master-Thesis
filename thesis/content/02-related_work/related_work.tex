@@ -81,6 +81,6 @@ To mitigate these issues, parameter-efficient fine-tuning methods have been deve
 
 % \textbf{Reinforcement Learning from Human Feedback (RLHF)} % TODO: include this?
 
-A recent alternative to these methods is \textbf{activation steering}, which directly alters the hidden states of an \acs{llm} during inference to guide its output. These hidden states are generally accessed at the end of each transformer layer. Modern \acp{llm} typically consist of between \num{20} and \num{100} such layers, with deeper layers typically encoding more abstract and sophisticated concepts (\cite{bogdanEmergentEffectsScaling2025}).
+A recent alternative to these methods is \textbf{activation steering}, which directly alters the hidden states of \iac{llm} during inference to guide its output. These hidden states are generally accessed at the end of each transformer layer. Modern \acp{llm} typically consist of between \num{20} and \num{100} such layers, with deeper layers typically encoding more abstract and sophisticated concepts (\cite{bogdanEmergentEffectsScaling2025}).
 
 Activation steering involves identifying and extracting the hidden states that correspond to specific concepts in a single forward pass. These extracted vectors, known as steering vectors, are added to the internal states of the model during inference to guide the generation process in the desired direction (\cite{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,subramaniExtractingLatentSteering2022}).

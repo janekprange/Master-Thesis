@@ -51,14 +51,14 @@ Despite its popularity, steering through system prompt modification has the limi
 
 To overcome this limitation, this thesis introduces a novel method for fine-grained steering that manipulates the activation space of the \ac{llm}. This technique involves altering the model's internal representations after specific layers, steering the activations toward particular conceptual directions that correspond to the dimensions of the interpretable attribute vector. This method builds upon recent research in activation-based model manipulation, including the work of \citet{konenStyleVectorsSteering2024,turnerActivationAdditionSteering2024,rimsky-etal-2024-steering}.
 
-\researchSubQuestion{rq:generateExplanation:activation}{Can the newly proposed method of steering an \acs{llm} by manipulating its activation space be used to improve existing steering methods?}
+\researchSubQuestion{rq:generateExplanation:activation}{Can the newly proposed method of steering \iac{llm} by manipulating its activation space be used to improve existing steering methods?}
 
 
 \section{Goals of the thesis}
 \label{sec:introduction:goals}
 \newlength{\maxstretch}
 \setlength{\maxstretch}{0pt plus 1fill}
-This thesis is guided by the research questions defined in Section~\ref{sec:introduction:problemStatement} and describes a continuous process. This process begins with preparing input data and ends with generating group-specific outputs from a steered model. Each goal contributes to the development of a framework for identifying group membership and steering language model behavior accordingly.
+This thesis is guided by the research questions defined in Section~\ref{sec:introduction:problemStatement} and describes a continuous process that begins with preparing input data and ends with generating group-specific outputs from a steered model. Each goal contributes to the development of a framework for identifying group membership and steering language model behavior accordingly.
 
 \begin{description}
       \item[Automatic Creation of an Annotated Synthetic Dataset]

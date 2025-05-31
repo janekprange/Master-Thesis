@@ -135,21 +135,9 @@ The \textbf{embedding model} is tested on its ability to detect group membership
 
 \subsection{Activation Steering Hyperparameter Optimization}%
 \label{sec:evaluation:steering:activationHPO}
-% TODO: write about this in experiments
 \begin{itemize}
-  \item as described in Section~\ref{sec:approach:steering:activation:steering}, activation based steering has two hyperparameters
-        \begin{itemize}
-          \item the layer or layers the steering vectors are inserted into
-          \item and the scalar \(\lambda\) that the steering vector is scaled with
-        \end{itemize}
-  \item while \citet{konenStyleVectorsSteering2024,bogdanEmergentEffectsScaling2025} have discovered that concepts with the complexity of attribute sentences are located in the layers in the middle of the model, that does not provide the best layer that should be used for steering
-  \item to find the best values, a small hyperparameter optimization in the form of a grid search was conducted
-  \item for \(\lambda\), the values \num{0.25} and \num{0.5} are chosen
-  \item additionally, the steering capabilities with the layers \num{13}, \num{15}, and  \num{17} as well as the layer combinations with two layers at the same time  \num{13}, \num{14} and \num{16}, \num{17} and a combination with three layers \num{14}, \num{15}, \num{16}
-  \item because of time constraints, a larger number of values can not be tested
-  \item the metrics are the direction correctness and the strength of the steering effect as explained in Figure~\ref{fig:steeringMetrics}
-\end{itemize}
-\begin{itemize}
+  \item Two key hyperparameters for activation steering are evaluated: the model layers used for steering and the scaling factor \(\lambda\).
+  \item A grid search is conducted over selected layers (between \num{13} and \num{17}) and scaling factors (\num{0.25} and \num{0.5}) to identify effective configurations within the limited time frame.
   \item Figure~\ref{fig:activationSteeringHPO} shows the result of the hyperparameter optimization
   \item for both metrics, the best layer is the combination of \num{14}, \num{15}, and \num{16}
   \item for the direction correctness, none of the single layers has a particularly good performance as can be seen in Figure~\ref{fig:activationSteeringHPO:directionCorrectness}
@@ -166,7 +154,7 @@ The \textbf{embedding model} is tested on its ability to detect group membership
     \resizebox{\linewidth}{!}{
       \import{generated}{activation_steering_performance-direction_correctness.pgf}%
     }
-    \subcaption{The direction correctness of the activation steering with different \(\lambda\) values and layers (higher is better).}%
+    \subcaption{The \textbf{direction correctness} of the activation steering with different \(\lambda\) values and layers (higher is better).}%
     \label{fig:activationSteeringHPO:directionCorrectness}
   \end{subfigure}
   \hfill
@@ -174,10 +162,10 @@ The \textbf{embedding model} is tested on its ability to detect group membership
     \resizebox{\linewidth}{!}{
       \import{generated}{activation_steering_performance-steering_effect.pgf}%
     }
-    \subcaption{The steering effect of the activation steering with different \(\lambda\) values and layers (higher is better).}%
+    \subcaption{The \textbf{steering effect} of the activation steering with different \(\lambda\) values and layers (higher is better).}%
     \label{fig:activationSteeringHPO:steeringEffect}
   \end{subfigure}
-  \caption{TODO:}%
+  \caption{The hyperparameters for the activation based steering methods are selected using a simple grid search. The values are the performances averaged over all activation steering methods and groups.}%
   \label{fig:activationSteeringHPO}
 \end{figure}
 
@@ -205,7 +193,6 @@ The \textbf{embedding model} is tested on its ability to detect group membership
           \item this highlights the importance of using a large amount of divers data to use as the basis for the approach presented in this thesis
         \end{itemize}
   \item \textbf{prompt attribute steering} shows a significantly stronger performance than the prompt group steering, even though the group that is steered towards is not mentioned in the prompt, just the most important knowledge and style attributes
-        % TODO: write more? possible problem, because most important in embedding too probably
   \item of all prompt steering methods, \textbf{prompt group attribute steering}, where both the most important attribute and the group itself are part of the system prompt, performs best
         \begin{itemize}
           \item this shows that while the most important attributes lead to a strong steering performance for prompt engineering, mentioning the group increases the steering effect even more
@@ -238,6 +225,7 @@ The \textbf{embedding model} is tested on its ability to detect group membership
   \item overall, the experiment shows that the interpretable attribute vector presented in this thesis can be used to increase the performance of steering through prompt engineering significantly
   \item additionally, the newly proposed activation based steering shows a huge improvement over more conventional prompt engineering techniques
 \end{itemize}
+% TODO: write more about possible problem, because most important in embedding too probably
 
 
 \subsection{Comparing the Steering Performance for Different Groups}
@@ -258,7 +246,8 @@ The \textbf{embedding model} is tested on its ability to detect group membership
 
 \begin{table}[ht]
   \caption[]{\begin{itemize}
-      \item steering group % TODO:
+      \item the performance of steering explanations towards different groups
+      \item the values are averages over all steering methods
     \end{itemize}}%
   \label{table:resultSteeringGroup}
   \centering
@@ -266,14 +255,17 @@ The \textbf{embedding model} is tested on its ability to detect group membership
 \end{table}
 
 \begin{itemize}
-  \item % TODO:
+  \item Table~\ref{table:resultSteeringGroupActivationgroupattribute} shows the steering performances for the different groups with the activation group attribute steering method, which is the best method according to the experiment described previously
+  \item for many groups, the steering performance is better compared to the average over all methods which can be seen in Table~\ref{table:resultSteeringGroup}, especially for historians, philosophers and politicians
+  \item for some groups, the steering performance is actually worse, especially for biologists and electrical engineers
+  \item it is not immediatly clear what the reason for the worse performance is; on this topic, further research is necessary
 \end{itemize}
 
 \begin{table}[ht]
   \caption[]{\begin{itemize}
-      \item steering group prompt group attribute % TODO:
+      \item the performance of steering explanations towards different groups with the activation group attribute steering method
     \end{itemize}}%
-  \label{table:resultSteeringGroupPromptgroupattribute}
+  \label{table:resultSteeringGroupActivationgroupattribute}
   \centering
-  \resultSteeringGroupPromptgroupattribute{}%
+  \resultSteeringGroupActivationgroupattribute{}%
 \end{table}

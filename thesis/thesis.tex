@@ -84,21 +84,20 @@
 \pagenumbering{roman}			% roman page numbing (invisible for empty page style)
 \pagestyle{empty}				% no header or footers
 \input{content/00-frontmatter/titlepages}		% INCLUDE: all titlepages
-% \cleardoublepage
+\cleardoublepage
 
 \input{content/00-frontmatter/declaration}
-% \clearpage
+\clearpage
 
 \pagestyle{plain}				% display just page numbers
 \input{content/00-frontmatter/abstract}		% INCLUDE: the abstracts (english and german)
+\cleardoublepage
+%
+% \input{content/00-frontmatter/acknowledgement} % INCLUDE: acknowledgement
 % \cleardoublepage
 %
-\input{content/00-frontmatter/acknowledgement} % INCLUDE: acknowledgement
-% \cleardoublepage
-%
-% TODO: here or somewhere else?
 \input{content/00-frontmatter/acronyms} % INCLUDE: acronyms
-% \cleardoublepage
+\cleardoublepage
 %
 \currentpdfbookmark{\contentsname}{toc}
 \setcounter{tocdepth}{2}		% define depth of toc

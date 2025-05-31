@@ -6,7 +6,7 @@
 
 \subsection{Attribute Sentence Generation}
 \label{sec:experiments:setup:sentenceGeneration}
-The synthetic dataset that consists of attribute sentences which describe a set of input texts is constructed by prompting an \acs{llm} in a two-step procedure. For this thesis, the open source model Llama3.2-3B Instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}}~(\cite{dubeyLlama3Herd2024}) with \num{3} billion parameters has been used. This model has state-of-the-art performance and is freely available, which provides the possibility to run the model directly on the server cluster. Additionally, it improves the reproducibility of the experiments because it is easier to use the exact same model later.
+The synthetic dataset that consists of attribute sentences which describe a set of input texts is constructed by prompting a \iac{llm} in a two-step procedure. For this thesis, the open source model Llama3.2-3B Instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}}~(\cite{dubeyLlama3Herd2024}) with \num{3} billion parameters has been used. This model has state-of-the-art performance and is freely available, which provides the possibility to run the model directly on the server cluster. Additionally, it improves the reproducibility of the experiments because it is easier to use the exact same model later.
 To improve the performance of the sentence generation, the library vLLM\footnote{\url{https://github.com/vllm-project/vllm}} was used to run the model.
 
 The basis for the generation of the attribute sentences are \num{\numAnswersStyleVector} answers from the stack exchange dataset described in Section %~\ref{}. TODO:
@@ -206,7 +206,7 @@ The final \textbf{Prompt Group Attribute Steering} method will combine the two p
 
 \subsubsection{Activation Steering}
 \label{sec:experiments:setup:steering:activation}
-While steering an \acs{llm} by changing its system prompt is a reliable method with good results, it has the disadvantage that it is difficult to change the strength of the steering effect. Since the values of the interpretable attribute vector represent how strongly an attribute matches a text, it would be useful to incorporate this information into the steering.
+While steering \iac{llm} by changing its system prompt is a reliable method with good results, it has the disadvantage that it is difficult to change the strength of the steering effect. Since the values of the interpretable attribute vector represent how strongly an attribute matches a text, it would be useful to incorporate this information into the steering.
 
 The activation steering approach first extracts the activation vectors at each layer of the model that correspond to each dimension of the attribute vector. The extraction is done in one forward pass and is based upon the work of \citet{konenStyleVectorsSteering2024}. % turnerActivationAdditionSteering2024,rimsky-etal-2024-steering
 Afterward, the activation vectors are combined weighted by their importance according to the interpretable attribute vector. The result steering vector is added at the layer of the model from which it was extracted during the explanation generation. It is scaled with a factor \(\lambda\) that determines the strength of the steering effect.
