@@ -10,9 +10,10 @@ Embeddings form the foundation of many modern \ac{nlp} systems by providing a ma
 \begin{figure}[h!t]
   \centering
   \input{figures/tikz/embeddings.tex}
-  \caption[]{This figure (\cite{WordEmbeddingDemo}) shows a simplified visualization of a word embedded in a semantic feature space. In such embeddings, the absolute position of words in the space is meaningless; only the relative positions of the points matter. Semantically similar words are represented by points that are located close to one another in the embedding space. Additionally, certain directions in the embedding space may correspond to real-world concepts. For instance, in this example, certain directions correspond to age or gender.
+  \caption[]{%
+    This figure (\cite{WordEmbeddingDemo}) shows a simplified visualization of a word embedded in a semantic feature space. In such embeddings, the absolute position of words in the space is meaningless; only the relative positions of the points matter. Semantically similar words are represented by points that are located close to one another in the embedding space. Additionally, certain directions in the embedding space may correspond to real-world concepts. For instance, in this example, certain directions correspond to age or gender.
 
-    Word embeddings are typically generated using unsupervised learning methods. Consequently, the individual dimensions of the embeddings do not explicitly correspond to interpretable, real-world concepts. This differs from the current illustration, where each axis is clearly labeled with a human-understandable attribute. Nevertheless, two key characteristics generally remain valid: embeddings that are close together tend to be semantically similar, and some directions in the embedding space can reflect meaningful concepts.}
+    Word embeddings are typically generated using unsupervised learning methods. Consequently, the individual dimensions of the embeddings do not explicitly correspond to interpretable, real-world concepts. This differs from the current illustration, where each axis is clearly labeled with a human-understandable attribute. Nevertheless, two key characteristics generally remain valid: embeddings that are close together tend to be semantically similar, and some directions in the embedding space can reflect meaningful concepts.}%
   \label{fig:embeddings}
 \end{figure}
 
@@ -57,7 +58,7 @@ This thesis will employ encoder-only models to create interpretable attribute em
       \input{figures/tikz/transformer-architecture.tex}
     }
   \end{center}
-  \caption{The transformer architecture as presented by \citet{NIPS2017_3f5ee243}. It consists of an encoder (left) and a decoder (right). Both the encoder and the decoder consist of layers, which are displayed as blocks in the illustration. These layers are repeated multiple times, allowing the model to process more complex information.}
+  \caption{The transformer architecture as presented by \citet{NIPS2017_3f5ee243}. It consists of an encoder (left) and a decoder (right). Both the encoder and the decoder consist of layers, which are displayed as blocks in the illustration. These layers are repeated multiple times, allowing the model to process more complex information.}%
   \label{fig:transformerArchitecture}
 \end{figure}
 

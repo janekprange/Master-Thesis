@@ -12,11 +12,11 @@ While effective, these methods often produce style embeddings that are difficult
 To address these limitations, this thesis introduces interpretable attribute vectors based on the methodology proposed by \citet{patelLearningInterpretableStyle2023}. Figure~\ref{fig:attributeVector} illustrates the composition of these vectors. Each dimension of the vector corresponds to a real-world concept, and the associated value, ranging from \num{0} to \num{1}, indicates the extent to which a text aligns with the specified attribute.
 
 \begin{figure}[ht]
-  \begin{center}
-    \input{content/01-introduction/attribute-vector-tikz.tex}
-    \caption{An example of a \num{\styleVectorSize}-dimensional attribute vector that was generated with the method presented in this thesis.} % TODO: more caption?
-    \label{fig:attributeVector}
-  \end{center}
+      \begin{center}
+            \input{content/01-introduction/attribute-vector-tikz.tex}
+            \caption{An example of a \num{\styleVectorSize}-dimensional attribute vector that was generated with the method presented in this thesis.}% % TODO: more caption?
+            \label{fig:attributeVector}
+      \end{center}
 \end{figure}
 
 While state-of-the-art methods primarily focus on stylistic features for tasks such as authorship attribution, as shown in works by \citet{alshomaryLatentSpaceInterpretation2024, patelLearningInterpretableStyle2023, konenStyleVectorsSteering2024, zhu-etal-2024-styleflow}, other types of author-related attributes can complement these stylistic analyses. One such attribute is the author's background knowledge or experience, referred to as knowledge attributes. % TODO: why is knowledge important? citation
@@ -61,23 +61,23 @@ To overcome this limitation, this thesis introduces a novel method for fine-grai
 This thesis is guided by the research questions defined in Section~\ref{sec:introduction:problemStatement} and describes a continuous process. This process begins with preparing input data and ends with generating group-specific outputs from a steered model. Each goal contributes to the development of a framework for identifying group membership and steering language model behavior accordingly.
 
 \begin{description}
-  \item[Automatic Creation of an Annotated Synthetic Dataset]
-        Annotating a large text corpus with diverse style and knowledge attributes is a difficult and time-consuming task. This challenge is amplified by the need for diverse attributes that are not bound to predefined topics. To address this issue, the first goal of this thesis is to create a synthetic dataset through an automated process based on the work presented by \citet{patelLearningInterpretableStyle2023}. This dataset will contain group-specific explanations, each annotated with corresponding style and knowledge attributes.
+      \item[Automatic Creation of an Annotated Synthetic Dataset]
+            Annotating a large text corpus with diverse style and knowledge attributes is a difficult and time-consuming task. This challenge is amplified by the need for diverse attributes that are not bound to predefined topics. To address this issue, the first goal of this thesis is to create a synthetic dataset through an automated process based on the work presented by \citet{patelLearningInterpretableStyle2023}. This dataset will contain group-specific explanations, each annotated with corresponding style and knowledge attributes.
 
-  \item[Selecting the Dimensions of the Interpretable Attribute Vector]\hspace{\maxstretch}
-        The synthetic dataset contains numerous style- and knowledge-related attributes. However, the interpretable attribute vector is limited to \num{\styleVectorSize} dimensions. Thus, the goal is to design an automatic selection process that identifies the most informative and relevant dimensions from the available attributes. This process builds upon the dimensionality selection strategy proposed by \citet{patelLearningInterpretableStyle2023}, providing a more targeted and efficient representation of group-specific characteristics.
+      \item[Selecting the Dimensions of the Interpretable Attribute Vector]\hspace{\maxstretch}
+            The synthetic dataset contains numerous style- and knowledge-related attributes. However, the interpretable attribute vector is limited to \num{\styleVectorSize} dimensions. Thus, the goal is to design an automatic selection process that identifies the most informative and relevant dimensions from the available attributes. This process builds upon the dimensionality selection strategy proposed by \citet{patelLearningInterpretableStyle2023}, providing a more targeted and efficient representation of group-specific characteristics.
 
-  \item[Training of a Model that Produces the Interpretable Attribute Vector]
-        With the selected attributes in place, the next goal is to train a model that can map any given text to an interpretable attribute vector. Each dimension of this vector corresponds to a specific style or knowledge attribute, with values ranging between \num{0} and \num{1}, indicating the extent to which the text exhibits each characteristic. The model is based on the architecture proposed by \citet{patelLearningInterpretableStyle2023}, which has been extended to incorporate both stylistic and knowledge-based components.
+      \item[Training of a Model that Produces the Interpretable Attribute Vector]
+            With the selected attributes in place, the next goal is to train a model that can map any given text to an interpretable attribute vector. Each dimension of this vector corresponds to a specific style or knowledge attribute, with values ranging between \num{0} and \num{1}, indicating the extent to which the text exhibits each characteristic. The model is based on the architecture proposed by \citet{patelLearningInterpretableStyle2023}, which has been extended to incorporate both stylistic and knowledge-based components.
 
-  \item[Creation of an Interpretable Attribute Embedding]\hphantom{at}
-        Although the interpretable attribute vector is structured, its dimensions are not normalized. This limits the ability to directly compare different vectors. To address this issue, the model from the previous step is extended with an embedding head based on the approach presented by \citet{patelLearningInterpretableStyle2023}. This component generates normalized embeddings from the interpretable vectors that are suitable for group membership detection. These embeddings enable meaningful comparisons across texts and allow for clustering or classification of texts by group identity.
+      \item[Creation of an Interpretable Attribute Embedding]\hphantom{at}
+            Although the interpretable attribute vector is structured, its dimensions are not normalized. This limits the ability to directly compare different vectors. To address this issue, the model from the previous step is extended with an embedding head based on the approach presented by \citet{patelLearningInterpretableStyle2023}. This component generates normalized embeddings from the interpretable vectors that are suitable for group membership detection. These embeddings enable meaningful comparisons across texts and allow for clustering or classification of texts by group identity.
 
-  \item[Steering a Large Language Model with System Prompt Engineering]\hspace{\maxstretch}
-        This goal addresses research question~\ref{rq:generateExplanation:attributeVector} and explores how the interpretable attribute vector can improve system prompt engineering techniques for \acp{llm}. Different prompt construction strategies are designed and evaluated, with a focus on integrating the most relevant attribute dimensions for a target group. The goal is to generate outputs that align with the linguistic style and background knowledge of the target group by embedding these attributes into the system prompt.
+      \item[Steering a Large Language Model with System Prompt Engineering]\hspace{\maxstretch}
+            This goal addresses research question~\ref{rq:generateExplanation:attributeVector} and explores how the interpretable attribute vector can improve system prompt engineering techniques for \acp{llm}. Different prompt construction strategies are designed and evaluated, with a focus on integrating the most relevant attribute dimensions for a target group. The goal is to generate outputs that align with the linguistic style and background knowledge of the target group by embedding these attributes into the system prompt.
 
-  \item[Steering a Large Language Model with Activation Steering]\hphantom{i}
-        The final goal of the thesis addresses research question~\ref{rq:generateExplanation:activation} and proposes a novel method for activation-based steering. This method manipulates the activations at the end of each transformer layer of the \ac{llm} by injecting steering vectors that are derived from internal model activations. The steering vectors are produced by combining activation vectors corresponding to specific dimensions of the interpretable attribute vector. Furthermore, this steering method is used in conjunction with various prompt steering methods to directly compare their performance.
+      \item[Steering a Large Language Model with Activation Steering]\hphantom{i}
+            The final goal of the thesis addresses research question~\ref{rq:generateExplanation:activation} and proposes a novel method for activation-based steering. This method manipulates the activations at the end of each transformer layer of the \ac{llm} by injecting steering vectors that are derived from internal model activations. The steering vectors are produced by combining activation vectors corresponding to specific dimensions of the interpretable attribute vector. Furthermore, this steering method is used in conjunction with various prompt steering methods to directly compare their performance.
 \end{description}
 
 Together, these goals form a comprehensive framework for interpretable text representation and personalized language model behavior. Beginning with the creation of the synthetic dataset, the thesis develops tools for generating and leveraging interpretable style and knowledge vectors. Ultimately, these tools are applied to guide the LLMs in ways that reflect group identity and communicative needs.

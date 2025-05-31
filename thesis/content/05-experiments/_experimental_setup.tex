@@ -60,7 +60,7 @@ The synthetic dataset resulting from the previous steps consists of \num{\numClu
     % \input{figures/tikz/clustering-diagram.tex}
     \includegraphics[width=9cm]{figures/clustering_diagram.png}
   \end{center}
-  \caption{The approach so far (see Figure~\ref{fig:attributeSentenceGeneration}) has produced about \numStyleSentencesText{} unique attribute sentences. While these sentences are syntactically distinct from each other, semantically they can be very close. To improve the performance of the method proposed in this thesis, similar sentences are clustered. First, all sentences are embedded. Then, sentences with a cosine similarity higher than \num{\minCosineSimilarity} are clustered together while ensuring that every sentence is in exactly one cluster. The clustering is performed separately for style and knowledge sentences. From the resulting \num{\numClustersStyle} style clusters and \num{\numClustersKnowledge} knowledge clusters, the best ones are selected in multiple steps until the final interpretable attribute vector with \num{\styleVectorSize} dimensions is created, where each dimension corresponds to one cluster. The first \num{\numTargetPrompts} dimensions of the attribute vector are selected separately and correspond to the targeted prompts presented in Section~\ref{sec:approach:attributeSentenceGeneration}.}
+  \caption{The approach so far (see Figure~\ref{fig:attributeSentenceGeneration}) has produced about \numStyleSentencesText{} unique attribute sentences. While these sentences are syntactically distinct from each other, semantically they can be very close. To improve the performance of the method proposed in this thesis, similar sentences are clustered. First, all sentences are embedded. Then, sentences with a cosine similarity higher than \num{\minCosineSimilarity} are clustered together while ensuring that every sentence is in exactly one cluster. The clustering is performed separately for style and knowledge sentences. From the resulting \num{\numClustersStyle} style clusters and \num{\numClustersKnowledge} knowledge clusters, the best ones are selected in multiple steps until the final interpretable attribute vector with \num{\styleVectorSize} dimensions is created, where each dimension corresponds to one cluster. The first \num{\numTargetPrompts} dimensions of the attribute vector are selected separately and correspond to the targeted prompts presented in Section~\ref{sec:approach:attributeSentenceGeneration}.}%
   \label{fig:clustering}
 \end{figure}
 
@@ -134,7 +134,7 @@ Because of this, \ac{sfam} is tested not only on unseen attribute sentences but 
 %   \begin{center}
 %     \input{figures/python/sfam_dataset_split.pgf}
 %   \end{center}
-%   \caption{TODO:}
+%   \caption{TODO:}%
 %   \label{fig:sfamDatasetSplit}
 % \end{figure}
 
