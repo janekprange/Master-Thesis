@@ -13,7 +13,7 @@
 \label{sec:appendix:datasets}
 For the experiments conducted in this thesis, group-specific answers from different sources have been utilized, as described in Section~\ref{sec:datasets}. These answers were divided into training, validation, and test sets to fine-tune various models. Within each of these splits, the groups were represented equally to ensure balanced training and evaluation conditions.
 
-\begin{tabular}{llSS}
+\begin{tblr}{llSS}
   \toprule
   {Purpose}             & {Dataset}      & {Number of Answers} & {Answers per Group} \\
   \midrule
@@ -23,11 +23,11 @@ For the experiments conducted in this thesis, group-specific answers from differ
   \acs{lisa} train      & Stack Exchange & 55000               & 5000                \\
   \acs{lisa} validation & Stack Exchange & 3300                & 300                 \\
   \acs{lisa} test       & Stack Exchange & 2200                & 200                 \\
-  foreign domain test   & AskX           & 1000                & 100                 \\ % TODO: use correct numbers
+  foreign domain test   & AskX           & 3500                & 500                 \\
   \bottomrule
-\end{tabular}
+\end{tblr}
 
-In addition to the datasets used for training and evaluation, a total of \num{400} questions were employed in the steering experiments, as detailed in Section~\ref{sec:datasets:steering}. Of these questions, \num{320} were sourced from the work of \citet{petroni-etal-2021-kilt}, while the remaining \num{80} questions were taken from the work of \citet{rooeinKnowYourAudience2023}.
+In addition to the datasets used for training and evaluation, a total of \num{400} questions were employed in the steering experiments presented in Section~\ref{sec:datasets:steering}. Of these questions, \num{320} were sourced from the work of \citet{petroni-etal-2021-kilt}, while the remaining \num{80} questions were taken from the work of \citet{rooeinKnowYourAudience2023}.
 
 \clearpage
 
@@ -35,7 +35,9 @@ In addition to the datasets used for training and evaluation, a total of \num{40
 \label{sec:appendix:datasets:stackex}
 In the following table, all groups that were extracted from Stack Exchange and the number of answers to what/how/why questions are listed.
 
-\begin{tabular}{lSS}
+\begin{tblr}{
+    colspec={ X S[table-format=5.0,group-minimum-digits=4] S[table-format=5.0] },
+  }
   \toprule
   {Group}              & {Answers Total} & {Answers Used} \\
   \midrule
@@ -56,7 +58,7 @@ In the following table, all groups that were extracted from Stack Exchange and t
   Politicians          & 12855           & 6000           \\
   Software Engineers   & 31840           & 6000           \\
   \bottomrule
-\end{tabular}
+\end{tblr}
 
 \vfill
 \clearpage
@@ -64,39 +66,52 @@ In the following table, all groups that were extracted from Stack Exchange and t
 \subsection{Reddit (AskX)}
 \label{sec:appendix:datasets:askx}
 The following table presents an overview of the Subreddits from which the answers used for the experiments in this thesis were sourced. It also includes information on the number of answers to what/how/why question extracted from each Subreddit. Furthermore, the table illustrates how the Subreddits were grouped. Finally, it specifies the number of answers that were actually utilized in the experiments.
+  {
+    \small
 
-% TODO: updated table
-\begin{tabular}{ll}
-  \toprule
-  {Data Subgroup}    & {Data Group} \\
-  \midrule
-  Askcomputerscience & Computer     \\
-  Askprogrammers     & Computer     \\
-  Askprogramming     & Computer     \\
-  Askanengineer      & Engineering  \\
-  Askelectricians    & Engineering  \\
-  Askelectronics     & Engineering  \\
-  Askengineers       & Engineering  \\
-  Askmechanics       & Engineering  \\
-  Asktechnology      & Engineering  \\
-  Askanelectrician   & Engineering  \\
-  Askbiology         & Natural      \\
-  Askchemistry       & Natural      \\
-  Askphysics         & Natural      \\
-  Askachemist        & Natural      \\
-  Askoldpeople       & Old          \\
-  Askmenover30       & Over30       \\
-  Askmenover40       & Over30       \\
-  Askwomenover30     & Over30       \\
-  Askwomenover40     & Over30       \\
-  Asksocialscience   & Social       \\
-  Askapsychologist   & Social       \\
-  Askpsychology      & Social       \\
-  Askteengirls       & Teenager     \\
-  Askteens           & Teenager     \\
-  Askteenboys        & Teenager     \\
-  \bottomrule
-\end{tabular}
+    \begin{tblr}{
+        colspec={ X X S[table-format=4.0] S[table-format=4.0] },
+      }
+      \toprule
+      {Group}                        & {Subreddit}        & {Answers Total} & {Answers Used} \\
+      \midrule
+      \SetCell[r=3]{m} Computer      & Askcomputerscience & 169             & 144            \\
+                                     & Askprogrammers     & 114             & 99             \\
+                                     & Askprogramming     & 289             & 257            \\
+      \midrule
+      \SetCell[r=8]{m}   Engineering & Askamechanic       & 9               & 5              \\
+                                     & Askanengineer      & 31              & 21             \\
+                                     & Askelectricians    & 15              & 11             \\
+                                     & Askelectronics     & 45              & 31             \\
+                                     & Askengineers       & 580             & 404            \\
+                                     & Askmechanics       & 15              & 11             \\
+                                     & Asktechnology      & 11              & 7              \\
+                                     & Askanelectrician   & 12              & 10             \\
+      \midrule
+      \SetCell[r=4]{m}   Natural     & Askbiology         & 166             & 142            \\
+                                     & Askchemistry       & 89              & 74             \\
+                                     & Askphysics         & 331             & 282            \\
+                                     & Askachemist        & 2               & 2              \\
+      \midrule
+      Old                            & Askoldpeople       & 8769            & 500            \\
+      \midrule
+      \SetCell[r=4]{m}  Over30       & Askmenover30       & 2242            & 178            \\
+                                     & Askmenover40       & 163             & 17             \\
+                                     & Askwomenover30     & 3105            & 235            \\
+                                     & Askwomenover40     & 724             & 70             \\
+      \midrule
+      \SetCell[r=3]{m}  Social       & Asksocialscience   & 227             & 134            \\
+                                     & Askapsychologist   & 68              & 45             \\
+                                     & Askpsychology      & 500             & 321            \\
+      \midrule
+      \SetCell[r=3]{m}   Teenager    & Askteengirls       & 318             & 138            \\
+                                     & Askteens           & 307             & 143            \\
+                                     & Askteenboys        & 551             & 219            \\
+      \bottomrule
+    \end{tblr}
+  }
+
+\clearpage
 
 \section{Prompts for Attribute Sentence Generation}
 The following prompts are used to create the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration}). Many of the prompts have been taken from the work of \citet{patelLearningInterpretableStyle2023} with the notable exception of the knowledge prompts, which are part of the extension to existing approach presented in this thesis.
