@@ -6,6 +6,13 @@
   \item The evaluation includes performance measurements of the \ac{sfam}, \ac{lisa}, and embedding models.
   \item The ability of these models to generalize across domains and support steering tasks is also analyzed.
   \item The evaluation is structured to address the core research questions and validate the thesis contributions using both quantitative metrics and qualitative discussion.
+  \item The evaluation compares both prompt-based and activation-based steering methods using a consistent experimental setup and shared metrics.
+  \item Activation-based steering, especially when combined with interpretable attributes and group information, consistently outperforms prompt-only methods in both steering strength and direction correctness.
+  \item The interpretable attribute vector significantly enhances steering performance, particularly when key group-specific attributes are included in prompts.
+  \item Optimal steering performance is achieved when both group identity and important attributes are combined with activation steering.
+  \item Hyperparameter optimization suggests that steering across multiple middle layers (\num{14} -- \num{16}) yields the best performance.
+  \item Steering effectiveness varies by target group; groups with more distinctive or attribute-rich writing styles (e.g., pilots, software engineers) are easier to steer toward.
+  \item Further research is required to understand the correlation between attribute type (knowledge vs. style) and steerability.
 \end{itemize}
 
 % TODO: add steering to introduction
@@ -13,16 +20,16 @@
 \section{Evaluating the Importance of Knowledge Attributes for the Interpretable Attribute Vector}%
 \label{sec:evaluation:knowledgeAttributes}
 
-As explained in Section~\ref{sec:experiments:knowledgeAttributes}, this experiment evaluates the importance of knowledge attributes, which are an extension to the style vectors proposed in this thesis. The experiment is conducted by analyzing the most important \num{10}, \num{20}, and \num{50} attributes per group. The results of this evaluation are presented in Table~\ref{table:knowledgeImportance}.
+As explained in Section~\ref{sec:experiments:knowledgeAttributes}, this experiment evaluates the importance of knowledge attributes, which are an extension to the style vectors proposed by this thesis. The experiment involves analyzing the \num{10}, \num{20}, and \num{50} most important attributes per group. The results of this evaluation are presented in Table~\ref{table:knowledgeImportance}.
 
-It is evident from the results that knowledge attributes are not equally important across all groups. In particular, groups such as Biologists, Historians, and Politicians do not rely significantly on knowledge attributes for differentiation from other groups. Nonetheless, for the majority of groups, knowledge attributes show at least some relevance. For instance, in the case of Game Developers and Software Engineers, knowledge attributes are shown to be particularly important, with at least half of the \num{10} most important attributes belonging to the knowledge attribute category.
+The results clearly show that knowledge attributes are not equally important across all groups. In particular, groups such as biologists, historians, and politicians do not rely significantly on knowledge attributes to differentiate themselves from other groups. However, knowledge attributes show at least some relevance for the majority of groups. Especially for the groups of game developers and software engineers the knowledge attributes are particularly important, with at least half of the ten most important attributes being knowledge attributes.
 
-The high portion of knowledge attributes is especially significant given that there are only \num{\minNumKnowledgePrompts} knowledge attributes within the \num{\styleVectorSize} total dimensions of the attribute vector. If importance were uniformly distributed between knowledge and style attributes, fewer than \SI{10}{\percent} of the most important attributes would be expected to be knowledge-related. Therefore, these findings demonstrate that the extension of the state-of-the-art style vector proposed in this thesis provides a meaningful benefit for group membership detection, and positively answering research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes}.
+The high proportion of knowledge attributes is especially significant, considering that there are only \num{\minNumKnowledgePrompts} knowledge attributes within the \num{\styleVectorSize} total dimensions of the attribute vector. If importance were uniformly distributed between knowledge and style attributes, fewer than \SI{10}{\percent} of the most important attributes would be expected to be knowledge-related. Therefore, these findings demonstrate that extending the state-of-the-art style vector as proposed in this thesis meaningfully benefits group membership detection and positively answers research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes}.
 
 \begin{table}[ht]
-  \caption[]{This table shows the results of the evaluation of the importance of knowledge attributes for group membership detection (see Section~\ref{sec:experiments:knowledgeAttributes}). The attribute vector is created with the \ac{lisa} model using group-specific answers from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). Subsequently, the dimensions that are most important for differentiating each group from all others are selected, and the number of knowledge attributes among them is counted. The experiment illustrates that, while knowledge attributes are not universally beneficial for all groups, they have a significant impact overall on the effectiveness of group membership detection.}
-  \resultKnowledgeImportance{}%
+  \caption[]{This table shows the results of the evaluation of the importance of knowledge attributes for group membership detection (see Section~\ref{sec:experiments:knowledgeAttributes}). The attribute vector is created using the \ac{lisa} model and group-specific answers from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). Then, the most important dimensions for differentiating each group from all others are selected, and the number of knowledge attributes among them is counted. This experiment shows that knowledge attributes are not universally beneficial for all groups but have a significant overall impact on the effectiveness of group membership detection.}%
   \label{table:knowledgeImportance}
+  \resultKnowledgeImportance{}
 \end{table}
 
 \section{Testing Model Performance}%
@@ -30,199 +37,136 @@ The high portion of knowledge attributes is especially significant given that th
 
 This section discusses the results of the model evaluation presented in Section~\ref{sec:experiments:models}.
 
-The \textbf{\acs{sfam}} model is evaluated by comparing its predictions, that is whether an attribute sentence matches an answer, to the ground truth derived from the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}). Specifically, it is assessed whether the attribute sentence was actually used to describe the answer in the synthetic dataset. As shown in Table~\ref{table:resultSFAM}, \ac{sfam} demonstrates a solid ability to perform this task, achieving an accuracy significantly higher than that of a random classifier. Although \ac{sfam} is built upon the work of \citet{patelLearningInterpretableStyle2023}, direct comparisons with their results are not feasible, as they evaluated their model using human judgments, which is not employed in this thesis due to time constraints. While the performance of \ac{sfam} is promising, there is potential for improvement, especially by fine-tuning a more capable base model and by reducing the noise inherent in a dataset extracted from internet forums.
+The \textbf{\acs{sfam}} model is evaluated by comparing its predictions, that is whether an attribute sentence matches an answer, to the ground truth derived from the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}). Specifically, it is assessed whether the attribute sentence was actually used to describe the answer in the synthetic dataset. As shown in Table~\ref{table:resultSFAM}, \ac{sfam} demonstrates a solid ability to perform this task, achieving significantly higher accuracy than a random classifier. Although \ac{sfam} is built upon the work of \citet{patelLearningInterpretableStyle2023}, direct comparisons with their results are not feasible because they evaluated their model using human judgments, a method not employed in this thesis due to time constraints. While the performance of \ac{sfam} is promising, there is potential for improvement, particularly through fine-tuning a more capable base model and reducing the noise inherent in a dataset extracted from internet forums.
 
 \begin{table}[ht]
-  \caption[]{The performance of \ac{sfam} is evaluated by comparing its predictions about whether an attribute sentence matches a text to whether the sentence was actually used in the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}). The results show that \ac{sfam} performs significantly better than a random baseline.}%
+  \caption[]{The performance of \ac{sfam} is evaluated by comparing its predictions about whether an attribute sentence matches a text to whether the sentence was actually used in the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}). The results demonstrate that \ac{sfam} performs significantly better than a random baseline.}%
   \label{table:resultSFAM}
   \centering
   \resultSfam{}
 \end{table}
 
-The \textbf{\acs{lisa}} model is evaluated based on attribute vectors generated by \ac{sfam}. The results in Table~\ref{table:resultLISA} indicate that \ac{lisa} can generate attribute vectors with only minor loss (\acs{mse} of \num{0.05}) relative to those produced by \ac{sfam}. However, its performance does not reach the level achieved by the original \ac{lisa} model by \citet{patelLearningInterpretableStyle2023}, which attained \iac{mse} of \num{0.005}. Additionally, the average cosine similarity between the attribute vectors created by \ac{sfam} and \ac{lisa} is relatively low at \num{0.752}. This limited performance is likely due to the restricted amount of training data available. Two primary limitations restrict the use of additional data: the Stack Exchange dataset offers only a limited number of suitable training samples, and the time constraints of this thesis do not allow for extended training periods.
+The \textbf{\acs{lisa}} model is evaluated based on attribute vectors generated by \ac{sfam}. As shown in Table~\ref{table:resultLISA}, \ac{lisa} can generate attribute vectors with only minor loss (\acs{mse} of \num{0.05}) relative to those produced by \ac{sfam}. However, its performance does not reach that of the original \ac{lisa} model by \citet{patelLearningInterpretableStyle2023}, which achieved \iac{mse} of \num{0.005}. Additionally, the average cosine similarity between the attribute vectors created by \ac{sfam} and \ac{lisa} is relatively low at \num{0.752}. This limited performance is likely due to the restricted amount of training data available for the fine-tuning of \ac{lisa}. There are two primary limitations that restrict the use of additional data: the Stack Exchange dataset offers only a limited number of suitable training samples, and the time constraints of this thesis do not allow for extended training periods.
 
 \begin{table}[ht]
-  \caption[]{\ac{lisa} is evaluated by comparing its generated attribute vectors to those created by \ac{sfam}. Accuracy and F1 scores are calculated by determining whether each attribute matches the text, based on both models' outputs, and then comparing these predictions. The results show that \ac{lisa} performs significantly better than a random baseline while it only has a small loss compared to \ac{sfam}.}%
+  \caption[]{\ac{lisa} is evaluated by comparing its generated attribute vectors to those created by \ac{sfam}. Accuracy and F1 scores are calculated by determining whether each attribute matches the text based on the outputs of both models and comparing these predictions. The results show that \ac{lisa} performs significantly better than a random baseline and has only a small loss compared to \ac{sfam}.}%
   \label{table:resultLISA}
   \centering
   \resultLisa{}
 \end{table}
 
-The \textbf{embedding model} is tested on its ability to detect group membership in two tasks. The first task evaluates whether an embedding is closer to another from the same group as to one from a different group (triplet-based evaluation). The second task assesses whether an embedding can be correctly assigned to its group by comparing it to the median embeddings of all groups, which are extracted from answers that are not used in the experiments. Both evaluations are conducted using Euclidean and cosine distances and are applied to the Stack Exchange (see Section~\ref{sec:datasets:stackex}) and AskX (see Section~\ref{sec:datasets:askx}) datasets to assess generalization and cross-domain robustness.
+The \textbf{embedding model} is tested on its ability to detect group membership in two tasks. The first task uses a triplet-based evaluation to determine if an embedding is closer to another from the same or a different group. The second task assesses whether an embedding can be correctly assigned to its group by comparing it to the median embeddings of all groups. These median embeddings are extracted from answers not used in the experiments. The evaluations use Euclidean and cosine distances and are applied to the Stack Exchange (see Section~\ref{sec:datasets:stackex}) and AskX (see Section~\ref{sec:datasets:askx}) datasets to assess generalization and cross-domain robustness.
 
-As shown in Table~\ref{table:embedder:triplet}, the embedding model performs well in predicting group membership, significantly outperforming a random classifier. This is further supported by the results in Table~\ref{table:embedder:medians}, where although accuracy and F1 scores are lower, the performance remains notable given the multiclass nature of the task involving \num{\numGroups} groups. One primary limitation is that certain groups, particularly those with similar characteristics, tend to overlap in the embedding space. For instance, distinguishing between politicians and computer scientists is easier than between software engineers and computer scientists due to overlapping traits, which lowers the accuracy.
+As shown in Table~\ref{table:embedder:triplet}, the embedding model performs well in predicting group membership, significantly outperforming a random classifier. This is further supported by the results in Table~\ref{table:embedder:medians}. Although the accuracy and F1 scores are lower, the performance remains notable given the multiclass nature of the task involving \num{\numGroups} groups. One limitation is that certain groups, particularly those with similar characteristics, tend to overlap in the embedding space. For example, it is easier to distinguish between politicians and computer scientists than between software engineers and computer scientists due to overlapping traits, which lowers the accuracy.
 
-Evaluation on the AskX dataset as a foreign domain with new groups and writing styles provides further insight. The results of the triplet-based evaluation presented in Table~\ref{table:embedder:tripletForeignDomain} indicate that while performance slightly decreases compared to the Stack Exchange dataset, it remains robust. A similar conclusion is supported by Table~\ref{table:embedder:mediansForeignDomain}, where the model's accuracy in assigning groups based on median embeddings is even higher than on the Stack Exchange dataset. However, this may be due to the smaller number of groups of \num{\numGroupsAskx} in AskX, compared to \num{\numGroups} in the original dataset.
+Evaluating the AskX dataset as a foreign domain with new groups and writing styles provides further insight. The triplet-based evaluation results presented in Table~\ref{table:embedder:tripletForeignDomain} indicate that, although performance decreases slightly compared to the Stack Exchange dataset, it remains robust. A similar conclusion is supported by Table~\ref{table:embedder:mediansForeignDomain}, where the model's accuracy in assigning groups based on median embeddings is even higher than on the Stack Exchange dataset. However, this may be due to the smaller number of groups of \num{\numGroupsAskx} in AskX, compared to \num{\numGroups} in the original dataset.
 
 \begin{table}[ht]
-  \caption{These tables show the performance of the embedding model to detect group membership based on group-specific answers.}
+  \caption{These tables demonstrate how well the embedding model is able to detect group membership based on group-specific answers.}
   \begin{subtable}[t]{0.49\linewidth}
-    \subcaption[]{The performance of the embedding model in a \textbf{triplet-based} test on the \textbf{Stack Exchange} dataset. The model is evaluated on whether an anchor embedding is closer to a positive embedding from the same group or to a negative embedding from a different group. It performs significantly better than a random baseline.}%
+    \subcaption[]{The performance of the embedding model in a \textbf{triplet-based} test on the \textbf{Stack Exchange} dataset. The model is evaluated based on whether an anchor embedding is closer to a positive embedding from the same group or a negative embedding from a different group. It performs significantly better than a random baseline.}%
     \label{table:embedder:triplet}
     \resultEmbedder{}
   \end{subtable}
   \hfill
   \begin{subtable}[t]{0.49\linewidth}
-    \subcaption[]{The performance of the model in assigning the correct group on the \textbf{Stack Exchange} dataset based on \textbf{median group embeddings}. These medians are computed from group-specific answers not included in the evaluation set. The model is notably more accurate than a random classifier.}%
+    \subcaption[]{The performance of the model in assigning the correct group on the \textbf{Stack Exchange} dataset based on \textbf{median group embeddings}. These medians are computed from group-specific answers that are not included in the evaluation set. The model is notably more accurate than a random classifier. \vspace{1.2em}}%
     \label{table:embedder:medians}
     \resultEmbedderToMedians{}
   \end{subtable}
   \par\bigskip
   \begin{subtable}[t]{0.49\linewidth}
-    \subcaption[]{The results of the \textbf{triplet-based} evaluation in the foreign domain using the \textbf{AskX} dataset (see Section~\ref{sec:datasets:askx}). While the performance slightly decreases compared to the test in Table~\ref{table:embedder:triplet}, it still clearly outperforms a random baseline. \vspace{7.35em}}%
+    \subcaption[]{The results of the \textbf{triplet-based} evaluation in the foreign domain using the \textbf{AskX} dataset (see Section~\ref{sec:datasets:askx}). Although performance decreases slightly compared to the test in Table~\ref{table:embedder:triplet}, the model still clearly outperforms a random baseline. \vspace{4.9em}}%
     \label{table:embedder:tripletForeignDomain}
     \resultEmbedderForeignDomain{}
   \end{subtable}
   \hfill
   \begin{subtable}[t]{0.49\linewidth}
-    \subcaption[]{The performance of the model in assigning the correct group based on \textbf{median group embeddings} in a foreign domain. The embeddings are computed from group-specific answers excluded from the evaluation. The model performs significantly better than a random classifier, and even outperforms the results shown in Table~\ref{table:embedder:medians}. However, this might be attributed to the fact that the \textbf{AskX} dataset includes only \num{\numGroupsAskx} groups, in contrast to the \num{\numGroups} groups in the Stack Exchange dataset.}%
+    \subcaption[]{The performance of the model in assigning the correct group based on \textbf{median group embeddings} in a foreign domain. The embeddings are computed from group-specific answers excluded from the evaluation. The model significantly outperforms a random classifier and even the results shown in Table~\ref{table:embedder:medians}. However, this may be due to the fact that the \textbf{AskX} dataset includes only \num{\numGroupsAskx} groups, whereas the Stack Exchange dataset includes \num{\numGroups} groups.}%
     \label{table:embedder:mediansForeignDomain}
     \resultEmbedderToMediansForeignDomain{}
   \end{subtable}
 \end{table}
 
-
 \section{Testing Steering Performance}%
 \label{sec:evaluation:steering}
-\begin{itemize}
-  \item both the prompt and activation steering methods are evaluated using the same questions from the steering dataset (see Section~\ref{sec:datasets:steering}) and compared to baseline (unsteered) explanations generated by a \acl{llm}
-  \item the embeddings of the explanations are compared to median embeddings of the groups in the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}), which act as a baseline of what style and background knowledge a specific group has
-  \item Four metrics are used for evaluation: steering direction correctness, steering effect, optimal steering effect, and possible improvement (see Figure~\ref{fig:steeringMetrics})
-\end{itemize}
 
+Both the prompt and activation steering methods are evaluated using the same questions from the steering dataset (see Section~\ref{sec:datasets:steering}) and compared to baseline (unsteered) explanations generated by a \acl{llm}. The embeddings of the explanations are compared to the median embeddings of the groups in the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}), which serve as a baseline for the style and background knowledge of a given group. Four metrics are used for evaluation: steering direction correctness, steering effect, optimal steering effect, and possible improvement (see Figure~\ref{fig:steeringMetrics}).
 
 \subsection{Activation Steering Hyperparameter Optimization}%
 \label{sec:evaluation:steering:activationHPO}
-\begin{itemize}
-  \item Two key hyperparameters for activation steering are evaluated: the model layers used for steering and the scaling factor \(\lambda\).
-  \item A grid search is conducted over selected layers (between \num{13} and \num{17}) and scaling factors (\num{0.25} and \num{0.5}) to identify effective configurations within the limited time frame.
-  \item Figure~\ref{fig:activationSteeringHPO} shows the result of the hyperparameter optimization
-  \item for both metrics, the best layer is the combination of \num{14}, \num{15}, and \num{16}
-  \item for the direction correctness, none of the single layers has a particularly good performance as can be seen in Figure~\ref{fig:activationSteeringHPO:directionCorrectness}
-        \begin{itemize}
-          \item this suggests that the experiment should be repeated with different layers to discover layers that hold more of the information that is necessary to steer explanations in the correct direction
-        \end{itemize}
-  \item for the steering effect, Figure~\ref{fig:activationSteeringHPO:steeringEffect} shows that the layer \num{13} has a very good performance
-  \item the best performance is still the combination of three layers
-  \item further experiments could show up to which point the performance is improved by steering on multiple layers at once
-\end{itemize}
+
+Two key hyperparameters for activation steering are evaluated: the model layers used for steering and the scaling factor \(\lambda\). To identify effective configurations within the limited time frame of this thesis, a grid search is conducted over six selected layers between \num{13} and \num{17} and two scaling factors, \num{0.25} and \num{0.5}. Figure~\ref{fig:activationSteeringHPO} shows the result of the hyperparameter optimization. For both metrics, the best layer configuration is the combination of the layers \num{14}, \num{15}, and \num{16}.
+
+With respect to steering effect, Figure~\ref{fig:activationSteeringHPO:steeringEffect} shows that layer \num{13} in combination with a \(\lambda\) of \num{0.5} performs very well. This suggests that concepts with the complexity of attribute sentences are processed around this layer. This finding aligns with the observations of \citet{konenStyleVectorsSteering2024,bogdanEmergentEffectsScaling2025}. However, the combination of three layers still achieves the best overall performance. Further experiments could reveal the extent to which steering performance improves when multiple layers are manipulated simultaneously. In terms of direction correctness, none of the individual layers performs particularly well, as shown in Figure~\ref{fig:activationSteeringHPO:directionCorrectness}. In future research, the experiment should be repeated with different layers to identify those that contain more of the information necessary to steer explanations in the correct direction.
 
 \begin{figure}[ht]
-  \begin{subfigure}[c]{0.49\linewidth}
-    \resizebox{\linewidth}{!}{
-      \import{generated}{activation_steering_performance-direction_correctness.pgf}%
-    }
-    \subcaption{The \textbf{direction correctness} of the activation steering with different \(\lambda\) values and layers (higher is better).}%
-    \label{fig:activationSteeringHPO:directionCorrectness}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[c]{0.49\linewidth}
+  \begin{subfigure}[t]{0.49\linewidth}
     \resizebox{\linewidth}{!}{
       \import{generated}{activation_steering_performance-steering_effect.pgf}%
     }
     \subcaption{The \textbf{steering effect} of the activation steering with different \(\lambda\) values and layers (higher is better).}%
     \label{fig:activationSteeringHPO:steeringEffect}
   \end{subfigure}
-  \caption{The hyperparameters for the activation based steering methods are selected using a simple grid search. The values are the performances averaged over all activation steering methods and groups.}%
+  \hfill
+  \begin{subfigure}[t]{0.49\linewidth}
+    \resizebox{\linewidth}{!}{
+      \import{generated}{activation_steering_performance-direction_correctness.pgf}%
+    }
+    \subcaption{The \textbf{direction correctness} of the activation steering with different \(\lambda\) values and layers (higher is better).}%
+    \label{fig:activationSteeringHPO:directionCorrectness}
+  \end{subfigure}
+  \caption{The hyperparameters for activation-based steering methods are selected using a simple grid search. The values represent the average performance of all activation steering methods and groups.}%
   \label{fig:activationSteeringHPO}
 \end{figure}
 
 
 \subsection{Comparing different steering methods}
+\label{sec:evaluation:steering:methods}
 
-\begin{table}[b]
-  % TODO: is the table highlighting correct? possible improvement has to be lowest highlighted
-  \caption[]{\begin{itemize}
-      \item This table shows the performance of different steering methods with the metrics shown in Figure~\ref{fig:steeringMetrics}. The possible steering effect is not used, because it would be the same for all methods.
-      \item the performance is averaged over all groups
-      \item the experiment shows that mentioning the attributes in the prompt which is made possible by the interpretable attribute vector presented in this thesis improves the steering performance significantly
-      \item it also demonstrates that the newly proposed activation based steering methods (see Section~\ref{sec:approach:steering:activation}) lead to a clear improvement over prompt engineering techniques
-    \end{itemize}}%
+Table~\ref{table:resultSteeringType} presents the performance of the steering methods averaged over all groups. The \textbf{prompt group steering} method, which represents prompt engineering without the influence of the proposed method, has a clear steering effect that is roughly in the correct direction. One reason the effect is weaker than those of the other methods might be that the model generating the group-specific explanation has a different understanding of the style and knowledge of the groups than the median style derived from the training data. This highlights the importance of using a large and diverse dataset as the foundation for the proposed approach.
+
+\begin{table}[ht]
+  \caption[]{This table shows the performance of different steering methods using the metrics displayed in Figure~\ref{fig:steeringMetrics}. The possible steering effect is not used in this experiment, because it would be the same for all methods as the values are averages over all groups. The experiment demonstrates that mentioning the attributes in the system prompt improves steering performance significantly. % The selection of the attributes that are being used for steering is made possible by the interpretable attribute vector presented in this thesis. 
+    Additionally, the experiment demonstrates that the newly proposed activation-based steering methods (see Section~\ref{sec:approach:steering:activation}) lead to a clear improvement over prompt engineering techniques.}%
   \label{table:resultSteeringType}
   \centering
   \resultSteeringType{}%
 \end{table}
 
-\begin{itemize}
-  \item Table~\ref{table:resultSteeringType} shows the performance of the steering methods averaged over all groups
-  \item the \textbf{prompt group steering} as a representation of prompt engineering without the influence of the approach proposed by this method has a clear steering effect that is roughly in the right direction
-        \begin{itemize}
-          \item the effect is probably not as high as the other methods partly because what the model that generates the group-specific explanation understands of the style of a group might be different from what the median style of the group-specific answers in the training data is
-          \item this highlights the importance of using a large amount of divers data to use as the basis for the approach presented in this thesis
-        \end{itemize}
-  \item \textbf{prompt attribute steering} shows a significantly stronger performance than the prompt group steering, even though the group that is steered towards is not mentioned in the prompt, just the most important knowledge and style attributes
-  \item of all prompt steering methods, \textbf{prompt group attribute steering}, where both the most important attribute and the group itself are part of the system prompt, performs best
-        \begin{itemize}
-          \item this shows that while the most important attributes lead to a strong steering performance for prompt engineering, mentioning the group increases the steering effect even more
-          \item when mentioning the group is not possible however, for example when steering towards the style and knowledge of a single author, the prompt attribute steering will lead to a good performance as well
-        \end{itemize}
+The \textbf{prompt attribute steering} method demonstrates significantly stronger performance than prompt group steering, even though the group being steered toward is not mentioned in the prompt, only the most important knowledge and style attributes. Among the prompt steering methods, \textbf{prompt group attribute steering}, which includes both the most important attributes and the group itself in the system prompt, performs best. This shows that, while the most important attributes alone lead to strong steering performance, explicitly mentioning the group increases the steering effect even more. However, when mentioning the group is not feasible, such as when steering toward the style and knowledge of a single author, prompt attribute steering still yields good performance.
 
-  \item the activation steering methods use the layers \num{14}, \num{15}, and \num{17} at the same time as well as a \(\lambda\) of \num{0.5} for steering according to the hyperparameter optimization in Section~\ref{sec:evaluation:steering:activationHPO}
-  \item even without any prompt engineering, the \textbf{activation base steering} shows a strong steering effect
-        \begin{itemize}
-          \item the steering direction however is not very good
-          \item this could be improved by conducting a more comprehensive hyperparameter optimization
-          \item because of the steering direction, the activation base steering is overall the worst performing steering method as it has the largest possible improvement
-        \end{itemize}
-  \item the \textbf{activation group steering} method shows that by just using a simple prompt engineering approach and mentioning the group in the system prompt in addition the activation steering, the steering performance can be improved significantly
-        \begin{itemize}
-          \item this increase in performance is largely due to a higher direction correctness, the strength of the steering effect is mostly unchanged
-          \item both the direction correctness and especially the steering effect are significantly better than the prompt group steering without the manipulating of the activation space of the model
-        \end{itemize}
-  \item while activation steering is guiding the \ac{llm} towards the most important attributes for the group, the performance of the \textbf{activation attribute steering} method shows that there is a huge benefit in mentioning the most important attributes in the system prompt additionally
-        \begin{itemize}
-          \item a large jump from earlier activation steering methods and a huge improvement from the prompt attribute steering method
-          \item this could indicate that not the most optimal hyperparameters are chosen for the activation steering and the model therefore needs the engineered system prompt additionally to be guided towards the correct concepts; however, further research is required on this topic
-        \end{itemize}
-  \item finally, the \textbf{activation group attribute steering} method is the best one
-        \begin{itemize}
-          \item while mentioning the group does not improve the strength of the steering effect by much, the direction correctness is significantly better compared to the activation attribute steering method
-          \item it is clearly better than the prompt group attribute methods, although the difference is not as strong as with the other activation steering methods
-        \end{itemize}
+The activation steering methods use the layers \num{14}, \num{15}, and \num{17} simultaneously and apply a scaling factor \(\lambda\) of \num{0.5} following the hyperparameter optimization in Section~\ref{sec:evaluation:steering:activationHPO}. Even without any additional prompt engineering, the \textbf{activation base steering} method exhibits a strong steering effect. However, its direction correctness is relatively poor. This may be improved by conducting a more comprehensive hyperparameter optimization. Due to the low direction correctness, activation base steering is the worst-performing method overall, as it has the largest possible improvement.
 
-  \item overall, the experiment shows that the interpretable attribute vector presented in this thesis can be used to increase the performance of steering through prompt engineering significantly
-  \item additionally, the newly proposed activation based steering shows a huge improvement over more conventional prompt engineering techniques
-\end{itemize}
-% TODO: write more about possible problem, because most important in embedding too probably
+The \textbf{activation group steering} method demonstrates that incorporating simple prompt engineering, that is, mentioning the group in the system prompt, in addition to activation steering significantly improves performance. This improvement is largely due to higher direction correctness, while the magnitude of the steering effect remains mostly unchanged. Both the direction correctness and especially the steering effect are significantly better than those of the prompt group steering method, which lacks activation-based manipulation.
+
+Although activation steering guides the \ac{llm} toward the most important group-specific attributes, the performance of the \textbf{activation attribute steering} method indicates a substantial benefit from mentioning the most important attributes in the system prompt in addition to the activation-based steering. This method yields a significant performance improvement over earlier activation steering methods and prompt attribute steering. This suggests that the hyperparameters used for activation steering may be suboptimal.
+
+Finally, the \textbf{activation group attribute steering} method proves to be the most effective. Although explicitly mentioning the group does not greatly increase the strength of the steering effect, it significantly improves direction correctness compared to the activation attribute steering method. It clearly outperforms the prompt group attribute steering method, although the margin is smaller than with other activation steering methods.
+
+Overall, the experiment shows  that the interpretable attribute vector introduced in this thesis significantly enhances the performance of prompt-based steering. Moreover, the newly proposed activation-based steering methods offer substantial improvements over traditional prompt engineering techniques.
 
 
-\subsection{Comparing the Steering Performance for Different Groups}
-\begin{itemize}
-  \item while the previous section has evaluated the performance of the different steering methods, this section will focus on the different groups and how well they are suited to being steered towards
-  \item Table~\ref{table:resultSteeringGroup} shows the steering performance of the groups averaged over all steering methods
-  \item while there consistently is a steering effect for all groups, its strength and the direction correctness varies strongly between the groups
-  \item the variation in the strength of the steering effect can be largely explained by the different possible steering effect
-        \begin{itemize}
-          \item if the style and knowledge of a group is closer to the unsteered generation, the steering effect can not be as large
-        \end{itemize}
-  \item but even ignoring this, there is a huge difference between groups where the steering works really well like pilots and software engineers and groups where the steering performance is significantly worse like biologists, historians and politicians
-        \begin{itemize}
-          \item interestingly, these are groups where the knowledge attributes are only of low importance compared to the style attributes as shown in Section~\ref{sec:evaluation:knowledgeAttributes}
-          \item there is further research necessary to evaluate whether there is a correlation
-        \end{itemize}
-\end{itemize}
+\subsection{Comparing the Steering Performance for Different Groups}%
+\label{sec:evaluation:steering:groups}
+
+While the previous section analyzed the performance of different steering methods, this section focuses on the variability in steering performance across different target groups. Table~\ref{table:resultSteeringGroup} presents the steering performance for each group, averaged over all steering methods. Although all groups consistently exhibit a steering effect, both the strength and direction correctness of the effect vary significantly between them.
 
 \begin{table}[ht]
-  \caption[]{\begin{itemize}
-      \item the performance of steering explanations towards different groups
-      \item the values are averages over all steering methods
-    \end{itemize}}%
+  \caption[]{This table shows how well steering explanations perform for different groups. The values are averages of all steering methods.}%
   \label{table:resultSteeringGroup}
   \centering
   \resultSteeringGroup{}%
 \end{table}
 
-\begin{itemize}
-  \item Table~\ref{table:resultSteeringGroupActivationgroupattribute} shows the steering performances for the different groups with the activation group attribute steering method, which is the best method according to the experiment described previously
-  \item for many groups, the steering performance is better compared to the average over all methods which can be seen in Table~\ref{table:resultSteeringGroup}, especially for historians, philosophers and politicians
-  \item for some groups, the steering performance is actually worse, especially for biologists and electrical engineers
-  \item it is not immediatly clear what the reason for the worse performance is; on this topic, further research is necessary
-\end{itemize}
+The variation in the strength of the steering effect can largely be explained by the varying possible steering effect. When the unsteered explanation already closely resembles the median style and knowledge of the group, the steering effect is inherently limited. However, even when controlling for this factor, notable differences remain. Some groups, such as pilots and software engineers, respond very well to steering, whereas others, such as biologists, historians, and politicians, show significantly weaker performance.
+
+Interestingly, for groups with weaker steering performance, knowledge attributes tend to be less important than style attributes, as discussed in Section~\ref{sec:evaluation:knowledgeAttributes}. Further research is needed to determine if there is a causal relationship between the importance of knowledge attributes and steering effectiveness.
+
+Table~\ref{table:resultSteeringGroupActivationgroupattribute} provides the steering performance for various groups using the activation group attribute steering method, which the experiments identify as the most effective approach. Many groups show improved steering performance relative to the average performance shown in Table~\ref{table:resultSteeringGroup}, especially for historians, philosophers, and politicians. However, for some groups, such as biologists and electrical engineers, steering performance is actually lower. The reason for this decline is not immediately apparent, indicating that further research is necessary to explore this phenomenon.
 
 \begin{table}[ht]
-  \caption[]{\begin{itemize}
-      \item the performance of steering explanations towards different groups with the activation group attribute steering method
-    \end{itemize}}%
+  \caption[]{This table shows how well the steering of explanations works for different groups using the activation group attribute steering method.}%
   \label{table:resultSteeringGroupActivationgroupattribute}
   \centering
   \resultSteeringGroupActivationgroupattribute{}%
