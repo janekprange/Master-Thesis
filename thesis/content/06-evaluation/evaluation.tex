@@ -1,128 +1,86 @@
-\chapter{Evaluation and Discussion}
+\chapter{Evaluation and Discussion}%
 \label{sec:evaluation}
-
-\section{Evaluating the Importance of Knowledge Attributes for the Interpretable Attribute Vector}
-\label{sec:evaluation:knowledgeAttributes}
 \begin{itemize}
-  \item the experiment is conducted for the most important \num{10}, \num{20} and \num{50} attributes per group
-  \item the results of the experiment are shown in Table~\ref{table:knowledgeImportance}
-  \item it is clear that the knowledge attributes are not equally important for all groups
-  \item for some groups, such as Biologists, Historians and Politicians, the knowledge attributes are not important to distinguish them from other groups
-  \item for most groups, there is at least some relevance to the knowledge attributes
-  \item for the groups of Game Developers and Software Engineers, the knowledge attributes are very important as at least half of the \num{10} most important attributes are knowledge attributes
-  \item this is especially significant since there are only \num{\minNumKnowledgePrompts} knowledge attributes in the \num{\styleVectorSize} dimensions of the attribute vector
-  \item if the importance of knowledge and style attributes would be equally distributed, only less than \SI{10}{\percent} of the most important attributes would be expected to be knowledge attributes
-  \item this shows that the extension of the state-of-the-art style vector proposed in this thesis does have a significant benefit for group membership detection and answers research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes}
+  \item This chapter presents a comprehensive evaluation of the methods and models introduced in this thesis.
+  \item The primary goal is to assess the effectiveness of the proposed extensions to interpretable style representations, particularly the inclusion of knowledge attributes.
+  \item The evaluation includes performance measurements of the \ac{sfam}, \ac{lisa}, and embedding models.
+  \item The ability of these models to generalize across domains and support steering tasks is also analyzed.
+  \item The evaluation is structured to address the core research questions and validate the thesis contributions using both quantitative metrics and qualitative discussion.
 \end{itemize}
+
+% TODO: add steering to introduction
+
+\section{Evaluating the Importance of Knowledge Attributes for the Interpretable Attribute Vector}%
+\label{sec:evaluation:knowledgeAttributes}
+
+As explained in Section~\ref{sec:experiments:knowledgeAttributes}, this experiment evaluates the importance of knowledge attributes, which are an extension to the style vectors proposed in this thesis. The experiment is conducted by analyzing the most important \num{10}, \num{20}, and \num{50} attributes per group. The results of this evaluation are presented in Table~\ref{table:knowledgeImportance}.
+
+It is evident from the results that knowledge attributes are not equally important across all groups. In particular, groups such as Biologists, Historians, and Politicians do not rely significantly on knowledge attributes for differentiation from other groups. Nonetheless, for the majority of groups, knowledge attributes show at least some relevance. For instance, in the case of Game Developers and Software Engineers, knowledge attributes are shown to be particularly important, with at least half of the \num{10} most important attributes belonging to the knowledge attribute category.
+
+The high portion of knowledge attributes is especially significant given that there are only \num{\minNumKnowledgePrompts} knowledge attributes within the \num{\styleVectorSize} total dimensions of the attribute vector. If importance were uniformly distributed between knowledge and style attributes, fewer than \SI{10}{\percent} of the most important attributes would be expected to be knowledge-related. Therefore, these findings demonstrate that the extension of the state-of-the-art style vector proposed in this thesis provides a meaningful benefit for group membership detection, and positively answering research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes}.
+
 \begin{table}[ht]
-  \caption[]{\begin{itemize}
-      \item This table shows the results to the evaluation of the importance of knowledge attributes for group membership detection
-      \item the attribute vector is created with the \ac{lisa} model for answers from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex})
-      \item then, the dimensions that are the most important to differentiate each group from all others are selected and the number of knowledge attributes included in them counted
-      \item the experiment shows that while knowledge attributes are not beneficial to differentiate the answers by some groups, overall it is very clear that they have significant importance for group membership detection
-    \end{itemize}}
+  \caption[]{This table shows the results of the evaluation of the importance of knowledge attributes for group membership detection (see Section~\ref{sec:experiments:knowledgeAttributes}). The attribute vector is created with the \ac{lisa} model using group-specific answers from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). Subsequently, the dimensions that are most important for differentiating each group from all others are selected, and the number of knowledge attributes among them is counted. The experiment illustrates that, while knowledge attributes are not universally beneficial for all groups, they have a significant impact overall on the effectiveness of group membership detection.}
   \resultKnowledgeImportance{}%
   \label{table:knowledgeImportance}
 \end{table}
 
-
-\section{Testing Model Performance}
+\section{Testing Model Performance}%
 \label{sec:evaluation:models}
-\begin{itemize}
-  \item \textbf{\ac{sfam}} is evaluated by comparing its prediction if an attribute sentence matches an answer to the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}) and seeing if the attribute sentence is actually used to describe the answer
-  \item the results in Table~\ref{table:resultSFAM} show that \ac{sfam} has a solid ability to predict if an attribute sentence matches a text with an accuracy significantly higher than a random classifier
-  \item even though \ac{sfam} follows the work of \citet{patelLearningInterpretableStyle2023}, the results can not be compared to their results as they did not test \ac{sfam} on a dataset of unseen texts but compared it to human judgments which was not possible in this thesis due to time constraints
-  \item while the performance of \ac{sfam} is good, it could probably be improved by using a better model as the basis for fine-tuning and by reducing the noise in the test dataset that is the result of the data being extracted from internet forums
-\end{itemize}
+
+This section discusses the results of the model evaluation presented in Section~\ref{sec:experiments:models}.
+
+The \textbf{\acs{sfam}} model is evaluated by comparing its predictions, that is whether an attribute sentence matches an answer, to the ground truth derived from the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}). Specifically, it is assessed whether the attribute sentence was actually used to describe the answer in the synthetic dataset. As shown in Table~\ref{table:resultSFAM}, \ac{sfam} demonstrates a solid ability to perform this task, achieving an accuracy significantly higher than that of a random classifier. Although \ac{sfam} is built upon the work of \citet{patelLearningInterpretableStyle2023}, direct comparisons with their results are not feasible, as they evaluated their model using human judgments, which is not employed in this thesis due to time constraints. While the performance of \ac{sfam} is promising, there is potential for improvement, especially by fine-tuning a more capable base model and by reducing the noise inherent in a dataset extracted from internet forums.
 
 \begin{table}[ht]
-  \caption[]{\begin{itemize}
-      \item the performance of \ac{sfam} is evaluated by comparing its prediction if a attribute sentence matches a text with the fact if the sentence was used to describe the text in the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration})
-      \item the experiment shows that \ac{sfam} performs significantly better than a random baseline
-    \end{itemize}}
-  \resultSfam{}%
+  \caption[]{The performance of \ac{sfam} is evaluated by comparing its predictions about whether an attribute sentence matches a text to whether the sentence was actually used in the synthetic dataset (see Section~\ref{sec:experiments:setup:sentenceGeneration}). The results show that \ac{sfam} performs significantly better than a random baseline.}%
   \label{table:resultSFAM}
+  \centering
+  \resultSfam{}
 \end{table}
 
-\begin{itemize}
-  \item \textbf{\ac{lisa}} is evaluated on attribute vectors that are created with \ac{sfam}
-  \item the results in Table~\ref{table:resultLISA} show that \ac{lisa} is able to create attribute vector with only a small loss compared to \ac{sfam}
-  \item however, the performance of the \ac{lisa} model by \citet{patelLearningInterpretableStyle2023} was a lot better with a \ac{mse} of \num{0.005}
-  \item additionally, the average cosine similarity between the attribute vectors produced by \ac{sfam} and \ac{lisa} is not very high with \num{0.752}
-  \item the performance is likely not as good because there is not enough training data
-  \item a larger amount can not be used for this thesis for two reasons
-        \begin{itemize}
-          \item the Stack Exchange dataset that is used for training \ac{lisa} does not include many more answers that could be used for training
-          \item the time constraints of this thesis do not allow a much longer training time
-        \end{itemize}
-\end{itemize}
+The \textbf{\acs{lisa}} model is evaluated based on attribute vectors generated by \ac{sfam}. The results in Table~\ref{table:resultLISA} indicate that \ac{lisa} can generate attribute vectors with only minor loss (\acs{mse} of \num{0.05}) relative to those produced by \ac{sfam}. However, its performance does not reach the level achieved by the original \ac{lisa} model by \citet{patelLearningInterpretableStyle2023}, which attained \iac{mse} of \num{0.005}. Additionally, the average cosine similarity between the attribute vectors created by \ac{sfam} and \ac{lisa} is relatively low at \num{0.752}. This limited performance is likely due to the restricted amount of training data available. Two primary limitations restrict the use of additional data: the Stack Exchange dataset offers only a limited number of suitable training samples, and the time constraints of this thesis do not allow for extended training periods.
 
 \begin{table}[ht]
-  \caption[]{\begin{itemize}
-      \item \ac{lisa} is evaluated in comparison to attribute vectors created by \ac{sfam}
-      \item accuracy and F1 are computed by using the attribute vectors by \ac{sfam} and \ac{lisa} to predict if each attribute matches the text; then, the predictions are compared to each other
-    \end{itemize}}
-  \resultLisa{}%
+  \caption[]{\ac{lisa} is evaluated by comparing its generated attribute vectors to those created by \ac{sfam}. Accuracy and F1 scores are calculated by determining whether each attribute matches the text, based on both models' outputs, and then comparing these predictions. The results show that \ac{lisa} performs significantly better than a random baseline while it only has a small loss compared to \ac{sfam}.}%
   \label{table:resultLISA}
+  \centering
+  \resultLisa{}
 \end{table}
 
+The \textbf{embedding model} is tested on its ability to detect group membership in two tasks. The first task evaluates whether an embedding is closer to another from the same group as to one from a different group (triplet-based evaluation). The second task assesses whether an embedding can be correctly assigned to its group by comparing it to the median embeddings of all groups, which are extracted from answers that are not used in the experiments. Both evaluations are conducted using Euclidean and cosine distances and are applied to the Stack Exchange (see Section~\ref{sec:datasets:stackex}) and AskX (see Section~\ref{sec:datasets:askx}) datasets to assess generalization and cross-domain robustness.
 
-The \textbf{embedding model} is tested on its ability to detect group membership on two tasks. The first evaluates whether an embedding is closer to another from the same group than to one from a different group (triplet-based evaluation), and the second assesses whether an embedding can be assigned to the correct group by comparing it to the median group embeddings. Both tasks use Euclidean and cosine distances, and are conducted on the Stack Exchange and AskX datasets to measure the generalization capabilities and robustness across domains of the model.
+As shown in Table~\ref{table:embedder:triplet}, the embedding model performs well in predicting group membership, significantly outperforming a random classifier. This is further supported by the results in Table~\ref{table:embedder:medians}, where although accuracy and F1 scores are lower, the performance remains notable given the multiclass nature of the task involving \num{\numGroups} groups. One primary limitation is that certain groups, particularly those with similar characteristics, tend to overlap in the embedding space. For instance, distinguishing between politicians and computer scientists is easier than between software engineers and computer scientists due to overlapping traits, which lowers the accuracy.
 
-\begin{itemize}
-  \item Table~\ref{table:embedder:triplet} shows that the model has robust ability to predict the correct group significantly better than a random classifier
-  \item Table~\ref{table:embedder:medians} supports this finding. Even though the accuracy and F1 are significantly lower, the results are still good since it is not a binary classification anymore because there are \num{\numGroups} groups to choose from
-  \item the main reason why the performance is not better is that some of the groups that are relativly similar overlap strongly in the embeddings space
-  \item because of this, the accuracy of differentiating between for example politicians and computer scientists would be much higher than between software engineers and computer scientists
-
-  \item the triplet-based evaluation on the foreign domain shown in Table~\ref{table:embedder:tripletForeignDomain} shows a robust performance for group membership detection
-  \item the performance is a little worse than on the training domain as expected, but still good
-  \item a similar conclusion can be drawn from the results of the evaluation based on median group embeddings on the foreign domain shown in Table~\ref{table:embedder:mediansForeignDomain}
-  \item in this case, the metrics are even better than on the Stack Exchange dataset
-  \item this is however likely the results of the fact that the AskX dataset has only \num{\numGroupsAskx} groups compared to the \num{\numGroups} groups of the Stack Exchange dataset
-\end{itemize}
+Evaluation on the AskX dataset as a foreign domain with new groups and writing styles provides further insight. The results of the triplet-based evaluation presented in Table~\ref{table:embedder:tripletForeignDomain} indicate that while performance slightly decreases compared to the Stack Exchange dataset, it remains robust. A similar conclusion is supported by Table~\ref{table:embedder:mediansForeignDomain}, where the model's accuracy in assigning groups based on median embeddings is even higher than on the Stack Exchange dataset. However, this may be due to the smaller number of groups of \num{\numGroupsAskx} in AskX, compared to \num{\numGroups} in the original dataset.
 
 \begin{table}[ht]
   \caption{These tables show the performance of the embedding model to detect group membership based on group-specific answers.}
-  \begin{subtable}[b]{0.49\linewidth}
-    \subcaption[]{\begin{itemize}
-        \item the performance of the embedding model in a triplet-based test
-        \item here, the model is tested on wether an anchor embedding is closer to a positive embedding of the same group or to a negative embedding of a different group
-        \item the model performance significantly better than a random baseline
-      \end{itemize}}
-    \resultEmbedder{}%
+  \begin{subtable}[t]{0.49\linewidth}
+    \subcaption[]{The performance of the embedding model in a \textbf{triplet-based} test on the \textbf{Stack Exchange} dataset. The model is evaluated on whether an anchor embedding is closer to a positive embedding from the same group or to a negative embedding from a different group. It performs significantly better than a random baseline.}%
     \label{table:embedder:triplet}
+    \resultEmbedder{}
   \end{subtable}
   \hfill
-  \begin{subtable}[b]{0.49\linewidth}
-    \subcaption[]{\begin{itemize}
-        \item the performance of the model in assigning the correct group based on the median group embeddings
-        \item the median embeddings are created from group-specific answers that are not used in the evaluation
-        \item the experiment shows that the model is much more accurat than the random baseline
-      \end{itemize}}
-    \resultEmbedderToMedians{}%
+  \begin{subtable}[t]{0.49\linewidth}
+    \subcaption[]{The performance of the model in assigning the correct group on the \textbf{Stack Exchange} dataset based on \textbf{median group embeddings}. These medians are computed from group-specific answers not included in the evaluation set. The model is notably more accurate than a random classifier.}%
     \label{table:embedder:medians}
+    \resultEmbedderToMedians{}
   \end{subtable}
   \par\bigskip
-  \begin{subtable}[b]{0.49\linewidth}
-    \subcaption[]{\begin{itemize}
-        \item the table shows the results of the triplet-based evaluation on the foreign domain of the AskX dataset (see Section~\ref{sec:datasets:askx})
-        \item while the performance is slightly worse compared to the test shown in Table~\ref{table:embedder:triplet}, it still significantly better than the random baseline
-      \end{itemize}}
-    \resultEmbedderForeignDomain{}%
+  \begin{subtable}[t]{0.49\linewidth}
+    \subcaption[]{The results of the \textbf{triplet-based} evaluation in the foreign domain using the \textbf{AskX} dataset (see Section~\ref{sec:datasets:askx}). While the performance slightly decreases compared to the test in Table~\ref{table:embedder:triplet}, it still clearly outperforms a random baseline. \vspace{7.35em}}%
     \label{table:embedder:tripletForeignDomain}
+    \resultEmbedderForeignDomain{}
   \end{subtable}
   \hfill
-  \begin{subtable}[b]{0.49\linewidth}
-    \subcaption[]{\begin{itemize}
-        \item the performance of the model of assigning the correct group based on the median group embeddings on a foreign domain
-        \item the median embeddings are created from group-specific answers that are not used in the evaluation
-        \item the experiment shows that the model is significantly better than a random classifier and even better than the experiment shown in Table~\ref{table:embedder:medians}, although this is likely because the AskX dataset has only \num{\numGroupsAskx} groups in contrast to the \num{\numGroups} group of the Stack Exchange dataset
-      \end{itemize}}
-    \resultEmbedderToMediansForeignDomain{}%
+  \begin{subtable}[t]{0.49\linewidth}
+    \subcaption[]{The performance of the model in assigning the correct group based on \textbf{median group embeddings} in a foreign domain. The embeddings are computed from group-specific answers excluded from the evaluation. The model performs significantly better than a random classifier, and even outperforms the results shown in Table~\ref{table:embedder:medians}. However, this might be attributed to the fact that the \textbf{AskX} dataset includes only \num{\numGroupsAskx} groups, in contrast to the \num{\numGroups} groups in the Stack Exchange dataset.}%
     \label{table:embedder:mediansForeignDomain}
+    \resultEmbedderToMediansForeignDomain{}
   \end{subtable}
 \end{table}
+
 
 \section{Testing Steering Performance}%
 \label{sec:evaluation:steering}

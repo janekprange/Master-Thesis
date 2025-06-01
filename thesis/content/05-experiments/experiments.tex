@@ -29,7 +29,8 @@ The experiments were conducted on a SLURM cluster using nodes with \num{32} CPU 
 %         % \item how often attribute vector dimensions have been used -> targeted dimension very often, for the others it would be more interesting
 % \end{itemize}
 
-\section{Evaluating the Importance of Knowledge Attributes for the Interpretable Attribute Vector}
+\section{Evaluating the Importance of Knowledge Attributes for the Interpretable Attribute Vector}%
+\label{sec:experiments:knowledgeAttributes}
 Knowledge attributes are an extension of the state-of-the-art style vector and a novel contribution of this thesis. This experiment is designed to address research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes} by evaluating the significance of the knowledge attributes in the context of group membership detection tasks.
 
 It involves analyzing the median attribute vectors for each group across all answers in the synthetic dataset introduced in Sections~\ref{sec:approach:attributeSentenceGeneration} and \ref{sec:experiments:setup:sentenceGeneration}. For each group, the dimensions of the interpretable attribute vector are ordered by their importance in distinguishing the target group from the others. The importance of each dimension is measured using the point-biserial correlation coefficient, similar to the methodology described in Section~\ref{sec:experiments:setup:steering:prompt}.
