@@ -1,18 +1,19 @@
 \chapter{Conclusion}
 \label{sec:conclusion}
-\begin{itemize}
-  \item this thesis presents a comprehensive framework for interpretable text representation and steering of \acp{llm} towards group-specific explanations in one continuous pipeline
-  \item the process starts with group-specific texts, produces an interpretable attribute vector that can be used for group-membership detection and ends with different approaches to steer \aclp{llm} towards group-specific explanations, including with a novel activation-based steering approach
-  \item this includes creating a synthetic dataset annotated with style and knowledge attributes
+This thesis presents a comprehensive framework for interpretable text representation and the steering of \acp{llm} towards group-specific explanations, structured as one continuous pipeline. Starting with group-specific texts, the process results in the generation of group-specific explanations using various steering techniques, including a novel activation-based approach. During this procedure, an interpretable attribute vector that can be used for group membership detection is produced.
 
-  \item the experiments have established that the addition of knowledge attributes to the style vector proposed by \citet{patelLearningInterpretableStyle2023} is helpful for group membership detection
-  \item they have furthermore demonstrated that the automatic creation of the attribute vector and the \ac{lisa} model which produces it performs well
-  \item the experiments have shown that the steering through prompt engineering benefits from the information in the interpretable attribute vector
-  \item finally, the experiments have confirmed the effectiveness of the novel activation-based steering approach in generating group-specific explanations
+A key component of this work is the creation of a synthetic dataset that is annotated with style and knowledge attributes. This dataset supports the training and evaluation of models throughout the thesis.
 
-  \item however, this thesis also demonstrated that the training process for the \ac{lisa} model requires large amounts of data
-  \item additionally, it has shown that not all groups benefit equally strong from the steering methods
-\end{itemize}
+The experiments conducted as part of this thesis have established that augmenting the style vector proposed by \citet{patelLearningInterpretableStyle2023} with knowledge attributes improves the performance of group membership detection. Additionally, the experiments demonstrated the effectiveness of the automatic creation of the attribute vector and the \ac{lisa} model responsible for generating it.
+
+The results have also shown that steering via prompt engineering benefits from the information encoded in the interpretable attribute vector. This enables more tailored and relevant \ac{llm} outputs when targeting specific groups.
+
+Additionally, the experiments confirm the effectiveness of the novel, activation-based steering approach in producing group-specific explanations. This method allows for precise control over the output of the model by adjusting its internal activations based on the interpretable attribute vector.
+
+However, the thesis reveals that achieving reliable results with the \ac{lisa} model requires a large volume of group-specific texts. Furthermore, it demonstrates that the advantages of the steering methods are not equally distributed among all groups; certain groups exhibit more significant improvements than others.
+
+Overall, the work presented in this thesis contributes to the field of interpretable representation learning and opens up new opportunities for personalized language generation using \aclp{llm}.
+
 
 \section{Limitations and Future Work}
 \begin{itemize}

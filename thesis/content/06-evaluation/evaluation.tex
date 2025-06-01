@@ -1,21 +1,7 @@
 \chapter{Evaluation and Discussion}%
 \label{sec:evaluation}
-\begin{itemize}
-  \item This chapter presents a comprehensive evaluation of the methods and models introduced in this thesis.
-  \item The primary goal is to assess the effectiveness of the proposed extensions to interpretable style representations, particularly the inclusion of knowledge attributes.
-  \item The evaluation includes performance measurements of the \ac{sfam}, \ac{lisa}, and embedding models.
-  \item The ability of these models to generalize across domains and support steering tasks is also analyzed.
-  \item The evaluation is structured to address the core research questions and validate the thesis contributions using both quantitative metrics and qualitative discussion.
-  \item The evaluation compares both prompt-based and activation-based steering methods using a consistent experimental setup and shared metrics.
-  \item Activation-based steering, especially when combined with interpretable attributes and group information, consistently outperforms prompt-only methods in both steering strength and direction correctness.
-  \item The interpretable attribute vector significantly enhances steering performance, particularly when key group-specific attributes are included in prompts.
-  \item Optimal steering performance is achieved when both group identity and important attributes are combined with activation steering.
-  \item Hyperparameter optimization suggests that steering across multiple middle layers (\num{14} -- \num{16}) yields the best performance.
-  \item Steering effectiveness varies by target group; groups with more distinctive or attribute-rich writing styles (e.g., pilots, software engineers) are easier to steer toward.
-  \item Further research is required to understand the correlation between attribute type (knowledge vs. style) and steerability.
-\end{itemize}
 
-% TODO: add steering to introduction
+This chapter evaluates the methods and models introduced in this thesis and presents the results of the experiments described in Section~\ref{sec:experiments}. These results aim to answer the research questions stated in Section~\ref{sec:introduction:problemStatement}.
 
 \section{Evaluating the Importance of Knowledge Attributes for the Interpretable Attribute Vector}%
 \label{sec:evaluation:knowledgeAttributes}
