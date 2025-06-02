@@ -61,7 +61,7 @@ The goal of the method presented in this thesis is to create interpretable attri
 
 \ac{sfam} is trained on the synthetic dataset, which was created in earlier steps as described in Section~\ref{sec:approach:attributeSentenceGeneration}. The training data includes the unclustered knowledge and style sentences and the input texts that were described by them. However, there is some preprocessing necessary, as just because an attribute sentence was not used to describe a text does not mean the text does not match the sentence. It could be that the text was described by a similar sentence or that the \ac{llm} just skipped a topic when describing one text.
 
-The attribute sentences that are used for training are selected in a process similar to the one described in Section~\ref%{sec:approach:selection:finalSelection}.
+The attribute sentences that are used for training are selected in a process similar to the one described in Section~\ref{sec:approach:selection:finalSelection}.
 First, the similarity between all attribute sentences and all attribute vector dimensions is computed. Then, for each sentence and each text, the average similarity to the dimensions that were used to describe the text is computed. The texts are then sorted by their similarity to the attribute sentence. If the sentence has been used to describe one of the \SI{1}{\percent} most similar texts, this text will be used as a positive training sample, and the most dissimilar text where the sentence was not used to describe it is used as a negative training sample. Otherwise, the sentence will not be used for training.
 
 The resulting dataset is balanced regarding positive and negative samples and has a high probability of only including sentences that fit the texts. % TODO: write better

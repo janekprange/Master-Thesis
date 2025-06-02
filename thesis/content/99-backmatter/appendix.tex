@@ -13,7 +13,7 @@
 \label{sec:appendix:datasets}
 For the experiments conducted in this thesis, group-specific answers from different sources have been utilized, as described in Section~\ref{sec:datasets}. These answers were divided into training, validation, and test sets to fine-tune various models. Within each of these splits, the groups were represented equally to ensure balanced training and evaluation conditions.
 
-\begin{tblr}{llSS}
+\begin{tblr}{llS[table-format=5.0,group-minimum-digits=4]S[table-format=4.0]}
   \toprule
   {Purpose}             & {Dataset}      & {Number of Answers} & {Answers per Group} \\
   \midrule
@@ -36,7 +36,7 @@ In addition to the datasets used for training and evaluation, a total of \num{40
 In the following table, all groups that were extracted from Stack Exchange and the number of answers to what/how/why questions are listed.
 
 \begin{tblr}{
-    colspec={ X S[table-format=5.0,group-minimum-digits=4] S[table-format=5.0] },
+    colspec={ X S[table-format=5.0,group-minimum-digits=4] S[table-format=4.0] },
   }
   \toprule
   {Group}              & {Answers Total} & {Answers Used} \\
@@ -70,7 +70,7 @@ The following table presents an overview of the Subreddits from which the answer
     \small
 
     \begin{tblr}{
-        colspec={ X X S[table-format=4.0] S[table-format=4.0] },
+        colspec={ X X S[table-format=4.0] S[table-format=3.0] },
       }
       \toprule
       {Group}                        & {Subreddit}        & {Answers Total} & {Answers Used} \\
@@ -293,4 +293,12 @@ Description:
 
 \section{Database Schema}
 \label{sec:appendix:databaseSchema}
-% TODO
+All of the data used in this thesis has been consolidated into a single SQLite database. This centralized storage solution allows for easier access to and manipulation of the various datasets, annotations, and intermediate representations generated throughout the research process.
+
+The resulting database file is approximately \SI{12}{\giga\byte} in size. Its size reflects the comprehensive nature of the stored information, including the synthetic dataset, model outputs, attribute vectors, and metadata relevant to group-specific explanations and experimental results.
+
+The datasets presented in Section~\ref{sec:datasets} have been saved in the database to the extent that they were used in this thesis. In particular, the Stack Exchange and AskX datasets have been stored in the tables named \textit{questions} and \textit{answers}, though only the answers were used directly for the experiments. The steering questions, which are central to the evaluation of the steering techniques proposed in this work, are recorded in the table \textit{steering\_questions}. Finally, the table named \textit{meta} exists solely to ensure compatibility with programs that interact with the database. It helps verify that the configuration and number of data samples align with the conditions under which the database was created. The \textit{meta} column names correspond to the values in the \enquote{data\_type} column of the \textit{answer} table.
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/sqlite-db.png}
+\end{center}

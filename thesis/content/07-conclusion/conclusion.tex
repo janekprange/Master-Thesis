@@ -16,21 +16,13 @@ Overall, the work presented in this thesis contributes to the field of interpret
 
 
 \section{Limitations and Future Work}
-\begin{itemize}
-  \item while this thesis contributes to the fields of group membership detection and \ac{llm} steering, it is important
-\end{itemize}
-\begin{itemize}
-  \item use data for the experiments that is guaranteed to be written by specific groups
-  \item use more and better data (often a possible improvement in ML/NLP)
-  \item probing study to find the best layer for activation steering
-  \item further experiments, if a different number of important attributes has an effect on steering (prompt steering and activation steering)
-  \item compare \ac{sfam} to human judgments like \citet{patelLearningInterpretableStyle2023}
-  \item activation steering not based on the median attribute vector of a group but the attribute vector of a single text to replicate its style.
-  \item Multidimensional Analysis (MDA) \newline
-        MDA assesses linguistic features across multiple dimensions to profile text styles. For instance, Biber's MDA framework evaluates texts based on factors like formality, narrative style, and informational density. Recent advancements include Neurobiber, a transformer-based system that predicts 96 stylistic features efficiently, facilitating large-scale stylometric research.
-  \item implement a mix of the approach presented in this thesis with selected attributes (maybe in place of the targeted attributes) (see StyloMetrix by \citet{okulskaStyloMetrixOpensourceMultilingual2023})
-  \item evaluate the steering methods on metrics that do not depend on the same most important attributes
-  \item larger HPO for activation steering
-  \item is there a connection between less important knowledge attributes and worse steering performance?
-  \item why are different steering methods better for different groups (see Section~\ref{sec:evaluation:steering:groups})?
-\end{itemize}
+Although this thesis makes significant contributions to the areas of group membership detection and \ac{llm} steering, several limitations remain, and numerous open research questions and potential applications provide valuable directions for future work.
+One such direction for future research involves comparing \ac{sfam} to human judgments, as demonstrated by \citet{patelLearningInterpretableStyle2023}, to provide a more comprehensive evaluation of the model. Further experiments are also needed to determine if changing the number of important attributes used for prompt- and activation-based steering influences their effectiveness (see Section~\ref{sec:approach:steering}).
+
+A more extensive optimization of the hyperparameters for activation-based steering could provide valuable insights into which layers and scaling factors are most effective in altering the activation space of \acp{llm} (see Section~\ref{sec:approach:steering:activation}). A probing study similar to the one conducted by \citet{konenStyleVectorsSteering2024} could support this, as it was able to find the layers of the model that process concepts of specific complexity levels. Another open question is whether there is a relationship between knowledge attributes being less important for a group and a reduced steering performance towards that group, which the experiments results presented in Section~\ref{sec:evaluation:steering:groups} suggest. Finally, as discussed in Section~\ref{sec:evaluation:steering:groups}, it remains unclear why different steering methods perform better for different groups and if there are ways to improve steering performance for all groups.
+
+There are also several limitations to the current work. One significant limitation is the reliance on group-specific data from internet forums (see Section~\ref{sec:datasets}) that may include noise. Using data guaranteed to be written by specific groups could improve the performance of the presented approach. Additionally, as is often the case in machine learning and natural language processing, using more data could improve results, particularly for training the \ac{lisa} model (see Section~\ref{sec:evaluation:models}).
+% TODO: include this?
+% Another limitation is that the evaluation of steering methods currently depends on metrics that use the same most important attributes. Using metrics independent of these attributes could provide a more robust assessment of steering quality.
+
+Beyond the contributions already made, the approach developed in this thesis has the potential to be used for additional applications. For example, the steering methods could use the attribute vector of a single text instead of the median attribute vector of a group. This would replicate the style of that individual text. Another possible application is implementing a hybrid method combining the approach presented in this thesis with a manually selected set of attributes, such as sentence length or use of special characters, like emojis, similar to the StyloMetrix approach presented by \citet{okulskaStyloMetrixOpensourceMultilingual2023}. This combined approach would leverage the strengths of each method: the high interpretability of the manually selected attributes and the awareness of the experiences of the author and independence from predefined attributes of the attribute vector presented in this thesis.

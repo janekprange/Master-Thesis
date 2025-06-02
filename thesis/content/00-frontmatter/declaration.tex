@@ -12,12 +12,13 @@
 
 \vspace{2cm}
 
-\begin{table}[h]
-  \begin{tabular}{@{}p{5cm}p{5cm}@{}}
-    \thesisUniversityCity, \thesisDate, & \rule{5cm}{0.4pt} \\[0.01cm]
-                                        & \thesisName
-  \end{tabular}
-\end{table}
+\begin{tblr}{
+  colspec={@{}p{5cm}p{5cm}@{}},
+  rowsep=0.01cm,
+  }
+  \thesisUniversityCity, \thesisDate, & \rule{\linewidth}{0.4pt} \\
+                                      & \SetCell{c} \thesisName
+\end{tblr}
 
 \vfill
 
