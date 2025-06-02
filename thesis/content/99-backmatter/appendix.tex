@@ -2,12 +2,14 @@
 %
 \chapter{Appendix}
 \label{sec:appendix}
+% LTEX: enabled=false
 \lstset{
   breakatwhitespace=true,
   breaklines=true,
   breakindent=0pt,
   numbers=none
 }
+% LTEX: enabled=true
 
 \section{Datasets}
 \label{sec:appendix:datasets}
@@ -66,6 +68,7 @@ In the following table, all groups that were extracted from Stack Exchange and t
 \subsection{Reddit (AskX)}
 \label{sec:appendix:datasets:askx}
 The following table presents an overview of the Subreddits from which the answers used for the experiments in this thesis were sourced. It also includes information on the number of answers to what/how/why question extracted from each Subreddit. Furthermore, the table illustrates how the Subreddits were grouped. Finally, it specifies the number of answers that were actually utilized in the experiments.
+  % LTEX: enabled=false
   {
     \small
 
@@ -73,43 +76,44 @@ The following table presents an overview of the Subreddits from which the answer
         colspec={ X X S[table-format=4.0] S[table-format=3.0] },
       }
       \toprule
-      {Group}                        & {Subreddit}        & {Answers Total} & {Answers Used} \\
+      {Group}                            & {Subreddit}        & {Answers Total} & {Answers Used} \\
       \midrule
-      \SetCell[r=3]{m} Computer      & Askcomputerscience & 169             & 144            \\
-                                     & Askprogrammers     & 114             & 99             \\
-                                     & Askprogramming     & 289             & 257            \\
+      \SetCell[r=3]{m} Computer          & Askcomputerscience & 169             & 144            \\
+                                         & Askprogrammers     & 114             & 99             \\
+                                         & Askprogramming     & 289             & 257            \\
       \midrule
-      \SetCell[r=8]{m}   Engineering & Askamechanic       & 9               & 5              \\
-                                     & Askanengineer      & 31              & 21             \\
-                                     & Askelectricians    & 15              & 11             \\
-                                     & Askelectronics     & 45              & 31             \\
-                                     & Askengineers       & 580             & 404            \\
-                                     & Askmechanics       & 15              & 11             \\
-                                     & Asktechnology      & 11              & 7              \\
-                                     & Askanelectrician   & 12              & 10             \\
+      \SetCell[r=8]{m}   Engineering     & Askamechanic       & 9               & 5              \\
+                                         & Askanengineer      & 31              & 21             \\
+                                         & Askelectricians    & 15              & 11             \\
+                                         & Askelectronics     & 45              & 31             \\
+                                         & Askengineers       & 580             & 404            \\
+                                         & Askmechanics       & 15              & 11             \\
+                                         & Asktechnology      & 11              & 7              \\
+                                         & Askanelectrician   & 12              & 10             \\
       \midrule
-      \SetCell[r=4]{m}   Natural     & Askbiology         & 166             & 142            \\
-                                     & Askchemistry       & 89              & 74             \\
-                                     & Askphysics         & 331             & 282            \\
-                                     & Askachemist        & 2               & 2              \\
+      \SetCell[r=4]{m}   Natural Science & Askbiology         & 166             & 142            \\
+                                         & Askchemistry       & 89              & 74             \\
+                                         & Askphysics         & 331             & 282            \\
+                                         & Askachemist        & 2               & 2              \\
       \midrule
-      Old                            & Askoldpeople       & 8769            & 500            \\
+      Old                                & Askoldpeople       & 8769            & 500            \\
       \midrule
-      \SetCell[r=4]{m}  Over30       & Askmenover30       & 2242            & 178            \\
-                                     & Askmenover40       & 163             & 17             \\
-                                     & Askwomenover30     & 3105            & 235            \\
-                                     & Askwomenover40     & 724             & 70             \\
+      \SetCell[r=4]{m}  Over30           & Askmenover30       & 2242            & 178            \\
+                                         & Askmenover40       & 163             & 17             \\
+                                         & Askwomenover30     & 3105            & 235            \\
+                                         & Askwomenover40     & 724             & 70             \\
       \midrule
-      \SetCell[r=3]{m}  Social       & Asksocialscience   & 227             & 134            \\
-                                     & Askapsychologist   & 68              & 45             \\
-                                     & Askpsychology      & 500             & 321            \\
+      \SetCell[r=3]{m}  Social           & Asksocialscience   & 227             & 134            \\
+                                         & Askapsychologist   & 68              & 45             \\
+                                         & Askpsychology      & 500             & 321            \\
       \midrule
-      \SetCell[r=3]{m}   Teenager    & Askteengirls       & 318             & 138            \\
-                                     & Askteens           & 307             & 143            \\
-                                     & Askteenboys        & 551             & 219            \\
+      \SetCell[r=3]{m}   Teenager        & Askteengirls       & 318             & 138            \\
+                                         & Askteens           & 307             & 143            \\
+                                         & Askteenboys        & 551             & 219            \\
       \bottomrule
     \end{tblr}
   }
+% LTEX: enabled=true
 
 \clearpage
 
@@ -181,6 +185,7 @@ In this thesis, the following template for the targeted style prompts are being 
 
 For each of the following targeted features, the \textit{feature\_name} is substituted by the feature name. The list of features follows the work of \citet{patelLearningInterpretableStyle2023} with the exception that \enquote{swear words} is not included twice and \enquote{male pronouns} as well as \enquote{female pronouns} have been removed because the resulting attribute sentences are two similar to each other. Because of the high similarity, the attributes were often in the same clusters even though they were describing different genders.
 
+% LTEX: enabled=false
 \begin{multicols}{2}
   \begin{itemize}[nolistsep]
     \item figurative language
@@ -269,6 +274,7 @@ For each of the following targeted features, the \textit{feature\_name} is subst
     \item elongated words
   \end{itemize}
 \end{multicols}
+% LTEX: enabled=true
 
 \subsection{Knowledge Prompts}
 \label{sec:appendix:knowledgePrompts}
@@ -293,7 +299,7 @@ Description:
 
 \section{Database Schema}
 \label{sec:appendix:databaseSchema}
-All of the data used in this thesis has been consolidated into a single SQLite database. This centralized storage solution allows for easier access to and manipulation of the various datasets, annotations, and intermediate representations generated throughout the research process.
+All the data used in this thesis has been consolidated into a single SQLite database. This centralized storage solution allows for easier access to and manipulation of the various datasets, annotations, and intermediate representations generated throughout the research process.
 
 The resulting database file is approximately \SI{12}{\giga\byte} in size. Its size reflects the comprehensive nature of the stored information, including the synthetic dataset, model outputs, attribute vectors, and metadata relevant to group-specific explanations and experimental results.
 

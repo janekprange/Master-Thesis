@@ -6,7 +6,7 @@ Stylistic features also serve analytical purposes; for instance, they can be use
 
 However, automating stylistic investigations with machine learning poses several challenges. One significant issue is the complexity and time-consuming nature of manual style annotations. Additionally, it is difficult to generate parallel datasets that include positive and negative examples for each stylistic label.
 
-Because supervised learning methods rely on annotated data for training, state-of-the-art style representation methods tend to use unsupervised learning techniques. % TODO: citation
+Because supervised learning methods rely on annotated data for training, state-of-the-art style representation methods tend to use unsupervised learning techniques (\cite{jin-etal-2022-deep}).
 While effective, these methods often produce style embeddings that are difficult to interpret, which makes it harder to verify their quality and apply them to other tasks effectively.
 
 To address these limitations, this thesis introduces interpretable attribute vectors based on the methodology proposed by \citet{patelLearningInterpretableStyle2023}. Figure~\ref{fig:attributeVector} illustrates the composition of these vectors. Each dimension of the vector corresponds to a real-world concept, and the associated value, ranging from \num{0} to \num{1}, indicates the extent to which a text aligns with the specified attribute.
@@ -14,7 +14,7 @@ To address these limitations, this thesis introduces interpretable attribute vec
 \begin{figure}[ht]
       \begin{center}
             \input{content/01-introduction/attribute-vector-tikz.tex}
-            \caption{An example of a \num{\styleVectorSize}-dimensional attribute vector that was generated with the method presented in this thesis.}% % TODO: more caption?
+            \caption{An example of a \num{\styleVectorSize}-dimensional attribute vector that the method presented in this thesis generates. It consists of dimensions with values between \num{0} and \num{1} that correspond to real-world concepts in the form of attribute sentences.}%
             \label{fig:attributeVector}
       \end{center}
 \end{figure}

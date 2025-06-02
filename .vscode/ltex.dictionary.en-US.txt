@@ -13,3 +13,5 @@ StyloAI
 stylometric
 multiclass
 AskX
+vLLM
+SLURM

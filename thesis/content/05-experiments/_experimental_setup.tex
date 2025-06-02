@@ -9,7 +9,7 @@
 The synthetic dataset that consists of attribute sentences which describe a set of input texts is constructed by prompting a \iac{llm} in a two-step procedure. For this thesis, the open source model Llama3.2-3B Instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}}~(\cite{dubeyLlama3Herd2024}) with \num{3} billion parameters has been used. This model has state-of-the-art performance and is freely available, which provides the possibility to run the model directly on the server cluster. Additionally, it improves the reproducibility of the experiments because it is easier to use the exact same model later.
 To improve the performance of the sentence generation, the library vLLM\footnote{\url{https://github.com/vllm-project/vllm}} was used to run the model.
 
-The basis for the generation of the attribute sentences are \num{\numAnswersStyleVector} answers from the stack exchange dataset described in Section %~\ref{}. TODO:
+The basis for the generation of the attribute sentences are \num{\numAnswersStyleVector} answers from the stack exchange dataset described in Section~\ref{sec:datasets:stackex}.
 For each of the answers, the model is prompted \num{\numPrompts} times to create descriptions of the text with the method presented in Section~\ref{sec:approach:attributeSentenceGeneration}.
 
 For each of the resulting \num{\numStyleDescriptions} descriptions, the model is prompted again to convert the description into a list of sentences of the form \enquote{The author is \ldots} or \enquote{The author uses \ldots}. The output of the \ac{llm} is split into sentences using the Natural Language Toolkit\footnote{\url{https://www.nltk.org/}} library (\cite{birdNaturalLanguageProcessing2009}). The naive approach of splitting the sentences at the punctuation would not work because they could contain punctuation with expressions like \enquote{e.g.}.
@@ -17,7 +17,6 @@ For each of the resulting \num{\numStyleDescriptions} descriptions, the model is
 The model is instructed to avoid negations and examples because they can lead to the sentences having too dissimilar a shape while conveying the same meaning. In addition to this constraint that is stated in the prompt, the final sentences are checked to not include the word \enquote{not}. If they do, they are skipped and not used for further computation. During the experiments, \num{\numSentencesWithNegations} sentences have been filtered for this reason.
 
 After the previous steps, \numStyleSentencesNotUniqueText{} attribute sentences have been produced. After taking into account only unique sentences, \numStyleSentencesText{} attribute sentences are left. Of these, \num{\numStyleSentencesStyle} sentences are style sentences, which means they have been produced by a style prompt, and \num{\numStyleSentencesKnowledge} are knowledge prompts.
-% TODO: are style sentences + knowledge sentences = all sentences? if not, explain
 % TODO: include plot?
 % \input{generated/number_of_attributes_per_answer.pgf}
 
@@ -30,8 +29,6 @@ The first step for this procedure is to create an embedding of all sentences so 
 
 For the following steps, the style and knowledge sentences have been processed separately to ensure the resulting clusters are either style or knowledge clusters.
 The clustering algorithm first computes a radius neighbor graph of all sentences. All sentences that have a cosine similarity higher than \num{\minCosineSimilarity} are considered to be in the same cluster. Subsequently, the clusters are sorted by size and inspected from largest to smallest. If a sentence is included in one cluster, it is removed from all smaller ones. It is important to note that there is no minimum size for a cluster; if a sentence has no neighbors or every one of them is already part of a larger cluster, then the cluster size is one.
-
-% TODO: why 0.85 min similarity?
 
 At this point, there are \num{\numClusters} clusters, \num{\numClustersStyle} of which are style clusters and \num{\numClustersKnowledge} are knowledge clusters. The size of the complete synthetic dataset can be found in Table~\ref{table:syntheticDataset}.
 
@@ -119,7 +116,7 @@ The input to the model is truncated to 512 tokens following the work of \citet{p
 \acs{sfam} is trained on the synthetic dataset that was described in the previous sections. The training data is balanced and consists of attribute sentences with one answer from the Stack Exchange Dataset (see Section~\ref{sec:datasets:stackex}), which fits the attribute sentence as a positive sample and one answer which does not fit the sentence as a negative sample. The input to the model is a string of the form \enquote{\(\{\{a\}\}~|||~\{\{t\}\}\)}, where \(a\) is the attribute sentence and \(t\) is the text that is the positive or negative sample.
 
 The selection of the attribute sentences and answers used for training is similar to the process described in Section~\ref{sec:experiments:setup:selection:finalSelection} and differs from \citet{patelLearningInterpretableStyle2023}. They select sentences for training at random and choose a text that is described with the sentence in the synthetic dataset as a positive sample. A negative sample is selected by sampling a text that is described by the sentence with the largest cosine distance to the current sentence.
-The potential problem with this process is that the annotation in the synthetic dataset is not perfect and it is possible that the text that are selected as a positive sample do not actually correspond to the sentence.
+The potential problem with this process is that the annotation in the synthetic dataset is not perfect, and it is possible that the text that are selected as a positive sample do not actually correspond to the sentence.
 
 The method proposed in this thesis instead orders all answers by a heuristic similarity to the sentence and selects one of the most similar to a positive sample and one of the most dissimilar as a negative sample. For each sentence, first the heuristic similarity to each text is computed. This is done by computing the similarity to all attribute vector dimensions that are used to describe the text in the synthetic dataset. The average of these similarities serves as an approximation for the actual similarity.
 
@@ -155,7 +152,7 @@ While the attribute vector produced by \ac{lisa} is interpretable, it is not sui
 
 The embedding model consists of two fully connected layers with a ReLU activation function in between. The input is the attribute vector, and the output is an embedding with \num{\styleEmbeddingSize} dimensions. The number of embedding dimensions follows previous work by \citet{patelLearningInterpretableStyle2023}. The model was trained using a triplet loss with a contrastive learning objective\footnote{\url{https://docs.pytorch.org/docs/stable/generated/torch.nn.TripletMarginLoss.html}} (\cite{NEURIPS2020_d89a66c7}) where the distance is measured as the Euclidean distance with a margin of \num{5.0}.
 
-% TODO:
+% TODO: what hyperparameters were used?
 % For the training process, a learning rate of \ldots and a weight decay of \ldots was chosen. These values were identified as the best ones with a hyperparameter search using the library optuna\footnote{\url{https://optuna.org/}}.
 Each training sample consists of three attribute vectors, two of the same group and one of a different group. The model creates the embeddings for all three vectors. The training goal is that the anchor embedding is closer to the positive embedding (the same group) than the negative embedding (the different group). The training, validation, and test datasets are the same as the ones used for the \ac{lisa} model.
 
@@ -168,22 +165,24 @@ This thesis proposes two kinds of steering methods. Firstly, the system prompt w
 All methods will be compared against a baseline text generation that is unsteered.
 For all steering methods, the model Llama-3.2-3B-instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}} was used.
 
+% TODO: write about base steering prompt?
+% You are an author who writes a short and helpful explanation.
 \subsubsection{Prompt Steering}
 \label{sec:experiments:setup:steering:prompt}
 The first and simplest way to change the system prompt is to instruct the model to write an explanation for a specified group with the \textbf{Prompt Group Steering} method. In this case, the system prompt includes the following sentence:
-\begin{quote} % TODO: include final steering prompt
-  You are an author who writes a helpful explanation for a group of <group>.
+\begin{quote}
+  You are an author who writes a short and helpful explanation for a group of <group>.
 \end{quote}
-While this method can not be influenced regarding the direction or strength of the steering effect, it is very easy to implement. Because this method does not make use of any of the approaches presented in this thesis, it serves as a baseline steering method of what is possible with simple prompt engineering.
+While this method can not be influenced regarding the direction or strength of the steering effect, it is very easy to implement. Because this method does not make use of the approaches presented in this thesis, it serves as a baseline steering method of what is possible with simple prompt engineering.
 
 The second approach is the \textbf{Prompt Attribute Steering} method. Here, the most important dimensions of the attribute vector of a group are used to steer the model. The most important attributes are extracted from the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration} and Section~\ref{sec:experiments:setup:sentenceGeneration}) by computing the point-biserial\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pointbiserialr.html}} correlation for each dimension of the interpretable attribute vector in relation with the groups.
 
 For the steering process, the most important \num{\numImportantAttributesStyle} style attributes and \num{\numImportantAttributesKnowledge} knowledge attributes are used in the prompt. This number was chosen because more attributes would, for one, make it more difficult for the \ac{llm} to steer its generation towards all mentioned attributes, and on the other hand, make it likelier that the attributes are not very important for the group. Related to that, the number of knowledge attributes has to be lower than the number of style attributes because only \num{\minNumKnowledgePrompts} out of \num{\styleVectorSize} dimensions of the interpretable attribute vector are knowledge attributes. Using a higher number would therefore increase the chance of an irrelevant knowledge attribute being part of the system prompt.
 
-For the attributes to be able to be effectively used in the system prompt, they can not be of the form \enquote{The author is \ldots}. Instead, the style attributes are automatically rewritten to address the model directly, as this role-playing is a strength of modern \aclp{llm}. % TODO: citation
+For the attributes to be able to be effectively used in the system prompt, they can not be of the form \enquote{The author is \ldots}. Instead, the style attributes are automatically rewritten to address the model directly, as this role-playing is a strength of modern \aclp{llm} (\cite{chenPersonaPersonalizationSurvey2024,chenOscarsAITheater2024}).
 Thus, the attribute sentences will have the form \enquote{You are \ldots}.
 However, the knowledge attributes cannot be written this way because they describe the knowledge of the audience, not the knowledge of the model. Therefore, the system prompt includes an instruction to write for a group of people with some special knowledge. Afterward, the knowledge attributes are written in the form \enquote{They are \ldots}. The attributes are subsequently inserted into the following template:
-\begin{quote} % TODO: include final steering prompt
+\begin{quote}
   You are an author who writes a short and helpful explanation. \newline
   <rephrased style attributes> \\[5pt]
   You write for a group of people who have the following background knowledge and experience: \newline
@@ -192,10 +191,10 @@ However, the knowledge attributes cannot be written this way because they descri
 
 The final \textbf{Prompt Group Attribute Steering} method will combine the two previous methods and include both the group name and the most important attribute sentences in the system prompt, which results in the following template:
 
-\begin{quote} % TODO: include final steering prompt
-  You are an author who writes a helpful explanation for a group of <group>. \newline
+\begin{quote}
+  You are an author who writes a short and helpful explanation for a group of <group>. \newline
   <rephrased style attributes> \\[5pt]
-  You write for a group of people who have the following background knowledge and experience: \newline
+  Take into account that the group of <group> has the following background knowledge and experience: \newline
   <rephrased knowledge attributes>
 \end{quote}
 

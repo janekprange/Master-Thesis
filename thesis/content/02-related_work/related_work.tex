@@ -73,13 +73,9 @@ There are several variations of prompt engineering. One important type involves 
 
 Another variant of prompt engineering is few-shot prompting. With this approach, the prompt contains instructions for the task and a few examples of correct task completions. These examples allow the model to generalize to similar tasks by recognizing patterns.
 
-% chain-of-thought prompting by Wei et al., 2022 % TODO: include this?
-
 \textbf{Fine-tuning} is a more resource-intensive method of steering that involves updating the parameters of the model using task-specific data. Although fine-tuning can yield strong performance, it is often too expensive for \acp{llm} due to their size. Furthermore, using a different fine-tuned model for each task can be inefficient and impractical.
 
 To mitigate these issues, parameter-efficient fine-tuning methods have been developed. These methods freeze the pre-trained model weights and only train a small number of additional parameters. One such method is prefix tuning (\cite{liPrefixtuningOptimizingContinuous2021}), where a learned vector (prefix) is prepended to the model input. This method achieves competitive performance while training only \SI{0.1}{\percent} of the model's parameters. Another example is LoRA (\cite{huLoRALowrankAdaptation2021}), which introduces trainable low-rank matrices into the model while keeping the original weights fixed. LoRA reduces the number of trainable parameters by a factor of \num{10000} without compromising performance.
-
-% \textbf{Reinforcement Learning from Human Feedback (RLHF)} % TODO: include this?
 
 A recent alternative to these methods is \textbf{activation steering}, which directly alters the hidden states of \iac{llm} during inference to guide its output. These hidden states are generally accessed at the end of each transformer layer. Modern \acp{llm} typically consist of between \num{20} and \num{100} such layers, with deeper layers typically encoding more abstract and sophisticated concepts (\cite{bogdanEmergentEffectsScaling2025}).
 

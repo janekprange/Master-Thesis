@@ -11,24 +11,6 @@ The experiments were conducted on a SLURM cluster using nodes with \num{32} CPU 
 \input{content/05-experiments/_experimental_setup.tex}
 
 
-%! debugging
-% \section{Evaluating the Synthetic Dataset}
-% \label{sec:experiments:syntheticDataset}
-% \begin{itemize}
-%   \item repetitions in answer from the \ac{llm} during the attribute sentence generation
-%         \begin{itemize}
-%           \item sometimes models do not produce sensible answers and instead repeat the same phrase multiple times
-%           \item this is an unwanted behavior which would drastically worsen the quality of the synthetic dataset
-%           \item count the number of repeating 10-grams in all descriptions and attribute sentences % better wording; answers to the prompts? text generations?
-%         \end{itemize}
-%   \item ensure that the attribute vector dimension are used roughly equally over the different groups
-%         \begin{itemize}
-%           \item if most dimensions would be used to describe only one group, the distinction between the other groups would get a lot more difficult
-%         \end{itemize}
-%   \item ensure that for every answer some dimension of the attribute vector is used; this is important for the generation of the \ac{sfam} training dataset (Section~\ref{sec:experiments:setup:sfam})
-%         % \item how often attribute vector dimensions have been used -> targeted dimension very often, for the others it would be more interesting
-% \end{itemize}
-
 \section{Evaluating the Importance of Knowledge Attributes for the Interpretable Attribute Vector}%
 \label{sec:experiments:knowledgeAttributes}
 Knowledge attributes are an extension of the state-of-the-art style vector and a novel contribution of this thesis. This experiment is designed to address research question~\ref{rq:interpretableGroupDetect:knowledgeAttributes} by evaluating the significance of the knowledge attributes in the context of group membership detection tasks.
@@ -43,7 +25,7 @@ If the most important attributes for group differentiation do not include knowle
 The three models that are presented in this thesis, \ac{sfam}, \ac{lisa} and the embedding model, are all trained on test datasets that are constructed similarly to their training and validation datasets but consist of unseen data.
 
 For \textbf{\ac{sfam}}, the test dataset is constructed from unseen answers of the synthetic dataset described in Section~\ref{sec:approach:attributeSentenceGeneration}. The test data is balanced and consists of \num{\sfamTestDataSize} samples which were extracted with the method described in Section~\ref{sec:experiments:setup:sfam}.
-During the test, \ac{sfam} is tasked with predicting if an attribute sentence matches a given answer. The ground trouth for this task is if the attribute sentence was actually used to describe the answer in the synthetic dataset. The agreement score that \ac{sfam} produces is rounded to either one (positive prediction) or zero (negative prediction) and compared to the ground truth with accuracy and F1 as the metric.
+During the test, \ac{sfam} is tasked with predicting if an attribute sentence matches a given answer. The ground truth for this task is if the attribute sentence was actually used to describe the answer in the synthetic dataset. The agreement score that \ac{sfam} produces is rounded to either one (positive prediction) or zero (negative prediction) and compared to the ground truth with accuracy and F1 as the metric.
 
 \textbf{\ac{lisa}} is trained and evaluated attribute vectors created with \ac{sfam}. The evaluation is conducted on \num{\lisaTestDataSize} unseen texts. The model is evaluated with the metrics \ac{mse}, \ac{mae} and the average cosine similarity between the attribute vectors produced by \ac{sfam} and \ac{lisa}. Additionally, the attribute vectors from both models are rounded to produce a prediction if specific attributes are present in a given text. These predictions are subsequently compared with the accuracy and F1 metric.
 

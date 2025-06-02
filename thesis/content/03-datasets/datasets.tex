@@ -1,7 +1,7 @@
 \chapter{Datasets}%
 \label{sec:datasets}
 
-% TODO: introduction
+The experiments and evaluations conducted in this thesis rely on multiple datasets that are specifically selected to support the research questions outlined in Chapter~\ref{sec:introduction}.
 
 \section{Stack Exchange Dataset}%
 \label{sec:datasets:stackex}
@@ -10,19 +10,18 @@ The main dataset used in this thesis is derived from Stack Exchange\footnote{\ur
 To ensure that the answers that are being used for the thesis actually include explanations, only questions that begin with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed conceptual explanations in the answers according to \citet{millerExplanationArtificialIntelligence2019}. From the full set of Stack Exchange forums, \num{16} group-specific forums are identified as relevant.
 Out of these, \num{\numGroups} with enough samples for the experiments are selected for the evaluation carried out in this thesis. The specific groups and the corresponding number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
 % To ensure the answers used in the thesis include explanations, only questions beginning with \enquote{what}, \enquote{how}, or \enquote{why} are selected, as these typically elicit detailed, conceptual responses. Of the full set of Stack Exchange forums, \num{16} group-specific forums were identified as relevant. \num{11} of these are selected for the experimental evaluation carried out in this thesis. The specific groups and the number of answers used from each are documented in Appendix~\ref{sec:appendix:datasets:stackex}.
+\raggedbottom
 
 \section{AskX Dataset}%
 \label{sec:datasets:askx}
-The second dataset used in this thesis is derived from Reddit\footnote{\url{https://www.reddit.com/}}, a widely used online discussion platform where users submit posts and others respond. Reddit is organized into subforums, known as \enquote{subreddits}, that focus on specific topics and have their own rules and moderation policies.
+The second dataset used in this thesis is derived from Reddit\footnote{\url{https://www.reddit.com/}}, a widely used online discussion platform where users submit posts and others respond. Reddit is organized into sub-forums, known as \enquote{Subreddits}, that focus on specific topics and have their own rules and moderation policies.
 
-This dataset focuses on a specific category of subreddits that follow the \enquote{AskX} schema. In these subreddits, any user may pose a question, but only individuals belonging to a specific demographic are expected to respond. Examples include \enquote{Askelectricians}, where only electricians are encouraged to answer, and \enquote{Askteens}, where answers should come from teenagers. A total of \num{26} such AskX subreddits were initially identified.
+This dataset focuses on a specific category of Subreddits that follow the \enquote{AskX} schema. In these Subreddits, any user may pose a question, but only individuals belonging to a specific demographic are expected to respond. Examples include \enquote{Askelectricians}, where only electricians are encouraged to answer, and \enquote{Askteens}, where answers should come from teenagers. A total of \num{26} such AskX Subreddits were identified to be used.
 
-% TODO: is this the correct number?
-From this pool, \num{24} subreddits are manually selected and grouped into \num{\numGroupsAskx} groups to create a unified corpus. The grouping process is necessary because some subreddits do not have enough answers to be treated independently. As with the Stack Exchange dataset, only questions that start with \enquote{what}, \enquote{how}, or \enquote{why} are retained to ensure that the dataset contains genuine explanations. Further details on the selected subreddits and the grouping process are provided in Appendix~\ref{sec:appendix:datasets:askx}.
+The Subreddits are grouped into \num{\numGroupsAskx} groups to create a unified corpus. The grouping process is necessary because some Subreddits do not have enough answers to be treated independently. As with the Stack Exchange dataset, only questions that start with \enquote{what}, \enquote{how}, or \enquote{why} are retained to ensure that the dataset contains genuine explanations. Further details on the selected Subreddits and the grouping process are provided in Appendix~\ref{sec:appendix:datasets:askx}.
 
 \section{Steering Dataset}%
 \label{sec:datasets:steering}
 For steering experiments, it is essential to use high-quality questions that elicit meaningful, conceptually rich responses. While questions from the Stack Exchange and AskX datasets could be used for this purpose, they do not consistently meet the quality and clarity required for steering tasks.
 
-% TODO: from kilt, I used ELI5 test dataset
-Instead, this thesis uses a steering dataset consisting of questions taken from the works of \citet{petroni-etal-2021-kilt,rooeinKnowYourAudience2023}. These studies focus on question answering and compile carefully curated lists of what, how, and why questions. These questions are particularly well-suited to the steering experiments conducted in this thesis and offer a reliable benchmark for evaluating the ability of the model to generate group-specific responses. Further details regarding this dataset can be found in Appendix~\ref{sec:appendix:datasets}.
+Instead, this thesis uses a steering dataset (see Appendix~\ref{sec:appendix:datasets}) consisting of questions taken from two sources: the \ac{eli5} test dataset from the benchmark for \acf{kilt} (\cite{petroni-etal-2021-kilt,fan-etal-2019-eli5}) and question from the work of \citet{rooeinKnowYourAudience2023}. These studies focus on question answering and compile carefully curated lists of what, how, and why questions. These questions are particularly well-suited to the steering experiments conducted in this thesis and offer a reliable benchmark for evaluating the ability of the model to generate group-specific responses.

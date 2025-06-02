@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[ngerman,english]{babel}
 
+\usepackage[document]{ragged2e}
 \usepackage[table]{xcolor}
 \usepackage{graphicx}
 % format numbers
@@ -27,6 +28,7 @@
 % enables \enquote command for better quotation
 % \usepackage{csquotes}
 \usepackage[printonlyused,nohyperlinks,nolist]{acronym}
+\AddToHook{env/quote/begin}{\samepage }
 
 \usepackage{amsmath}
 \usepackage{tikz}
@@ -52,7 +54,6 @@
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
 
-\usepackage[document]{ragged2e}
 \usepackage{tabularray}
 \UseTblrLibrary{booktabs, siunitx}
 % \usepackage{booktabs}
@@ -77,8 +78,9 @@
   sorting=nyt,                % Sort citations by name-year-title in the bibliography
   sortcites=false,            % Do not sort the citations within text
   maxcitenames=1,             % Maximum number of names in document-body citations
-  maxbibnames=5,             % Maximum number of names in bibliography
+  maxbibnames=5,              % Maximum number of names in bibliography
   uniquelist=false,           % Don't require unique citation names (year not included) to not overwrite maxcitenames
+  defernumbers=true,          % assign numbers to entries when they are printed in the bibliography, not earlier
 }{biblatex}
 \usepackage{biblatex}
 % Don't switch the ordering for the first name in bibliography
