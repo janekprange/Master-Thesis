@@ -165,8 +165,11 @@ This thesis proposes two kinds of steering methods. Firstly, the system prompt w
 All methods will be compared against a baseline text generation that is unsteered.
 For all steering methods, the model Llama-3.2-3B-instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct}} was used.
 
-% TODO: write about base steering prompt?
-% You are an author who writes a short and helpful explanation.
+All methods are being compared to unsteered explanations. These explanations were generated without prompt engineering. However, the following text was added to the system prompt to ensure that the only differences between unsteered and steered generations are the groups and steering attributes.
+\begin{quote}
+  You are an author who writes a short and helpful explanation.
+\end{quote}
+
 \subsubsection{Prompt Steering}
 \label{sec:experiments:setup:steering:prompt}
 The first and simplest way to change the system prompt is to instruct the model to write an explanation for a specified group with the \textbf{Prompt Group Steering} method. In this case, the system prompt includes the following sentence:
