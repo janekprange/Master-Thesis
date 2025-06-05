@@ -68,7 +68,7 @@ In the following table, all groups that were extracted from Stack Exchange and t
 \subsection{Reddit (AskX)}
 \label{sec:appendix:datasets:askx}
 \vspace{-3mm}
-The following table presents an overview of the Subreddits from which the answers used for the experiments in this thesis were sourced. It also includes information on the number of answers to what/how/why question extracted from each Subreddit. Furthermore, the table illustrates how the Subreddits were grouped. Finally, it specifies the number of answers that were actually utilized in the experiments, which is \num{500} in total per group.
+The following table presents an overview of the Subreddits from which the answers used for the experiments in this thesis were sourced. It also includes information on the number of answers to what/how/why questions extracted from each Subreddit. Furthermore, the table illustrates how the Subreddits were grouped. Finally, it specifies the number of answers that were actually utilized in the experiments, which is \num{500} in total per group.
   % LTEX: enabled=false
   {
     \small
@@ -119,7 +119,7 @@ The following table presents an overview of the Subreddits from which the answer
 \clearpage
 
 \section{Prompts for Attribute Sentence Generation}
-The following prompts are used to create the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration}). Many of the prompts have been taken from the work of \citet{patelLearningInterpretableStyle2023} with the notable exception of the knowledge prompts, which are part of the extension to existing approach presented in this thesis.
+The following prompts are used to create the synthetic dataset (see Section~\ref{sec:approach:attributeSentenceGeneration}). Many of the prompts have been taken from the work of \citet{patelLearningInterpretableStyle2023} with the notable exception of the knowledge prompts, which are part of the extension to the existing approach presented in this thesis.
 
 \subsection{Open-ended Style Prompts}
 \label{sec:appendix:openPrompts}
@@ -184,7 +184,7 @@ In this thesis, the following template for the targeted style prompts are being 
   Description:
 \end{lstlisting}
 
-For each of the following targeted features, the \textit{feature\_name} is substituted by the feature name. The list of features follows the work of \citet{patelLearningInterpretableStyle2023} with the exception that \enquote{swear words} is not included twice and \enquote{male pronouns} as well as \enquote{female pronouns} have been removed because the resulting attribute sentences are two similar to each other. Because of the high similarity, the attributes were often in the same clusters even though they were describing different genders.
+For each of the following targeted features, the \textit{feature\_name} is substituted by the feature name. The list of features follows the work of \citet{patelLearningInterpretableStyle2023} with the exception that \enquote{swear words} is not included twice and \enquote{male pronouns} as well as \enquote{female pronouns} have been removed because the resulting attribute sentences are too similar to each other. Because of the high similarity, the attributes were often in the same clusters, even though they were describing different genders.
 
 % LTEX: enabled=false
 \begin{multicols}{2}
