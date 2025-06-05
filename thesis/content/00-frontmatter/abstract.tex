@@ -5,19 +5,20 @@
 \label{sec:abstract}
 \vspace*{-10mm}
 
-% TODO: maybe write better? (and than translate)
-\Acp{llm} are used by a large variety of groups of people. To increase the helpfulness of \ac{nlp} methods, it is beneficial to differentiate between these groups and steer generated explanations to an appropriate style and knowledge level to increase their comprehensiveness.
+{
+  \addtolength{\parskip}{-1pt}
+  \Acp{llm} are employed by a diverse range of users with varying linguistic styles and levels of experience, spanning from children to professionals. To improve the effectiveness of \ac{nlp} methods, it is beneficial to distinguish between these user groups and adapt generated explanations to match their respective styles and knowledge levels.
 
-This thesis introduces a novel, unified framework that facilitates interpretable text representation, enabling the detection of group membership and guiding \acp{llm} to generate group-specific explanations within a single, continuous pipeline. The framework extends the interpretable style vector proposed by \citet{patelLearningInterpretableStyle2023} to include knowledge attributes that capture the background knowledge and experience of the author. These combined components form the interpretable attribute vector.
+  This thesis introduces a novel, unified framework that facilitates interpretable text representation, enabling the detection of group membership and guiding \acp{llm} to generate group-specific explanations within a single, continuous pipeline. The framework extends the interpretable style vector proposed by \citet{patelLearningInterpretableStyle2023} to include knowledge attributes that capture the background knowledge and experience of the author. These combined components form the interpretable attribute vector.
 
-A synthetic dataset with style and knowledge annotations is automatically created to enable the data-driven creation of the interpretable attribute vector. Three models are trained in an automated, unsupervised fashion to generate interpretable attribute vectors and embeddings. The embeddings, created from the attribute vectors, enable meaningful comparisons through Euclidean and cosine distance metrics.
+  A synthetic dataset with style and knowledge annotations is automatically created to enable the data-driven creation of the interpretable attribute vector. Three models are trained in an automated, unsupervised fashion to generate interpretable attribute vectors and embeddings. The embeddings, created from the attribute vectors, enable meaningful comparisons through Euclidean and cosine distance metrics.
 
-A novel steering method is presented that manipulates the internal activation space of \iac{llm} without requiring any training. This method is compared to prompt engineering-based steering approaches.
+  A novel steering method is presented that manipulates the internal activation space of \iac{llm} without requiring any training. This method is compared to prompt engineering-based steering approaches.
 
-Experimental results demonstrate that the proposed approach enables robust group membership detection and identification of important attributes for specific groups. Additionally, the evaluation demonstrates that steering methods benefit from the information provided by the interpretable attribute vector and that the novel, activation-based steering method outperforms prompt engineering techniques.
+  Experimental results demonstrate that the proposed approach enables robust group membership detection and identification of important attributes for specific groups. Additionally, the evaluation demonstrates that steering methods benefit from the information provided by the interpretable attribute vector and that the novel, activation-based steering method outperforms prompt engineering techniques.
 
-The source code for this thesis is published on GitLab\footnote{\url{https://gitlab.uni-hannover.de/luhai-nlp/prange25-ma-thesis}}.
-
+  The source code for this thesis is published on GitLab\footnote{\url{https://gitlab.uni-hannover.de/luhai-nlp/prange25-ma-thesis}}.
+}
 
 
 % The code is published on GitHub\footnote{\url{https://github.com/janekprange/interpretable-attribute-vector-and-steering}}.
@@ -31,8 +32,8 @@ The source code for this thesis is published on GitLab\footnote{\url{https://git
 \vspace*{-10mm}
 
 \begin{otherlanguage}{ngerman}
-  \addtolength{\parskip}{-6pt}
-  Large Language Models (LLMs) werden von einer Vielzahl unterschiedlicher Personengruppen genutzt. Um die Nützlichkeit von Methodiken im Bereich des Natural Language Processing (NLP) zu erhöhen, ist es vorteilhaft, zwischen diesen Gruppen unterscheiden zu können und die Textgenerierung auf einen geeigneten Stil und ein entsprechendes Wissensniveau für sie auszurichten.
+  \addtolength{\parskip}{-9pt}
+  Large Language Models (LLMs) werden von einer Vielzahl unterschiedlicher Personengruppen mit unterschiedlichen sprachlichen Stilen und Erfahrungsniveaus verwendet, von Kindern bis hin zu Fachleuten. Um die Wirksamkeit von Methodiken im Bereich des Natural Language Processing (NLP) zu verbessern, ist es vorteilhaft, zwischen diesen Nutzergruppen zu unterscheiden und die generierten Erklärungen an deren jeweiligen Stil und Wissensstand anzupassen.
 
   Diese Arbeit stellt ein neuartiges, einheitliches Framework vor, das eine interpretierbare Textrepräsentation ermöglicht. Dadurch wird sowohl die Erkennung der Gruppenzugehörigkeit als auch die Steuerung von \acp{llm} zur Erzeugung gruppenspezifischer Erklärungen innerhalb einer einzigen, durchgängigen Pipeline ermöglicht. Das Framework erweitert den von \citet{patelLearningInterpretableStyle2023} präsentierten interpretierbaren Stilvektor um Wissensattribute, die das Hintergrundwissen und die Erfahrung der Autorin bzw. des Autors erfassen. Diese kombinierten Komponenten bilden den interpretierbaren Attributvektor.
 

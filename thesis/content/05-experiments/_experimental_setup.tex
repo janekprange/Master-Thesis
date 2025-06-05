@@ -36,7 +36,8 @@ The clustering algorithm first computes a radius neighbor graph of all sentences
 At this point, there are \num{\numClusters} clusters, \num{\numClustersStyle} of which are style clusters and \num{\numClustersKnowledge} are knowledge clusters. The size of the complete synthetic dataset can be found in Table~\ref{table:syntheticDataset}.
 
 \begin{table}[ht]
-  \caption{The size of the synthetic dataset created for this thesis. The answers are the group-specific input texts that are taken from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). For each answer and prompt, the \ac{llm} is prompted to create the style and knowledge descriptions. The descriptions are converted to attribute sentences by prompting the model again. Finally, the sentences are clustered together by the cosine similarity of their embeddings. The embeddings were produced with an SBERT model (\cite{reimersSentenceBERTSentenceEmbeddings2019}).}
+  \caption{The size of the synthetic dataset created for this thesis. The answers are the group-specific input texts that are taken from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). For each answer and prompt, the \ac{llm} is prompted to create the style and knowledge descriptions. The descriptions are converted to attribute sentences by prompting the model again. Finally, the sentences are clustered together by the cosine similarity of their embeddings. The embeddings were produced with an SBERT model (\cite{reimersSentenceBERTSentenceEmbeddings2019}).}%
+  \label{table:syntheticDataset}
   \begin{center}
     \begin{tabular}{lS[table-format=7.0]}
       \toprule
@@ -46,9 +47,8 @@ At this point, there are \num{\numClusters} clusters, \num{\numClustersStyle} of
       Descriptions & \numStyleDescriptions   \\
       Sentences    & \numStyleSentences      \\
       Clusters     & \numClusters            \\ \bottomrule
-    \end{tabular}%
-  \end{center}%
-  \label{table:syntheticDataset}
+    \end{tabular}
+  \end{center}
 \end{table}
 
 \subsection{Selecting the Attribute Vector Dimensions}

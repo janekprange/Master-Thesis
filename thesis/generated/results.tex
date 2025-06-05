@@ -2,7 +2,7 @@
 
 \newcommand{\resultKnowledgeImportance}{
 \begin{tblr}{
-colspec={ X S S S },
+colspec={ X S[table-format=2.0] S[table-format=2.0] S[table-format=2.0] },
 cell{12}{2} = gray9,
 cell{7}{3} = gray9,
 cell{12}{3} = gray9,
@@ -61,14 +61,14 @@ F1 & 0.8481522434299483 \\
 
 \newcommand{\resultEmbedder}{
 \begin{tblr}{
-colspec={ X S },
+colspec={ l X S },
 }
 \toprule
-Baseline Accuracy & 0.5 \\
-Accuracy (Euclidean) & 0.8081818181818182 \\
-F1 (Euclidean) & 0.8939165409753645 \\
-Accuracy (Cosine) & 0.8063636363636364 \\
-F1 (Cosine) & 0.8928032209360846 \\
+\SetCell[c=2]{} Baseline Accuracy & & 0.5 \\
+Accuracy & Euclidean & 0.8081818181818182 \\
+F1 & Euclidean & 0.8939165409753645 \\
+Accuracy & Cosine & 0.8063636363636364 \\
+F1 & Cosine & 0.8928032209360846 \\
 \bottomrule
 \end{tblr}
 }
@@ -77,14 +77,14 @@ F1 (Cosine) & 0.8928032209360846 \\
 
 \newcommand{\resultEmbedderToMedians}{
 \begin{tblr}{
-colspec={ X S },
+colspec={ l X S },
 }
 \toprule
-Baseline Accuracy & 0.09090909090909091 \\
-Accuracy (Euclidean) & 0.46136363636363636 \\
-F1 (Euclidean) & 0.6314152410575428 \\
-Accuracy (Cosine) & 0.41818181818181815 \\
-F1 (Cosine) & 0.5897435897435898 \\
+\SetCell[c=2]{} Baseline Accuracy & & 0.09090909090909091 \\
+Accuracy & Euclidean & 0.46136363636363636 \\
+F1 & Euclidean & 0.6314152410575428 \\
+Accuracy & Cosine & 0.41818181818181815 \\
+F1 & Cosine & 0.5897435897435898 \\
 \bottomrule
 \end{tblr}
 }
@@ -93,14 +93,14 @@ F1 (Cosine) & 0.5897435897435898 \\
 
 \newcommand{\resultEmbedderForeignDomain}{
 \begin{tblr}{
-colspec={ X S },
+colspec={ l X S },
 }
 \toprule
-Baseline Accuracy & 0.5 \\
-Accuracy (Euclidean) & 0.7548571428571429 \\
-F1 (Euclidean) & 0.8603060892217519 \\
-Accuracy (Cosine) & 0.74 \\
-F1 (Cosine) & 0.8505747126436781 \\
+\SetCell[c=2]{} Baseline Accuracy & & 0.5 \\
+Accuracy & Euclidean & 0.7548571428571429 \\
+F1 & Euclidean & 0.8603060892217519 \\
+Accuracy & Cosine & 0.74 \\
+F1 & Cosine & 0.8505747126436781 \\
 \bottomrule
 \end{tblr}
 }
@@ -109,14 +109,14 @@ F1 (Cosine) & 0.8505747126436781 \\
 
 \newcommand{\resultEmbedderToMediansForeignDomain}{
 \begin{tblr}{
-colspec={ X S },
+colspec={ l X S },
 }
 \toprule
-Baseline Accuracy & 0.14285714285714285 \\
-Accuracy (Euclidean) & 0.5034285714285714 \\
-F1 (Euclidean) & 0.669707335613835 \\
-Accuracy (Cosine) & 0.4937142857142857 \\
-F1 (Cosine) & 0.6610558530986993 \\
+\SetCell[c=2]{} Baseline Accuracy & & 0.14285714285714285 \\
+Accuracy & Euclidean & 0.5034285714285714 \\
+F1 & Euclidean & 0.669707335613835 \\
+Accuracy & Cosine & 0.4937142857142857 \\
+F1 & Cosine & 0.6610558530986993 \\
 \bottomrule
 \end{tblr}
 }

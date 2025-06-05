@@ -12,7 +12,7 @@ The synthetic dataset created for this thesis consists of group-specific answers
 
 In the second step, the model is prompted to rewrite the generated descriptions as standardized attribute sentences. These sentences are typically in the form of \enquote{The author is \ldots} or \enquote{The author uses \ldots}. The entire process is illustrated in Figure~\ref{fig:attributeSentenceGeneration}. To improve the performance of later stages of the approach, the generated sentences are free of negations and do not include examples. This is accomplished by instructing the model not to use such constructions and by automatically verifying the generated sentences. This approach ensures consistency and facilitates better performance in subsequent tasks, aligning with the methods described by \citet{patelLearningInterpretableStyle2023}.
 
-\begin{figure}[ht]
+\begin{figure}[h!t]
   \input{figures/tikz/sentence-generation-diagram.tex}
   \caption{The two-step process to generate attribute sentences based on the work of \citet{patelLearningInterpretableStyle2023}. The inputs are group-specific answers from the Stack Exchange dataset (see Section~\ref{sec:datasets:stackex}). \Iac{llm} is prompted \num{\numPrompts} times to generate different descriptions of the input text. The prompts focus on different stylistic aspects and the knowledge of the author. Afterward, the \ac{llm} is prompted a second time to convert the descriptions into attribute sentences of a consistent shape.}%
   \label{fig:attributeSentenceGeneration}
